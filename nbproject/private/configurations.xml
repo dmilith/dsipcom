@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="45">
+  <projectmakefile>dsipcom_qt4-Makefile.mk</projectmakefile>
+  <defaultConf>0</defaultConf>
+  <confs>
+    <conf name="Default" type="0">
+      <gdbdebugger version="2">
+        <gdb_command>gdb</gdb_command>
+        <array_repeat_threshold>10</array_repeat_threshold>
+      </gdbdebugger>
+      <runprofile version="5">
+        <args></args>
+        <rundir>/private/programowanie/INŻYNIERKA/dsipcom_qt4/.</rundir>
+        <buildfirst>true</buildfirst>
+        <console-type>0</console-type>
+        <terminal-type>2</terminal-type>
+        <environment>
+        </environment>
+      </runprofile>
+    </conf>
+  </confs>
+</configurationDescriptor>
