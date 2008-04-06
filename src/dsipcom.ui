@@ -117,7 +117,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="cursor" >
-     <cursorShape>ClosedHandCursor</cursorShape>
+     <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="acceptDrops" >
      <bool>true</bool>
@@ -132,7 +132,7 @@ p, li { white-space: pre-wrap; }
      <enum>QFrame::Sunken</enum>
     </property>
     <property name="currentIndex" >
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="page_contacts" >
      <property name="geometry" >
@@ -493,6 +493,14 @@ p, li { white-space: pre-wrap; }
      </widget>
     </widget>
     <widget class="QWidget" name="page_preferences" >
+     <property name="geometry" >
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>365</width>
+       <height>515</height>
+      </rect>
+     </property>
      <attribute name="label" >
       <string>Preferencje użytkownika</string>
      </attribute>
@@ -573,6 +581,14 @@ p, li { white-space: pre-wrap; }
      </widget>
     </widget>
     <widget class="QWidget" name="page_raports" >
+     <property name="geometry" >
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>94</width>
+       <height>24</height>
+      </rect>
+     </property>
      <attribute name="label" >
       <string>Raporty z połączeń</string>
      </attribute>
@@ -637,21 +653,21 @@ p, li { white-space: pre-wrap; }
     <addaction name="actionPo_cz_z_serwerem_SIP" />
     <addaction name="actionRoz_cz_z_serwerem_SIP" />
     <addaction name="separator" />
-    <addaction name="actionZako_cz_dzia_anie_programu" />
+    <addaction name="action_close_application" />
    </widget>
    <widget class="QMenu" name="menuPomoc" >
     <property name="title" >
      <string>Pomoc</string>
     </property>
-    <addaction name="actionPomoc" />
-    <addaction name="actionO_Programie" />
+    <addaction name="action_help" />
+    <addaction name="action_about" />
    </widget>
    <widget class="QMenu" name="menuKontakty" >
     <property name="title" >
      <string>Kontakty</string>
     </property>
-    <addaction name="actionDodaj_Kontakt" />
-    <addaction name="actionUsu_kontakt_z_listy" />
+    <addaction name="action_add_contact" />
+    <addaction name="action_remove_contact_from_list" />
    </widget>
    <addaction name="menuDsipcom" />
    <addaction name="menuKontakty" />
@@ -816,7 +832,7 @@ p, li { white-space: pre-wrap; }
     <string>Opis</string>
    </property>
   </action>
-  <action name="actionPomoc" >
+  <action name="action_help" >
    <property name="icon" >
     <iconset resource="images.qrc" >:/images/images/information.png</iconset>
    </property>
@@ -824,7 +840,7 @@ p, li { white-space: pre-wrap; }
     <string>Pomoc</string>
    </property>
   </action>
-  <action name="actionO_Programie" >
+  <action name="action_about" >
    <property name="icon" >
     <iconset resource="images.qrc" >:/images/images/award_star_gold_2.png</iconset>
    </property>
@@ -832,7 +848,7 @@ p, li { white-space: pre-wrap; }
     <string>O Programie</string>
    </property>
   </action>
-  <action name="actionDodaj_Kontakt" >
+  <action name="action_add_contact" >
    <property name="icon" >
     <iconset resource="images.qrc" >:/images/images/add.png</iconset>
    </property>
@@ -840,7 +856,7 @@ p, li { white-space: pre-wrap; }
     <string>Dodaj Kontakt</string>
    </property>
   </action>
-  <action name="actionUsu_kontakt_z_listy" >
+  <action name="action_remove_contact_from_list" >
    <property name="icon" >
     <iconset resource="images.qrc" >:/images/images/delete.png</iconset>
    </property>
@@ -848,7 +864,7 @@ p, li { white-space: pre-wrap; }
     <string>Usuń kontakt z listy</string>
    </property>
   </action>
-  <action name="actionZako_cz_dzia_anie_programu" >
+  <action name="action_close_application" >
    <property name="icon" >
     <iconset resource="images.qrc" >:/images/images/exclamation.png</iconset>
    </property>
@@ -862,7 +878,7 @@ p, li { white-space: pre-wrap; }
  </resources>
  <connections>
   <connection>
-   <sender>actionZako_cz_dzia_anie_programu</sender>
+   <sender>action_close_application</sender>
    <signal>activated()</signal>
    <receiver>MainWindow</receiver>
    <slot>close()</slot>

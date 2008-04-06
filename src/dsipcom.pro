@@ -1,12 +1,14 @@
 TEMPLATE = app
 LANGUAGE  = C++
-TARGET = dSipCom
-CONFIGS += qt x11 debug
+TARGET = dsipcom
+CONFIGS += qt x11 debug gdb
 HEADERS += main.h \
 					 ui_icons.h \
            user_interface.h \
-					 version.h
+					 version.h \
+					 logger.h
 SOURCES += main.cpp \
+					 logger.cpp
 					 
 INCLUDEPATH += /usr/include/qt4
 unix:OBJECTS_DIR = ./.tmp
@@ -14,6 +16,7 @@ win32:OBJECTS_DIR = c:/windows/temp
 unix:LIBS += -losip2 -L/usr/local/lib -L/usr/lib
 win32:LIBS += c:\mylibs\math.lib
 
+RCC += dsipcom.qrc
 DESTDIR += ../
 
 win32 {
@@ -29,6 +32,10 @@ unix {
 }
 
 !exists( main.cpp ) {
+    error( "No main.cpp file found" )
+}
+
+!exists( logger.cpp ) {
     error( "No main.cpp file found" )
 }
 

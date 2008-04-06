@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading ui file 'dsipcom.ui'
 **
-** Created: Fri Apr 4 20:36:19 2008
+** Created: Sun Apr 6 19:26:01 2008
 **      by: Qt User Interface Compiler version 4.3.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling ui file!
@@ -30,18 +30,18 @@
 #include <QtGui/QTreeView>
 #include <QtGui/QWidget>
 
-class Ui_MainWindow: public QMainWindow
+class Ui_MainWindow : public QMainWindow
 {
 public:
     QAction *actionPo_cz_z_serwerem_SIP;
     QAction *actionRoz_cz_z_serwerem_SIP;
     QAction *actionPreferencje;
     QAction *actionOpis;
-    QAction *actionPomoc;
-    QAction *actionO_Programie;
-    QAction *actionDodaj_Kontakt;
-    QAction *actionUsu_kontakt_z_listy;
-    QAction *actionZako_cz_dzia_anie_programu;
+    QAction *action_help;
+    QAction *action_about;
+    QAction *action_add_contact;
+    QAction *action_remove_contact_from_list;
+    QAction *action_close_application;
     QWidget *centralwidget;
     QPushButton *call_button;
     QPushButton *hang_button;
@@ -110,21 +110,21 @@ public:
     actionPreferencje->setObjectName(QString::fromUtf8("actionPreferencje"));
     actionOpis = new QAction(MainWindow);
     actionOpis->setObjectName(QString::fromUtf8("actionOpis"));
-    actionPomoc = new QAction(MainWindow);
-    actionPomoc->setObjectName(QString::fromUtf8("actionPomoc"));
-    actionPomoc->setIcon(QIcon(QString::fromUtf8(":/images/images/information.png")));
-    actionO_Programie = new QAction(MainWindow);
-    actionO_Programie->setObjectName(QString::fromUtf8("actionO_Programie"));
-    actionO_Programie->setIcon(QIcon(QString::fromUtf8(":/images/images/award_star_gold_2.png")));
-    actionDodaj_Kontakt = new QAction(MainWindow);
-    actionDodaj_Kontakt->setObjectName(QString::fromUtf8("actionDodaj_Kontakt"));
-    actionDodaj_Kontakt->setIcon(QIcon(QString::fromUtf8(":/images/images/add.png")));
-    actionUsu_kontakt_z_listy = new QAction(MainWindow);
-    actionUsu_kontakt_z_listy->setObjectName(QString::fromUtf8("actionUsu_kontakt_z_listy"));
-    actionUsu_kontakt_z_listy->setIcon(QIcon(QString::fromUtf8(":/images/images/delete.png")));
-    actionZako_cz_dzia_anie_programu = new QAction(MainWindow);
-    actionZako_cz_dzia_anie_programu->setObjectName(QString::fromUtf8("actionZako_cz_dzia_anie_programu"));
-    actionZako_cz_dzia_anie_programu->setIcon(QIcon(QString::fromUtf8(":/images/images/exclamation.png")));
+    action_help = new QAction(MainWindow);
+    action_help->setObjectName(QString::fromUtf8("action_help"));
+    action_help->setIcon(QIcon(QString::fromUtf8(":/images/images/information.png")));
+    action_about = new QAction(MainWindow);
+    action_about->setObjectName(QString::fromUtf8("action_about"));
+    action_about->setIcon(QIcon(QString::fromUtf8(":/images/images/award_star_gold_2.png")));
+    action_add_contact = new QAction(MainWindow);
+    action_add_contact->setObjectName(QString::fromUtf8("action_add_contact"));
+    action_add_contact->setIcon(QIcon(QString::fromUtf8(":/images/images/add.png")));
+    action_remove_contact_from_list = new QAction(MainWindow);
+    action_remove_contact_from_list->setObjectName(QString::fromUtf8("action_remove_contact_from_list"));
+    action_remove_contact_from_list->setIcon(QIcon(QString::fromUtf8(":/images/images/delete.png")));
+    action_close_application = new QAction(MainWindow);
+    action_close_application->setObjectName(QString::fromUtf8("action_close_application"));
+    action_close_application->setIcon(QIcon(QString::fromUtf8(":/images/images/exclamation.png")));
     centralwidget = new QWidget(MainWindow);
     centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
     call_button = new QPushButton(centralwidget);
@@ -148,7 +148,7 @@ public:
     toolBox = new QToolBox(centralwidget);
     toolBox->setObjectName(QString::fromUtf8("toolBox"));
     toolBox->setGeometry(QRect(0, 0, 381, 651));
-    toolBox->setCursor(QCursor(Qt::ClosedHandCursor));
+    toolBox->setCursor(QCursor(Qt::PointingHandCursor));
     toolBox->setAcceptDrops(true);
     toolBox->setFrameShape(QFrame::StyledPanel);
     toolBox->setFrameShadow(QFrame::Sunken);
@@ -235,6 +235,7 @@ public:
     toolBox->addItem(page_dialer, QIcon(QString::fromUtf8(":/images/images/telephone_add.png")), QApplication::translate("MainWindow", "Wybieranie numer\303\263w", 0, QApplication::UnicodeUTF8));
     page_preferences = new QWidget();
     page_preferences->setObjectName(QString::fromUtf8("page_preferences"));
+    page_preferences->setGeometry(QRect(0, 0, 365, 515));
     user_sip = new QLineEdit(page_preferences);
     user_sip->setObjectName(QString::fromUtf8("user_sip"));
     user_sip->setGeometry(QRect(10, 50, 241, 30));
@@ -256,6 +257,7 @@ public:
     toolBox->addItem(page_preferences, QIcon(QString::fromUtf8(":/images/images/vcard.png")), QApplication::translate("MainWindow", "Preferencje u\305\274ytkownika", 0, QApplication::UnicodeUTF8));
     page_raports = new QWidget();
     page_raports->setObjectName(QString::fromUtf8("page_raports"));
+    page_raports->setGeometry(QRect(0, 0, 94, 24));
     calendar = new QCalendarWidget(page_raports);
     calendar->setObjectName(QString::fromUtf8("calendar"));
     calendar->setGeometry(QRect(10, 30, 352, 211));
@@ -325,16 +327,16 @@ public:
     menuDsipcom->addAction(actionPo_cz_z_serwerem_SIP);
     menuDsipcom->addAction(actionRoz_cz_z_serwerem_SIP);
     menuDsipcom->addSeparator();
-    menuDsipcom->addAction(actionZako_cz_dzia_anie_programu);
-    menuPomoc->addAction(actionPomoc);
-    menuPomoc->addAction(actionO_Programie);
-    menuKontakty->addAction(actionDodaj_Kontakt);
-    menuKontakty->addAction(actionUsu_kontakt_z_listy);
+    menuDsipcom->addAction(action_close_application);
+    menuPomoc->addAction(action_help);
+    menuPomoc->addAction(action_about);
+    menuKontakty->addAction(action_add_contact);
+    menuKontakty->addAction(action_remove_contact_from_list);
 
     retranslateUi(MainWindow);
-    QObject::connect(actionZako_cz_dzia_anie_programu, SIGNAL(activated()), MainWindow, SLOT(close()));
+    QObject::connect(action_close_application, SIGNAL(activated()), MainWindow, SLOT(close()));
 
-    toolBox->setCurrentIndex(1);
+    toolBox->setCurrentIndex(0);
 
 
     QMetaObject::connectSlotsByName(MainWindow);
@@ -351,11 +353,11 @@ public:
     actionRoz_cz_z_serwerem_SIP->setText(QApplication::translate("MainWindow", "roz\305\202\304\205cz z serwerem SIP", 0, QApplication::UnicodeUTF8));
     actionPreferencje->setText(QApplication::translate("MainWindow", "Preferencje", 0, QApplication::UnicodeUTF8));
     actionOpis->setText(QApplication::translate("MainWindow", "Opis", 0, QApplication::UnicodeUTF8));
-    actionPomoc->setText(QApplication::translate("MainWindow", "Pomoc", 0, QApplication::UnicodeUTF8));
-    actionO_Programie->setText(QApplication::translate("MainWindow", "O Programie", 0, QApplication::UnicodeUTF8));
-    actionDodaj_Kontakt->setText(QApplication::translate("MainWindow", "Dodaj Kontakt", 0, QApplication::UnicodeUTF8));
-    actionUsu_kontakt_z_listy->setText(QApplication::translate("MainWindow", "Usu\305\204 kontakt z listy", 0, QApplication::UnicodeUTF8));
-    actionZako_cz_dzia_anie_programu->setText(QApplication::translate("MainWindow", "Zako\305\204cz dzia\305\202anie programu", 0, QApplication::UnicodeUTF8));
+    action_help->setText(QApplication::translate("MainWindow", "Pomoc", 0, QApplication::UnicodeUTF8));
+    action_about->setText(QApplication::translate("MainWindow", "O Programie", 0, QApplication::UnicodeUTF8));
+    action_add_contact->setText(QApplication::translate("MainWindow", "Dodaj Kontakt", 0, QApplication::UnicodeUTF8));
+    action_remove_contact_from_list->setText(QApplication::translate("MainWindow", "Usu\305\204 kontakt z listy", 0, QApplication::UnicodeUTF8));
+    action_close_application->setText(QApplication::translate("MainWindow", "Zako\305\204cz dzia\305\202anie programu", 0, QApplication::UnicodeUTF8));
     call_button->setToolTip(QApplication::translate("MainWindow", "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;\">\n"

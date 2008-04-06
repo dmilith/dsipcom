@@ -2,6 +2,8 @@
 <configurationDescriptor version="45">
   <logicalFolder name="root" displayName="root" projectFiles="true">
     <logicalFolder name="src" displayName="src" projectFiles="true">
+      <itemPath>/programowanie/INŻYNIERKA/dsipcom_qt4/src/logger.cpp</itemPath>
+      <itemPath>/programowanie/INŻYNIERKA/dsipcom_qt4/src/logger.h</itemPath>
       <itemPath>/programowanie/INŻYNIERKA/dsipcom_qt4/src/main.cpp</itemPath>
       <itemPath>/programowanie/INŻYNIERKA/dsipcom_qt4/src/main.h</itemPath>
       <itemPath>/programowanie/INŻYNIERKA/dsipcom_qt4/src/moc_main_window.cpp</itemPath>
@@ -50,6 +52,12 @@
         <requiredProjects>
         </requiredProjects>
       </makefileType>
+      <item path="/programowanie/INŻYNIERKA/dsipcom_qt4/src/logger.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="/programowanie/INŻYNIERKA/dsipcom_qt4/src/logger.h">
+        <itemTool>3</itemTool>
+      </item>
       <item path="/programowanie/INŻYNIERKA/dsipcom_qt4/src/main.cpp">
         <itemTool>1</itemTool>
       </item>

@@ -10,7 +10,7 @@
       </gdbdebugger>
       <runprofile version="5">
         <args></args>
-        <rundir>/private/programowanie/INŻYNIERKA/dsipcom_qt4/.</rundir>
+        <rundir></rundir>
         <buildfirst>true</buildfirst>
         <console-type>0</console-type>
         <terminal-type>2</terminal-type>
