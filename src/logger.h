@@ -12,6 +12,8 @@
 
 namespace Log {
 
+  const QString LOG_DIR = "logs/";
+  
   class Logger {
     public:
       QString logger_filename;

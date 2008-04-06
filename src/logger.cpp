@@ -4,7 +4,7 @@
 using namespace Log;
 
 Logger::Logger( QString log_filename ) {
-  logger_filename = log_filename;
+  logger_filename = LOG_DIR + log_filename;
 }
 
 void

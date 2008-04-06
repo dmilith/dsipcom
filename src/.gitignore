@@ -1,9 +1,0 @@
-.tmp
-images
-*.o
-*.o.*
-*.a
-*.s
-*.ko
-*.so
-
