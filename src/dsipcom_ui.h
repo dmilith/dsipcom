@@ -21,7 +21,7 @@ namespace Ui {
     Q_OBJECT
 
     public:
-      DSipCom( QString title );
+      DSipCom( const QString& title );
       void init_actions();
 
     // qt4 action slots

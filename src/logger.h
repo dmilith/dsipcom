@@ -18,9 +18,9 @@ namespace Log {
       QString logger_filename;
       QString logger_level;
       
-      Logger( QString log_filename, QString level = "notice" );
-      void set_level(QString level_name);
-      void log( QString message );
+      Logger( const QString& log_filename, const QString& level = "notice" );
+      void set_level( const QString& level_name );
+      void log( const QString& message );
   };
 
 }

@@ -13,7 +13,7 @@
 #include "version.h" //main program version
 #include "main.h" // main constants and settings
 #include "logger.h" // logging facility
-#include "ui_icons.h" // ~ 1000 icons built in
+//#include "ui_icons.h" // ~ 1000 icons built in
 #include "ui_dsipcom.h" //ui declaration
 #include "dsipcom_ui.h" // main user interface
 

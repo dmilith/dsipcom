@@ -9,7 +9,7 @@ using namespace Ui;
 
 Logger logger( "dsipcom.logger.ui", "debug" );
 
-DSipCom::DSipCom( QString title ) {
+DSipCom::DSipCom( const QString& title ) {
     logger.log( "Initializing UI" );
      // drawing ui
      setupUi( this );
@@ -21,7 +21,8 @@ DSipCom::DSipCom( QString title ) {
      setWindowFlags( flags );
      // ui settings
      setWindowTitle( title );
-     toolBox->setCurrentIndex(0);
+     // contacts list in front by default
+     toolBox->setCurrentIndex( 0 );
      show();
     logger.log( "Initializing QT4 actions" );
      init_actions();   

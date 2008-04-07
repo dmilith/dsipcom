@@ -1,15 +1,15 @@
 HEADERS += main.h \
-					 ui_icons.h \
 					 version.h \
 					 logger.h \
-					 dsipcom_ui.h
+					 dsipcom_ui.h \
+           sip_main.h
 SOURCES += dsipcom_ui.cpp \
 					 logger.cpp \
+           sip_main.cpp \
 					 main.cpp
 					 
 FORMS = dsipcom.ui
-RCC_DIR = dsipcom.qrc
-
+RESOURCES += dsipcom.qrc
 
 win32 {
      HEADERS += win_specification.h
@@ -40,6 +40,7 @@ unix {
 }
 
 TARGET = ../dsipcom
+target.path = ../
 sources.files = $$SOURCES $$HEADERS $$RESOURCES $$FORMS *.pro
 sources.path = .
 INSTALLS += target sources
