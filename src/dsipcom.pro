@@ -8,7 +8,8 @@ SOURCES += dsipcom_ui.cpp \
 					 main.cpp
 					 
 FORMS = dsipcom.ui
-RCC += dsipcom.qrc
+RCC_DIR = dsipcom.qrc
+
 
 win32 {
      HEADERS += win_specification.h

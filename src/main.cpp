@@ -12,8 +12,8 @@
 
 #include "version.h" //main program version
 #include "main.h" // main constants and settings
-#include "ui_icons.h" // ~ 1000 icons built in
 #include "logger.h" // logging facility
+#include "ui_icons.h" // ~ 1000 icons built in
 #include "ui_dsipcom.h" //ui declaration
 #include "dsipcom_ui.h" // main user interface
 
@@ -25,12 +25,13 @@ main(int argc, char *argv[]) {
   /* macro to load images from dsipcom.qrc
      could be problematic on some archs.. but on linux seems to be unecessary
      Q_INIT_RESOURCE(dsipcom); */
-
+     
    QApplication app( argc, argv );
+
    Logger logger( LOGGER_FILE );
    logger.log( "Loading DsipCom" );
  
-   Ui::DSipCom *dsipcom = new Ui::DSipCom(main_window_title);
+   Ui::DSipCom *dsipcom = new Ui::DSipCom(MAIN_WINDOW_TITLE);
    //QString z = dsipcom->user_sip->text();
    
    if ( dsipcom->user_sip->text() == "sip:" ) {
@@ -40,8 +41,8 @@ main(int argc, char *argv[]) {
      dsipcom->toolBox->setCurrentIndex(0);
    }
 
-   QString a = dsipcom->number_entry->text();
-   logger.log( a );
+   //QString a = dsipcom->number_entry->text();
+   //logger.log( a );
 
  return app.exec();
 }

@@ -9,16 +9,17 @@
 #define	_LOGGER_H
 
 #include <qt4/QtCore/QTextOStream>
+#include "main.h"
 
 namespace Log {
 
-  const QString LOG_DIR = "logs/";
-  
   class Logger {
     public:
       QString logger_filename;
+      QString logger_level;
       
-      Logger( QString log_filename );
+      Logger( QString log_filename, QString level = "notice" );
+      void set_level(QString level_name);
       void log( QString message );
   };
 

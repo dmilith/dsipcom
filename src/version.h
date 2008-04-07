@@ -8,7 +8,7 @@
 #ifndef _DSIPCOM_VERSION_H
 #define _DSIPCOM_VERSION_H 
 
-QString version = "wersja 0.2(c-d)";
-QString main_window_title = "dSipCom " + version;
+static const QString VERSION = "v0.3 (closed-devel)";
+static const QString MAIN_WINDOW_TITLE = "dSipCom " + VERSION;
 
 #endif
