@@ -9,5 +9,6 @@
 #define _DSIPCOM_VERSION_H 
 
 QString version = "wersja 0.2(c-d)";
+QString main_window_title = "dSipCom " + version;
 
 #endif

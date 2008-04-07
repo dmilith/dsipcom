@@ -1,23 +1,14 @@
-TEMPLATE = app
-LANGUAGE  = C++
-TARGET = dsipcom
-CONFIGS += qt x11 debug gdb
 HEADERS += main.h \
 					 ui_icons.h \
-           user_interface.h \
 					 version.h \
-					 logger.h
-SOURCES += main.cpp \
-					 logger.cpp
+					 logger.h \
+					 dsipcom_ui.h
+SOURCES += dsipcom_ui.cpp \
+					 logger.cpp \
+					 main.cpp
 					 
-INCLUDEPATH += /usr/include/qt4
-unix:OBJECTS_DIR = ./.tmp
-win32:OBJECTS_DIR = c:/windows/temp
-unix:LIBS += -losip2 -L/usr/local/lib -L/usr/lib
-win32:LIBS += c:\mylibs\math.lib
-
+FORMS = dsipcom.ui
 RCC += dsipcom.qrc
-DESTDIR += ../
 
 win32 {
      HEADERS += win_specification.h
@@ -47,4 +38,8 @@ unix {
  		error( "Unable to find unix spec." )
 }
 
+TARGET = ../dsipcom
+sources.files = $$SOURCES $$HEADERS $$RESOURCES $$FORMS *.pro
+sources.path = .
+INSTALLS += target sources
 

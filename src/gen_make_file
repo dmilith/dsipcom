@@ -1,11 +1,4 @@
 #!/bin/bash
-echo "generating UserInterface"
-if [ $1 = "ui" ]; then
-uic-qt4 -o user_interface.h dsipcom.ui
-exit 0
-else
-	echo "skiped ui rebuild"
-fi
 
 if [ $1 = "qrc" ]; then
 rcc -o ui_icons.h images.qrc
@@ -15,18 +8,16 @@ else
 fi
 
 
-if [ $? = 0 ]; then
-	echo "done"
-fi
-
 echo "creating makefile"
-qmake -o Makefile dsipcom.pro
+qmake dsipcom.pro
 if [ $? = 0 ]; then
 	echo "done"
 fi
 
+make clean
 make all
+
 if [ $? = 0 ]; then
-	 echo "done. app ready"
+	 echo "done. dSipCot ready"
 fi
 
