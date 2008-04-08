@@ -5,7 +5,7 @@
 using namespace Log;
 
 Logger::Logger( const QString& log_filename, const QString& level ) {
-  logger_filename = LOGGER_DIR + log_filename;
+  logger_filename = log_filename;
   logger_level = level;
 }
 
@@ -22,3 +22,4 @@ void
 Logger::set_level( const QString& level_name ) {
   logger_level = level_name;
 }
+

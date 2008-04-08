@@ -8,7 +8,13 @@
 #ifndef _DSIPCOM_VERSION_H
 #define _DSIPCOM_VERSION_H 
 
-const QString VERSION = "v0.3 (closed-devel)";
-const QString MAIN_WINDOW_TITLE = "dSipCom " + VERSION;
+#ifndef VERSION
+#define VERSION "v0.4 (closed-devel)"
+#endif
+
+#ifndef MAIN_WINDOW_TITLE
+#define MAIN_WINDOW_TITLE "dSipCom v0.4 (closed-devel)"
+#endif
+
 
 #endif

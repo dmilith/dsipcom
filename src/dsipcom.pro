@@ -2,11 +2,9 @@ CONFIG += debug
 HEADERS += main.h \
 					 version.h \
 					 logger.h \
-					 dsipcom_ui.h \
-           sip_main.h
+					 dsipcom_ui.h 
 SOURCES += dsipcom_ui.cpp \
 					 logger.cpp \
-           sip_main.cpp \
 					 main.cpp
 					 
 FORMS = dsipcom.ui

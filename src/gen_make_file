@@ -7,9 +7,10 @@ if [ $? = 0 ]; then
 fi
 
 #make clean
-make all
-
+make all 2> compile.log
 if [ $? = 0 ]; then
 	 echo "done. dSipCom ready"
 fi
+less compile.log
+
 

@@ -11,7 +11,8 @@
 
 // main declarations and constants
 
-#define LOGGER_FILE "dsipcom.logger"
-#define LOGGER_DIR "logs/"
+#define LOGGER_FILE "logs/dsipcom.main.log"
+#define LOGGER_LINPHONE "logs/dsipcom.linphone.log"
+#define LOGGER_DSIPCOM_UI "logs/dsipcom.logger.ui.log"
 
 #endif

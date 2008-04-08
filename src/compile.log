@@ -1,0 +1,45 @@
+dsipcom_ui.cpp:79: warning: missing initializer for member ‘_LinphoneVTable::call_log_updated’
+dsipcom_ui.cpp:79: warning: missing initializer for member ‘_LinphoneVTable::text_received’
+dsipcom_ui.cpp:79: warning: missing initializer for member ‘_LinphoneVTable::general_state’
+dsipcom_ui.cpp:87: warning: unused parameter ‘lc’
+dsipcom_ui.cpp:97: warning: unused parameter ‘lc’
+dsipcom_ui.cpp:107: warning: unused parameter ‘lc’
+dsipcom_ui.cpp:117: warning: unused parameter ‘lc’
+dsipcom_ui.cpp:127: warning: unused parameter ‘lc’
+dsipcom_ui.cpp:127: warning: unused parameter ‘from’
+dsipcom_ui.cpp:138: warning: unused parameter ‘lc’
+dsipcom_ui.cpp:160: warning: unused parameter ‘lc’
+dsipcom_ui.cpp:160: warning: unused parameter ‘fid’
+dsipcom_ui.cpp:160: warning: unused parameter ‘img’
+dsipcom_ui.cpp:171: warning: unused parameter ‘lc’
+dsipcom_ui.cpp:171: warning: unused parameter ‘lf’
+dsipcom_ui.cpp:184: warning: unused parameter ‘lc’
+dsipcom_ui.cpp:184: warning: unused parameter ‘from’
+dsipcom_ui.cpp:198: warning: unused parameter ‘lc’
+dsipcom_ui.cpp:198: warning: unused parameter ‘cr’
+dsipcom_ui.cpp:206: warning: unused parameter ‘lc’
+dsipcom_ui.cpp: In member function ‘void Ui::DSipCom::create_linphone_core()’:
+dsipcom_ui.cpp:336: warning: deprecated conversion from string constant to ‘char*’
+dsipcom_ui.cpp: At global scope:
+dsipcom_ui.cpp:18: warning: ‘int handle_configfile_migration()’ declared ‘static’ but never defined
+dsipcom_ui.cpp:19: warning: ‘int copy_file(const char*, const char*)’ declared ‘static’ but never defined
+dsipcom_ui.cpp:20: warning: ‘int linphonec_parse_cmdline(int, char**)’ declared ‘static’ but never defined
+dsipcom_ui.cpp:21: warning: ‘int linphonec_initialize_readline()’ declared ‘static’ but never defined
+dsipcom_ui.cpp:22: warning: ‘int linphonec_finish_readline()’ declared ‘static’ but never defined
+dsipcom_ui.cpp:23: warning: ‘int linphonec_init(int, char**)’ declared ‘static’ but never defined
+dsipcom_ui.cpp:24: warning: ‘int linphonec_main_loop(LinphoneCore*, char*)’ declared ‘static’ but never defined
+dsipcom_ui.cpp:25: warning: ‘int linphonec_idle_call()’ declared ‘static’ but never defined
+dsipcom_ui.cpp:27: warning: ‘char** linephonec_readline_completion(const char*, int, int)’ declared ‘static’ but never defined
+dsipcom_ui.cpp:198: warning: ‘void linphonec_text_received(LinphoneCore*, LinphoneChatRoom*, const char*, const char*)’ defined but not used
+dsipcom_ui.cpp:206: warning: ‘void linphonec_general_state(LinphoneCore*, LinphoneGeneralState*)’ defined but not used
+dsipcom_ui.cpp:46: warning: ‘void print_prompt(LinphoneCore*)’ declared ‘static’ but never defined
+dsipcom_ui.cpp:50: warning: ‘histfile_name’ defined but not used
+dsipcom_ui.cpp:51: warning: ‘last_in_history’ defined but not used
+dsipcom_ui.cpp:55: warning: ‘vcap_enabled’ defined but not used
+dsipcom_ui.cpp:56: warning: ‘display_enabled’ defined but not used
+dsipcom_ui.cpp:59: warning: ‘trace_level’ defined but not used
+dsipcom_ui.cpp:60: warning: ‘logfile_name’ defined but not used
+dsipcom_ui.cpp:61: warning: ‘configfile_name’ defined but not used
+dsipcom_ui.cpp:62: warning: ‘sipAddr’ defined but not used
+main.cpp: In function ‘int main(int, char**)’:
+main.cpp:37: warning: unused variable ‘dsipcom’
