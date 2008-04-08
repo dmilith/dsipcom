@@ -1,23 +1,15 @@
 #!/bin/bash
 
-if [ $1 = "qrc" ]; then
-rcc -compress 5 -o ui_icons.h dsipcom.qrc
-exit 0
-else
-	echo "skipped qrc rebuild"
-fi
-
-
 echo "creating makefile"
 qmake dsipcom.pro
 if [ $? = 0 ]; then
 	echo "done"
 fi
 
-make clean
+#make clean
 make all
 
 if [ $? = 0 ]; then
-	 echo "done. dSipCot ready"
+	 echo "done. dSipCom ready"
 fi
 

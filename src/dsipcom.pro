@@ -1,3 +1,4 @@
+CONFIG += debug
 HEADERS += main.h \
 					 version.h \
 					 logger.h \
@@ -10,6 +11,7 @@ SOURCES += dsipcom_ui.cpp \
 					 
 FORMS = dsipcom.ui
 RESOURCES += dsipcom.qrc
+LIBS += -lspeex -lspeexdsp -llinphone -losipparser2 -losip2 -leXosip2
 
 win32 {
      HEADERS += win_specification.h
