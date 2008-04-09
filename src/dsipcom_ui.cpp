@@ -4,64 +4,54 @@
 using namespace Log;
 using namespace Ui;
 
-
 // C externs for linphone
 extern "C" {
-  
-  typedef struct {
-    LinphoneAuthInfo *elem[MAX_PENDING_AUTH];
-    int nitems;
-  } LPC_AUTH_STACK;
-
+  //static char **linephonec_readline_completion(const char *text, int start, int end);
+  //static int handle_configfile_migration(void);
+  //static int copy_file(const char *from, const char *to);
+  //static int linphonec_parse_cmdline(int argc, char **argv);
+  //static int linphonec_initialize_readline(void);
+  //static int linphonec_finish_readline();  
   char *lpc_strip_blanks(char *input);
-
-  static int handle_configfile_migration(void);
-  static int copy_file(const char *from, const char *to);
-  static int linphonec_parse_cmdline(int argc, char **argv);
-  static int linphonec_initialize_readline(void);
-  static int linphonec_finish_readline();
-  static int linphonec_init(int argc, char **argv);
-  static int linphonec_main_loop (LinphoneCore * opm, char * sipAddr);
-  static int linphonec_idle_call (void);
-  static char **linephonec_readline_completion(const char *text,
-    int start, int end);
+  static int linphonec_init( int argc, char **argv );
+  static int linphonec_main_loop ( LinphoneCore * opm, char * sipAddr );
+  static int linphonec_idle_call ( void );
 
   /* These are callback for linphone core */
-  static void linphonec_call_received(LinphoneCore *lc, const char *from);
-  static void linphonec_prompt_for_auth(LinphoneCore *lc, const char *realm,
-    const char *username);
-  static void linphonec_display_something (LinphoneCore * lc, const char *something);
-  static void linphonec_display_url (LinphoneCore * lc, const char *something, const char *url);
-  static void linphonec_display_warning (LinphoneCore * lc, const char *something);
+  static void linphonec_call_received( LinphoneCore *lc, const char *from );
+  static void linphonec_prompt_for_auth( LinphoneCore *lc, const char *realm, const char *username );
+  static void linphonec_display_something ( LinphoneCore * lc, const char *something );
+  static void linphonec_display_url ( LinphoneCore * lc, const char *something, const char *url );
+  static void linphonec_display_warning ( LinphoneCore * lc, const char *something );
   static void stub () {}
-  static void linphonec_notify_received(LinphoneCore *lc,LinphoneFriend *fid,
-      const char *from, const char *status, const char *img);
-  static void linphonec_new_unknown_subscriber(LinphoneCore *lc,
-      LinphoneFriend *lf, const char *url);
-  static void linphonec_bye_received(LinphoneCore *lc, const char *from);
-  static void linphonec_text_received(LinphoneCore *lc, LinphoneChatRoom *cr,
-      const char *from, const char *msg);
-  static void linphonec_display_status (LinphoneCore * lc, const char *something);
-  static void linphonec_general_state (LinphoneCore * lc, LinphoneGeneralState *gstate);
-  static void print_prompt(LinphoneCore *opm);
+  static void linphonec_notify_received( LinphoneCore *lc, LinphoneFriend *fid, 
+                                      const char *from, const char *status, const char *img );
+  static void linphonec_new_unknown_subscriber( LinphoneCore *lc,
+                                      LinphoneFriend *lf, const char *url );
+  static void linphonec_bye_received( LinphoneCore *lc, const char *from );
+  static void linphonec_text_received( LinphoneCore *lc, LinphoneChatRoom *cr,
+                                     const char *from, const char *msg );
+  static void linphonec_display_status ( LinphoneCore * lc, const char *something );
 
-  //LinphoneCore linphonec;
-  FILE *mylogfile;
-  static char *histfile_name=NULL;
-  static char last_in_history[256];
-  //auto answer (-a) option
-  static bool_t auto_answer=FALSE;
-  static bool_t answer_call=FALSE;
-  static bool_t vcap_enabled=FALSE;
-  static bool_t display_enabled=FALSE;
-  static bool_t show_general_state=FALSE;
+ // static bool_t vcap_enabled=FALSE;
+ // static bool_t display_enabled=FALSE;
+ // static int trace_level = 0;
+ // static char *logfile_name = NULL;
+ // static char configfile_name[PATH_MAX];
+ // static char *sipAddr = NULL; /* for autocall */
+ // static void linphonec_general_state ( LinphoneCore * lc, LinphoneGeneralState *gstate );
+ // static void print_prompt( LinphoneCore *opm );
+  //static char *histfile_name=NULL;
+  //static char last_in_history[256];
+  //auto answer (-a) option  
+  
+  static bool_t show_general_state = FALSE;
   LPC_AUTH_STACK auth_stack;
-  static int trace_level = 0;
-  static char *logfile_name = NULL;
-  static char configfile_name[PATH_MAX];
-  static char *sipAddr = NULL; /* for autocall */
+  static bool_t auto_answer = FALSE;
+  static bool_t answer_call = FALSE;
   char prompt[PROMPT_MAX_LEN];
-
+  
+  // main Linphone table.
   LinphoneCoreVTable linphonec_vtable = {
     show:(ShowInterfaceCb) stub,
     inv_recv: linphonec_call_received,
@@ -73,74 +63,48 @@ extern "C" {
     display_message:linphonec_display_something,
     display_warning:linphonec_display_warning,
     display_url:linphonec_display_url,
-    display_question:(DisplayQuestionCb)stub//,
-    //text_received:linphonec_text_received //,
-    //general_state:linphonec_general_state
+    display_question:(DisplayQuestionCb)stub,
+  //  text_received:linphonec_text_received
+  //  general_state:linphonec_general_state
   };
 
+
+  /* Linphone callbacks definitions */
   
-  
-    /*
-     * Linphone core callback 
-     */
     static void
-    linphonec_display_something (LinphoneCore * lc, const char *something)
-    {
+    linphonec_display_something (LinphoneCore * lc, const char *something) {
       fprintf (stdout, "%s\n%s", something,prompt);
       fflush(stdout);
     }
 
-    /*
-     * Linphone core callback 
-     */
     static void
-    linphonec_display_status (LinphoneCore * lc, const char *something)
-    {
+    linphonec_display_status (LinphoneCore * lc, const char *something) {
       fprintf (stdout, "%s\n%s", something,prompt);
       fflush(stdout);
     }
 
-    /*
-     * Linphone core callback 
-     */
     static void
-    linphonec_display_warning (LinphoneCore * lc, const char *something)
-    {
+    linphonec_display_warning (LinphoneCore * lc, const char *something) {
       fprintf (stdout, "Warning: %s\n%s", something,prompt);
       fflush(stdout);
     }
 
-    /*
-     * Linphone core callback 
-     */
     static void
-    linphonec_display_url (LinphoneCore * lc, const char *something, const char *url)
-    {
+    linphonec_display_url (LinphoneCore * lc, const char *something, const char *url) {
       fprintf (stdout, "%s : %s\n", something, url);
     }
 
-
-    /*
-     * Linphone core callback 
-     */
     static void
-    linphonec_call_received(LinphoneCore *lc, const char *from)
-    {
+    linphonec_call_received(LinphoneCore *lc, const char *from) {
       if ( auto_answer)  {
         answer_call=TRUE;
       }
     }
 
-    /*
-     * Linphone core callback 
-     */
     static void
-    linphonec_prompt_for_auth(LinphoneCore *lc, const char *realm, const char *username)
-    {
+    linphonec_prompt_for_auth(LinphoneCore *lc, const char *realm, const char *username) {
       LinphoneAuthInfo *pending_auth;
-
-      if ( auth_stack.nitems+1 > MAX_PENDING_AUTH )
-      {
+      if ( auth_stack.nitems+1 > MAX_PENDING_AUTH ) {
         fprintf(stderr,
           "Can't accept another authentication request.\n"
           "Consider incrementing MAX_PENDING_AUTH macro.\n");
@@ -148,63 +112,39 @@ extern "C" {
       } 
 
       pending_auth=linphone_auth_info_new(username,NULL,NULL,NULL,realm);
-      auth_stack.elem[auth_stack.nitems++]=pending_auth;
-
+      auth_stack.elem[auth_stack.nitems++] = pending_auth;
     }
 
-    /*
-     * Linphone core callback
-     */
     static void
-    linphonec_notify_received(LinphoneCore *lc,LinphoneFriend *fid,
-        const char *from, const char *status, const char *img)
-    {
+    linphonec_notify_received( LinphoneCore *lc,LinphoneFriend *fid,
+                            const char *from, const char *status, const char *img) {
       printf("Friend %s is %s\n", from, status);
       // todo: update Friend list state (unimplemented)
     }
 
-    /*
-     * Linphone core callback
-     */
     static void
-    linphonec_new_unknown_subscriber(LinphoneCore *lc, LinphoneFriend *lf,
-        const char *url)
-    {
+    linphonec_new_unknown_subscriber(LinphoneCore *lc, LinphoneFriend *lf, const char *url) {
       printf("Friend %s requested subscription "
         "(accept/deny is not implemented yet)\n", url); 
       // This means that this person wishes to be notified 
       // of your presence information (online, busy, away...).
-
     }
 
-    /*
-     * Linphone core callback
-     */
     static void
-    linphonec_bye_received(LinphoneCore *lc, const char *from)
-    {
-      // Should change prompt back to original maybe
-
+    linphonec_bye_received(LinphoneCore *lc, const char *from) {
       // printing this is unneeded as we'd get a "Communication ended"
       // message trough display_status callback anyway
-      //printf("Bye received from %s\n", from);
+      printf("Bye received from %s\n", from);
     }
 
-    /*
-     * Linphone core callback
-     */
     static void
-    linphonec_text_received(LinphoneCore *lc, LinphoneChatRoom *cr,
-        const char *from, const char *msg)
-    {
+    linphonec_text_received( LinphoneCore *lc, LinphoneChatRoom *cr, const char *from, const char *msg) {
       printf("%s: %s\n", from, msg);
       // TODO: provide mechanism for answering.. ('say' command?)
     }
 
-
     static void 
-    linphonec_general_state (LinphoneCore * lc, LinphoneGeneralState *gstate)
-    {
+    linphonec_general_state (LinphoneCore *lc, LinphoneGeneralState *gstate) {
             if (show_general_state) {
               switch(gstate->new_state) {
                case GSTATE_POWER_OFF:
@@ -256,7 +196,6 @@ extern "C" {
               printf("\n");
             }  
     }
-  
 } //extern C
 
 
@@ -265,7 +204,6 @@ Logger logger( LOGGER_DSIPCOM_UI, "debug" );
 
 DSipCom::DSipCom( const QString& title ) {
   logger.log( "Initializing UI" );
-   // drawing ui
    setupUi( this );
    // global ui encoding => utf8
    QTextCodec::setCodecForCStrings( QTextCodec::codecForName( "UTF-8" ) );
@@ -287,7 +225,6 @@ DSipCom::DSipCom( const QString& title ) {
 
 DSipCom::~DSipCom() {
   linphone_core_destroy( _core );
-  //delete lcvtable;
 }
 
 // init_actions will init all actions and binds in application
@@ -301,7 +238,6 @@ void DSipCom::init_actions() {
 }
 
 void DSipCom::action_make_a_call() {
-  //logger.log ((this)->number_entry->text());
   (this)->call_button->setText( "Dzwonię" );
 }
 

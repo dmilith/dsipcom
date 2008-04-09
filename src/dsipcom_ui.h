@@ -18,8 +18,8 @@
 #include <linphone/config.h>
 #include <linphone/linphonecore.h>
 
-#include "ui_dsipcom.h"
-#include "logger.h"
+#include "ui_dsipcom.h" // automaticly generated interface from ui file
+#include "logger.h" //logger defs
 #include "main.h"
 
 // Linphone definitions
@@ -28,6 +28,12 @@
 #define PROMPT_MAX_LEN 256	/* max len of prompt string */
 #define LINE_MAX_LEN 256	/* really needed ? */
 #define LPC_READLINE_TIMEOUT 1000000
+
+// Linphone defs:
+typedef struct {
+  LinphoneAuthInfo *elem[MAX_PENDING_AUTH];
+  int nitems;
+} LPC_AUTH_STACK;
 
 
 /* User Interface namespace is providing main UI inherited from automaticaly generated qt-designer templates */

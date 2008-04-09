@@ -16,7 +16,6 @@
 #include "version.h" // main program version
 #include "main.h" // main constants and settings
 #include "logger.h" // logging facility
-#include "ui_dsipcom.h" // ui declaration
 #include "dsipcom_ui.h" // main user interface
 
 using namespace Log;
@@ -34,7 +33,7 @@ main(int argc, char *argv[]) {
      could be problematic on some archs.. but on linux seems to be unecessary
      Q_INIT_RESOURCE(dsipcom); */
    QApplication app( argc, argv );
-   DSipCom *dsipcom = new Ui::DSipCom(MAIN_WINDOW_TITLE);
+   new Ui::DSipCom(MAIN_WINDOW_TITLE);
    Logger logger( LOGGER_FILE );
    logger.log( "Loading DsipCom" );
 
