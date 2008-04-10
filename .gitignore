@@ -9,4 +9,8 @@ src/*.s
 src/*.ko
 src/*.so
 src/compile.log
+src/Makefile
+dsipcom_qt4-Makefile.mk
+nbproject/*
+nbproject
 
