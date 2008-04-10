@@ -73,9 +73,8 @@ namespace Ui {
       void create_linphone_core();
       LinphoneCore *_core;
 	    SipMutex _mutex;
-      //LinphoneCoreVTable *lcvtable;
+      FILE* linphone_logger_file;
 
-      
     // qt4 action slots
     public slots:
       void action_make_a_call();
@@ -83,7 +82,6 @@ namespace Ui {
       void action_connect_to_sip_server_func();
       void action_disconnect_from_sip_server_func();
 
-      
     // qt4 action signals
     signals:
       void clicked();

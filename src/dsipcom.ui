@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>383</width>
-    <height>800</height>
+    <height>792</height>
    </rect>
   </property>
   <property name="acceptDrops" >
@@ -16,7 +16,8 @@
    <string>MainWindow</string>
   </property>
   <property name="windowIcon" >
-   <iconset resource="dsipcom.qrc" >:/images/images/shield_add.png</iconset>
+   <iconset resource="dsipcom.qrc" >
+    <normaloff>:/images/images/shield_add.png</normaloff>:/images/images/shield_add.png</iconset>
   </property>
   <property name="whatsThis" >
    <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
@@ -25,6 +26,14 @@ p, li { white-space: pre-wrap; }
 &lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">To jest aplikacja dSipCom.&lt;/p>&lt;/body>&lt;/html></string>
   </property>
   <widget class="QWidget" name="centralwidget" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>23</y>
+     <width>383</width>
+     <height>746</height>
+    </rect>
+   </property>
    <widget class="QPushButton" name="call_button" >
     <property name="geometry" >
      <rect>
@@ -47,7 +56,8 @@ p, li { white-space: pre-wrap; }
      <string>Zadzwoń</string>
     </property>
     <property name="icon" >
-     <iconset resource="dsipcom.qrc" >:/images/images/phone_add.png</iconset>
+     <iconset resource="dsipcom.qrc" >
+      <normaloff>:/images/images/phone_add.png</normaloff>:/images/images/phone_add.png</iconset>
     </property>
     <property name="autoDefault" >
      <bool>true</bool>
@@ -75,7 +85,8 @@ p, li { white-space: pre-wrap; }
      <string>Rozłącz</string>
     </property>
     <property name="icon" >
-     <iconset resource="dsipcom.qrc" >:/images/images/phone_delete.png</iconset>
+     <iconset resource="dsipcom.qrc" >
+      <normaloff>:/images/images/phone_delete.png</normaloff>:/images/images/phone_delete.png</iconset>
     </property>
    </widget>
    <widget class="QLabel" name="label" >
@@ -111,9 +122,9 @@ p, li { white-space: pre-wrap; }
     <property name="geometry" >
      <rect>
       <x>0</x>
-      <y>-10</y>
+      <y>0</y>
       <width>381</width>
-      <height>661</height>
+      <height>651</height>
      </rect>
     </property>
     <property name="cursor" >
@@ -139,15 +150,16 @@ p, li { white-space: pre-wrap; }
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>365</width>
-       <height>525</height>
+       <width>377</width>
+       <height>519</height>
       </rect>
      </property>
      <attribute name="label" >
       <string>Lista kontaktów</string>
      </attribute>
      <attribute name="icon" >
-      <iconset resource="dsipcom.qrc" >:/images/images/user_add.png</iconset>
+      <iconset resource="dsipcom.qrc" >
+       <normaloff>:/images/images/user_add.png</normaloff>:/images/images/user_add.png</iconset>
      </attribute>
      <widget class="QTreeView" name="contacts_tree" >
       <property name="geometry" >
@@ -168,15 +180,16 @@ p, li { white-space: pre-wrap; }
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>94</width>
-       <height>24</height>
+       <width>377</width>
+       <height>519</height>
       </rect>
      </property>
      <attribute name="label" >
       <string>Wybieranie numerów</string>
      </attribute>
      <attribute name="icon" >
-      <iconset resource="dsipcom.qrc" >:/images/images/telephone_add.png</iconset>
+      <iconset resource="dsipcom.qrc" >
+       <normaloff>:/images/images/telephone_add.png</normaloff>:/images/images/telephone_add.png</iconset>
      </attribute>
      <widget class="QGroupBox" name="groupBox" >
       <property name="geometry" >
@@ -497,15 +510,16 @@ p, li { white-space: pre-wrap; }
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>365</width>
-       <height>525</height>
+       <width>377</width>
+       <height>519</height>
       </rect>
      </property>
      <attribute name="label" >
       <string>Preferencje użytkownika</string>
      </attribute>
      <attribute name="icon" >
-      <iconset resource="dsipcom.qrc" >:/images/images/vcard.png</iconset>
+      <iconset resource="dsipcom.qrc" >
+       <normaloff>:/images/images/vcard.png</normaloff>:/images/images/vcard.png</iconset>
      </attribute>
      <widget class="QLineEdit" name="user_sip" >
       <property name="geometry" >
@@ -611,15 +625,16 @@ p, li { white-space: pre-wrap; }
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>94</width>
-       <height>24</height>
+       <width>377</width>
+       <height>519</height>
       </rect>
      </property>
      <attribute name="label" >
       <string>Raporty z połączeń</string>
      </attribute>
      <attribute name="icon" >
-      <iconset resource="dsipcom.qrc" >:/images/images/report_user.png</iconset>
+      <iconset resource="dsipcom.qrc" >
+       <normaloff>:/images/images/report_user.png</normaloff>:/images/images/report_user.png</iconset>
      </attribute>
      <widget class="QCalendarWidget" name="calendar" >
       <property name="geometry" >
@@ -669,7 +684,7 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>383</width>
-     <height>26</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuDsipcom" >
@@ -699,142 +714,20 @@ p, li { white-space: pre-wrap; }
    <addaction name="menuKontakty" />
    <addaction name="menuPomoc" />
   </widget>
-  <widget class="QStatusBar" name="statusbar" />
-  <widget class="QToolBar" name="toolBar" >
-   <property name="windowTitle" >
-    <string>toolBar</string>
+  <widget class="QStatusBar" name="statusbar" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>769</y>
+     <width>383</width>
+     <height>23</height>
+    </rect>
    </property>
-   <attribute name="toolBarArea" >
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak" >
-    <bool>false</bool>
-   </attribute>
-  </widget>
-  <widget class="QToolBar" name="toolBar_2" >
-   <property name="windowTitle" >
-    <string>toolBar_2</string>
-   </property>
-   <attribute name="toolBarArea" >
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak" >
-    <bool>false</bool>
-   </attribute>
-  </widget>
-  <widget class="QToolBar" name="toolBar_3" >
-   <property name="windowTitle" >
-    <string>toolBar_3</string>
-   </property>
-   <attribute name="toolBarArea" >
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak" >
-    <bool>false</bool>
-   </attribute>
-  </widget>
-  <widget class="QToolBar" name="toolBar_4" >
-   <property name="windowTitle" >
-    <string>toolBar_4</string>
-   </property>
-   <attribute name="toolBarArea" >
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak" >
-    <bool>false</bool>
-   </attribute>
-  </widget>
-  <widget class="QToolBar" name="toolBar_5" >
-   <property name="windowTitle" >
-    <string>toolBar_5</string>
-   </property>
-   <attribute name="toolBarArea" >
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak" >
-    <bool>false</bool>
-   </attribute>
-  </widget>
-  <widget class="QToolBar" name="toolBar_6" >
-   <property name="windowTitle" >
-    <string>toolBar_6</string>
-   </property>
-   <attribute name="toolBarArea" >
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak" >
-    <bool>false</bool>
-   </attribute>
-  </widget>
-  <widget class="QToolBar" name="toolBar_7" >
-   <property name="windowTitle" >
-    <string>toolBar_7</string>
-   </property>
-   <attribute name="toolBarArea" >
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak" >
-    <bool>false</bool>
-   </attribute>
-  </widget>
-  <widget class="QToolBar" name="toolBar_8" >
-   <property name="windowTitle" >
-    <string>toolBar_8</string>
-   </property>
-   <attribute name="toolBarArea" >
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak" >
-    <bool>false</bool>
-   </attribute>
-  </widget>
-  <widget class="QToolBar" name="toolBar_9" >
-   <property name="windowTitle" >
-    <string>toolBar_9</string>
-   </property>
-   <attribute name="toolBarArea" >
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak" >
-    <bool>false</bool>
-   </attribute>
-  </widget>
-  <widget class="QToolBar" name="toolBar_10" >
-   <property name="windowTitle" >
-    <string>toolBar_10</string>
-   </property>
-   <attribute name="toolBarArea" >
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak" >
-    <bool>false</bool>
-   </attribute>
-  </widget>
-  <widget class="QToolBar" name="toolBar_11" >
-   <property name="windowTitle" >
-    <string>toolBar_11</string>
-   </property>
-   <attribute name="toolBarArea" >
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak" >
-    <bool>false</bool>
-   </attribute>
-  </widget>
-  <widget class="QToolBar" name="toolBar_12" >
-   <property name="windowTitle" >
-    <string>toolBar_12</string>
-   </property>
-   <attribute name="toolBarArea" >
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak" >
-    <bool>false</bool>
-   </attribute>
   </widget>
   <action name="action_connect_to_sip_server" >
    <property name="icon" >
-    <iconset resource="dsipcom.qrc" >:/images/images/connect.png</iconset>
+    <iconset resource="dsipcom.qrc" >
+     <normaloff>:/images/images/connect.png</normaloff>:/images/images/connect.png</iconset>
    </property>
    <property name="text" >
     <string>połącz z serwerem SIP</string>
@@ -842,7 +735,8 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="action_disconnect_from_sip_server" >
    <property name="icon" >
-    <iconset resource="dsipcom.qrc" >:/images/images/disconnect.png</iconset>
+    <iconset resource="dsipcom.qrc" >
+     <normaloff>:/images/images/disconnect.png</normaloff>:/images/images/disconnect.png</iconset>
    </property>
    <property name="text" >
     <string>rozłącz z serwerem SIP</string>
@@ -860,7 +754,8 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="action_help" >
    <property name="icon" >
-    <iconset resource="dsipcom.qrc" >:/images/images/information.png</iconset>
+    <iconset resource="dsipcom.qrc" >
+     <normaloff>:/images/images/information.png</normaloff>:/images/images/information.png</iconset>
    </property>
    <property name="text" >
     <string>Pomoc</string>
@@ -868,7 +763,8 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="action_about" >
    <property name="icon" >
-    <iconset resource="dsipcom.qrc" >:/images/images/award_star_gold_2.png</iconset>
+    <iconset resource="dsipcom.qrc" >
+     <normaloff>:/images/images/award_star_gold_2.png</normaloff>:/images/images/award_star_gold_2.png</iconset>
    </property>
    <property name="text" >
     <string>O Programie</string>
@@ -876,7 +772,8 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="action_add_contact" >
    <property name="icon" >
-    <iconset resource="dsipcom.qrc" >:/images/images/add.png</iconset>
+    <iconset resource="dsipcom.qrc" >
+     <normaloff>:/images/images/add.png</normaloff>:/images/images/add.png</iconset>
    </property>
    <property name="text" >
     <string>Dodaj Kontakt</string>
@@ -884,7 +781,8 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="action_remove_contact_from_list" >
    <property name="icon" >
-    <iconset resource="dsipcom.qrc" >:/images/images/delete.png</iconset>
+    <iconset resource="dsipcom.qrc" >
+     <normaloff>:/images/images/delete.png</normaloff>:/images/images/delete.png</iconset>
    </property>
    <property name="text" >
     <string>Usuń kontakt z listy</string>
@@ -892,7 +790,8 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="action_close_application" >
    <property name="icon" >
-    <iconset resource="dsipcom.qrc" >:/images/images/exclamation.png</iconset>
+    <iconset resource="dsipcom.qrc" >
+     <normaloff>:/images/images/exclamation.png</normaloff>:/images/images/exclamation.png</iconset>
    </property>
    <property name="text" >
     <string>Zakończ działanie programu</string>

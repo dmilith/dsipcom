@@ -225,6 +225,7 @@ DSipCom::DSipCom( const QString& title ) {
 
 DSipCom::~DSipCom() {
   linphone_core_destroy( _core );
+  fclose( linphone_logger_file );
 }
 
 // init_actions will init all actions and binds in application
@@ -274,14 +275,11 @@ void DSipCom::create_linphone_core(){
 
   logger.log( "Linphone config: " + (QString)config );
   logger.log( "Initializing Linphone core logger" );
-  /* tracing for osip */
-
-   FILE* logger_file;
-   logger_file = fopen( LOGGER_LINPHONE, "w");
-
-   TRACE_INITIALIZE( (trace_level_t)5, logger_file );
-   linphone_core_enable_logs( logger_file );
-   //fclose(logger_file);
+  
+   /* tracing & logging for osip */
+   linphone_logger_file = fopen( LOGGER_LINPHONE, "w");
+   TRACE_INITIALIZE( (trace_level_t)5, linphone_logger_file );
+   linphone_core_enable_logs( linphone_logger_file );
 
   logger.log( "Linphone logger initialized" );
    _core = linphone_core_new( &linphonec_vtable, config, NULL );

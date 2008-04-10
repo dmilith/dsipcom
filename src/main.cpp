@@ -22,18 +22,18 @@ using namespace Log;
 using namespace Ui;
 
 void
-quit_dsipcom(int param) {
+quit_dsipcom( int param ) {
   printf( "Received signal :%d\n", param );
   exit( param );
 }
 
 int
-main(int argc, char *argv[]) {
+main( int argc, char *argv[] ) {
   /* macro to load images from dsipcom.qrc
      could be problematic on some archs.. but on linux seems to be unecessary
      Q_INIT_RESOURCE(dsipcom); */
    QApplication app( argc, argv );
-   new Ui::DSipCom(MAIN_WINDOW_TITLE);
+   new Ui::DSipCom( MAIN_WINDOW_TITLE );
    Logger logger( LOGGER_FILE );
    logger.log( "Loading DsipCom" );
 

@@ -8,4 +8,5 @@ src/*.a
 src/*.s
 src/*.ko
 src/*.so
+src/compile.log
 
