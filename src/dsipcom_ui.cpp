@@ -6,7 +6,6 @@ using namespace Ui;
 
 // C externs for linphone
 extern "C" {
-  //static char **linephonec_readline_completion(const char *text, int start, int end);
   //static int handle_configfile_migration(void);
   //static int copy_file(const char *from, const char *to);
   //static int linphonec_parse_cmdline(int argc, char **argv);
