@@ -231,11 +231,74 @@ DSipCom::~DSipCom() {
 void DSipCom::init_actions() {
   // buttons
   QObject::connect( call_button, SIGNAL( clicked() ), this, SLOT( action_make_a_call() ));
+  QObject::connect( dial_0, SIGNAL( clicked() ), this, SLOT( action_enter_0() ));
+  QObject::connect( dial_1, SIGNAL( clicked() ), this, SLOT( action_enter_1() ));
+  QObject::connect( dial_2, SIGNAL( clicked() ), this, SLOT( action_enter_2() ));
+  QObject::connect( dial_3, SIGNAL( clicked() ), this, SLOT( action_enter_3() ));
+  QObject::connect( dial_4, SIGNAL( clicked() ), this, SLOT( action_enter_4() ));
+  QObject::connect( dial_5, SIGNAL( clicked() ), this, SLOT( action_enter_5() ));
+  QObject::connect( dial_6, SIGNAL( clicked() ), this, SLOT( action_enter_6() ));
+  QObject::connect( dial_7, SIGNAL( clicked() ), this, SLOT( action_enter_7() ));
+  QObject::connect( dial_8, SIGNAL( clicked() ), this, SLOT( action_enter_8() ));
+  QObject::connect( dial_9, SIGNAL( clicked() ), this, SLOT( action_enter_9() ));
+  QObject::connect( dial_star, SIGNAL( clicked() ), this, SLOT( action_enter_star() ));
+  QObject::connect( dial_hash, SIGNAL( clicked() ), this, SLOT( action_enter_hash() ));
+  
   // menu bar:
   QObject::connect( action_about, SIGNAL( activated() ), this, SLOT( action_about_func() ));
   QObject::connect( action_connect_to_sip_server, SIGNAL( activated() ), this, SLOT( action_connect_to_sip_server_func() ));
   QObject::connect( action_disconnect_from_sip_server, SIGNAL( activated() ), this, SLOT( action_disconnect_from_sip_server_func() ));
 }
+
+/* numbers enterance: */
+void DSipCom::action_enter_0() {
+  (this)->number_entry->setText( (this)->number_entry->text() + "0" );
+}
+
+void DSipCom::action_enter_1() {
+  (this)->number_entry->setText( (this)->number_entry->text() + "1" );
+}
+
+void DSipCom::action_enter_2() {
+  (this)->number_entry->setText( (this)->number_entry->text() + "2" );
+}
+
+void DSipCom::action_enter_3() {
+  (this)->number_entry->setText( (this)->number_entry->text() + "3" );
+}
+
+void DSipCom::action_enter_4() {
+  (this)->number_entry->setText( (this)->number_entry->text() + "4" );
+}
+
+void DSipCom::action_enter_5() {
+  (this)->number_entry->setText( (this)->number_entry->text() + "5" );
+}
+
+void DSipCom::action_enter_6() {
+  (this)->number_entry->setText( (this)->number_entry->text() + "6" );
+}
+
+void DSipCom::action_enter_7() {
+  (this)->number_entry->setText( (this)->number_entry->text() + "7" );
+}
+
+void DSipCom::action_enter_8() {
+  (this)->number_entry->setText( (this)->number_entry->text() + "8" );
+}
+
+void DSipCom::action_enter_9() {
+  (this)->number_entry->setText( (this)->number_entry->text() + "9" );
+}
+
+void DSipCom::action_enter_star() {
+  (this)->number_entry->setText( (this)->number_entry->text() + "*" );
+}
+
+void DSipCom::action_enter_hash() {
+  (this)->number_entry->setText( (this)->number_entry->text() + "#" );
+}
+
 
 void DSipCom::action_make_a_call() {
   (this)->call_button->setText( "Dzwonię" );

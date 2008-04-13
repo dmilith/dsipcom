@@ -81,7 +81,19 @@ namespace Ui {
       void action_about_func();
       void action_connect_to_sip_server_func();
       void action_disconnect_from_sip_server_func();
-
+      void action_enter_0();
+      void action_enter_1();
+      void action_enter_2();
+      void action_enter_3();
+      void action_enter_4();
+      void action_enter_5();
+      void action_enter_6();
+      void action_enter_7();
+      void action_enter_8();
+      void action_enter_9();
+      void action_enter_star();
+      void action_enter_hash();
+      
     // qt4 action signals
     signals:
       void clicked();
