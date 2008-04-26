@@ -322,7 +322,6 @@ void DSipCom::action_connect_to_sip_server_func() {
     } else {
       // all required settings are ok
       logger.log( "All required data is OK!" );
-      
     }
 }
 
