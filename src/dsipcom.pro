@@ -2,15 +2,17 @@ CONFIG += debug
 HEADERS += main.h \
 					 version.h \
 					 logger.h \
-					 dsipcom_ui.h 
+					 dsipcom_ui.h \
+					 platform.h
 SOURCES += dsipcom_ui.cpp \
 					 logger.cpp \
+					 platform.cpp \
 					 main.cpp
 					 
 FORMS = dsipcom.ui
 RESOURCES += dsipcom.qrc
-LIBS += -lspeex -lspeexdsp -llinphone -losipparser2 -lasound -leXosip2
-
+LIBS += -lspeex -llinphone -losipparser2 -lasound -leXosip2
+#LIBS += -lspeex -llinphone -losipparser2 -lasound -leXosip2
 win32 {
      HEADERS += win_specification.h
 }

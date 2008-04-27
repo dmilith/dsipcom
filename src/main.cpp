@@ -14,9 +14,11 @@
 #include <stdio.h>
 
 #include "version.h" // main program version
+#include "platform.h" // platform specific setting
 #include "main.h" // main constants and settings
 #include "logger.h" // logging facility
 #include "dsipcom_ui.h" // main user interface
+
 
 using namespace Log;
 using namespace Ui;

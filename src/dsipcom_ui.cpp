@@ -4,8 +4,10 @@
 using namespace Log;
 using namespace Ui;
 
-// C externs for linphone
+#ifdef	__cplusplus
 extern "C" {
+#endif
+// C externs for linphone
   //static int handle_configfile_migration(void);
   //static int copy_file(const char *from, const char *to);
   //static int linphonec_parse_cmdline(int argc, char **argv);
@@ -195,7 +197,11 @@ extern "C" {
               printf("\n");
             }  
     }
-} //extern C
+    
+#ifdef	__cplusplus
+} // extern C
+#endif
+
 
 
 
