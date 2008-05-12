@@ -78,6 +78,7 @@ namespace Ui {
     // qt4 action slots
     public slots:
       void action_make_a_call();
+      void action_end_call();
       void action_about_func();
       void action_connect_to_sip_server_func();
       void action_disconnect_from_sip_server_func();

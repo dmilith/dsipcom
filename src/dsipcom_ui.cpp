@@ -237,6 +237,7 @@ DSipCom::~DSipCom() {
 void DSipCom::init_actions() {
   // buttons
   QObject::connect( call_button, SIGNAL( clicked() ), this, SLOT( action_make_a_call() ));
+  QObject::connect( hang_button, SIGNAL( clicked() ), this, SLOT( action_end_call() ));
   QObject::connect( dial_0, SIGNAL( clicked() ), this, SLOT( action_enter_0() ));
   QObject::connect( dial_1, SIGNAL( clicked() ), this, SLOT( action_enter_1() ));
   QObject::connect( dial_2, SIGNAL( clicked() ), this, SLOT( action_enter_2() ));
@@ -305,6 +306,9 @@ void DSipCom::action_enter_hash() {
   (this)->number_entry->setText( (this)->number_entry->text() + "#" );
 }
 
+void DSipCom::action_end_call() {
+  (this)->hang_button->setText( "Rozłączam" );
+}
 
 void DSipCom::action_make_a_call() {
   (this)->call_button->setText( "Dzwonię" );
