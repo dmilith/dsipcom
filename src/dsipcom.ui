@@ -16,8 +16,7 @@
    <string>MainWindow</string>
   </property>
   <property name="windowIcon" >
-   <iconset resource="dsipcom.qrc" >
-    <normaloff>:/images/images/shield_add.png</normaloff>:/images/images/shield_add.png</iconset>
+   <iconset resource="dsipcom.qrc" >:/images/images/shield_add.png</iconset>
   </property>
   <property name="whatsThis" >
    <string>&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
@@ -26,14 +25,6 @@ p, li { white-space: pre-wrap; }
 &lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">To jest aplikacja dSipCom.&lt;/p>&lt;/body>&lt;/html></string>
   </property>
   <widget class="QWidget" name="centralwidget" >
-   <property name="geometry" >
-    <rect>
-     <x>0</x>
-     <y>23</y>
-     <width>383</width>
-     <height>746</height>
-    </rect>
-   </property>
    <widget class="QPushButton" name="call_button" >
     <property name="geometry" >
      <rect>
@@ -56,8 +47,7 @@ p, li { white-space: pre-wrap; }
      <string>Zadzwoń</string>
     </property>
     <property name="icon" >
-     <iconset resource="dsipcom.qrc" >
-      <normaloff>:/images/images/phone_add.png</normaloff>:/images/images/phone_add.png</iconset>
+     <iconset resource="dsipcom.qrc" >:/images/images/phone_add.png</iconset>
     </property>
     <property name="autoDefault" >
      <bool>true</bool>
@@ -85,8 +75,7 @@ p, li { white-space: pre-wrap; }
      <string>Rozłącz</string>
     </property>
     <property name="icon" >
-     <iconset resource="dsipcom.qrc" >
-      <normaloff>:/images/images/phone_delete.png</normaloff>:/images/images/phone_delete.png</iconset>
+     <iconset resource="dsipcom.qrc" >:/images/images/phone_delete.png</iconset>
     </property>
    </widget>
    <widget class="QLabel" name="label" >
@@ -143,23 +132,22 @@ p, li { white-space: pre-wrap; }
      <enum>QFrame::Sunken</enum>
     </property>
     <property name="currentIndex" >
-     <number>2</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="page_contacts" >
      <property name="geometry" >
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>377</width>
-       <height>519</height>
+       <width>96</width>
+       <height>26</height>
       </rect>
      </property>
      <attribute name="label" >
       <string>Lista kontaktów</string>
      </attribute>
      <attribute name="icon" >
-      <iconset resource="dsipcom.qrc" >
-       <normaloff>:/images/images/user_add.png</normaloff>:/images/images/user_add.png</iconset>
+      <iconset resource="dsipcom.qrc" >:/images/images/user_add.png</iconset>
      </attribute>
      <widget class="QTreeView" name="contacts_tree" >
       <property name="geometry" >
@@ -180,16 +168,15 @@ p, li { white-space: pre-wrap; }
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>377</width>
-       <height>519</height>
+       <width>96</width>
+       <height>26</height>
       </rect>
      </property>
      <attribute name="label" >
       <string>Wybieranie numerów</string>
      </attribute>
      <attribute name="icon" >
-      <iconset resource="dsipcom.qrc" >
-       <normaloff>:/images/images/telephone_add.png</normaloff>:/images/images/telephone_add.png</iconset>
+      <iconset resource="dsipcom.qrc" >:/images/images/telephone_add.png</iconset>
      </attribute>
      <widget class="QGroupBox" name="groupBox" >
       <property name="geometry" >
@@ -518,8 +505,7 @@ p, li { white-space: pre-wrap; }
       <string>Preferencje użytkownika</string>
      </attribute>
      <attribute name="icon" >
-      <iconset resource="dsipcom.qrc" >
-       <normaloff>:/images/images/vcard.png</normaloff>:/images/images/vcard.png</iconset>
+      <iconset resource="dsipcom.qrc" >:/images/images/vcard.png</iconset>
      </attribute>
      <widget class="QLineEdit" name="user_sip" >
       <property name="geometry" >
@@ -633,8 +619,7 @@ p, li { white-space: pre-wrap; }
       <string>Raporty z połączeń</string>
      </attribute>
      <attribute name="icon" >
-      <iconset resource="dsipcom.qrc" >
-       <normaloff>:/images/images/report_user.png</normaloff>:/images/images/report_user.png</iconset>
+      <iconset resource="dsipcom.qrc" >:/images/images/report_user.png</iconset>
      </attribute>
      <widget class="QCalendarWidget" name="calendar" >
       <property name="geometry" >
@@ -663,9 +648,9 @@ p, li { white-space: pre-wrap; }
       <property name="geometry" >
        <rect>
         <x>10</x>
-        <y>250</y>
+        <y>280</y>
         <width>351</width>
-        <height>261</height>
+        <height>231</height>
        </rect>
       </property>
       <property name="cursor" stdset="0" >
@@ -673,6 +658,19 @@ p, li { white-space: pre-wrap; }
       </property>
       <property name="openExternalLinks" >
        <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_7" >
+      <property name="geometry" >
+       <rect>
+        <x>10</x>
+        <y>260</y>
+        <width>196</width>
+        <height>18</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>Lista połączeń z wybranej daty:</string>
       </property>
      </widget>
     </widget>
@@ -714,20 +712,10 @@ p, li { white-space: pre-wrap; }
    <addaction name="menuKontakty" />
    <addaction name="menuPomoc" />
   </widget>
-  <widget class="QStatusBar" name="statusbar" >
-   <property name="geometry" >
-    <rect>
-     <x>0</x>
-     <y>769</y>
-     <width>383</width>
-     <height>23</height>
-    </rect>
-   </property>
-  </widget>
+  <widget class="QStatusBar" name="statusbar" />
   <action name="action_connect_to_sip_server" >
    <property name="icon" >
-    <iconset resource="dsipcom.qrc" >
-     <normaloff>:/images/images/connect.png</normaloff>:/images/images/connect.png</iconset>
+    <iconset resource="dsipcom.qrc" >:/images/images/connect.png</iconset>
    </property>
    <property name="text" >
     <string>połącz z serwerem SIP</string>
@@ -735,8 +723,7 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="action_disconnect_from_sip_server" >
    <property name="icon" >
-    <iconset resource="dsipcom.qrc" >
-     <normaloff>:/images/images/disconnect.png</normaloff>:/images/images/disconnect.png</iconset>
+    <iconset resource="dsipcom.qrc" >:/images/images/disconnect.png</iconset>
    </property>
    <property name="text" >
     <string>rozłącz z serwerem SIP</string>
@@ -754,8 +741,7 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="action_help" >
    <property name="icon" >
-    <iconset resource="dsipcom.qrc" >
-     <normaloff>:/images/images/information.png</normaloff>:/images/images/information.png</iconset>
+    <iconset resource="dsipcom.qrc" >:/images/images/information.png</iconset>
    </property>
    <property name="text" >
     <string>Pomoc</string>
@@ -763,8 +749,7 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="action_about" >
    <property name="icon" >
-    <iconset resource="dsipcom.qrc" >
-     <normaloff>:/images/images/award_star_gold_2.png</normaloff>:/images/images/award_star_gold_2.png</iconset>
+    <iconset resource="dsipcom.qrc" >:/images/images/award_star_gold_2.png</iconset>
    </property>
    <property name="text" >
     <string>O Programie</string>
@@ -772,8 +757,7 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="action_add_contact" >
    <property name="icon" >
-    <iconset resource="dsipcom.qrc" >
-     <normaloff>:/images/images/add.png</normaloff>:/images/images/add.png</iconset>
+    <iconset resource="dsipcom.qrc" >:/images/images/add.png</iconset>
    </property>
    <property name="text" >
     <string>Dodaj Kontakt</string>
@@ -781,8 +765,7 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="action_remove_contact_from_list" >
    <property name="icon" >
-    <iconset resource="dsipcom.qrc" >
-     <normaloff>:/images/images/delete.png</normaloff>:/images/images/delete.png</iconset>
+    <iconset resource="dsipcom.qrc" >:/images/images/delete.png</iconset>
    </property>
    <property name="text" >
     <string>Usuń kontakt z listy</string>
@@ -790,8 +773,7 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="action_close_application" >
    <property name="icon" >
-    <iconset resource="dsipcom.qrc" >
-     <normaloff>:/images/images/exclamation.png</normaloff>:/images/images/exclamation.png</iconset>
+    <iconset resource="dsipcom.qrc" >:/images/images/exclamation.png</iconset>
    </property>
    <property name="text" >
     <string>Zakończ działanie programu</string>
