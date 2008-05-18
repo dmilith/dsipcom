@@ -731,7 +731,7 @@ p, li { white-space: pre-wrap; }
     <property name="title" >
      <string>Kontakty</string>
     </property>
-    <addaction name="action_add_contact" />
+    <addaction name="action_add_contact_to_list" />
     <addaction name="action_remove_contact_from_list" />
    </widget>
    <addaction name="menuDsipcom" />
@@ -794,7 +794,7 @@ p, li { white-space: pre-wrap; }
     <string>O Programie</string>
    </property>
   </action>
-  <action name="action_add_contact" >
+  <action name="action_add_contact_to_list" >
    <property name="icon" >
     <iconset resource="dsipcom.qrc" >
      <normaloff>:/images/images/add.png</normaloff>:/images/images/add.png</iconset>

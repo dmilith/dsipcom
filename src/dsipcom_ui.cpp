@@ -1,6 +1,5 @@
 #include "dsipcom_ui.h"
 #include "version.h"
-#include "ui_dsipcom.h" // automaticly generated interface from ui file
 
 using namespace Log;
 using namespace Ui;
@@ -256,6 +255,19 @@ void DSipCom::init_actions() {
   QObject::connect( action_about, SIGNAL( activated() ), this, SLOT( action_about_func() ));
   QObject::connect( action_connect_to_sip_server, SIGNAL( activated() ), this, SLOT( action_connect_to_sip_server_func() ));
   QObject::connect( action_disconnect_from_sip_server, SIGNAL( activated() ), this, SLOT( action_disconnect_from_sip_server_func() ));
+  QObject::connect( action_add_contact_to_list, SIGNAL( activated() ), this, SLOT( action_add_contact_func() ));
+  QObject::connect( action_remove_contact_from_list, SIGNAL( activated() ), this, SLOT( action_remove_contact_func() ));
+}
+
+void DSipCom::action_add_contact_func() {
+  Ui::AddContactWindow* dialog = new Ui::AddContactWindow();
+  dialog->setupUi( dialog );
+  dialog->show();
+}
+
+
+void DSipCom::action_remove_contact_func() {
+  
 }
 
 /* numbers enterance: */
@@ -364,3 +376,11 @@ void DSipCom::create_linphone_core(){
    _core = linphone_core_new( &linphonec_vtable, config, NULL );
   logger.log( "Linphone core Ready!" );
 }
+
+
+AddContactWindow::AddContactWindow() {
+}
+
+AddContactWindow::~AddContactWindow() {
+}
+

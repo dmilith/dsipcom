@@ -11,6 +11,7 @@
 #include <stdio.h>
 
 #include <qt4/QtCore/Qt>
+#include <qt4/QtGui/QDialog>
 #include <qt4/QtCore/QTextCodec>
 #include <qt4/QtGui/QMessageBox>
 #include <qt4/QtCore/QQueue>
@@ -19,6 +20,7 @@
 #include <linphone/linphonecore.h>
 
 #include "ui_dsipcom.h" // automaticly generated interface from ui file
+#include "ui_add_contact_dialog.h" // automaticly generated widget window
 #include "logger.h" //logger defs
 #include "main.h"
 
@@ -57,7 +59,7 @@ namespace Ui {
       pthread_mutex_t _mutex;
   };
   
-  
+    
   class DSipCom : public QMainWindow, public Ui::MainWindow {
     // qt4 ui macro (for actions)
     Q_OBJECT
@@ -80,6 +82,8 @@ namespace Ui {
       void action_make_a_call();
       void action_end_call();
       void action_about_func();
+      void action_add_contact_func();
+      void action_remove_contact_func();
       void action_connect_to_sip_server_func();
       void action_disconnect_from_sip_server_func();
       void action_enter_0();
@@ -100,7 +104,17 @@ namespace Ui {
       void clicked();
   };
 
-}
+  class AddContactWindow : public QDialog, public Ui::addUserDialog { 
+    // qt4 ui macro (for actions)
+    Q_OBJECT
+        
+    public:
+      AddContactWindow();
+      ~AddContactWindow();
+
+  };
+  
+} // of namespace
 
 #endif	/* _DSIPCOM_UI_H */
 
