@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>383</width>
-    <height>792</height>
+    <height>784</height>
    </rect>
   </property>
   <property name="acceptDrops" >
@@ -31,14 +31,14 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>23</y>
      <width>383</width>
-     <height>746</height>
+     <height>738</height>
     </rect>
    </property>
    <widget class="QPushButton" name="call_button" >
     <property name="geometry" >
      <rect>
       <x>40</x>
-      <y>680</y>
+      <y>670</y>
       <width>141</width>
       <height>61</height>
      </rect>
@@ -66,9 +66,9 @@ p, li { white-space: pre-wrap; }
    <widget class="QPushButton" name="hang_button" >
     <property name="geometry" >
      <rect>
-      <x>229</x>
-      <y>680</y>
-      <width>114</width>
+      <x>223</x>
+      <y>670</y>
+      <width>121</width>
       <height>61</height>
      </rect>
     </property>
@@ -107,6 +107,9 @@ p, li { white-space: pre-wrap; }
     <property name="accessibleName" >
      <string>tab_contacts</string>
     </property>
+    <property name="autoFillBackground" >
+     <bool>false</bool>
+    </property>
     <property name="frameShape" >
      <enum>QFrame::StyledPanel</enum>
     </property>
@@ -114,15 +117,15 @@ p, li { white-space: pre-wrap; }
      <enum>QFrame::Sunken</enum>
     </property>
     <property name="currentIndex" >
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="page_contacts" >
      <property name="geometry" >
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>100</width>
-       <height>30</height>
+       <width>377</width>
+       <height>519</height>
       </rect>
      </property>
      <attribute name="label" >
@@ -132,14 +135,22 @@ p, li { white-space: pre-wrap; }
       <iconset resource="dsipcom.qrc" >
        <normaloff>:/images/images/user_add.png</normaloff>:/images/images/user_add.png</iconset>
      </attribute>
-     <widget class="QTreeView" name="contacts_tree" >
+     <widget class="QListWidget" name="contacts_list" >
       <property name="geometry" >
        <rect>
         <x>10</x>
-        <y>0</y>
-        <width>351</width>
-        <height>521</height>
+        <y>10</y>
+        <width>361</width>
+        <height>501</height>
        </rect>
+      </property>
+      <property name="font" >
+       <font>
+        <pointsize>12</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
+        <stylestrategy>PreferDefault</stylestrategy>
+       </font>
       </property>
       <property name="cursor" stdset="0" >
        <cursorShape>PointingHandCursor</cursorShape>
@@ -504,8 +515,6 @@ p, li { white-space: pre-wrap; }
        </property>
       </widget>
      </widget>
-     <zorder>groupBox</zorder>
-     <zorder>dial_3</zorder>
     </widget>
     <widget class="QWidget" name="page_preferences" >
      <property name="geometry" >
@@ -733,7 +742,7 @@ p, li { white-space: pre-wrap; }
    <property name="geometry" >
     <rect>
      <x>0</x>
-     <y>769</y>
+     <y>761</y>
      <width>383</width>
      <height>23</height>
     </rect>

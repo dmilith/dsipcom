@@ -3,7 +3,6 @@ logs/*
 src/.tmp
 src/images
 src/*.o
-src/*.o.*
 src/*.a
 src/*.s
 src/*.ko

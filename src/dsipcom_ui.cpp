@@ -1,5 +1,6 @@
 #include "dsipcom_ui.h"
 #include "version.h"
+#include "ui_dsipcom.h" // automaticly generated interface from ui file
 
 using namespace Log;
 using namespace Ui;
@@ -311,7 +312,14 @@ void DSipCom::action_end_call() {
 }
 
 void DSipCom::action_make_a_call() {
-  (this)->call_button->setText( "Dzwonię" );
+  if ( (this)->contacts_list->count() != 0 ) {
+    (this)->call_button->setText( "Dzwonię" );
+  } else {
+    (this)->contacts_list->addItem( "Added testing contact" );  
+  }
+  //QListWidgetItem* current_item = (this)->contacts_list->item( (this)->contacts_list->currentRow() );
+  //(this)->contacts_list->editItem( current_item );
+  //(this)->contacts_list->
 }
 
 void DSipCom::action_about_func() {
