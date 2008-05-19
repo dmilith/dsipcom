@@ -15,6 +15,6 @@
 #define LOGGER_LINPHONE "logs/dsipcom.linphone.log"
 #define LOGGER_DSIPCOM_UI "logs/dsipcom.logger.ui.log"
 #define CONFIG_FILE "config/dsipcom.dcnf"
-#define USER_LIST_FILE "user_list/dsipcom.user_list"
+#define USER_LIST_FILE "user_list/dsipcom.dulf"
 
 #endif

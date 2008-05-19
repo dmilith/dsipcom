@@ -13,4 +13,6 @@ dsipcom_qt4-Makefile.mk
 nbproject/*
 nbproject
 dsipcom-public-Makefile.mk
+user_list/*
+config/*
 

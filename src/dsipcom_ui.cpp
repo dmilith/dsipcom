@@ -226,10 +226,10 @@ DSipCom::DSipCom( const QString& title ) {
   logger.log( "DSipCom initialized" );
   logger.log( "Loading User List" );
    load_user_list();
+   save_user_list();
   logger.log( "Loading User Config" );
    user_config = new USER_CONFIG;
-  // save_user_config();
-   //load_user_config();
+   load_user_config();
 }
 
 void DSipCom::load_user_list() {
@@ -237,12 +237,23 @@ void DSipCom::load_user_list() {
   strcpy( temp->contact_name, "dmilith" );
   strcpy( temp->contact_sip_address, "dmilith@drakor.eu" );
   user_list.append( *temp );
+  delete temp;
   
-  this->contacts_list->addItem( (QString)(user_list[0].contact_name) + "  --  " + (QString)(user_list[0].contact_sip_address) );
+  QIcon icon1;
+  icon1.addPixmap( QPixmap( QString::fromUtf8( ":/images/images/user_green.png" ) ), QIcon::Active, QIcon::On);
+  QListWidgetItem *__listItem = new QListWidgetItem(this->contacts_list);
+  __listItem->setIcon(icon1);
+  __listItem->setText((QString)(user_list[0].contact_name) + " => " + (QString)(user_list[0].contact_sip_address));
+  
+  // matter of security - always one of elements on user list should be choosed:
+  this->contacts_list->setCurrentRow( 0 );
 }
 
 void DSipCom::save_user_list() {
-  
+  FILE* userlist_file;
+  userlist_file = fopen( USER_LIST_FILE, "wb+" );
+  fwrite( &user_list, sizeof( &user_list ), 1, userlist_file );
+  fclose( userlist_file );
 }
 
 void DSipCom::load_user_config() {
@@ -307,7 +318,6 @@ void DSipCom::init_actions() {
   
 }
 
-
 void DSipCom::action_save_config_button() {
   save_user_config();
 }
@@ -371,9 +381,20 @@ void DSipCom::action_end_call() {
 
 void DSipCom::action_make_a_call() {
   if ( (this)->contacts_list->count() != 0 ) {
-    (this)->call_button->setText( "Dzwonię" );
+    switch ( this->toolBox->currentIndex() ) {
+      case 0:
+        // 0 => contact list page
+        (this)->call_button->setText( "Dzwonię do: " + this->contacts_list->item( this->contacts_list->currentRow() )->text().section(' ', -1) ); // str == "myapp" );
+        
+        break;
+      case 1:
+        // 1 => dialing page
+        (this)->call_button->setText( "Dzwonię do: " + this->number_entry->text() );
+        
+        break;
+    }
+    
   } else {
-    (this)->contacts_list->addItem( "Added testing contact" );  
   }
   //QListWidgetItem* current_item = (this)->contacts_list->item( (this)->contacts_list->currentRow() );
   //(this)->contacts_list->editItem( current_item );
@@ -455,8 +476,19 @@ void AddContactWindow::action_done() {
   DSipCom *object = ( (DSipCom*)this->parent() );
   // adding lineedit content from dialog on contact list
   if ( ( this->contact_name->text().length() > 0 ) && ( this->contact_sip_address->text().length() > 4 ) ) {
-    object->contacts_list->addItem( this->contact_name->text() + "  --  " + this->contact_sip_address->text() );
-    object->contacts_list->setCurrentRow( 0 );
+    QIcon icon1;
+    icon1.addPixmap( QPixmap( QString::fromUtf8( ":/images/images/user_red.png" ) ), QIcon::Active, QIcon::On );
+    // after setting icon, we'll bind it to an item, then update text elements
+    QListWidgetItem *__listItem = new QListWidgetItem( object->contacts_list );
+    __listItem->setIcon(icon1);
+    __listItem->setText( this->contact_name->text() + " => " + this->contact_sip_address->text() );
+    object->contacts_list->setCurrentRow( object->contacts_list->count() -1 );
+    
+    USER_LIST *temp = new USER_LIST;
+    strcpy( temp->contact_name, this->contact_name->text().toUtf8() );
+    strcpy( temp->contact_sip_address, this->contact_sip_address->text().toUtf8() );
+    object->user_list.append( *temp );
+    delete temp;
   }
   object->toolBox->setGeometry( object->toolBox->x(), object->toolBox->y() - 220, object->toolBox->width(), object->toolBox->height() - 220 );
   close();
