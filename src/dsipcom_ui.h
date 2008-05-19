@@ -11,6 +11,7 @@
 #include <stdio.h>
 
 #include <qt4/QtCore/Qt>
+#include <qt4/QtCore/QFile>
 #include <qt4/QtGui/QDialog>
 #include <qt4/QtCore/QTextCodec>
 #include <qt4/QtGui/QMessageBox>
@@ -38,17 +39,15 @@ typedef struct {
 } LPC_AUTH_STACK;
 
 typedef struct {
-  QString contact_name;
-  QString contact_sip_address;
-
+  char contact_name[50];
+  char contact_sip_address[50];
 } USER_LIST;
 
 typedef struct {
-  QString user_sip_server;
-  QString user_sip;
-  QString user_password;
-  QString user_name;
-
+  char user_sip_server[50];
+  char user_sip[50];
+  char user_password[50];
+  char user_name[50];
 } USER_CONFIG;
 
 
@@ -116,9 +115,9 @@ namespace Ui {
       FILE* linphone_logger_file;
 
       // add contact dialog:
-      AddContactWindow* dialog;
+      AddContactWindow *dialog;
       QVector<USER_LIST> user_list;
-      USER_CONFIG user_config;
+      USER_CONFIG *user_config;
       
     // qt4 action slots
     public slots:
@@ -141,6 +140,8 @@ namespace Ui {
       void action_enter_9();
       void action_enter_star();
       void action_enter_hash();
+      void action_save_config_button();
+      void action_load_config_button();
       
     // qt4 action signals
     signals:

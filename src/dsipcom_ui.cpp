@@ -227,16 +227,18 @@ DSipCom::DSipCom( const QString& title ) {
   logger.log( "Loading User List" );
    load_user_list();
   logger.log( "Loading User Config" );
-   load_user_config();
+   user_config = new USER_CONFIG;
+  // save_user_config();
+   //load_user_config();
 }
 
 void DSipCom::load_user_list() {
-  USER_LIST temp;
-  temp.contact_name = "dmilith";
-  temp.contact_sip_address = "dmilith@drakor.eu";
-  user_list.append( temp );
+  USER_LIST *temp = new USER_LIST;
+  strcpy( temp->contact_name, "dmilith" );
+  strcpy( temp->contact_sip_address, "dmilith@drakor.eu" );
+  user_list.append( *temp );
   
-  this->contacts_list->addItem( user_list[0].contact_name + "  --  " + user_list[0].contact_sip_address );
+  this->contacts_list->addItem( (QString)(user_list[0].contact_name) + "  --  " + (QString)(user_list[0].contact_sip_address) );
 }
 
 void DSipCom::save_user_list() {
@@ -244,20 +246,27 @@ void DSipCom::save_user_list() {
 }
 
 void DSipCom::load_user_config() {
-  user_config.user_name = "dmilith";
-  // TODO: make crypted passwords
-  user_config.user_password = "alaniemakota_nieszyfrowane!";
-  user_config.user_sip = "sip:dmilith@drak.kill.pl";
-  user_config.user_sip_server = "ekiga.net";
-  
-  this->user_name->setText( user_config.user_name );
-  this->user_password->setText( user_config.user_password );
-  this->user_sip->setText( user_config.user_sip );
-  this->user_sip_server->setText( user_config.user_sip_server );
+  FILE* config_file;
+  config_file = fopen( CONFIG_FILE, "rb+" );
+  fread( user_config, sizeof( USER_CONFIG ), 1, config_file );
+  fclose( config_file );
+  // putting config data to lineedits in config tab
+  this->user_name->setText( user_config->user_name );
+  this->user_password->setText( user_config->user_password );
+  this->user_sip->setText( user_config->user_sip );
+  this->user_sip_server->setText( user_config->user_sip_server );
 }
 
 void DSipCom::save_user_config() {
-
+  strcpy( user_config->user_name, this->user_name->text().toUtf8() );
+  strcpy( user_config->user_password, this->user_password->text().toUtf8() );
+  strcpy( user_config->user_sip, this->user_sip->text().toUtf8() );
+  strcpy( user_config->user_sip_server, this->user_sip_server->text().toUtf8() );
+  
+  FILE* config_file;
+  config_file = fopen( CONFIG_FILE, "wb+" );
+  fwrite( user_config, sizeof( USER_CONFIG ), 1, config_file );
+  fclose( config_file );
 }
 
 DSipCom::DSipCom() {
@@ -286,6 +295,8 @@ void DSipCom::init_actions() {
   QObject::connect( dial_9, SIGNAL( clicked() ), this, SLOT( action_enter_9() ));
   QObject::connect( dial_star, SIGNAL( clicked() ), this, SLOT( action_enter_star() ));
   QObject::connect( dial_hash, SIGNAL( clicked() ), this, SLOT( action_enter_hash() ));
+  QObject::connect( save_config_button, SIGNAL( clicked() ), this, SLOT( action_save_config_button() ));
+  QObject::connect( load_config_button, SIGNAL( clicked() ), this, SLOT( action_load_config_button() ));
   
   // menu bar:
   QObject::connect( action_about, SIGNAL( activated() ), this, SLOT( action_about_func() ));
@@ -294,6 +305,15 @@ void DSipCom::init_actions() {
   QObject::connect( action_add_contact_to_list, SIGNAL( activated() ), this, SLOT( action_add_contact_func() ));
   QObject::connect( action_remove_contact_from_list, SIGNAL( activated() ), this, SLOT( action_remove_contact_func() ));
   
+}
+
+
+void DSipCom::action_save_config_button() {
+  save_user_config();
+}
+
+void DSipCom::action_load_config_button() {
+  load_user_config();
 }
 
 /* numbers enterance: */

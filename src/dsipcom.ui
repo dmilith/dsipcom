@@ -643,6 +643,40 @@ p, li { white-space: pre-wrap; }
        <string>logowanie automatyczne przy starcie </string>
       </property>
      </widget>
+     <widget class="QPushButton" name="load_config_button" >
+      <property name="geometry" >
+       <rect>
+        <x>80</x>
+        <y>470</y>
+        <width>221</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>Wczytaj plik konfiguracyjny</string>
+      </property>
+      <property name="icon" >
+       <iconset resource="dsipcom.qrc" >
+        <normaloff>:/images/images/cd_burn.png</normaloff>:/images/images/cd_burn.png</iconset>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="save_config_button" >
+      <property name="geometry" >
+       <rect>
+        <x>80</x>
+        <y>420</y>
+        <width>221</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>Zapisz plik konfiguracyjny</string>
+      </property>
+      <property name="icon" >
+       <iconset resource="dsipcom.qrc" >
+        <normaloff>:/images/images/bug_add.png</normaloff>:/images/images/bug_add.png</iconset>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="page_raports" >
      <property name="geometry" >

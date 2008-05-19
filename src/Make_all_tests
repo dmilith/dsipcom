@@ -1,0 +1,13 @@
+#!/bin/bash
+
+cd tests/
+rm -f test_*
+
+echo "IO test"
+g++ -w -g IO_file_test.cpp -o test_IO
+./test_IO
+if [ $? = 0 ]; then
+    echo "Passed"
+else
+    echo "Failed!"
+fi
