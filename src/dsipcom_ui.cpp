@@ -203,8 +203,6 @@ extern "C" {
 #endif
 
 
-
-
 Logger logger( LOGGER_DSIPCOM_UI, "debug" );
 
 DSipCom::DSipCom( const QString& title ) {
@@ -241,6 +239,10 @@ void DSipCom::load_user_list() {
   this->contacts_list->addItem( user_list[0].contact_name + "  --  " + user_list[0].contact_sip_address );
 }
 
+void DSipCom::save_user_list() {
+  
+}
+
 void DSipCom::load_user_config() {
   user_config.user_name = "dmilith";
   // TODO: make crypted passwords
@@ -252,6 +254,10 @@ void DSipCom::load_user_config() {
   this->user_password->setText( user_config.user_password );
   this->user_sip->setText( user_config.user_sip );
   this->user_sip_server->setText( user_config.user_sip_server );
+}
+
+void DSipCom::save_user_config() {
+
 }
 
 DSipCom::DSipCom() {

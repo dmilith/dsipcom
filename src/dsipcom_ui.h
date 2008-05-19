@@ -105,7 +105,9 @@ namespace Ui {
       
       // loading data from files
       void load_user_list();
+      void save_user_list();
       void load_user_config();
+      void save_user_config();
       
       // init linphone
       void create_linphone_core();
