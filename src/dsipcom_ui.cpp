@@ -264,17 +264,6 @@ void DSipCom::init_actions() {
   
 }
 
-void DSipCom::action_add_contact_func() {
-  dialog = new AddContactWindow( this );
-  dialog->setGeometry( (this)->toolBox->x(), (this)->toolBox->y() + 20, (this)->toolBox->width(), (this)->toolBox->height() + 20 );
-  toolBox->setGeometry( (this)->toolBox->x(), (this)->toolBox->y() + 220, (this)->toolBox->width(), (this)->toolBox->height() + 220 );
-  dialog->show();
-}
-
-void DSipCom::action_remove_contact_func() {
-  
-}
-
 /* numbers enterance: */
 void DSipCom::action_enter_0() {
   (this)->number_entry->setText( (this)->number_entry->text() + "0" );
@@ -382,6 +371,17 @@ void DSipCom::create_linphone_core(){
   logger.log( "Linphone core Ready!" );
 }
 
+void DSipCom::action_add_contact_func() {
+  dialog = new AddContactWindow( this );
+  dialog->setGeometry( (this)->toolBox->x(), (this)->toolBox->y() + 20, (this)->toolBox->width(), (this)->toolBox->height() + 20 );
+  toolBox->setGeometry( (this)->toolBox->x(), (this)->toolBox->y() + 220, (this)->toolBox->width(), (this)->toolBox->height() + 220 );
+  dialog->show();
+}
+
+void DSipCom::action_remove_contact_func() {
+  //removing entry from list ( taking it without destination so it goes to NULL )
+  (this)->contacts_list->takeItem( (this)->contacts_list->currentRow() );
+}
 
 AddContactWindow::AddContactWindow( QWidget *parent ) {
   setupUi( this );
@@ -402,7 +402,10 @@ void AddContactWindow::action_done() {
   // finding parent
   DSipCom *object = ( (DSipCom*)this->parent() );
   // adding lineedit content from dialog on contact list
-  object->contacts_list->addItem( this->contact_name->text() );  
+  if ( ( this->contact_name->text().length() > 0 ) && ( this->contact_sip_address->text().length() > 4 ) ) {
+    object->contacts_list->addItem( this->contact_name->text() + "  --  " + this->contact_sip_address->text() );
+    object->contacts_list->setCurrentRow( 0 );
+  }
   object->toolBox->setGeometry( object->toolBox->x(), object->toolBox->y() - 220, object->toolBox->width(), object->toolBox->height() - 220 );
   close();
 }
