@@ -630,6 +630,19 @@ p, li { white-space: pre-wrap; }
        <string>Tu wprowadź nazwę swojego serwera</string>
       </property>
      </widget>
+     <widget class="QCheckBox" name="auto_login" >
+      <property name="geometry" >
+       <rect>
+        <x>10</x>
+        <y>320</y>
+        <width>321</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>automatycznie loguj po uruchomieniu programu</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="page_raports" >
      <property name="geometry" >
@@ -800,7 +813,7 @@ p, li { white-space: pre-wrap; }
      <normaloff>:/images/images/add.png</normaloff>:/images/images/add.png</iconset>
    </property>
    <property name="text" >
-    <string>Dodaj Kontakt</string>
+    <string>Dodaj Kontakt do listy</string>
    </property>
   </action>
   <action name="action_remove_contact_from_list" >

@@ -6,62 +6,95 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>300</height>
+    <height>215</height>
    </rect>
   </property>
   <property name="windowTitle" >
-   <string>Dodaj nowy kontakt</string>
+   <string>Dialog</string>
   </property>
-  <widget class="QDialogButtonBox" name="buttonBox" >
+  <widget class="QLineEdit" name="contact_sip_address" >
    <property name="geometry" >
     <rect>
-     <x>30</x>
-     <y>240</y>
-     <width>341</width>
-     <height>32</height>
+     <x>10</x>
+     <y>110</y>
+     <width>251</width>
+     <height>24</height>
     </rect>
    </property>
-   <property name="orientation" >
-    <enum>Qt::Horizontal</enum>
+  </widget>
+  <widget class="QLabel" name="label_2" >
+   <property name="geometry" >
+    <rect>
+     <x>10</x>
+     <y>90</y>
+     <width>201</width>
+     <height>18</height>
+    </rect>
    </property>
-   <property name="standardButtons" >
-    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+   <property name="text" >
+    <string>Adres SIP użytkownika</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="add_button" >
+   <property name="geometry" >
+    <rect>
+     <x>110</x>
+     <y>160</y>
+     <width>151</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>Dodaj kontakt</string>
+   </property>
+   <property name="icon" >
+    <iconset resource="dsipcom.qrc" >
+     <normaloff>:/images/images/accept.png</normaloff>:/images/images/accept.png</iconset>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label" >
+   <property name="geometry" >
+    <rect>
+     <x>10</x>
+     <y>20</y>
+     <width>201</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>Nazwa ( wyświetlana na liście )</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="contact_name" >
+   <property name="geometry" >
+    <rect>
+     <x>10</x>
+     <y>40</y>
+     <width>251</width>
+     <height>24</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="cancel_button" >
+   <property name="geometry" >
+    <rect>
+     <x>280</x>
+     <y>160</y>
+     <width>101</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>Anuluj</string>
+   </property>
+   <property name="icon" >
+    <iconset resource="dsipcom.qrc" >
+     <normaloff>:/images/images/cancel.png</normaloff>:/images/images/cancel.png</iconset>
    </property>
   </widget>
  </widget>
- <resources/>
- <connections>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>accepted()</signal>
-   <receiver>addUserDialog</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel" >
-     <x>248</x>
-     <y>254</y>
-    </hint>
-    <hint type="destinationlabel" >
-     <x>157</x>
-     <y>274</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>rejected()</signal>
-   <receiver>addUserDialog</receiver>
-   <slot>reject()</slot>
-   <hints>
-    <hint type="sourcelabel" >
-     <x>316</x>
-     <y>260</y>
-    </hint>
-    <hint type="destinationlabel" >
-     <x>286</x>
-     <y>274</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <resources>
+  <include location="dsipcom.qrc" />
+ </resources>
+ <connections/>
 </ui>

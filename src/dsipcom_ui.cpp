@@ -228,6 +228,10 @@ DSipCom::DSipCom( const QString& title ) {
   logger.log( "DSipCom initialized" );
 }
 
+DSipCom::DSipCom() {
+  setupUi( this );
+}
+
 DSipCom::~DSipCom() {
   linphone_core_destroy( _core );
   fclose( linphone_logger_file );
@@ -257,14 +261,15 @@ void DSipCom::init_actions() {
   QObject::connect( action_disconnect_from_sip_server, SIGNAL( activated() ), this, SLOT( action_disconnect_from_sip_server_func() ));
   QObject::connect( action_add_contact_to_list, SIGNAL( activated() ), this, SLOT( action_add_contact_func() ));
   QObject::connect( action_remove_contact_from_list, SIGNAL( activated() ), this, SLOT( action_remove_contact_func() ));
+  
 }
 
 void DSipCom::action_add_contact_func() {
-  Ui::AddContactWindow* dialog = new Ui::AddContactWindow();
-  dialog->setupUi( dialog );
+  dialog = new AddContactWindow( this );
+  dialog->setGeometry( (this)->toolBox->x(), (this)->toolBox->y() + 20, (this)->toolBox->width(), (this)->toolBox->height() + 20 );
+  toolBox->setGeometry( (this)->toolBox->x(), (this)->toolBox->y() + 220, (this)->toolBox->width(), (this)->toolBox->height() + 220 );
   dialog->show();
 }
-
 
 void DSipCom::action_remove_contact_func() {
   
@@ -378,9 +383,33 @@ void DSipCom::create_linphone_core(){
 }
 
 
-AddContactWindow::AddContactWindow() {
+AddContactWindow::AddContactWindow( QWidget *parent ) {
+  setupUi( this );
+  init_actions();
+  setParent( parent );
 }
 
 AddContactWindow::~AddContactWindow() {
+}
+
+void AddContactWindow::init_actions() {
+  // buttons
+  QObject::connect( add_button, SIGNAL( clicked() ), this, SLOT( action_done() ));
+  QObject::connect( cancel_button, SIGNAL( clicked() ), this, SLOT( action_cancel() ));
+}
+
+void AddContactWindow::action_done() {
+  // finding parent
+  DSipCom *object = ( (DSipCom*)this->parent() );
+  // adding lineedit content from dialog on contact list
+  object->contacts_list->addItem( this->contact_name->text() );  
+  object->toolBox->setGeometry( object->toolBox->x(), object->toolBox->y() - 220, object->toolBox->width(), object->toolBox->height() - 220 );
+  close();
+}
+
+void AddContactWindow::action_cancel() {
+  DSipCom *object = ( (DSipCom*)this->parent() );
+  object->toolBox->setGeometry( object->toolBox->x(), object->toolBox->y() - 220, object->toolBox->width(), object->toolBox->height() - 220 );
+  close();
 }
 

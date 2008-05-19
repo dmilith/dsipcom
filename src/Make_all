@@ -1,6 +1,11 @@
 #!/bin/bash
 
-echo "creating makefile"
+if [ -e "Makefile" ]; then
+	echo "removing Makefile"
+	rm Makefile
+fi
+
+echo "creating Makefile"
 qmake dsipcom.pro
 if [ $? = 0 ]; then
 	echo "done"
@@ -11,6 +16,8 @@ make all 2> compile.log
 if [ $? = 0 ]; then
 	 echo "done. dSipCom ready"
 fi
-less compile.log
 
+if [ -s "compile.log" ]; then
+	less compile.log
+fi
 

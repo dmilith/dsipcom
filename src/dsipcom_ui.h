@@ -41,6 +41,23 @@ typedef struct {
 /* User Interface namespace is providing main UI inherited from automaticaly generated qt-designer templates */
 namespace Ui {
   
+  class AddContactWindow : public QDialog, public Ui::addUserDialog { 
+    // qt4 ui macro (for actions)
+    Q_OBJECT
+        
+    public:
+      AddContactWindow( QWidget *parent );
+      ~AddContactWindow();
+      void init_actions();
+
+    public slots:
+      void action_done();
+      void action_cancel();
+     
+    signals:
+      void clicked();
+  };
+  
   class SipMutex {
     public:
       SipMutex() {
@@ -66,6 +83,7 @@ namespace Ui {
 
     public:
       DSipCom( const QString& title = "dSipCom" );
+      DSipCom();
      ~DSipCom();
      
       // init qt4 actions (ui slots and signals)
@@ -77,6 +95,9 @@ namespace Ui {
 	    SipMutex _mutex;
       FILE* linphone_logger_file;
 
+      // add contact dialog:
+      AddContactWindow* dialog;
+      
     // qt4 action slots
     public slots:
       void action_make_a_call();
@@ -104,16 +125,6 @@ namespace Ui {
       void clicked();
   };
 
-  class AddContactWindow : public QDialog, public Ui::addUserDialog { 
-    // qt4 ui macro (for actions)
-    Q_OBJECT
-        
-    public:
-      AddContactWindow();
-      ~AddContactWindow();
-
-  };
-  
 } // of namespace
 
 #endif	/* _DSIPCOM_UI_H */

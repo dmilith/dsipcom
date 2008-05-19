@@ -42,6 +42,7 @@ unix {
  		error( "Unable to find unix spec." )
 }
 
+QMAKE_CXXFLAGS += -w
 TARGET = ../dsipcom
 target.path = ../
 sources.files = $$SOURCES $$HEADERS $$RESOURCES $$FORMS *.pro
