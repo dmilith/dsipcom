@@ -226,6 +226,32 @@ DSipCom::DSipCom( const QString& title ) {
   logger.log( "Initializing LinPhone" );
    create_linphone_core();
   logger.log( "DSipCom initialized" );
+  logger.log( "Loading User List" );
+   load_user_list();
+  logger.log( "Loading User Config" );
+   load_user_config();
+}
+
+void DSipCom::load_user_list() {
+  USER_LIST temp;
+  temp.contact_name = "dmilith";
+  temp.contact_sip_address = "dmilith@drakor.eu";
+  user_list.append( temp );
+  
+  this->contacts_list->addItem( user_list[0].contact_name + "  --  " + user_list[0].contact_sip_address );
+}
+
+void DSipCom::load_user_config() {
+  user_config.user_name = "dmilith";
+  // TODO: make crypted passwords
+  user_config.user_password = "alaniemakota_nieszyfrowane!";
+  user_config.user_sip = "sip:dmilith@drak.kill.pl";
+  user_config.user_sip_server = "ekiga.net";
+  
+  this->user_name->setText( user_config.user_name );
+  this->user_password->setText( user_config.user_password );
+  this->user_sip->setText( user_config.user_sip );
+  this->user_sip_server->setText( user_config.user_sip_server );
 }
 
 DSipCom::DSipCom() {

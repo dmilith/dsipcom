@@ -37,6 +37,20 @@ typedef struct {
   int nitems;
 } LPC_AUTH_STACK;
 
+typedef struct {
+  QString contact_name;
+  QString contact_sip_address;
+
+} USER_LIST;
+
+typedef struct {
+  QString user_sip_server;
+  QString user_sip;
+  QString user_password;
+  QString user_name;
+
+} USER_CONFIG;
+
 
 /* User Interface namespace is providing main UI inherited from automaticaly generated qt-designer templates */
 namespace Ui {
@@ -89,6 +103,10 @@ namespace Ui {
       // init qt4 actions (ui slots and signals)
       void init_actions();
       
+      // loading data from files
+      void load_user_list();
+      void load_user_config();
+      
       // init linphone
       void create_linphone_core();
       LinphoneCore *_core;
@@ -97,6 +115,8 @@ namespace Ui {
 
       // add contact dialog:
       AddContactWindow* dialog;
+      QVector<USER_LIST> user_list;
+      USER_CONFIG user_config;
       
     // qt4 action slots
     public slots:
