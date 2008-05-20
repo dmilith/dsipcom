@@ -27,10 +27,10 @@
 
 // Linphone definitions
 #define MAX_PENDING_AUTH 8
-#define HISTSIZE 500		/* how many lines of input history */
+//#define HISTSIZE 500		/* how many lines of input history */
 #define PROMPT_MAX_LEN 256	/* max len of prompt string */
 #define LINE_MAX_LEN 256	/* really needed ? */
-#define LPC_READLINE_TIMEOUT 1000000
+//#define LPC_READLINE_TIMEOUT 1000000
 
 // Linphone defs:
 typedef struct {

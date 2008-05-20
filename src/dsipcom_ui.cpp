@@ -385,7 +385,7 @@ void DSipCom::action_end_call() {
 }
 
 void DSipCom::action_make_a_call() {
-  if ( (this)->contacts_list->count() != 0 ) {
+  if ( ( (this)->contacts_list->count() != 0 ) && (( this->toolBox->currentIndex() == 0 ) || ( this->toolBox->currentIndex() == 1 ) ) ) {
     switch ( this->toolBox->currentIndex() ) {
       case 0:
         // 0 => contact list page
@@ -493,7 +493,7 @@ void AddContactWindow::action_done() {
   // adding lineedit content from dialog on contact list
   if ( ( this->contact_name->text().length() > 0 ) && ( this->contact_sip_address->text().length() > 4 ) ) {
     QIcon icon1;
-    icon1.addPixmap( QPixmap( QString::fromUtf8( ":/images/images/user_red.png" ) ), QIcon::Active, QIcon::On );
+    icon1.addPixmap( QPixmap( QString::fromUtf8( ":/images/images/user_green.png" ) ), QIcon::Active, QIcon::On );
     // after setting icon, we'll bind it to an item, then update text elements
     QListWidgetItem *__listItem = new QListWidgetItem( object->contacts_list );
     __listItem->setIcon(icon1);
