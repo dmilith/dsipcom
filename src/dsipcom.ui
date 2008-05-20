@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>383</width>
-    <height>784</height>
+    <width>382</width>
+    <height>850</height>
    </rect>
   </property>
   <property name="acceptDrops" >
@@ -30,8 +30,8 @@ p, li { white-space: pre-wrap; }
     <rect>
      <x>0</x>
      <y>23</y>
-     <width>383</width>
-     <height>738</height>
+     <width>382</width>
+     <height>804</height>
     </rect>
    </property>
    <widget class="QPushButton" name="call_button" >
@@ -117,7 +117,7 @@ p, li { white-space: pre-wrap; }
      <enum>QFrame::Sunken</enum>
     </property>
     <property name="currentIndex" >
-     <number>0</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="page_contacts" >
      <property name="geometry" >
@@ -748,13 +748,52 @@ p, li { white-space: pre-wrap; }
      </widget>
     </widget>
    </widget>
+   <widget class="QGroupBox" name="groupBox_2" >
+    <property name="geometry" >
+     <rect>
+      <x>10</x>
+      <y>740</y>
+      <width>361</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="title" >
+     <string>status:</string>
+    </property>
+    <widget class="QLabel" name="status_bar" >
+     <property name="enabled" >
+      <bool>true</bool>
+     </property>
+     <property name="geometry" >
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>341</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font" >
+      <font>
+       <pointsize>10</pointsize>
+       <weight>50</weight>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="layoutDirection" >
+      <enum>Qt::RightToLeft</enum>
+     </property>
+     <property name="text" >
+      <string>Program nie wykonuje żadnej akcji</string>
+     </property>
+    </widget>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar" >
    <property name="geometry" >
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>383</width>
+     <width>382</width>
      <height>23</height>
     </rect>
    </property>
@@ -789,8 +828,8 @@ p, li { white-space: pre-wrap; }
    <property name="geometry" >
     <rect>
      <x>0</x>
-     <y>761</y>
-     <width>383</width>
+     <y>827</y>
+     <width>382</width>
      <height>23</height>
     </rect>
    </property>

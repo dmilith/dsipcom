@@ -376,7 +376,8 @@ void DSipCom::action_enter_hash() {
 }
 
 void DSipCom::action_end_call() {
-  (this)->hang_button->setText( "Rozłączam" );
+  (this)->status_bar->setText( "Program nie wykonuje żadnej akcji" );
+  
 }
 
 void DSipCom::action_make_a_call() {
@@ -384,12 +385,12 @@ void DSipCom::action_make_a_call() {
     switch ( this->toolBox->currentIndex() ) {
       case 0:
         // 0 => contact list page
-        (this)->call_button->setText( "Dzwonię do: " + this->contacts_list->item( this->contacts_list->currentRow() )->text().section(' ', -1) ); // str == "myapp" );
+        (this)->status_bar->setText( "Dzwonię do: " + this->contacts_list->item( this->contacts_list->currentRow() )->text().section(' ', -1) ); // str == "myapp" );
         
         break;
       case 1:
         // 1 => dialing page
-        (this)->call_button->setText( "Dzwonię do: " + this->number_entry->text() );
+        (this)->status_bar->setText( "Dzwonię do: " + this->number_entry->text() );
         
         break;
     }
@@ -482,6 +483,7 @@ void AddContactWindow::action_done() {
     QListWidgetItem *__listItem = new QListWidgetItem( object->contacts_list );
     __listItem->setIcon(icon1);
     __listItem->setText( this->contact_name->text() + " => " + this->contact_sip_address->text() );
+    // marking last element ( just added one )
     object->contacts_list->setCurrentRow( object->contacts_list->count() -1 );
     
     USER_LIST *temp = new USER_LIST;
