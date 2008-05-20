@@ -233,6 +233,7 @@ DSipCom::DSipCom( const QString& title ) {
 }
 
 void DSipCom::load_user_list() {
+  // TODO: fix loading of user list from file
   USER_LIST *temp = new USER_LIST;
   strcpy( temp->contact_name, "dmilith" );
   strcpy( temp->contact_sip_address, "dmilith@drakor.eu" );
@@ -250,6 +251,7 @@ void DSipCom::load_user_list() {
 }
 
 void DSipCom::save_user_list() {
+  // TODO: fix saving of user list to file
   FILE* userlist_file;
   userlist_file = fopen( USER_LIST_FILE, "wb+" );
   fwrite( &user_list, sizeof( &user_list ), 1, userlist_file );
@@ -399,11 +401,11 @@ void DSipCom::action_make_a_call() {
   }
   //QListWidgetItem* current_item = (this)->contacts_list->item( (this)->contacts_list->currentRow() );
   //(this)->contacts_list->editItem( current_item );
-  //(this)->contacts_list->
 }
 
 void DSipCom::action_about_func() {
   logger.log( "From about dialog!" );
+  // TODO: add own about dialog instead of QMessageBox
   QMessageBox::information(this, MAIN_WINDOW_TITLE, " Program jest na licencji GPL.\nAutor: Daniel (dmilith) Dettlaff\n (c) 2oo8 ");
 }
 
