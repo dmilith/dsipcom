@@ -132,7 +132,7 @@ p, li { white-space: pre-wrap; }
      <enum>QFrame::Sunken</enum>
     </property>
     <property name="currentIndex" >
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="page_contacts" >
      <property name="geometry" >
@@ -211,7 +211,7 @@ p, li { white-space: pre-wrap; }
        </property>
        <property name="font" >
         <font>
-         <pointsize>23</pointsize>
+         <pointsize>20</pointsize>
          <weight>75</weight>
          <bold>true</bold>
          <stylestrategy>PreferAntialias</stylestrategy>
@@ -236,7 +236,7 @@ p, li { white-space: pre-wrap; }
        </property>
        <property name="font" >
         <font>
-         <pointsize>23</pointsize>
+         <pointsize>20</pointsize>
          <weight>75</weight>
          <bold>true</bold>
          <stylestrategy>PreferAntialias</stylestrategy>
@@ -261,7 +261,7 @@ p, li { white-space: pre-wrap; }
        </property>
        <property name="font" >
         <font>
-         <pointsize>23</pointsize>
+         <pointsize>20</pointsize>
          <weight>75</weight>
          <bold>true</bold>
          <stylestrategy>PreferAntialias</stylestrategy>
@@ -286,7 +286,7 @@ p, li { white-space: pre-wrap; }
        </property>
        <property name="font" >
         <font>
-         <pointsize>23</pointsize>
+         <pointsize>20</pointsize>
          <weight>75</weight>
          <bold>true</bold>
          <stylestrategy>PreferAntialias</stylestrategy>
@@ -311,7 +311,7 @@ p, li { white-space: pre-wrap; }
        </property>
        <property name="font" >
         <font>
-         <pointsize>23</pointsize>
+         <pointsize>20</pointsize>
          <weight>75</weight>
          <bold>true</bold>
          <stylestrategy>PreferAntialias</stylestrategy>
@@ -336,7 +336,7 @@ p, li { white-space: pre-wrap; }
        </property>
        <property name="font" >
         <font>
-         <pointsize>23</pointsize>
+         <pointsize>20</pointsize>
          <weight>75</weight>
          <bold>true</bold>
          <stylestrategy>PreferAntialias</stylestrategy>
@@ -361,7 +361,7 @@ p, li { white-space: pre-wrap; }
        </property>
        <property name="font" >
         <font>
-         <pointsize>23</pointsize>
+         <pointsize>20</pointsize>
          <weight>75</weight>
          <bold>true</bold>
          <stylestrategy>PreferAntialias</stylestrategy>
@@ -386,7 +386,7 @@ p, li { white-space: pre-wrap; }
        </property>
        <property name="font" >
         <font>
-         <pointsize>23</pointsize>
+         <pointsize>20</pointsize>
          <weight>75</weight>
          <bold>true</bold>
          <stylestrategy>PreferAntialias</stylestrategy>
@@ -411,7 +411,7 @@ p, li { white-space: pre-wrap; }
        </property>
        <property name="font" >
         <font>
-         <pointsize>23</pointsize>
+         <pointsize>20</pointsize>
          <weight>75</weight>
          <bold>true</bold>
          <stylestrategy>PreferAntialias</stylestrategy>
@@ -436,7 +436,7 @@ p, li { white-space: pre-wrap; }
        </property>
        <property name="font" >
         <font>
-         <pointsize>23</pointsize>
+         <pointsize>20</pointsize>
          <weight>75</weight>
          <bold>true</bold>
          <stylestrategy>PreferAntialias</stylestrategy>
@@ -461,7 +461,7 @@ p, li { white-space: pre-wrap; }
        </property>
        <property name="font" >
         <font>
-         <pointsize>23</pointsize>
+         <pointsize>20</pointsize>
          <weight>75</weight>
          <bold>true</bold>
          <stylestrategy>PreferAntialias</stylestrategy>
@@ -486,7 +486,7 @@ p, li { white-space: pre-wrap; }
        </property>
        <property name="font" >
         <font>
-         <pointsize>23</pointsize>
+         <pointsize>20</pointsize>
          <weight>75</weight>
          <bold>true</bold>
          <stylestrategy>PreferAntialias</stylestrategy>

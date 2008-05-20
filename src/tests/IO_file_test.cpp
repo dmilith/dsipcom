@@ -1,16 +1,17 @@
 #include <stdio.h>
+#include <string.h>
 
 typedef struct {
-  char[50] contact_name;
-  char[50] contact_sip_address;
+  char contact_name[50];
+  char contact_sip_address[50];
 
 } USER_LIST;
 
 typedef struct {
-  char[50] user_sip_server;
-  char[50] user_sip;
-  char[50] user_password;
-  char[50] user_name;
+  char user_sip_server[50];
+  char user_sip[50];
+  char user_password[50];
+  char user_name[50];
 
 } USER_CONFIG;
 
@@ -24,11 +25,11 @@ int main() {
   user_config = new USER_CONFIG;
   readed = new USER_CONFIG;
   
-  user_config->user_name = "dmilith";
+  strcpy( user_config->user_name, "dmilith" );
   // TODO: make crypted passwords 
-  user_config->user_password = "alaniemakota_nieszyfrowane!";
-  user_config->user_sip = "sip:dmilith@drak.kill.pl";
-  user_config->user_sip_server = "ekiga.net";
+  strcpy( user_config->user_password, "alaniemakota_nieszyfrowane!");
+  strcpy( user_config->user_sip, "sip:dmilith@drak.kill.pl");
+  strcpy( user_config->user_sip_server, "ekiga.net");
   
   printf( "zapis\n" );
   FILE* config_file;
