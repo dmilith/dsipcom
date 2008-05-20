@@ -312,6 +312,7 @@ void DSipCom::init_actions() {
   QObject::connect( load_config_button, SIGNAL( clicked() ), this, SLOT( action_load_config_button() ));
   
   // menu bar:
+  QObject::connect( action_help, SIGNAL( activated() ), this, SLOT( action_help_func() ));
   QObject::connect( action_about, SIGNAL( activated() ), this, SLOT( action_about_func() ));
   QObject::connect( action_connect_to_sip_server, SIGNAL( activated() ), this, SLOT( action_connect_to_sip_server_func() ));
   QObject::connect( action_disconnect_from_sip_server, SIGNAL( activated() ), this, SLOT( action_disconnect_from_sip_server_func() ));
@@ -402,6 +403,13 @@ void DSipCom::action_make_a_call() {
   //QListWidgetItem* current_item = (this)->contacts_list->item( (this)->contacts_list->currentRow() );
   //(this)->contacts_list->editItem( current_item );
 }
+
+void DSipCom::action_help_func() {
+  logger.log( "Visited -> Help" );
+  // TODO: add own help dialog instead of QMessageBox
+  QMessageBox::information(this, MAIN_WINDOW_TITLE, " Brak pliku pomocy [ niezainicjowano ] ");
+}
+
 
 void DSipCom::action_about_func() {
   logger.log( "From about dialog!" );
