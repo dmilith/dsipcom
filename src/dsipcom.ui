@@ -6,8 +6,20 @@
     <x>0</x>
     <y>0</y>
     <width>382</width>
-    <height>850</height>
+    <height>852</height>
    </rect>
+  </property>
+  <property name="minimumSize" >
+   <size>
+    <width>382</width>
+    <height>850</height>
+   </size>
+  </property>
+  <property name="maximumSize" >
+   <size>
+    <width>382</width>
+    <height>16777215</height>
+   </size>
   </property>
   <property name="acceptDrops" >
    <bool>true</bool>
@@ -31,7 +43,7 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>23</y>
      <width>382</width>
-     <height>804</height>
+     <height>806</height>
     </rect>
    </property>
    <widget class="QPushButton" name="call_button" >
@@ -64,6 +76,9 @@ p, li { white-space: pre-wrap; }
     </property>
    </widget>
    <widget class="QPushButton" name="hang_button" >
+    <property name="enabled" >
+     <bool>false</bool>
+    </property>
     <property name="geometry" >
      <rect>
       <x>213</x>
@@ -117,7 +132,7 @@ p, li { white-space: pre-wrap; }
      <enum>QFrame::Sunken</enum>
     </property>
     <property name="currentIndex" >
-     <number>3</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="page_contacts" >
      <property name="geometry" >
@@ -748,7 +763,7 @@ p, li { white-space: pre-wrap; }
      </widget>
     </widget>
    </widget>
-   <widget class="QGroupBox" name="groupBox_2" >
+   <widget class="QGroupBox" name="status_box" >
     <property name="geometry" >
      <rect>
       <x>10</x>
@@ -828,7 +843,7 @@ p, li { white-space: pre-wrap; }
    <property name="geometry" >
     <rect>
      <x>0</x>
-     <y>827</y>
+     <y>829</y>
      <width>382</width>
      <height>23</height>
     </rect>

@@ -376,8 +376,9 @@ void DSipCom::action_enter_hash() {
 }
 
 void DSipCom::action_end_call() {
-  (this)->status_bar->setText( "Program nie wykonuje żadnej akcji" );
-  
+  this->status_bar->setText( "Program nie wykonuje żadnej akcji" );
+  this->call_button->setEnabled( true );
+  this->hang_button->setEnabled( false );
 }
 
 void DSipCom::action_make_a_call() {
@@ -385,16 +386,15 @@ void DSipCom::action_make_a_call() {
     switch ( this->toolBox->currentIndex() ) {
       case 0:
         // 0 => contact list page
-        (this)->status_bar->setText( "Dzwonię do: " + this->contacts_list->item( this->contacts_list->currentRow() )->text().section(' ', -1) ); // str == "myapp" );
-        
+        this->status_bar->setText( "Dzwonię do: " + this->contacts_list->item( this->contacts_list->currentRow() )->text().section(' ', -1) ); // str == "myapp" );
         break;
       case 1:
         // 1 => dialing page
-        (this)->status_bar->setText( "Dzwonię do: " + this->number_entry->text() );
-        
+        this->status_bar->setText( "Dzwonię do: " + this->number_entry->text() );
         break;
     }
-    
+    this->call_button->setEnabled( false );
+    this->hang_button->setEnabled( true );
   } else {
   }
   //QListWidgetItem* current_item = (this)->contacts_list->item( (this)->contacts_list->currentRow() );
@@ -447,14 +447,19 @@ void DSipCom::create_linphone_core(){
 
 void DSipCom::action_add_contact_func() {
   dialog = new AddContactWindow( this );
-  dialog->setGeometry( (this)->toolBox->x(), (this)->toolBox->y() + 20, (this)->toolBox->width(), (this)->toolBox->height() + 20 );
-  toolBox->setGeometry( (this)->toolBox->x(), (this)->toolBox->y() + 220, (this)->toolBox->width(), (this)->toolBox->height() + 220 );
+  //switching to contacts list view
+  toolBox->setCurrentIndex( 0 );
+  dialog->setGeometry( toolBox->x(), toolBox->y() + 20, toolBox->width(), toolBox->height() + 20 );
+  toolBox->setGeometry( toolBox->x(), toolBox->y() + 220, toolBox->width(), toolBox->height() + 220 );
+  status_box->setGeometry( status_box->x(), status_box->y() + 220, status_box->width(), status_box->height() + 220 );
   dialog->show();
 }
 
 void DSipCom::action_remove_contact_func() {
-  //removing entry from list ( taking it without destination so it goes to NULL )
-  (this)->contacts_list->takeItem( (this)->contacts_list->currentRow() );
+  //removing entry from list ( taking it without destination so it goes to NULL ) but only if current window is 0 - contacts list
+  if ( toolBox->currentIndex() == 0 ) {
+    (this)->contacts_list->takeItem( (this)->contacts_list->currentRow() ); 
+  }
 }
 
 AddContactWindow::AddContactWindow( QWidget *parent ) {
@@ -493,12 +498,14 @@ void AddContactWindow::action_done() {
     delete temp;
   }
   object->toolBox->setGeometry( object->toolBox->x(), object->toolBox->y() - 220, object->toolBox->width(), object->toolBox->height() - 220 );
+  object->status_box->setGeometry( object->status_box->x(), object->status_box->y() - 220, object->status_box->width(), object->status_box->height() - 220 );
   close();
 }
 
 void AddContactWindow::action_cancel() {
   DSipCom *object = ( (DSipCom*)this->parent() );
   object->toolBox->setGeometry( object->toolBox->x(), object->toolBox->y() - 220, object->toolBox->width(), object->toolBox->height() - 220 );
+  object->status_box->setGeometry( object->status_box->x(), object->status_box->y() - 220, object->status_box->width(), object->status_box->height() - 220 );
   close();
 }
 
