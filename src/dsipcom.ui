@@ -18,7 +18,7 @@
   <property name="maximumSize" >
    <size>
     <width>382</width>
-    <height>16777215</height>
+    <height>852</height>
    </size>
   </property>
   <property name="acceptDrops" >
@@ -132,7 +132,7 @@ p, li { white-space: pre-wrap; }
      <enum>QFrame::Sunken</enum>
     </property>
     <property name="currentIndex" >
-     <number>2</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="page_contacts" >
      <property name="geometry" >
