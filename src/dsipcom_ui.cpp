@@ -249,19 +249,27 @@ void DSipCom::save_user_list() {
 */
   FILE* userlist_file;
   userlist_file = fopen( USER_LIST_FILE, "wb+" );
-  char* user_list_header = "dulf0";
-  int user_list_size = user_list.size();
+  if ( userlist_file == 0 ) {
+    printf( "Error writin userlist file!\nCannot continue. Check Your user access and try again.\n" );
+    fflush( stdout );
+    exit( 1 );
+  }
   // writing header
+  char* user_list_header = "dulf0";
   fwrite( user_list_header, sizeof( user_list_header ), 1, userlist_file );
   // writing amount of users
-  printf( "records written to file: %d", user_list_size );
-  fflush( stdout ); // need to flush out data
+  int user_list_size = user_list.size();
   fwrite( &user_list_size, sizeof( &user_list_size ), 1, userlist_file );
   // writing data
-  for (int i = 0; i < user_list.size(); i++ ) {
-    fwrite( &user_list[i].contact_name, 50, 1, userlist_file);
-    fwrite( &user_list[i].contact_sip_address, 50, 1, userlist_file);
+  if ( user_list_size > 0 ) {
+    for (int i = 0; i < user_list.size(); i++ ) {
+      // each element in structure has 50 bytes length so we don't need to count it
+      fwrite( &user_list[i].contact_name, 50, 1, userlist_file);
+      fwrite( &user_list[i].contact_sip_address, 50, 1, userlist_file);
+    }
   }
+  printf( "records written to file: %d\n", user_list_size );
+  fflush( stdout ); // need to flush out data
   fclose( userlist_file );
 }
 
@@ -272,37 +280,47 @@ void DSipCom::load_user_list() {
   int size_of_list;
   FILE* userlist_file;
   userlist_file = fopen( USER_LIST_FILE, "rb+" );
+  // checking existance of list file
+  if ( userlist_file == 0 ) {  
+    printf( "Error reading userlist file!\nNew user_list file will be created.\n" );
+    fflush( stdout );
+    save_user_list();
+    userlist_file = fopen( USER_LIST_FILE, "rb+" );
+  }
   // checking userlist file header
   char* user_list_header = "12345";
   char* user_list_header_correct = "dulf0";
   fread( &user_list_header, sizeof( &user_list_header_correct ), 1, userlist_file );
   if ( ! ( user_list_header != user_list_header_correct ) ) {
-    logger.log( "Error in user_list file header. Probably I tried to read bad format user_list file!" );
+    logger.log( "Error in user_list file header. Probably I tried to read bad format user_list file!\n" );
     printf( "<%s> vs <%s>\n", &user_list_header, user_list_header_correct );
     exit( 1 );
   }
   // reading number of elements
   fread( &size_of_list, sizeof( &size_of_list ), 1, userlist_file );
   // reading elements
-  USER_LIST *temp;
-  for ( int i = 0; i < size_of_list; i++ ) {
-    temp = new USER_LIST;
-    fread( temp->contact_name, 50, 1, userlist_file);
-    fread( temp->contact_sip_address, 50, 1, userlist_file);
-    user_list.append( *temp );
-    delete temp;
-  }
-  fclose( userlist_file );
-  // putting elements to user_list plus icons
-  if (! user_list.empty() ) {
-    for ( int i = 0; i< size_of_list; i++ ) {
-      QIcon icon1;
-      icon1.addPixmap( QPixmap( QString::fromUtf8( ":/images/images/user_green.png" ) ), QIcon::Active, QIcon::On);
-      QListWidgetItem *__listItem = new QListWidgetItem(this->contacts_list);
-      __listItem->setIcon(icon1);
-      __listItem->setText((QString)(user_list[i].contact_name) + " => " + (QString)(user_list[i].contact_sip_address));  
+  if ( size_of_list > 0 ) {
+    USER_LIST *temp;
+    for ( int i = 0; i < size_of_list; i++ ) {
+      temp = new USER_LIST;
+      fread( temp->contact_name, 50, 1, userlist_file);
+      fread( temp->contact_sip_address, 50, 1, userlist_file);
+      user_list.append( *temp );
+      delete temp;
+    }
+    // putting elements to user_list plus icons
+    if (! user_list.empty() ) {
+      for ( int i = 0; i< size_of_list; i++ ) {
+        // C-c C-v from Qt4 example. It will set specified icon to current list element, then will set caption, and add object to user_list
+        QIcon icon1;
+        icon1.addPixmap( QPixmap( QString::fromUtf8( ":/images/images/user_green.png" ) ), QIcon::Active, QIcon::On);
+        QListWidgetItem *__listItem = new QListWidgetItem(this->contacts_list);
+        __listItem->setIcon(icon1);
+        __listItem->setText((QString)(user_list[i].contact_name) + " => " + (QString)(user_list[i].contact_sip_address));  
+      }
     }
   }
+  fclose( userlist_file );
   // matter of security - always one of elements on user list should be choosed:
   this->contacts_list->setCurrentRow( 0 );
 }
@@ -310,9 +328,10 @@ void DSipCom::load_user_list() {
 void DSipCom::load_user_config() {
   FILE* config_file;
   config_file = fopen( CONFIG_FILE, "rb+" );
+  // reading user config structure at once
   fread( user_config, sizeof( USER_CONFIG ), 1, config_file );
   fclose( config_file );
-  // putting config data to lineedits in config tab
+  // putting values from file to edit objects
   this->user_name->setText( user_config->user_name );
   this->user_password->setText( user_config->user_password );
   this->user_sip->setText( user_config->user_sip );
@@ -320,6 +339,7 @@ void DSipCom::load_user_config() {
 }
 
 void DSipCom::save_user_config() {
+  // taking values from main window edit objects
   strcpy( user_config->user_name, this->user_name->text().toUtf8() );
   strcpy( user_config->user_password, this->user_password->text().toUtf8() );
   strcpy( user_config->user_sip, this->user_sip->text().toUtf8() );
@@ -327,11 +347,13 @@ void DSipCom::save_user_config() {
   
   FILE* config_file;
   config_file = fopen( CONFIG_FILE, "wb+" );
+  // writing whole structure with data to file
   fwrite( user_config, sizeof( USER_CONFIG ), 1, config_file );
   fclose( config_file );
 }
 
 DSipCom::~DSipCom() {
+  // destroing main linphone core structure
   linphone_core_destroy( _core );
   fclose( linphone_logger_file );
 }
@@ -509,14 +531,17 @@ void DSipCom::create_linphone_core(){
    linphone_core_enable_logs( linphone_logger_file );
 
   logger.log( "Linphone logger initialized" );
+  //creating linphone main structure
    _core = linphone_core_new( &linphonec_vtable, config, NULL );
   logger.log( "Linphone core Ready!" );
 }
 
 void DSipCom::action_add_contact_func() {
+  //creating new window with parent of current one
   dialog = new AddContactWindow( this );
   //switching to contacts list view
   toolBox->setCurrentIndex( 0 );
+  //moving all main window content down
   dialog->setGeometry( toolBox->x(), toolBox->y() + 20, toolBox->width(), toolBox->height() + 20 );
   toolBox->setGeometry( toolBox->x(), toolBox->y() + 220, toolBox->width(), toolBox->height() + 220 );
   status_box->setGeometry( status_box->x(), status_box->y() + 220, status_box->width(), status_box->height() + 220 );
@@ -527,13 +552,14 @@ void DSipCom::action_remove_contact_func() {
   //removing entry from list ( taking it without destination so it goes to NULL ) but only if current window is 0 - contacts list
   if ( toolBox->currentIndex() == 0 ) {
     // FIXME: takeItem doesn't remove element from real list.
-    (this)->contacts_list->takeItem( (this)->contacts_list->currentRow() );
+    this->contacts_list->takeItem( this->contacts_list->currentRow() );
   }
 }
 
 AddContactWindow::AddContactWindow( QWidget *parent ) {
   setupUi( this );
   init_actions();
+  // we neet to tell child widget that it's parent is main window
   setParent( parent );
 }
 
@@ -560,6 +586,7 @@ void AddContactWindow::action_done() {
     // marking last element ( just added one )
     object->contacts_list->setCurrentRow( object->contacts_list->count() -1 );
     
+    // creating new user list element and appending it to user_list object 
     USER_LIST *temp = new USER_LIST;
     strcpy( temp->contact_name, this->contact_name->text().toUtf8() );
     strcpy( temp->contact_sip_address, this->contact_sip_address->text().toUtf8() );
@@ -573,7 +600,9 @@ void AddContactWindow::action_done() {
 }
 
 void AddContactWindow::action_cancel() {
+  //object will be object pointing to parent window
   DSipCom *object = ( (DSipCom*)this->parent() );
+  // moving all parent elements back up
   object->toolBox->setGeometry( object->toolBox->x(), object->toolBox->y() - 220, object->toolBox->width(), object->toolBox->height() - 220 );
   object->status_box->setGeometry( object->status_box->x(), object->status_box->y() - 220, object->status_box->width(), object->status_box->height() - 220 );
   close();
