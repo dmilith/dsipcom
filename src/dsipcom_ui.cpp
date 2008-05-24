@@ -233,10 +233,15 @@ DSipCom::DSipCom( const QString& title ) {
 }
 
 void DSipCom::load_user_list() {
-  // TODO: fix loading of user list from file
   USER_LIST *temp = new USER_LIST;
   strcpy( temp->contact_name, "dmilith" );
-  strcpy( temp->contact_sip_address, "dmilith@drakor.eu" );
+  strcpy( temp->contact_sip_address, "sip:dmilith@drakor.eu" );
+  user_list.append( *temp );
+  delete temp;
+  
+  USER_LIST *temp = new USER_LIST;
+  strcpy( temp->contact_name, "annasliw" );
+  strcpy( temp->contact_sip_address, "sip:annasliw@drakor.eu" );
   user_list.append( *temp );
   delete temp;
   
