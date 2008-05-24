@@ -96,7 +96,6 @@ namespace Ui {
 
     public:
       DSipCom( const QString& title = "dSipCom" );
-      DSipCom();
      ~DSipCom();
      
       // init qt4 actions (ui slots and signals)

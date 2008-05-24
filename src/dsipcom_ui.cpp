@@ -226,40 +226,51 @@ DSipCom::DSipCom( const QString& title ) {
   logger.log( "DSipCom initialized" );
   logger.log( "Loading User List" );
    load_user_list();
-   save_user_list();
+  // save_user_list();
   logger.log( "Loading User Config" );
    user_config = new USER_CONFIG;
    load_user_config();
 }
 
 void DSipCom::load_user_list() {
-  USER_LIST *temp = new USER_LIST;
-  strcpy( temp->contact_name, "dmilith" );
-  strcpy( temp->contact_sip_address, "sip:dmilith@drakor.eu" );
-  user_list.append( *temp );
-  delete temp;
+  /*
+    USER_LIST *temp;
+    temp = new USER_LIST;
+    strcpy( temp->contact_name, "dmilith" );
+    strcpy( temp->contact_sip_address, "sip:dmilith@drakor.eu" );
+    user_list.append( *temp );
+    delete temp;
+
+    temp = new USER_LIST;
+    strcpy( temp->contact_name, "annasliw" );
+    strcpy( temp->contact_sip_address, "sip:annasliw@drakor.eu" );
+    user_list.append( *temp );
+    delete temp;
+  */
   
-  USER_LIST *temp = new USER_LIST;
-  strcpy( temp->contact_name, "annasliw" );
-  strcpy( temp->contact_sip_address, "sip:annasliw@drakor.eu" );
-  user_list.append( *temp );
-  delete temp;
-  
-  QIcon icon1;
-  icon1.addPixmap( QPixmap( QString::fromUtf8( ":/images/images/user_green.png" ) ), QIcon::Active, QIcon::On);
-  QListWidgetItem *__listItem = new QListWidgetItem(this->contacts_list);
-  __listItem->setIcon(icon1);
-  __listItem->setText((QString)(user_list[0].contact_name) + " => " + (QString)(user_list[0].contact_sip_address));
+  if (!user_list.empty()) {
+    QIcon icon1;
+    icon1.addPixmap( QPixmap( QString::fromUtf8( ":/images/images/user_green.png" ) ), QIcon::Active, QIcon::On);
+    QListWidgetItem *__listItem = new QListWidgetItem(this->contacts_list);
+    __listItem->setIcon(icon1);
+    __listItem->setText((QString)(user_list[0].contact_name) + " => " + (QString)(user_list[0].contact_sip_address));
+  }
   
   // matter of security - always one of elements on user list should be choosed:
   this->contacts_list->setCurrentRow( 0 );
+  
 }
 
 void DSipCom::save_user_list() {
   // TODO: fix saving of user list to file
   FILE* userlist_file;
   userlist_file = fopen( USER_LIST_FILE, "wb+" );
-  fwrite( &user_list, sizeof( &user_list ), 1, userlist_file );
+  char* user_list_header = "dulf0";
+  fwrite( user_list_header, sizeof( user_list_header ) - 2, 1, userlist_file );
+  for (int i = 0; i < user_list.size(); i++ ) {
+    fwrite( &user_list[i].contact_name, 50, 1, userlist_file);
+    fwrite( &user_list[i].contact_sip_address, 50, 1, userlist_file);
+  }
   fclose( userlist_file );
 }
 
@@ -285,10 +296,6 @@ void DSipCom::save_user_config() {
   config_file = fopen( CONFIG_FILE, "wb+" );
   fwrite( user_config, sizeof( USER_CONFIG ), 1, config_file );
   fclose( config_file );
-}
-
-DSipCom::DSipCom() {
-  setupUi( this );
 }
 
 DSipCom::~DSipCom() {
@@ -390,7 +397,10 @@ void DSipCom::action_end_call() {
 }
 
 void DSipCom::action_make_a_call() {
-  if ( ( (this)->contacts_list->count() != 0 ) && (( this->toolBox->currentIndex() == 0 ) || ( this->toolBox->currentIndex() == 1 ) ) ) {
+  // if we're on contacts list tab and this list isn't empty
+  if ( ( ( this->contacts_list->count() != 0 ) && ( this->toolBox->currentIndex() == 0 ) ) || 
+      // or number entry is at least one char long and we're on number entry page
+       ( this->number_entry->text().length() > 4 ) && ( this->toolBox->currentIndex() == 1 ) ) {
     switch ( this->toolBox->currentIndex() ) {
       case 0:
         // 0 => contact list page
