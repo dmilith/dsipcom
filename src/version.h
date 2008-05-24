@@ -9,11 +9,11 @@
 #define _DSIPCOM_VERSION_H 
 
 #ifndef VERSION
-#define VERSION "v0.4.4 (open-devel)"
+#define VERSION "v0.4.5"
 #endif
 
 #ifndef MAIN_WINDOW_TITLE
-#define MAIN_WINDOW_TITLE "dSipCom v0.4.4 (open-devel)"
+#define MAIN_WINDOW_TITLE "dSipCom v0.4.5 (open-devel)"
 #endif
 
 

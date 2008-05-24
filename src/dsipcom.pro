@@ -10,7 +10,8 @@ SOURCES += dsipcom_ui.cpp \
 					 main.cpp
 					 
 FORMS += dsipcom.ui \
-					add_contact_dialog.ui
+					add_contact_dialog.ui \
+					about.ui
 RESOURCES += dsipcom.qrc
 LIBS += -lspeex -llinphone -losipparser2 -lasound -leXosip2
 #LIBS += -lspeex -llinphone -losipparser2 -lasound -leXosip2

@@ -504,8 +504,8 @@ void DSipCom::action_help_func() {
 
 void DSipCom::action_about_func() {
   logger.log( "From about dialog!" );
-  // TODO: add own about dialog instead of QMessageBox
-  QMessageBox::information(this, MAIN_WINDOW_TITLE, " Program jest na licencji GPL.\nAutor: Daniel (dmilith) Dettlaff\n (c) 2oo8 ");
+ // QMessageBox::information(this, MAIN_WINDOW_TITLE, " Program jest na licencji GPL.\nAutor: Daniel (dmilith) Dettlaff\n (c) 2oo8 ");
+  AboutBox *window = new AboutBox( VERSION );
 }
 
 void DSipCom::action_connect_to_sip_server_func() {
@@ -619,3 +619,12 @@ void AddContactWindow::action_cancel() {
   close();
 }
 
+AboutBox::AboutBox( QString version ) {
+  setupUi( this );
+  version_label->setText( version );
+  show();
+}
+
+AboutBox::~AboutBox() {
+  
+}

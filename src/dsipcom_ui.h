@@ -22,6 +22,7 @@
 
 #include "ui_dsipcom.h" // automaticly generated interface from ui file
 #include "ui_add_contact_dialog.h" // automaticly generated widget window
+#include "ui_about.h" // obviously, just about window
 #include "logger.h" //logger defs
 #include "main.h"
 
@@ -69,6 +70,15 @@ namespace Ui {
      
     signals:
       void clicked();
+  };
+  
+  class AboutBox : public QDialog, public Ui::AboutWindow { 
+    // qt4 ui macro (for actions)
+    Q_OBJECT
+        
+    public:
+      AboutBox( QString version = "0.0.0" );
+      ~AboutBox();
   };
   
   class SipMutex {
