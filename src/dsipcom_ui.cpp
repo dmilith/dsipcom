@@ -288,14 +288,17 @@ void DSipCom::load_user_list() {
     userlist_file = fopen( USER_LIST_FILE, "rb+" );
   }
   // checking userlist file header
-  char* user_list_header = "12345";
+  char* user_list_header = new char;
   char* user_list_header_correct = "dulf0";
-  fread( &user_list_header, sizeof( &user_list_header_correct ), 1, userlist_file );
-  if ( ! ( user_list_header != user_list_header_correct ) ) {
-    logger.log( "Error in user_list file header. Probably I tried to read bad format user_list file!\n" );
-    printf( "<%s> vs <%s>\n", &user_list_header, user_list_header_correct );
+  fread( user_list_header, sizeof( &user_list_header_correct ), 1, userlist_file );
+  logger.log( "Userlist file header check: " + (QString)user_list_header + " vs " + (QString)user_list_header_correct );
+  if ( strcmp( user_list_header, user_list_header_correct ) != 0 ) {
+    printf( "Error in user_list file header. Probably I tried to read bad format user_list file!\n" );
+    fflush( stdout );
     exit( 1 );
   }
+  delete user_list_header;
+  
   // reading number of elements
   fread( &size_of_list, sizeof( &size_of_list ), 1, userlist_file );
   // reading elements
