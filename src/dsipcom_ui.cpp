@@ -74,8 +74,8 @@ extern "C" {
   
     static void
     linphonec_display_something (LinphoneCore * lc, const char *something) {
-      fprintf (stdout, "%s\n%s", something,prompt);
-      fflush(stdout);
+     // fprintf (stdout, "%s\n%s", something,prompt);
+     // fflush(stdout);
     }
 
     static void
@@ -266,6 +266,7 @@ void DSipCom::save_user_list() {
 }
 
 void DSipCom::load_user_list() {
+  // FIXME: userlist isn't clear after this one:
   user_list.clear();
   // reading user_list from file
   int size_of_list;
@@ -277,7 +278,7 @@ void DSipCom::load_user_list() {
   fread( &user_list_header, sizeof( &user_list_header_correct ), 1, userlist_file );
   if ( ! ( user_list_header != user_list_header_correct ) ) {
     logger.log( "Error in user_list file header. Probably I tried to read bad format user_list file!" );
-    printf( "<%s> vs <%s>", &user_list_header, user_list_header_correct );
+    printf( "<%s> vs <%s>\n", &user_list_header, user_list_header_correct );
     exit( 1 );
   }
   // reading number of elements
@@ -525,7 +526,8 @@ void DSipCom::action_add_contact_func() {
 void DSipCom::action_remove_contact_func() {
   //removing entry from list ( taking it without destination so it goes to NULL ) but only if current window is 0 - contacts list
   if ( toolBox->currentIndex() == 0 ) {
-    (this)->contacts_list->takeItem( (this)->contacts_list->currentRow() ); 
+    // FIXME: takeItem doesn't remove element from real list.
+    (this)->contacts_list->takeItem( (this)->contacts_list->currentRow() );
   }
 }
 
@@ -563,10 +565,11 @@ void AddContactWindow::action_done() {
     strcpy( temp->contact_sip_address, this->contact_sip_address->text().toUtf8() );
     object->user_list.append( *temp );
     delete temp;
+  
+    object->toolBox->setGeometry( object->toolBox->x(), object->toolBox->y() - 220, object->toolBox->width(), object->toolBox->height() - 220 );
+    object->status_box->setGeometry( object->status_box->x(), object->status_box->y() - 220, object->status_box->width(), object->status_box->height() - 220 );
+    close();
   }
-  object->toolBox->setGeometry( object->toolBox->x(), object->toolBox->y() - 220, object->toolBox->width(), object->toolBox->height() - 220 );
-  object->status_box->setGeometry( object->status_box->x(), object->status_box->y() - 220, object->status_box->width(), object->status_box->height() - 220 );
-  close();
 }
 
 void AddContactWindow::action_cancel() {
