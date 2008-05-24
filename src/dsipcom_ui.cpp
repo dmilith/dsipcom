@@ -250,7 +250,7 @@ void DSipCom::save_user_list() {
   FILE* userlist_file;
   userlist_file = fopen( USER_LIST_FILE, "wb+" );
   if ( userlist_file == 0 ) {
-    printf( "Error writin userlist file!\nCannot continue. Check Your user access and try again.\n" );
+    printf( "Error writing userlist file!\nCannot continue. Check Your user access and try again.\n" );
     fflush( stdout );
     exit( 1 );
   }
@@ -328,6 +328,12 @@ void DSipCom::load_user_list() {
 void DSipCom::load_user_config() {
   FILE* config_file;
   config_file = fopen( CONFIG_FILE, "rb+" );
+  if ( config_file == 0 ) {  
+    printf( "Error reading user config file!\nNew user config will be created.\n" );
+    fflush( stdout );
+    save_user_config();
+    config_file = fopen( CONFIG_FILE, "rb+" );
+  }
   // reading user config structure at once
   fread( user_config, sizeof( USER_CONFIG ), 1, config_file );
   fclose( config_file );
@@ -347,6 +353,11 @@ void DSipCom::save_user_config() {
   
   FILE* config_file;
   config_file = fopen( CONFIG_FILE, "wb+" );
+  if ( config_file == 0 ) {
+    printf( "Error writing user config file!\nCannot continue. Check Your user access and try again.\n" );
+    fflush( stdout );
+    exit( 1 );
+  }
   // writing whole structure with data to file
   fwrite( user_config, sizeof( USER_CONFIG ), 1, config_file );
   fclose( config_file );
