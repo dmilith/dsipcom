@@ -225,15 +225,14 @@ DSipCom::DSipCom( const QString& title ) {
    create_linphone_core();
   logger.log( "DSipCom initialized" );
   logger.log( "Loading User List" );
+   save_user_list();
    load_user_list();
-  // save_user_list();
   logger.log( "Loading User Config" );
    user_config = new USER_CONFIG;
    load_user_config();
 }
 
-void DSipCom::load_user_list() {
-  /*
+void DSipCom::save_user_list() {
     USER_LIST *temp;
     temp = new USER_LIST;
     strcpy( temp->contact_name, "dmilith" );
@@ -246,32 +245,64 @@ void DSipCom::load_user_list() {
     strcpy( temp->contact_sip_address, "sip:annasliw@drakor.eu" );
     user_list.append( *temp );
     delete temp;
-  */
-  
-  if (!user_list.empty()) {
-    QIcon icon1;
-    icon1.addPixmap( QPixmap( QString::fromUtf8( ":/images/images/user_green.png" ) ), QIcon::Active, QIcon::On);
-    QListWidgetItem *__listItem = new QListWidgetItem(this->contacts_list);
-    __listItem->setIcon(icon1);
-    __listItem->setText((QString)(user_list[0].contact_name) + " => " + (QString)(user_list[0].contact_sip_address));
-  }
-  
-  // matter of security - always one of elements on user list should be choosed:
-  this->contacts_list->setCurrentRow( 0 );
-  
-}
 
-void DSipCom::save_user_list() {
-  // TODO: fix saving of user list to file
   FILE* userlist_file;
   userlist_file = fopen( USER_LIST_FILE, "wb+" );
   char* user_list_header = "dulf0";
-  fwrite( user_list_header, sizeof( user_list_header ) - 2, 1, userlist_file );
+  int user_list_size = user_list.size();
+  // writing header
+  fwrite( user_list_header, sizeof( user_list_header ), 1, userlist_file );
+  // writing amount of users
+  printf( "records in file: %d", user_list_size );
+  fflush( stdout ); // need to flush out data
+  fwrite( &user_list_size, sizeof( &user_list_size ), 1, userlist_file );
+  // writing data
   for (int i = 0; i < user_list.size(); i++ ) {
     fwrite( &user_list[i].contact_name, 50, 1, userlist_file);
     fwrite( &user_list[i].contact_sip_address, 50, 1, userlist_file);
   }
   fclose( userlist_file );
+}
+
+void DSipCom::load_user_list() {
+  user_list.clear();
+  // reading user_list from file
+  int size_of_list;
+  FILE* userlist_file;
+  userlist_file = fopen( USER_LIST_FILE, "rb+" );
+  // checking userlist file header
+  char* user_list_header = "12345";
+  char* user_list_header_correct = "dulf0";
+  fread( &user_list_header, sizeof( &user_list_header_correct ), 1, userlist_file );
+  if ( ! ( user_list_header != user_list_header_correct ) ) {
+    logger.log( "Error in user_list file header. Probably I tried to read bad format user_list file!" );
+    printf( "<%s> vs <%s>", &user_list_header, user_list_header_correct );
+    exit( 1 );
+  }
+  // reading number of elements
+  fread( &size_of_list, sizeof( &size_of_list ), 1, userlist_file );
+  // reading elements
+  USER_LIST *temp;
+  for ( int i = 0; i < size_of_list; i++ ) {
+    temp = new USER_LIST;
+    fread( temp->contact_name, 50, 1, userlist_file);
+    fread( temp->contact_sip_address, 50, 1, userlist_file);
+    user_list.append( *temp );
+    delete temp;
+  }
+  fclose( userlist_file );
+  // putting elements to user_list plus icons
+  if (! user_list.empty() ) {
+    for ( int i = 0; i< size_of_list; i++ ) {
+      QIcon icon1;
+      icon1.addPixmap( QPixmap( QString::fromUtf8( ":/images/images/user_green.png" ) ), QIcon::Active, QIcon::On);
+      QListWidgetItem *__listItem = new QListWidgetItem(this->contacts_list);
+      __listItem->setIcon(icon1);
+      __listItem->setText((QString)(user_list[i].contact_name) + " => " + (QString)(user_list[i].contact_sip_address));  
+    }
+  }
+  // matter of security - always one of elements on user list should be choosed:
+  this->contacts_list->setCurrentRow( 0 );
 }
 
 void DSipCom::load_user_config() {
