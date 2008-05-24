@@ -132,7 +132,7 @@ p, li { white-space: pre-wrap; }
      <enum>QFrame::Sunken</enum>
     </property>
     <property name="currentIndex" >
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="page_contacts" >
      <property name="geometry" >
@@ -156,7 +156,7 @@ p, li { white-space: pre-wrap; }
         <x>10</x>
         <y>10</y>
         <width>361</width>
-        <height>501</height>
+        <height>461</height>
        </rect>
       </property>
       <property name="font" >
@@ -169,6 +169,40 @@ p, li { white-space: pre-wrap; }
       </property>
       <property name="cursor" stdset="0" >
        <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="save_contact_list_button" >
+      <property name="geometry" >
+       <rect>
+        <x>10</x>
+        <y>480</y>
+        <width>171</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>Zapisz listę do pliku</string>
+      </property>
+      <property name="icon" >
+       <iconset resource="dsipcom.qrc" >
+        <normaloff>:/images/images/folder_add.png</normaloff>:/images/images/folder_add.png</iconset>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="load_contact_list_button" >
+      <property name="geometry" >
+       <rect>
+        <x>190</x>
+        <y>480</y>
+        <width>181</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>Odczytaj listę z pliku</string>
+      </property>
+      <property name="icon" >
+       <iconset resource="dsipcom.qrc" >
+        <normaloff>:/images/images/folder_bell.png</normaloff>:/images/images/folder_bell.png</iconset>
       </property>
      </widget>
     </widget>
@@ -536,8 +570,8 @@ p, li { white-space: pre-wrap; }
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>377</width>
-       <height>519</height>
+       <width>100</width>
+       <height>30</height>
       </rect>
      </property>
      <attribute name="label" >
@@ -698,8 +732,8 @@ p, li { white-space: pre-wrap; }
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>377</width>
-       <height>519</height>
+       <width>100</width>
+       <height>30</height>
       </rect>
      </property>
      <attribute name="label" >

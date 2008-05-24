@@ -225,7 +225,7 @@ DSipCom::DSipCom( const QString& title ) {
    create_linphone_core();
   logger.log( "DSipCom initialized" );
   logger.log( "Loading User List" );
-   save_user_list();
+   //save_user_list();
    load_user_list();
   logger.log( "Loading User Config" );
    user_config = new USER_CONFIG;
@@ -233,6 +233,7 @@ DSipCom::DSipCom( const QString& title ) {
 }
 
 void DSipCom::save_user_list() {
+/*  // test elements
     USER_LIST *temp;
     temp = new USER_LIST;
     strcpy( temp->contact_name, "dmilith" );
@@ -245,7 +246,7 @@ void DSipCom::save_user_list() {
     strcpy( temp->contact_sip_address, "sip:annasliw@drakor.eu" );
     user_list.append( *temp );
     delete temp;
-
+*/
   FILE* userlist_file;
   userlist_file = fopen( USER_LIST_FILE, "wb+" );
   char* user_list_header = "dulf0";
@@ -253,7 +254,7 @@ void DSipCom::save_user_list() {
   // writing header
   fwrite( user_list_header, sizeof( user_list_header ), 1, userlist_file );
   // writing amount of users
-  printf( "records in file: %d", user_list_size );
+  printf( "records written to file: %d", user_list_size );
   fflush( stdout ); // need to flush out data
   fwrite( &user_list_size, sizeof( &user_list_size ), 1, userlist_file );
   // writing data
@@ -351,8 +352,10 @@ void DSipCom::init_actions() {
   QObject::connect( dial_9, SIGNAL( clicked() ), this, SLOT( action_enter_9() ));
   QObject::connect( dial_star, SIGNAL( clicked() ), this, SLOT( action_enter_star() ));
   QObject::connect( dial_hash, SIGNAL( clicked() ), this, SLOT( action_enter_hash() ));
-  QObject::connect( save_config_button, SIGNAL( clicked() ), this, SLOT( action_save_config_button() ));
-  QObject::connect( load_config_button, SIGNAL( clicked() ), this, SLOT( action_load_config_button() ));
+  QObject::connect( save_config_button, SIGNAL( clicked() ), this, SLOT( action_save_user_config() ));
+  QObject::connect( load_config_button, SIGNAL( clicked() ), this, SLOT( action_load_user_config() ));
+  QObject::connect( save_contact_list_button, SIGNAL( clicked() ), this, SLOT( action_save_user_list() ));
+  QObject::connect( load_contact_list_button, SIGNAL( clicked() ), this, SLOT( action_load_user_list() ));
   
   // menu bar:
   QObject::connect( action_help, SIGNAL( activated() ), this, SLOT( action_help_func() ));
@@ -364,12 +367,20 @@ void DSipCom::init_actions() {
   
 }
 
-void DSipCom::action_save_config_button() {
+void DSipCom::action_save_user_config() {
   save_user_config();
 }
 
-void DSipCom::action_load_config_button() {
+void DSipCom::action_load_user_config() {
   load_user_config();
+}
+
+void DSipCom::action_load_user_list() {
+  load_user_list();
+}
+
+void DSipCom::action_save_user_list() {
+  save_user_list();
 }
 
 /* numbers enterance: */

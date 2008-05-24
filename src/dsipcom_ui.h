@@ -140,8 +140,10 @@ namespace Ui {
       void action_enter_9();
       void action_enter_star();
       void action_enter_hash();
-      void action_save_config_button();
-      void action_load_config_button();
+      void action_save_user_config();
+      void action_load_user_config();
+      void action_save_user_list();
+      void action_load_user_list();
       
     // qt4 action signals
     signals:
