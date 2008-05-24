@@ -77,7 +77,7 @@ namespace Ui {
     Q_OBJECT
         
     public:
-      AboutBox( QString version = "0.0.0" );
+      AboutBox();
       ~AboutBox();
   };
   

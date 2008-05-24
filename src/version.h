@@ -8,13 +8,7 @@
 #ifndef _DSIPCOM_VERSION_H
 #define _DSIPCOM_VERSION_H 
 
-#ifndef VERSION
-#define VERSION "v0.4.5"
-#endif
-
-#ifndef MAIN_WINDOW_TITLE
-#define MAIN_WINDOW_TITLE "dSipCom v0.4.5 (open-devel)"
-#endif
-
+static const char* DSIPCOM_VERSION = "v0.4.5";
+static const char* MAIN_WINDOW_TITLE = "dSipCom (open-devel)";
 
 #endif
