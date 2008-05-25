@@ -11,3 +11,13 @@ if [ $? = 0 ]; then
 else
     echo "Failed!"
 fi
+
+echo "variable size test"
+gcc -w -g varsizes_test.c -o test_varsize64
+gcc -m32 -w -g varsizes_test.c -o test_varsize32
+./test_varsize32 > ./test_varsize_output32
+./test_varsize64 > ./test_varsize_output64
+result_varsize=`diff -y ./test_varsize_output32 ./test_varsize_output64`
+echo $result_varsize
+echo "Passed"
+

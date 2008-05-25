@@ -353,14 +353,45 @@ void DSipCom::load_user_config() {
   this->user_password->setText( user_config->user_password );
   this->user_sip->setText( user_config->user_sip );
   this->user_sip_server->setText( user_config->user_sip_server );
+  this->out_soundcard->setCurrentIndex( user_config->out_soundcard );
+  this->in_soundcard->setCurrentIndex( user_config->in_soundcard );
+  this->recording_source->setCurrentIndex( user_config->recording_source );
+  this->ring_sound->setCurrentIndex( user_config->ring_sound );
+  this->default_port->setText( user_config->default_port );
+  this->no_firewall->setChecked( user_config->no_firewall );
+  this->use_stun_server->setChecked( user_config->use_stun_server );
+  this->stun_address->setText( user_config->stun_address );
+  this->manual_firewall_address->setChecked( user_config->manual_firewall_address );
+  this->firewall_address->setText( user_config->firewall_address );
+  this->gsm_8_codec->setChecked( user_config->gsm_8_codec );
+  this->speex_8_codec->setChecked( user_config->speex_8_codec );
+  this->speex_16_codec->setChecked( user_config->speex_16_codec );
+  this->pcmu_8_codec->setChecked( user_config->pcmu_8_codec );
+  this->pcma_8_codec->setChecked( user_config->pcma_8_codec );
 }
 
 void DSipCom::save_user_config() {
-  // taking values from main window edit objects
+  // taking values from main window objects
   strcpy( user_config->user_name, this->user_name->text().toUtf8() );
   strcpy( user_config->user_password, this->user_password->text().toUtf8() );
   strcpy( user_config->user_sip, this->user_sip->text().toUtf8() );
   strcpy( user_config->user_sip_server, this->user_sip_server->text().toUtf8() );
+  user_config->out_soundcard = this->out_soundcard->currentIndex();
+  user_config->in_soundcard = this->in_soundcard->currentIndex();
+  user_config->recording_source = this->recording_source->currentIndex();
+  user_config->ring_sound = this->ring_sound->currentIndex();
+  strcpy( user_config->default_port, this->default_port->text().toUtf8() );
+  user_config->no_firewall = this->no_firewall->isChecked();
+  user_config->use_stun_server = this->use_stun_server->isChecked();
+  strcpy( user_config->stun_address, this->stun_address->text().toUtf8() );
+  user_config->manual_firewall_address = this->manual_firewall_address->isChecked();
+  strcpy( user_config->firewall_address, this->firewall_address->text().toUtf8() );
+  user_config->gsm_8_codec = this->gsm_8_codec->isChecked();
+  user_config->speex_8_codec = this->speex_8_codec->isChecked();
+  user_config->speex_16_codec = this->speex_16_codec->isChecked();
+  user_config->pcmu_8_codec = this->pcmu_8_codec->isChecked();
+  user_config->pcma_8_codec = this->pcma_8_codec->isChecked();
+  
   FILE* config_file;
   config_file = fopen( CONFIG_FILE, "wb+" );
   if ( config_file == 0 ) {

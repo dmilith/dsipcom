@@ -50,6 +50,21 @@ typedef struct {
   char user_sip[50];
   char user_password[50];
   char user_name[50];
+  int out_soundcard;
+  int in_soundcard;
+  int recording_source;
+  int ring_sound;
+  char default_port[5];
+  int no_firewall;
+  int use_stun_server;
+  char stun_address[50];
+  int manual_firewall_address;
+  char firewall_address[50];
+  int gsm_8_codec;
+  int speex_8_codec;
+  int speex_16_codec;
+  int pcmu_8_codec;
+  int pcma_8_codec;
 } USER_CONFIG;
 
 
