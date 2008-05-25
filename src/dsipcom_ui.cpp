@@ -1,3 +1,11 @@
+/*
+ * author: Daniel (dmilith) Dettlaff
+ * email: dmilith at drakor.eu
+ * released under GPL2 & LGPL license
+ * (c) 2oo8
+ *
+ */
+
 #include "dsipcom_ui.h"
 #include "version.h"
 
@@ -353,7 +361,6 @@ void DSipCom::save_user_config() {
   strcpy( user_config->user_password, this->user_password->text().toUtf8() );
   strcpy( user_config->user_sip, this->user_sip->text().toUtf8() );
   strcpy( user_config->user_sip_server, this->user_sip_server->text().toUtf8() );
-  
   FILE* config_file;
   config_file = fopen( CONFIG_FILE, "wb+" );
   if ( config_file == 0 ) {
@@ -479,7 +486,7 @@ void DSipCom::action_make_a_call() {
   // if we're on contacts list tab and this list isn't empty
   if ( ( ( this->contacts_list->count() != 0 ) && ( this->toolBox->currentIndex() == 0 ) ) || 
       // or number entry is at least one char long and we're on number entry page
-       ( this->number_entry->text().length() > 4 ) && ( this->toolBox->currentIndex() == 1 ) ) {
+       ( this->number_entry->text().length() > 0 ) && ( this->toolBox->currentIndex() == 1 ) ) {
     switch ( this->toolBox->currentIndex() ) {
       case 0:
         // 0 => contact list page
@@ -589,7 +596,7 @@ void AddContactWindow::action_done() {
   // finding parent
   DSipCom *object = ( (DSipCom*)this->parent() );
   // adding lineedit content from dialog on contact list
-  if ( ( this->contact_name->text().length() > 0 ) && ( this->contact_sip_address->text().length() > 4 ) ) {
+  if ( ( this->contact_name->text().length() > 0 ) && ( this->contact_sip_address->text().length() > 0 ) ) {
     QIcon icon1;
     icon1.addPixmap( QPixmap( QString::fromUtf8( ":/images/images/user_green.png" ) ), QIcon::Active, QIcon::On );
     // after setting icon, we'll bind it to an item, then update text elements

@@ -1,8 +1,9 @@
-/* 
- * File:   dsipcom_ui.h
- * Author: dmilith
+/*
+ * author: Daniel (dmilith) Dettlaff
+ * email: dmilith at drakor.eu
+ * released under GPL2 & LGPL license
+ * (c) 2oo8
  *
- * Created on 6 kwiecień 2008, 19:45
  */
 
 #ifndef _DSIPCOM_UI_H

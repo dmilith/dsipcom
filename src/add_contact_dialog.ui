@@ -1,11 +1,12 @@
 <ui version="4.0" >
+ <author>Daniel (dmilith) Dettlaff</author>
  <class>addUserDialog</class>
  <widget class="QDialog" name="addUserDialog" >
   <property name="geometry" >
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
+    <width>345</width>
     <height>215</height>
    </rect>
   </property>
@@ -15,14 +16,14 @@
   <widget class="QLineEdit" name="contact_sip_address" >
    <property name="geometry" >
     <rect>
-     <x>10</x>
+     <x>35</x>
      <y>110</y>
-     <width>251</width>
+     <width>296</width>
      <height>24</height>
     </rect>
    </property>
    <property name="text" >
-    <string>sip:</string>
+    <string/>
    </property>
   </widget>
   <widget class="QLabel" name="label_2" >
@@ -35,15 +36,15 @@
     </rect>
    </property>
    <property name="text" >
-    <string>Adres SIP użytkownika</string>
+    <string>Adres SIP nowego użytkownika</string>
    </property>
   </widget>
   <widget class="QPushButton" name="add_button" >
    <property name="geometry" >
     <rect>
-     <x>70</x>
+     <x>10</x>
      <y>160</y>
-     <width>151</width>
+     <width>176</width>
      <height>41</height>
     </rect>
    </property>
@@ -65,7 +66,7 @@
     </rect>
    </property>
    <property name="text" >
-    <string>Nazwa ( wyświetlana na liście )</string>
+    <string>Nazwa nowego użytkownika</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="contact_name" >
@@ -73,7 +74,7 @@
     <rect>
      <x>10</x>
      <y>40</y>
-     <width>251</width>
+     <width>321</width>
      <height>24</height>
     </rect>
    </property>
@@ -81,9 +82,9 @@
   <widget class="QPushButton" name="cancel_button" >
    <property name="geometry" >
     <rect>
-     <x>230</x>
+     <x>195</x>
      <y>160</y>
-     <width>101</width>
+     <width>136</width>
      <height>41</height>
     </rect>
    </property>
@@ -95,9 +96,40 @@
      <normaloff>:/images/images/cancel.png</normaloff>:/images/images/cancel.png</iconset>
    </property>
   </widget>
+  <widget class="QLabel" name="label_13" >
+   <property name="geometry" >
+    <rect>
+     <x>10</x>
+     <y>110</y>
+     <width>26</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>sip:</string>
+   </property>
+  </widget>
  </widget>
+ <includes/>
  <resources>
   <include location="dsipcom.qrc" />
  </resources>
  <connections/>
+ <designerdata>
+  <property name="gridDeltaX" >
+   <number>5</number>
+  </property>
+  <property name="gridDeltaY" >
+   <number>5</number>
+  </property>
+  <property name="gridSnapX" >
+   <bool>true</bool>
+  </property>
+  <property name="gridSnapY" >
+   <bool>true</bool>
+  </property>
+  <property name="gridVisible" >
+   <bool>true</bool>
+  </property>
+ </designerdata>
 </ui>

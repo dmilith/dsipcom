@@ -1,3 +1,11 @@
+/*
+ * author: Daniel (dmilith) Dettlaff
+ * email: dmilith at drakor.eu
+ * released under GPL2 & LGPL license
+ * (c) 2oo8
+ *
+ */
+
 #include <stdio.h>
 #include <string.h>
 

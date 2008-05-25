@@ -1,8 +1,9 @@
-/* 
- * File:   main.cpp
- * Author: dmilith
+/*
+ * author: Daniel (dmilith) Dettlaff
+ * email: dmilith at drakor.eu
+ * released under GPL2 & LGPL license
+ * (c) 2oo8
  *
- * Created on 1 kwiecień 2008, 11:15
  */
 
 #include <qt4/QtGui/QApplication>

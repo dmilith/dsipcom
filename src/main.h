@@ -1,8 +1,9 @@
-/* 
- * File:   main.h
- * Author: dmilith
+/*
+ * author: Daniel (dmilith) Dettlaff
+ * email: dmilith at drakor.eu
+ * released under GPL2 & LGPL license
+ * (c) 2oo8
  *
- * Created on 4 kwiecień 2008, 18:03
  */
 
 

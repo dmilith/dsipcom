@@ -51,7 +51,7 @@ p, li { white-space: pre-wrap; }
     <property name="geometry" >
      <rect>
       <x>10</x>
-      <y>700</y>
+      <y>695</y>
       <width>191</width>
       <height>51</height>
      </rect>
@@ -83,7 +83,7 @@ p, li { white-space: pre-wrap; }
     <property name="geometry" >
      <rect>
       <x>210</x>
-      <y>700</y>
+      <y>695</y>
       <width>161</width>
       <height>51</height>
      </rect>
@@ -538,14 +538,14 @@ p, li { white-space: pre-wrap; }
       <widget class="QLineEdit" name="number_entry" >
        <property name="geometry" >
         <rect>
-         <x>15</x>
+         <x>40</x>
          <y>420</y>
-         <width>311</width>
+         <width>286</width>
          <height>30</height>
         </rect>
        </property>
        <property name="text" >
-        <string>sip:</string>
+        <string/>
        </property>
        <property name="dragEnabled" >
         <bool>true</bool>
@@ -562,6 +562,19 @@ p, li { white-space: pre-wrap; }
        </property>
        <property name="text" >
         <string>Podaj adres lub numer SIP rozmówcy </string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_14" >
+       <property name="geometry" >
+        <rect>
+         <x>15</x>
+         <y>425</y>
+         <width>26</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>sip:</string>
        </property>
       </widget>
      </widget>
@@ -585,14 +598,14 @@ p, li { white-space: pre-wrap; }
      <widget class="QLineEdit" name="user_sip" >
       <property name="geometry" >
        <rect>
-        <x>40</x>
+        <x>65</x>
         <y>130</y>
-        <width>241</width>
+        <width>266</width>
         <height>30</height>
        </rect>
       </property>
       <property name="text" >
-       <string>sip:</string>
+       <string/>
       </property>
      </widget>
      <widget class="QLabel" name="label_2" >
@@ -626,7 +639,7 @@ p, li { white-space: pre-wrap; }
        <rect>
         <x>40</x>
         <y>190</y>
-        <width>241</width>
+        <width>291</width>
         <height>30</height>
        </rect>
       </property>
@@ -636,7 +649,7 @@ p, li { white-space: pre-wrap; }
        <rect>
         <x>40</x>
         <y>250</y>
-        <width>241</width>
+        <width>291</width>
         <height>30</height>
        </rect>
       </property>
@@ -659,7 +672,7 @@ p, li { white-space: pre-wrap; }
        <rect>
         <x>40</x>
         <y>70</y>
-        <width>241</width>
+        <width>291</width>
         <height>30</height>
        </rect>
       </property>
@@ -733,6 +746,19 @@ p, li { white-space: pre-wrap; }
         <normaloff>:/images/images/bug_add.png</normaloff>:/images/images/bug_add.png</iconset>
       </property>
      </widget>
+     <widget class="QLabel" name="label_13" >
+      <property name="geometry" >
+       <rect>
+        <x>40</x>
+        <y>135</y>
+        <width>26</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text" >
+       <string>sip:</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="page_advanced" >
      <property name="geometry" >
@@ -754,18 +780,18 @@ p, li { white-space: pre-wrap; }
       <property name="geometry" >
        <rect>
         <x>10</x>
-        <y>20</y>
+        <y>370</y>
         <width>351</width>
         <height>141</height>
        </rect>
       </property>
       <property name="title" >
-       <string>Wybierz kodek domyślny do kodowania dźwięku</string>
+       <string>Wybierz domyślny kodek dźwięku</string>
       </property>
       <widget class="QRadioButton" name="gsm_8_codec" >
        <property name="geometry" >
         <rect>
-         <x>10</x>
+         <x>35</x>
          <y>30</y>
          <width>121</width>
          <height>23</height>
@@ -778,7 +804,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QRadioButton" name="pcmu_8_codec" >
        <property name="geometry" >
         <rect>
-         <x>180</x>
+         <x>190</x>
          <y>30</y>
          <width>121</width>
          <height>23</height>
@@ -791,7 +817,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QRadioButton" name="pcma_8_codec" >
        <property name="geometry" >
         <rect>
-         <x>180</x>
+         <x>190</x>
          <y>65</y>
          <width>121</width>
          <height>23</height>
@@ -804,7 +830,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QRadioButton" name="speex_8_codec" >
        <property name="geometry" >
         <rect>
-         <x>10</x>
+         <x>35</x>
          <y>65</y>
          <width>121</width>
          <height>23</height>
@@ -817,7 +843,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QRadioButton" name="speex_16_codec" >
        <property name="geometry" >
         <rect>
-         <x>10</x>
+         <x>35</x>
          <y>100</y>
          <width>121</width>
          <height>23</height>
@@ -828,6 +854,275 @@ p, li { white-space: pre-wrap; }
        </property>
        <property name="checked" >
         <bool>true</bool>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_3" >
+      <property name="geometry" >
+       <rect>
+        <x>10</x>
+        <y>5</y>
+        <width>351</width>
+        <height>156</height>
+       </rect>
+      </property>
+      <property name="title" >
+       <string>Ustawienia karty dźwiękowej</string>
+      </property>
+      <widget class="QComboBox" name="in_soundcard" >
+       <property name="geometry" >
+        <rect>
+         <x>160</x>
+         <y>55</y>
+         <width>181</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text" >
+         <string>OSS 4</string>
+        </property>
+        <property name="icon" >
+         <iconset resource="dsipcom.qrc" >
+          <normaloff>:/images/images/sound.png</normaloff>:/images/images/sound.png</iconset>
+        </property>
+       </item>
+       <item>
+        <property name="text" >
+         <string>ALSA 10.x</string>
+        </property>
+        <property name="icon" >
+         <iconset resource="dsipcom.qrc" >
+          <normaloff>:/images/images/sound.png</normaloff>:/images/images/sound.png</iconset>
+        </property>
+       </item>
+      </widget>
+      <widget class="QComboBox" name="recording_source" >
+       <property name="geometry" >
+        <rect>
+         <x>160</x>
+         <y>85</y>
+         <width>181</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text" >
+         <string>mikrofon</string>
+        </property>
+        <property name="icon" >
+         <iconset resource="dsipcom.qrc" >
+          <normaloff>:/images/images/connect.png</normaloff>:/images/images/connect.png</iconset>
+        </property>
+       </item>
+       <item>
+        <property name="text" >
+         <string>wejście liniowe</string>
+        </property>
+        <property name="icon" >
+         <iconset resource="dsipcom.qrc" >
+          <normaloff>:/images/images/connect.png</normaloff>:/images/images/connect.png</iconset>
+        </property>
+       </item>
+      </widget>
+      <widget class="QComboBox" name="ring_sound" >
+       <property name="geometry" >
+        <rect>
+         <x>160</x>
+         <y>115</y>
+         <width>181</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text" >
+         <string>brak</string>
+        </property>
+        <property name="icon" >
+         <iconset resource="dsipcom.qrc" >
+          <normaloff>:/images/images/exclamation.png</normaloff>:/images/images/exclamation.png</iconset>
+        </property>
+       </item>
+      </widget>
+      <widget class="QLabel" name="label_8" >
+       <property name="geometry" >
+        <rect>
+         <x>25</x>
+         <y>30</y>
+         <width>62</width>
+         <height>18</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>Wyjście</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_9" >
+       <property name="geometry" >
+        <rect>
+         <x>25</x>
+         <y>60</y>
+         <width>62</width>
+         <height>18</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>Wejście</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_10" >
+       <property name="geometry" >
+        <rect>
+         <x>25</x>
+         <y>90</y>
+         <width>101</width>
+         <height>18</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>Źródło dźwięku</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_11" >
+       <property name="geometry" >
+        <rect>
+         <x>25</x>
+         <y>120</y>
+         <width>111</width>
+         <height>18</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>Sygnał dzwonka</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="out_soundcard" >
+       <property name="geometry" >
+        <rect>
+         <x>160</x>
+         <y>25</y>
+         <width>181</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text" >
+         <string>OSS 4</string>
+        </property>
+        <property name="icon" >
+         <iconset resource="dsipcom.qrc" >
+          <normaloff>:/images/images/sound.png</normaloff>:/images/images/sound.png</iconset>
+        </property>
+       </item>
+       <item>
+        <property name="text" >
+         <string>ALSA 10.x</string>
+        </property>
+        <property name="icon" >
+         <iconset resource="dsipcom.qrc" >
+          <normaloff>:/images/images/sound.png</normaloff>:/images/images/sound.png</iconset>
+        </property>
+       </item>
+      </widget>
+     </widget>
+     <widget class="QGroupBox" name="groupBox_4" >
+      <property name="geometry" >
+       <rect>
+        <x>10</x>
+        <y>170</y>
+        <width>351</width>
+        <height>191</height>
+       </rect>
+      </property>
+      <property name="title" >
+       <string>Ustawienia sieciowe</string>
+      </property>
+      <widget class="QRadioButton" name="no_firewall" >
+       <property name="geometry" >
+        <rect>
+         <x>30</x>
+         <y>50</y>
+         <width>231</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>Brak zapory ogniowej ( FireWall )</string>
+       </property>
+       <property name="checked" >
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="default_port" >
+       <property name="geometry" >
+        <rect>
+         <x>160</x>
+         <y>20</y>
+         <width>46</width>
+         <height>24</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>5060</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_12" >
+       <property name="geometry" >
+        <rect>
+         <x>30</x>
+         <y>25</y>
+         <width>121</width>
+         <height>18</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>Domyślny port SIP</string>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="use_stun_server" >
+       <property name="geometry" >
+        <rect>
+         <x>30</x>
+         <y>75</y>
+         <width>261</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>Użyj podanego adresu serwera STUN</string>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="manual_firewall_address" >
+       <property name="geometry" >
+        <rect>
+         <x>30</x>
+         <y>135</y>
+         <width>246</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text" >
+        <string>Wprowadź ręcznie adres FireWall'a</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="stun_address" >
+       <property name="geometry" >
+        <rect>
+         <x>160</x>
+         <y>100</y>
+         <width>176</width>
+         <height>24</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="firewall_address" >
+       <property name="geometry" >
+        <rect>
+         <x>160</x>
+         <y>160</y>
+         <width>176</width>
+         <height>24</height>
+        </rect>
        </property>
       </widget>
      </widget>
@@ -916,9 +1211,9 @@ p, li { white-space: pre-wrap; }
     <property name="geometry" >
      <rect>
       <x>10</x>
-      <y>760</y>
+      <y>755</y>
       <width>361</width>
-      <height>61</height>
+      <height>51</height>
      </rect>
     </property>
     <property name="title" >
@@ -930,15 +1225,15 @@ p, li { white-space: pre-wrap; }
      </property>
      <property name="geometry" >
       <rect>
-       <x>10</x>
+       <x>135</x>
        <y>20</y>
-       <width>341</width>
-       <height>31</height>
+       <width>221</width>
+       <height>21</height>
       </rect>
      </property>
      <property name="font" >
       <font>
-       <pointsize>10</pointsize>
+       <pointsize>8</pointsize>
        <weight>50</weight>
        <bold>false</bold>
       </font>
@@ -949,6 +1244,60 @@ p, li { white-space: pre-wrap; }
      <property name="text" >
       <string>Program nie wykonuje żadnej akcji</string>
      </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox" >
+     <property name="geometry" >
+      <rect>
+       <x>5</x>
+       <y>15</y>
+       <width>126</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font" >
+      <font>
+       <pointsize>8</pointsize>
+      </font>
+     </property>
+     <property name="currentIndex" >
+      <number>3</number>
+     </property>
+     <item>
+      <property name="text" >
+       <string>Dostępny</string>
+      </property>
+      <property name="icon" >
+       <iconset resource="dsipcom.qrc" >
+        <normaloff>:/images/images/user_orange.png</normaloff>:/images/images/user_orange.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text" >
+       <string>Zajęty</string>
+      </property>
+      <property name="icon" >
+       <iconset resource="dsipcom.qrc" >
+        <normaloff>:/images/images/user_edit.png</normaloff>:/images/images/user_edit.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text" >
+       <string>Nie przeszkadzać</string>
+      </property>
+      <property name="icon" >
+       <iconset resource="dsipcom.qrc" >
+        <normaloff>:/images/images/user_delete.png</normaloff>:/images/images/user_delete.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text" >
+       <string>Niedostępny</string>
+      </property>
+      <property name="icon" >
+       <iconset resource="dsipcom.qrc" >
+        <normaloff>:/images/images/user_female.png</normaloff>:/images/images/user_female.png</iconset>
+      </property>
+     </item>
     </widget>
    </widget>
   </widget>
