@@ -11,8 +11,8 @@ src/Makefile
 dsipcom_qt4-Makefile.mk
 nbproject/private/*
 nbproject/private/
-docs/UML/schemat_poszukiwań/nbproject/private/*
-docs/UML/schemat_poszukiwań/nbproject/private/
+docs/UML/*/nbproject/private/*
+docs/UML/*/nbproject/private/
 dsipcom-public-Makefile.mk
 user_list/*
 config/*
