@@ -11,11 +11,10 @@
 #define _DSIPCOM_MAIN_H
 
 // main declarations and constants
-
-#define LOGGER_FILE "logs/dsipcom.main.log"
-#define LOGGER_LINPHONE "logs/dsipcom.linphone.log"
-#define LOGGER_DSIPCOM_UI "logs/dsipcom.logger.ui.log"
-#define CONFIG_FILE "config/dsipcom.dcnf"
-#define USER_LIST_FILE "user_list/dsipcom.dulf"
+static const char* LOGGER_FILE = "logs/dsipcom.main.log";
+static const char* LOGGER_LINPHONE = "logs/dsipcom.linphone.log";
+static const char* LOGGER_DSIPCOM_UI = "logs/dsipcom.logger.ui.log";
+static const char* CONFIG_FILE = "config/dsipcom.dcnf";
+static const char* USER_LIST_FILE = "user_list/dsipcom.dulf";
 
 #endif
