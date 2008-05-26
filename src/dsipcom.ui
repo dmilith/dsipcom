@@ -140,8 +140,8 @@ p, li { white-space: pre-wrap; }
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>372</width>
-       <height>517</height>
+       <width>96</width>
+       <height>26</height>
       </rect>
      </property>
      <attribute name="label" >
@@ -212,8 +212,8 @@ p, li { white-space: pre-wrap; }
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>372</width>
-       <height>517</height>
+       <width>96</width>
+       <height>26</height>
       </rect>
      </property>
      <attribute name="label" >
@@ -584,8 +584,8 @@ p, li { white-space: pre-wrap; }
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>372</width>
-       <height>517</height>
+       <width>96</width>
+       <height>26</height>
       </rect>
      </property>
      <attribute name="label" >
@@ -1065,6 +1065,9 @@ p, li { white-space: pre-wrap; }
        <property name="text" >
         <string>5060</string>
        </property>
+       <property name="maxLength" >
+        <number>5</number>
+       </property>
       </widget>
       <widget class="QLabel" name="label_12" >
        <property name="geometry" >
@@ -1132,8 +1135,8 @@ p, li { white-space: pre-wrap; }
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>372</width>
-       <height>517</height>
+       <width>96</width>
+       <height>26</height>
       </rect>
      </property>
      <attribute name="label" >
