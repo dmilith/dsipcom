@@ -5,14 +5,16 @@ src/images
 src/*.o
 src/*.a
 src/*.s
-src/*.ko
 src/*.so
 src/compile.log
 src/Makefile
 dsipcom_qt4-Makefile.mk
-nbproject/*
-nbproject
+nbproject/private/*
+nbproject/private/
+docs/UML/schemat_poszukiwań/nbproject/private/*
+docs/UML/schemat_poszukiwań/nbproject/private/
 dsipcom-public-Makefile.mk
 user_list/*
 config/*
+.gitignore.swp
 

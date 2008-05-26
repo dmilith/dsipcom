@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="45">
+  <logicalFolder name="root" displayName="root" projectFiles="true">
+    <logicalFolder name="src" displayName="src" projectFiles="true">
+      <itemPath>src/dsipcom_ui.cpp</itemPath>
+      <itemPath>src/dsipcom_ui.h</itemPath>
+      <itemPath>/home/dmilith/Projects/dsipcom-public/src/tests/IO_file_test.cpp</itemPath>
+      <itemPath>src/logger.cpp</itemPath>
+      <itemPath>src/logger.h</itemPath>
+      <itemPath>src/main.cpp</itemPath>
+      <itemPath>src/main.h</itemPath>
+      <itemPath>src/platform.cpp</itemPath>
+      <itemPath>src/platform.h</itemPath>
+      <itemPath>src/unix_specification.h</itemPath>
+      <itemPath>src/tests/varsizes_test.cpp</itemPath>
+      <itemPath>src/version.h</itemPath>
+      <itemPath>src/win_specification.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false">
+      <itemPath>dsipcom-public-Makefile.mk</itemPath>
+      <itemPath>src/Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceEncoding>UTF-8</sourceEncoding>
+  <projectmakefile>dsipcom-public-Makefile.mk</projectmakefile>
+  <confs>
+    <conf name="Default" type="0">
+      <toolsSet>
+        <compilerSet>GNU|GNU</compilerSet>
+        <platform>2</platform>
+      </toolsSet>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>src</buildCommandWorkingDir>
+          <buildCommand>make -f Makefile</buildCommand>
+          <cleanCommand>make -f Makefile clean</cleanCommand>
+          <executablePath>../../../../Projects/dsipcom-public/dsipcom</executablePath>
+        </makeTool>
+        <requiredProjects>
+        </requiredProjects>
+      </makefileType>
+      <item path="/home/dmilith/Projects/dsipcom-public/src/tests/IO_file_test.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="src/dsipcom_ui.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="src/dsipcom_ui.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="src/logger.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="src/logger.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="src/main.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="src/main.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="src/platform.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="src/platform.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="src/tests/varsizes_test.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="src/unix_specification.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="src/version.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="src/win_specification.h">
+        <itemTool>3</itemTool>
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>
