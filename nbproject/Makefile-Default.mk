@@ -18,7 +18,7 @@ CXX=g++
 FC=gfortran
 
 # Include project Makefile
-include dsipcom-public-Makefile.mk
+include dsipcom-public-Makefile3.mk
 
 # Object Directory
 OBJECTDIR=build/Default/GNU-Linux-x86
@@ -41,14 +41,14 @@ LDLIBSOPTIONS=
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS} 
-	cd src && make -f Makefile
+	cd ../../../../Projects/dsipcom-public/src && make -f Makefile
 
 # Subprojects
 .build-subprojects:
 
 # Clean Targets
 .clean-conf:
-	cd src && make -f Makefile clean
+	cd ../../../../Projects/dsipcom-public/src && make -f Makefile clean
 
 # Subprojects
 .clean-subprojects:
