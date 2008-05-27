@@ -550,13 +550,13 @@ void DSipCom::action_about_func() {
 
 void DSipCom::action_connect_to_sip_server_func() {
   logger.log( "Trying to connect to server" );
-    if ( (this)->user_sip_server->text() == "" ) {
-      QMessageBox::information(this, MAIN_WINDOW_TITLE, " Proszę podać w preferencjach użytkownika nazwę serwera! " );
-    } else if (( (this)->user_sip->text() == "") || ( (this)->user_sip->text() == "sip:" )) {
+    if ( this->user_sip_server->text() == "" ) {
+      QMessageBox::information( this, MAIN_WINDOW_TITLE, " Proszę podać w preferencjach użytkownika nazwę serwera! " );
+    } else if ( this->user_sip->text() == "" ) {
       QMessageBox::information(this, MAIN_WINDOW_TITLE, " Proszę podać w preferencjach adres SIP użytkownika! " );
-    } else if ( (this)->user_password->text() == "" ) {
+    } else if ( this->user_password->text() == "" ) {
       QMessageBox::information(this, MAIN_WINDOW_TITLE, " Proszę podać w preferencjach hasło SIP użytkownika! " );
-    } else if ( (this)->user_name->text() == "" ) {
+    } else if ( this->user_name->text() == "" ) {
       QMessageBox::information(this, MAIN_WINDOW_TITLE, " Proszę podać w preferencjach nazwę użytkownika! " );
     } else {
       // all required settings are ok
