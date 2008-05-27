@@ -21,8 +21,26 @@
                         <drawNodesBeforeEdges value="true"/>
                     </graphics>
                 </graph>
+                <graph id="2">
+                    <name/>
+                    <margins>
+                        <proportional bottom="0.0" left="0.0" right="0.0" top="0.0"/>
+                        <constant bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+                    </margins>
+                    <url/>
+                    <graphics type="basicGraph">
+                        <backgroundColor value="255 255 255"/>
+                        <imageUsed/>
+                        <imageTiled value="false"/>
+                        <imageStyle value="WORLD_OFFSET"/>
+                        <imageMinTileStep value="25"/>
+                        <imageX value="0.0"/>
+                        <imageY value="0.0"/>
+                        <drawNodesBeforeEdges value="true"/>
+                    </graphics>
+                </graph>
             </graphs>
-            <rootGraph value="1"/>
+            <rootGraph value="2"/>
         </instances>
     </graphManager>
     <serviceInput type="jlayout">
