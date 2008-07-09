@@ -129,6 +129,7 @@ namespace Ui {
       void init_actions();
       
       // loading data from files
+      void setupDIRs();
       void load_user_list();
       void save_user_list();
       void load_user_config();

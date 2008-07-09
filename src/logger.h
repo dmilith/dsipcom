@@ -11,6 +11,8 @@
 #include <qt4/QtCore/QTextOStream>
 #include "main.h"
 
+using namespace std;
+
 namespace Log {
 
   class Logger {

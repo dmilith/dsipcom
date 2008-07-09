@@ -12,7 +12,7 @@
 #include <osipparser2/osip_message.h>
 
 #include <stdio.h>
-
+#include <string>
 #include "version.h" // main program version
 #include "platform.h" // platform specific setting
 #include "main.h" // main constants and settings
@@ -29,7 +29,7 @@ int main( int argc, char *argv[] ) {
      could be problematic on some archs.. but on linux seems to be unecessary
      Q_INIT_RESOURCE(dsipcom); */
    QApplication app( argc, argv );
-   new DSipCom( MAIN_WINDOW_TITLE );
+   new DSipCom( MAIN_WINDOW_TITLE.c_str() );
 
    //signal handling
    signal( SIGTERM, quit_dsipcom );

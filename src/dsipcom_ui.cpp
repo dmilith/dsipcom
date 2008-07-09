@@ -9,8 +9,12 @@
 #include "dsipcom_ui.h"
 #include "version.h"
 
+#include <boost/filesystem/operations.hpp>
+
 using namespace Log;
 using namespace Ui;
+using namespace std;
+using namespace boost::filesystem;
 
 // Linphone variables & consts
 //
@@ -223,12 +227,14 @@ extern "C" {
 
 
 //DSipCom objects
-Logger logger( LOGGER_DSIPCOM_UI, "debug" );
+Logger logger( LOGGER_DSIPCOM_UI.c_str(), "debug" );
 
 
 //DSipCom methods
 
 DSipCom::DSipCom( const QString& title ) {
+  logger.log( "Checking HOME and DIRS" );
+   setupDIRs();
   logger.log( "Initializing UI" );
    setupUi( this );
    // global ui encoding => utf8
@@ -262,17 +268,20 @@ DSipCom::~DSipCom() {
   fclose( linphone_logger_file );
 }
 
+void DSipCom::setupDIRs() {
+  // this method will check existance of main program directories and it will try to create them if they doesn't exist
+  if ( !exists(DSIP_MAIN_DIR) ) create_directory( DSIP_MAIN_DIR );
+  if ( !exists(LOGS_DIR) ) create_directory( LOGS_DIR );
+  if ( !exists(CONF_DIR) ) create_directory( CONF_DIR );
+  if ( !exists(ULIST_DIR) ) create_directory( ULIST_DIR );
+}
 
 void DSipCom::create_linphone_core(){
-   char* config = getenv( "HOME" );
-   char* conf_name = "/.dsipcom";
-   strcat(config, conf_name);
-
-  logger.log( "Linphone config: " + (QString)config );
+  logger.log( "Linphone config: " + (QString)( LINPHONE_CONFIG.c_str() ) );
   logger.log( "Initializing Linphone core logger" );
   
    /* tracing & logging for osip */
-   linphone_logger_file = fopen( LOGGER_LINPHONE, "w");
+   linphone_logger_file = fopen( LOGGER_LINPHONE.c_str(), "w");
    TRACE_INITIALIZE( (trace_level_t)5, linphone_logger_file );
    // TODO: when debugging disabled it should be:
    // linphone_core_disable_logs();
@@ -286,7 +295,7 @@ void DSipCom::create_linphone_core(){
   //	snprintf(configfile_name, PATH_MAX, "%s/.linphonerc", getenv( "HOME" ) );
 
    auth_stack.nitems = 0;
-   linphone_core_init ( &linphonec, &linphonec_vtable, config, NULL );
+   linphone_core_init ( &linphonec, &linphonec_vtable, LINPHONE_CONFIG.c_str(), NULL );
    //linphonec_main_loop ( &linphonec, sipAddr );
 
   logger.log( "Linphone core Ready!" );
@@ -308,15 +317,15 @@ void DSipCom::save_user_list() {
     delete temp;
 */
   FILE* userlist_file;
-  userlist_file = fopen( USER_LIST_FILE, "wb+" );
+  userlist_file = fopen( USER_LIST_FILE.c_str(), "wb+" );
   if ( userlist_file == 0 ) {
     printf( "Error writing userlist file!\nCannot continue. Check Your user access and try again.\n" );
     fflush( stdout );
     exit( 1 );
   }
   // writing header
-  char* user_list_header = "dulf0";
-  fwrite( user_list_header, sizeof( user_list_header + 1 ), 1, userlist_file );
+  char user_list_header[] = "dulf0";
+  fwrite( user_list_header, sizeof( user_list_header ), 1, userlist_file );
   // writing amount of users
   int user_list_size = user_list.size();
   fwrite( &user_list_size, sizeof( &user_list_size ), 1, userlist_file );
@@ -339,21 +348,21 @@ void DSipCom::load_user_list() {
   // reading user_list from file
   int size_of_list;
   FILE* userlist_file;
-  userlist_file = fopen( USER_LIST_FILE, "rb+" );
+  userlist_file = fopen( USER_LIST_FILE.c_str(), "rb+" );
   // checking existance of list file
   if ( userlist_file == 0 ) {  
     printf( "Error reading userlist file!\nNew user_list file will be created.\n" );
     fflush( stdout );
     save_user_list();
-    userlist_file = fopen( USER_LIST_FILE, "rb+" );
+    userlist_file = fopen( USER_LIST_FILE.c_str(), "rb+" );
   }
   // checking userlist file header
   char* user_list_header = new char;
-  char* user_list_header_correct = "dulf0";
-  fread( user_list_header, sizeof( &user_list_header_correct ), 1, userlist_file );
+  char user_list_header_correct[] = "dulf0";
+  fread( user_list_header, sizeof( user_list_header_correct ), 1, userlist_file );
   logger.log( "Userlist file header check: " + (QString)user_list_header + " vs " + (QString)user_list_header_correct );
   if ( strcmp( user_list_header, user_list_header_correct ) != 0 ) {
-    printf( "Error in user_list file header. Probably I tried to read bad format user_list file!\n" );
+    printf( "Error in user_list file header. (%s instead of %s) Probably I tried to read bad format user_list file!\n", user_list_header, user_list_header_correct );
     fflush( stdout );
     exit( 1 );
   }
@@ -390,12 +399,12 @@ void DSipCom::load_user_list() {
 
 void DSipCom::load_user_config() {
   FILE* config_file;
-  config_file = fopen( CONFIG_FILE, "rb+" );
+  config_file = fopen( CONFIG_FILE.c_str(), "rb+" );
   if ( config_file == 0 ) {  
     printf( "Error reading user config file!\nNew user config will be created.\n" );
     fflush( stdout );
     save_user_config();
-    config_file = fopen( CONFIG_FILE, "rb+" );
+    config_file = fopen( CONFIG_FILE.c_str(), "rb+" );
   }
   // reading user config structure at once
   fread( user_config, sizeof( USER_CONFIG ), 1, config_file );
@@ -445,7 +454,7 @@ void DSipCom::save_user_config() {
   user_config->pcma_8_codec = this->pcma_8_codec->isChecked();
   
   FILE* config_file;
-  config_file = fopen( CONFIG_FILE, "wb+" );
+  config_file = fopen( CONFIG_FILE.c_str(), "wb+" );
   if ( config_file == 0 ) {
     printf( "Error writing user config file!\nCannot continue. Check Your user access and try again.\n" );
     fflush( stdout );
@@ -585,7 +594,7 @@ void DSipCom::action_make_a_call() {
 void DSipCom::action_help_func() {
   logger.log( "Visited -> Help" );
   // TODO: add own help dialog instead of QMessageBox
-  QMessageBox::information(this, MAIN_WINDOW_TITLE, " Brak pliku pomocy [ niezainicjowano ] ");
+  QMessageBox::information(this, MAIN_WINDOW_TITLE.c_str(), " Brak pliku pomocy [ niezainicjowano ] ");
 }
 
 
@@ -597,13 +606,13 @@ void DSipCom::action_about_func() {
 void DSipCom::action_connect_to_sip_server_func() {
   logger.log( "Trying to connect to server" );
     if ( this->user_sip_server->text() == "" ) {
-      QMessageBox::information( this, MAIN_WINDOW_TITLE, " Proszę podać w preferencjach użytkownika nazwę serwera! " );
+      QMessageBox::information( this, MAIN_WINDOW_TITLE.c_str(), " Proszę podać w preferencjach użytkownika nazwę serwera! " );
     } else if ( this->user_sip->text() == "" ) {
-      QMessageBox::information(this, MAIN_WINDOW_TITLE, " Proszę podać w preferencjach adres SIP użytkownika! " );
+      QMessageBox::information(this, MAIN_WINDOW_TITLE.c_str(), " Proszę podać w preferencjach adres SIP użytkownika! " );
     } else if ( this->user_password->text() == "" ) {
-      QMessageBox::information(this, MAIN_WINDOW_TITLE, " Proszę podać w preferencjach hasło SIP użytkownika! " );
+      QMessageBox::information(this, MAIN_WINDOW_TITLE.c_str(), " Proszę podać w preferencjach hasło SIP użytkownika! " );
     } else if ( this->user_name->text() == "" ) {
-      QMessageBox::information(this, MAIN_WINDOW_TITLE, " Proszę podać w preferencjach nazwę użytkownika! " );
+      QMessageBox::information(this, MAIN_WINDOW_TITLE.c_str(), " Proszę podać w preferencjach nazwę użytkownika! " );
     } else {
       // all required settings are ok
       logger.log( "All required data is OK!" );
@@ -688,7 +697,7 @@ void AddContactWindow::action_cancel() {
 
 AboutBox::AboutBox() {
   setupUi( this );
-  version_label->setText( DSIPCOM_VERSION );
+  version_label->setText( DSIPCOM_VERSION.c_str() );
   show();
 }
 

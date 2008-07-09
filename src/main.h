@@ -10,11 +10,24 @@
 #ifndef _DSIPCOM_MAIN_H
 #define _DSIPCOM_MAIN_H
 
+#include <stdlib.h>
+
+using namespace std;
+
 // main declarations and constants
-static const char* LOGGER_FILE = "logs/dsipcom.main.log";
-static const char* LOGGER_LINPHONE = "logs/dsipcom.linphone.log";
-static const char* LOGGER_DSIPCOM_UI = "logs/dsipcom.logger.ui.log";
-static const char* CONFIG_FILE = "config/dsipcom.dcnf";
-static const char* USER_LIST_FILE = "user_list/dsipcom.dulf";
+static const string DSIP_MAIN_DIR = string( getenv( "HOME" ) ) + "/.dSipCom";
+
+static const string LOGS_DIR = DSIP_MAIN_DIR + "/logs";
+static const string CONF_DIR = DSIP_MAIN_DIR + "/config";
+static const string ULIST_DIR = DSIP_MAIN_DIR + "/user_list";
+
+static const string LOGGER_FILE = LOGS_DIR + "/dsipcom.main.log";
+static const string LOGGER_LINPHONE = LOGS_DIR + "/dsipcom.linphone.log";
+static const string LOGGER_DSIPCOM_UI = LOGS_DIR + "/dsipcom.logger.ui.log";
+
+static const string CONFIG_FILE = CONF_DIR + "/dsipcom.dcnf";
+static const string LINPHONE_CONFIG = CONF_DIR + "/linphone.dcnf";
+
+static const string USER_LIST_FILE = ULIST_DIR + "/dsipcom.dulf";
 
 #endif
