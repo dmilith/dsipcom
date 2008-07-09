@@ -10,6 +10,7 @@
 #define	_DSIPCOM_UI_H
 
 #include <stdio.h>
+#include <signal.h>
 
 #include <qt4/QtCore/Qt>
 #include <qt4/QtCore/QFile>
@@ -135,8 +136,8 @@ namespace Ui {
       
       // init linphone
       void create_linphone_core();
-      LinphoneCore *_core;
-	    SipMutex _mutex;
+      //LinphoneCore *_core;
+	    //SipMutex _mutex;
       FILE* linphone_logger_file;
 
       // add contact dialog:

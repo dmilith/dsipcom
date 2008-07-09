@@ -12,10 +12,27 @@
 using namespace Log;
 using namespace Ui;
 
+// Linphone variables & consts
+//
+
+//Linphone Core
+LinphoneCore linphonec;
+LPC_AUTH_STACK auth_stack;
+char prompt[PROMPT_MAX_LEN];
+static bool_t auto_answer = FALSE;
+static bool_t answer_call = FALSE;
+static bool_t vcap_enabled = FALSE;
+static bool_t display_enabled = FALSE;
+static bool_t show_general_state = FALSE;
+static char configfile_name[ PATH_MAX ];
+static char *sipAddr = NULL; /* for autocall */
+
 #ifdef	__cplusplus
 extern "C" {
 #endif
-// C externs for linphone
+    
+// Linphone structs
+//
   //static int handle_configfile_migration(void);
   //static int copy_file(const char *from, const char *to);
   //static int linphonec_parse_cmdline(int argc, char **argv);
@@ -54,12 +71,6 @@ extern "C" {
   //static char last_in_history[256];
   //auto answer (-a) option  
   
-  static bool_t show_general_state = FALSE;
-  LPC_AUTH_STACK auth_stack;
-  static bool_t auto_answer = FALSE;
-  static bool_t answer_call = FALSE;
-  char prompt[PROMPT_MAX_LEN];
-  
   // main Linphone table.
   LinphoneCoreVTable linphonec_vtable = {
     show:(ShowInterfaceCb) stub,
@@ -72,7 +83,7 @@ extern "C" {
     display_message:linphonec_display_something,
     display_warning:linphonec_display_warning,
     display_url:linphonec_display_url,
-    display_question:(DisplayQuestionCb)stub,
+    display_question:(DisplayQuestionCb)stub
   //  text_received:linphonec_text_received
   //  general_state:linphonec_general_state
   };
@@ -82,8 +93,8 @@ extern "C" {
   
     static void
     linphonec_display_something (LinphoneCore * lc, const char *something) {
-     // fprintf (stdout, "%s\n%s", something,prompt);
-     // fflush(stdout);
+      fprintf (stdout, "%s\n%s", something,prompt);
+      fflush(stdout);
     }
 
     static void
@@ -120,8 +131,8 @@ extern "C" {
         return;
       } 
 
-      pending_auth=linphone_auth_info_new(username,NULL,NULL,NULL,realm);
-      auth_stack.elem[auth_stack.nitems++] = pending_auth;
+      pending_auth = linphone_auth_info_new( username, NULL, NULL, NULL, realm );
+      auth_stack.elem[ auth_stack.nitems++ ] = pending_auth;
     }
 
     static void
@@ -211,7 +222,11 @@ extern "C" {
 #endif
 
 
+//DSipCom objects
 Logger logger( LOGGER_DSIPCOM_UI, "debug" );
+
+
+//DSipCom methods
 
 DSipCom::DSipCom( const QString& title ) {
   logger.log( "Initializing UI" );
@@ -229,8 +244,6 @@ DSipCom::DSipCom( const QString& title ) {
    show();
   logger.log( "Initializing QT4 actions" );
    init_actions();
-  logger.log( "Initializing LinPhone" );
-   create_linphone_core();
   logger.log( "DSipCom initialized" );
   logger.log( "Loading User List" );
    //save_user_list();
@@ -238,6 +251,45 @@ DSipCom::DSipCom( const QString& title ) {
   logger.log( "Loading User Config" );
    user_config = new USER_CONFIG;
    load_user_config();
+  logger.log( "Loading Linphone" );
+   create_linphone_core();
+}
+
+DSipCom::~DSipCom() {
+  // destroing main linphone core structure
+  //  linphone_core_destroy( _core );
+	linphone_core_uninit( &linphonec );
+  fclose( linphone_logger_file );
+}
+
+
+void DSipCom::create_linphone_core(){
+   char* config = getenv( "HOME" );
+   char* conf_name = "/.dsipcom";
+   strcat(config, conf_name);
+
+  logger.log( "Linphone config: " + (QString)config );
+  logger.log( "Initializing Linphone core logger" );
+  
+   /* tracing & logging for osip */
+   linphone_logger_file = fopen( LOGGER_LINPHONE, "w");
+   TRACE_INITIALIZE( (trace_level_t)5, linphone_logger_file );
+   // TODO: when debugging disabled it should be:
+   // linphone_core_disable_logs();
+   linphone_core_enable_logs( linphone_logger_file );
+
+  logger.log( "Linphone logger initialized" );
+  //creating linphone main structure
+  // _core = linphone_core_new( &linphonec_vtable, config, NULL );
+   logger.log( "Initializing LinPhone" );
+   //	mylogfile = NULL;
+  //	snprintf(configfile_name, PATH_MAX, "%s/.linphonerc", getenv( "HOME" ) );
+
+   auth_stack.nitems = 0;
+   linphone_core_init ( &linphonec, &linphonec_vtable, config, NULL );
+   //linphonec_main_loop ( &linphonec, sipAddr );
+
+  logger.log( "Linphone core Ready!" );
 }
 
 void DSipCom::save_user_list() {
@@ -404,12 +456,6 @@ void DSipCom::save_user_config() {
   fclose( config_file );
 }
 
-DSipCom::~DSipCom() {
-  // destroing main linphone core structure
-  linphone_core_destroy( _core );
-  fclose( linphone_logger_file );
-}
-
 // init_actions will init all actions and binds in application
 void DSipCom::init_actions() {
   // buttons
@@ -566,25 +612,6 @@ void DSipCom::action_connect_to_sip_server_func() {
 
 void DSipCom::action_disconnect_from_sip_server_func() {
   logger.log( "Trying to disconnect from server" ); 
-}
-
-void DSipCom::create_linphone_core(){
-   char* config = getenv( "HOME" );
-   char* conf_name = "/.dsipcom";
-   strcat(config, conf_name);
-
-  logger.log( "Linphone config: " + (QString)config );
-  logger.log( "Initializing Linphone core logger" );
-  
-   /* tracing & logging for osip */
-   linphone_logger_file = fopen( LOGGER_LINPHONE, "w");
-   TRACE_INITIALIZE( (trace_level_t)5, linphone_logger_file );
-   linphone_core_enable_logs( linphone_logger_file );
-
-  logger.log( "Linphone logger initialized" );
-  //creating linphone main structure
-   _core = linphone_core_new( &linphonec_vtable, config, NULL );
-  logger.log( "Linphone core Ready!" );
 }
 
 void DSipCom::action_add_contact_func() {

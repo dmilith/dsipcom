@@ -6,7 +6,7 @@ if [ -e "Makefile" ]; then
 fi
 
 echo "creating Makefile"
-qmake dsipcom.pro
+qmake-qt4 dsipcom.pro
 if [ $? = 0 ]; then
 	echo "done"
 fi
