@@ -10,6 +10,7 @@
 #define	_DSIPCOM_UI_H
 
 #include <stdio.h>
+#include <stdint.h>
 #include <signal.h>
 
 #include <qt4/QtCore/Qt>
@@ -22,20 +23,21 @@
 #include <linphone/config.h>
 #include <linphone/linphonecore.h>
 
+#include <boost/filesystem/operations.hpp>
+
 #include "ui_dsipcom.h" // automaticly generated interface from ui file
 #include "ui_add_contact_dialog.h" // automaticly generated widget window
 #include "ui_about.h" // obviously, just about window
 #include "logger.h" //logger defs
 #include "main.h"
 
-// Linphone definitions
+
 #define MAX_PENDING_AUTH 8
 //#define HISTSIZE 500		/* how many lines of input history */
 #define PROMPT_MAX_LEN 256	/* max len of prompt string */
 #define LINE_MAX_LEN 256	/* really needed ? */
-//#define LPC_READLINE_TIMEOUT 1000000
 
-// Linphone defs:
+// Linphone definitions
 typedef struct {
   LinphoneAuthInfo *elem[MAX_PENDING_AUTH];
   int nitems;
@@ -51,21 +53,21 @@ typedef struct {
   char user_sip[50];
   char user_password[50];
   char user_name[50];
-  int out_soundcard;
-  int in_soundcard;
-  int recording_source;
-  int ring_sound;
+  uint64_t out_soundcard;
+  uint64_t in_soundcard;
+  uint64_t recording_source;
+  uint64_t ring_sound;
   char default_port[5];
-  int no_firewall;
-  int use_stun_server;
+  uint64_t no_firewall;
+  uint64_t use_stun_server;
   char stun_address[50];
-  int manual_firewall_address;
+  uint64_t manual_firewall_address;
   char firewall_address[50];
-  int gsm_8_codec;
-  int speex_8_codec;
-  int speex_16_codec;
-  int pcmu_8_codec;
-  int pcma_8_codec;
+  uint64_t gsm_8_codec;
+  uint64_t speex_8_codec;
+  uint64_t speex_16_codec;
+  uint64_t pcmu_8_codec;
+  uint64_t pcma_8_codec;
 } USER_CONFIG;
 
 

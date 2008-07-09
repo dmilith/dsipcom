@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <string>
+#include <stdint.h>
 
 using namespace std;
 
@@ -32,6 +33,12 @@ main(int argc, char** argv) {
         
         string HOME2 = getenv( "HOME" );
         assert( getenv( "HOME" ) == HOME2 );
+        
+        uint64_t liczba = 123;
+        assert( sizeof( liczba ) == 8 );
+        
+        assert( sizeof( char ) == 1 );
+        
     }
     
     if ( sizeof( void * ) == 4 ) { // 32bit
@@ -51,6 +58,11 @@ main(int argc, char** argv) {
         
         string HOME2 = getenv( "HOME" );
         assert( getenv( "HOME" ) == HOME2 );
+        
+        uint64_t liczba = 123;
+        assert( sizeof( liczba ) == 8 );
+        
+        assert( sizeof( char ) == 1 );
     }
     
     return (EXIT_SUCCESS);

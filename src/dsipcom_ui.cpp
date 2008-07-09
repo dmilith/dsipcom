@@ -9,8 +9,6 @@
 #include "dsipcom_ui.h"
 #include "version.h"
 
-#include <boost/filesystem/operations.hpp>
-
 using namespace Log;
 using namespace Ui;
 using namespace std;
@@ -270,18 +268,18 @@ DSipCom::~DSipCom() {
 
 void DSipCom::setupDIRs() {
   // this method will check existance of main program directories and it will try to create them if they doesn't exist
-  if ( !exists(DSIP_MAIN_DIR) ) create_directory( DSIP_MAIN_DIR );
-  if ( !exists(LOGS_DIR) ) create_directory( LOGS_DIR );
-  if ( !exists(CONF_DIR) ) create_directory( CONF_DIR );
-  if ( !exists(ULIST_DIR) ) create_directory( ULIST_DIR );
+  if ( !exists( DSIP_MAIN_DIR ) ) create_directory( DSIP_MAIN_DIR );
+  if ( !exists( LOGS_DIR ) ) create_directory( LOGS_DIR );
+  if ( !exists( CONF_DIR ) ) create_directory( CONF_DIR );
+  if ( !exists( ULIST_DIR ) ) create_directory( ULIST_DIR );
 }
 
-void DSipCom::create_linphone_core(){
+void DSipCom::create_linphone_core() {
   logger.log( "Linphone config: " + (QString)( LINPHONE_CONFIG.c_str() ) );
   logger.log( "Initializing Linphone core logger" );
   
    /* tracing & logging for osip */
-   linphone_logger_file = fopen( LOGGER_LINPHONE.c_str(), "w");
+   linphone_logger_file = fopen( LOGGER_LINPHONE.c_str(), "w" );
    TRACE_INITIALIZE( (trace_level_t)5, linphone_logger_file );
    // TODO: when debugging disabled it should be:
    // linphone_core_disable_logs();
@@ -291,9 +289,6 @@ void DSipCom::create_linphone_core(){
   //creating linphone main structure
   // _core = linphone_core_new( &linphonec_vtable, config, NULL );
    logger.log( "Initializing LinPhone" );
-   //	mylogfile = NULL;
-  //	snprintf(configfile_name, PATH_MAX, "%s/.linphonerc", getenv( "HOME" ) );
-
    auth_stack.nitems = 0;
    linphone_core_init ( &linphonec, &linphonec_vtable, LINPHONE_CONFIG.c_str(), NULL );
    //linphonec_main_loop ( &linphonec, sipAddr );
@@ -302,20 +297,20 @@ void DSipCom::create_linphone_core(){
 }
 
 void DSipCom::save_user_list() {
-/*  // test elements
-    USER_LIST *temp;
-    temp = new USER_LIST;
-    strcpy( temp->contact_name, "dmilith" );
-    strcpy( temp->contact_sip_address, "sip:dmilith@drakor.eu" );
-    user_list.append( *temp );
-    delete temp;
+  /*  // test elements
+      USER_LIST *temp;
+      temp = new USER_LIST;
+      strcpy( temp->contact_name, "dmilith" );
+      strcpy( temp->contact_sip_address, "sip:dmilith@drakor.eu" );
+      user_list.append( *temp );
+      delete temp;
 
-    temp = new USER_LIST;
-    strcpy( temp->contact_name, "annasliw" );
-    strcpy( temp->contact_sip_address, "sip:annasliw@drakor.eu" );
-    user_list.append( *temp );
-    delete temp;
-*/
+      temp = new USER_LIST;
+      strcpy( temp->contact_name, "annasliw" );
+      strcpy( temp->contact_sip_address, "sip:annasliw@drakor.eu" );
+      user_list.append( *temp );
+      delete temp;
+  */
   FILE* userlist_file;
   userlist_file = fopen( USER_LIST_FILE.c_str(), "wb+" );
   if ( userlist_file == 0 ) {
@@ -333,8 +328,8 @@ void DSipCom::save_user_list() {
   if ( user_list_size > 0 ) {
     for (int i = 0; i < user_list.size(); i++ ) {
       // each element in structure has 50 bytes length so we don't need to count it
-      fwrite( &user_list[i].contact_name, 50, 1, userlist_file);
-      fwrite( &user_list[i].contact_sip_address, 50, 1, userlist_file);
+      fwrite( &user_list[ i ].contact_name, 50, 1, userlist_file );
+      fwrite( &user_list[ i ].contact_sip_address, 50, 1, userlist_file );
     }
   }
   printf( "records written to file: %d\n", user_list_size );
@@ -375,8 +370,8 @@ void DSipCom::load_user_list() {
     USER_LIST *temp;
     for ( int i = 0; i < size_of_list; i++ ) {
       temp = new USER_LIST;
-      fread( temp->contact_name, 50, 1, userlist_file);
-      fread( temp->contact_sip_address, 50, 1, userlist_file);
+      fread( temp->contact_name, 50, 1, userlist_file );
+      fread( temp->contact_sip_address, 50, 1, userlist_file );
       user_list.append( *temp );
       delete temp;
     }
@@ -494,7 +489,6 @@ void DSipCom::init_actions() {
   QObject::connect( action_disconnect_from_sip_server, SIGNAL( activated() ), this, SLOT( action_disconnect_from_sip_server_func() ));
   QObject::connect( action_add_contact_to_list, SIGNAL( activated() ), this, SLOT( action_add_contact_func() ));
   QObject::connect( action_remove_contact_from_list, SIGNAL( activated() ), this, SLOT( action_remove_contact_func() ));
-  
 }
 
 void DSipCom::action_save_user_config() {

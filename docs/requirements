@@ -1,4 +1,4 @@
-libboost (1.35)
+libboost_filesystem (1.35)
 linphone
 speex
 mediastreamer

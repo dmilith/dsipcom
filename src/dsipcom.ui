@@ -133,15 +133,15 @@ p, li { white-space: pre-wrap; }
      <enum>QFrame::Sunken</enum>
     </property>
     <property name="currentIndex" >
-     <number>3</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="page_contacts" >
      <property name="geometry" >
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>96</width>
-       <height>26</height>
+       <width>372</width>
+       <height>517</height>
       </rect>
      </property>
      <attribute name="label" >
@@ -154,9 +154,9 @@ p, li { white-space: pre-wrap; }
      <widget class="QListWidget" name="contacts_list" >
       <property name="geometry" >
        <rect>
-        <x>0</x>
+        <x>5</x>
         <y>0</y>
-        <width>366</width>
+        <width>361</width>
         <height>466</height>
        </rect>
       </property>
@@ -212,8 +212,8 @@ p, li { white-space: pre-wrap; }
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>96</width>
-       <height>26</height>
+       <width>372</width>
+       <height>517</height>
       </rect>
      </property>
      <attribute name="label" >
@@ -226,10 +226,10 @@ p, li { white-space: pre-wrap; }
      <widget class="QGroupBox" name="groupBox" >
       <property name="geometry" >
        <rect>
-        <x>15</x>
-        <y>10</y>
-        <width>341</width>
-        <height>471</height>
+        <x>0</x>
+        <y>-5</y>
+        <width>371</width>
+        <height>526</height>
        </rect>
       </property>
       <property name="title" >
@@ -238,8 +238,8 @@ p, li { white-space: pre-wrap; }
       <widget class="QToolButton" name="dial_7" >
        <property name="geometry" >
         <rect>
-         <x>40</x>
-         <y>30</y>
+         <x>55</x>
+         <y>35</y>
          <width>71</width>
          <height>71</height>
         </rect>
@@ -263,8 +263,8 @@ p, li { white-space: pre-wrap; }
       <widget class="QToolButton" name="dial_8" >
        <property name="geometry" >
         <rect>
-         <x>130</x>
-         <y>30</y>
+         <x>145</x>
+         <y>35</y>
          <width>71</width>
          <height>71</height>
         </rect>
@@ -288,8 +288,8 @@ p, li { white-space: pre-wrap; }
       <widget class="QToolButton" name="dial_9" >
        <property name="geometry" >
         <rect>
-         <x>220</x>
-         <y>30</y>
+         <x>235</x>
+         <y>35</y>
          <width>71</width>
          <height>71</height>
         </rect>
@@ -313,8 +313,8 @@ p, li { white-space: pre-wrap; }
       <widget class="QToolButton" name="dial_4" >
        <property name="geometry" >
         <rect>
-         <x>40</x>
-         <y>120</y>
+         <x>55</x>
+         <y>125</y>
          <width>71</width>
          <height>71</height>
         </rect>
@@ -338,8 +338,8 @@ p, li { white-space: pre-wrap; }
       <widget class="QToolButton" name="dial_6" >
        <property name="geometry" >
         <rect>
-         <x>220</x>
-         <y>120</y>
+         <x>235</x>
+         <y>125</y>
          <width>71</width>
          <height>71</height>
         </rect>
@@ -363,8 +363,8 @@ p, li { white-space: pre-wrap; }
       <widget class="QToolButton" name="dial_5" >
        <property name="geometry" >
         <rect>
-         <x>130</x>
-         <y>120</y>
+         <x>145</x>
+         <y>125</y>
          <width>71</width>
          <height>71</height>
         </rect>
@@ -388,8 +388,8 @@ p, li { white-space: pre-wrap; }
       <widget class="QToolButton" name="dial_2" >
        <property name="geometry" >
         <rect>
-         <x>130</x>
-         <y>210</y>
+         <x>145</x>
+         <y>215</y>
          <width>71</width>
          <height>71</height>
         </rect>
@@ -413,8 +413,8 @@ p, li { white-space: pre-wrap; }
       <widget class="QToolButton" name="dial_1" >
        <property name="geometry" >
         <rect>
-         <x>40</x>
-         <y>210</y>
+         <x>55</x>
+         <y>215</y>
          <width>71</width>
          <height>71</height>
         </rect>
@@ -438,8 +438,8 @@ p, li { white-space: pre-wrap; }
       <widget class="QToolButton" name="dial_3" >
        <property name="geometry" >
         <rect>
-         <x>220</x>
-         <y>210</y>
+         <x>235</x>
+         <y>215</y>
          <width>71</width>
          <height>71</height>
         </rect>
@@ -463,8 +463,8 @@ p, li { white-space: pre-wrap; }
       <widget class="QToolButton" name="dial_hash" >
        <property name="geometry" >
         <rect>
-         <x>40</x>
-         <y>300</y>
+         <x>55</x>
+         <y>305</y>
          <width>71</width>
          <height>71</height>
         </rect>
@@ -488,8 +488,8 @@ p, li { white-space: pre-wrap; }
       <widget class="QToolButton" name="dial_0" >
        <property name="geometry" >
         <rect>
-         <x>130</x>
-         <y>300</y>
+         <x>145</x>
+         <y>305</y>
          <width>71</width>
          <height>71</height>
         </rect>
@@ -513,8 +513,8 @@ p, li { white-space: pre-wrap; }
       <widget class="QToolButton" name="dial_star" >
        <property name="geometry" >
         <rect>
-         <x>220</x>
-         <y>300</y>
+         <x>235</x>
+         <y>305</y>
          <width>71</width>
          <height>71</height>
         </rect>
@@ -538,9 +538,9 @@ p, li { white-space: pre-wrap; }
       <widget class="QLineEdit" name="number_entry" >
        <property name="geometry" >
         <rect>
-         <x>40</x>
+         <x>85</x>
          <y>420</y>
-         <width>286</width>
+         <width>216</width>
          <height>30</height>
         </rect>
        </property>
@@ -554,7 +554,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QLabel" name="label" >
        <property name="geometry" >
         <rect>
-         <x>50</x>
+         <x>65</x>
          <y>400</y>
          <width>237</width>
          <height>18</height>
@@ -567,7 +567,7 @@ p, li { white-space: pre-wrap; }
       <widget class="QLabel" name="label_14" >
        <property name="geometry" >
         <rect>
-         <x>15</x>
+         <x>60</x>
          <y>425</y>
          <width>26</width>
          <height>21</height>
@@ -584,8 +584,8 @@ p, li { white-space: pre-wrap; }
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>96</width>
-       <height>26</height>
+       <width>372</width>
+       <height>517</height>
       </rect>
      </property>
      <attribute name="label" >
@@ -618,7 +618,7 @@ p, li { white-space: pre-wrap; }
        </rect>
       </property>
       <property name="text" >
-       <string>Tu wprowadź swój adres SIP</string>
+       <string>Wprowadź swój adres SIP</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_3" >
@@ -631,15 +631,15 @@ p, li { white-space: pre-wrap; }
        </rect>
       </property>
       <property name="text" >
-       <string>Tu wprowadź hasło swojego konta SIP</string>
+       <string>Wprowadź hasło swojego konta SIP</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="user_password" >
       <property name="geometry" >
        <rect>
-        <x>40</x>
+        <x>65</x>
         <y>190</y>
-        <width>291</width>
+        <width>266</width>
         <height>30</height>
        </rect>
       </property>
@@ -647,9 +647,9 @@ p, li { white-space: pre-wrap; }
      <widget class="QLineEdit" name="user_name" >
       <property name="geometry" >
        <rect>
-        <x>40</x>
+        <x>65</x>
         <y>250</y>
-        <width>291</width>
+        <width>266</width>
         <height>30</height>
        </rect>
       </property>
@@ -670,9 +670,9 @@ p, li { white-space: pre-wrap; }
      <widget class="QLineEdit" name="user_sip_server" >
       <property name="geometry" >
        <rect>
-        <x>40</x>
+        <x>65</x>
         <y>70</y>
-        <width>291</width>
+        <width>266</width>
         <height>30</height>
        </rect>
       </property>
@@ -690,7 +690,7 @@ p, li { white-space: pre-wrap; }
        </rect>
       </property>
       <property name="text" >
-       <string>Tu wprowadź nazwę swojego serwera</string>
+       <string>Wprowadź nazwę swojego serwera</string>
       </property>
      </widget>
      <widget class="QCheckBox" name="auto_login" >
@@ -698,7 +698,7 @@ p, li { white-space: pre-wrap; }
        <rect>
         <x>40</x>
         <y>290</y>
-        <width>321</width>
+        <width>256</width>
         <height>21</height>
        </rect>
       </property>
@@ -715,14 +715,14 @@ p, li { white-space: pre-wrap; }
      <widget class="QPushButton" name="load_config_button" >
       <property name="geometry" >
        <rect>
-        <x>15</x>
-        <y>420</y>
-        <width>341</width>
-        <height>28</height>
+        <x>195</x>
+        <y>410</y>
+        <width>166</width>
+        <height>36</height>
        </rect>
       </property>
       <property name="text" >
-       <string>Wczytaj plik konfiguracyjny</string>
+       <string>Wczytaj konfigurację</string>
       </property>
       <property name="icon" >
        <iconset resource="dsipcom.qrc" >
@@ -732,14 +732,14 @@ p, li { white-space: pre-wrap; }
      <widget class="QPushButton" name="save_config_button" >
       <property name="geometry" >
        <rect>
-        <x>15</x>
-        <y>380</y>
-        <width>341</width>
-        <height>28</height>
+        <x>10</x>
+        <y>410</y>
+        <width>171</width>
+        <height>36</height>
        </rect>
       </property>
       <property name="text" >
-       <string>Zapisz plik konfiguracyjny</string>
+       <string>Zapisz konfigurację</string>
       </property>
       <property name="icon" >
        <iconset resource="dsipcom.qrc" >
@@ -1178,7 +1178,7 @@ p, li { white-space: pre-wrap; }
         <x>5</x>
         <y>280</y>
         <width>361</width>
-        <height>211</height>
+        <height>226</height>
        </rect>
       </property>
       <property name="cursor" stdset="0" >
@@ -1200,12 +1200,12 @@ p, li { white-space: pre-wrap; }
        <rect>
         <x>5</x>
         <y>260</y>
-        <width>196</width>
+        <width>211</width>
         <height>18</height>
        </rect>
       </property>
       <property name="text" >
-       <string>Lista połączeń z wybranej daty:</string>
+       <string>Lista połączeń z wybranego dnia</string>
       </property>
      </widget>
     </widget>
