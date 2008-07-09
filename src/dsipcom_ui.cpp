@@ -316,7 +316,7 @@ void DSipCom::save_user_list() {
   }
   // writing header
   char* user_list_header = "dulf0";
-  fwrite( user_list_header, sizeof( user_list_header ), 1, userlist_file );
+  fwrite( user_list_header, sizeof( user_list_header + 1 ), 1, userlist_file );
   // writing amount of users
   int user_list_size = user_list.size();
   fwrite( &user_list_size, sizeof( &user_list_size ), 1, userlist_file );

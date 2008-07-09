@@ -11,13 +11,16 @@
 int main(int argc, char** argv) {
   
   int variable = 123;
-  printf( "int size: %d\n", sizeof( variable ) );
+  printf( "\nint size: %d\n", sizeof( variable ) );
 
   long int variable2 = 123;
-  printf( "long int size: %d\n", sizeof( variable2 ) );
+  printf( "\nlong int size: %d\n", sizeof( variable2 ) );
   
   short int variable3 = 123;
-  printf( "short int size: %d\n", sizeof( variable3 ) );
+  printf( "\nshort int size: %d\n", sizeof( variable3 ) );
+  
+  char* user_list_header = "dulf0";
+  printf( "\ndulf0 size: %d", sizeof( user_list_header ) );
   
     return (EXIT_SUCCESS);
 }
