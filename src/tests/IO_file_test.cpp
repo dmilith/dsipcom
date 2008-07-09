@@ -8,11 +8,12 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <assert.h>
+#include <string>
 
 typedef struct {
   char contact_name[50];
   char contact_sip_address[50];
-
 } USER_LIST;
 
 typedef struct {
@@ -20,14 +21,12 @@ typedef struct {
   char user_sip[50];
   char user_password[50];
   char user_name[50];
-
 } USER_CONFIG;
 
-
+using namespace std;
 #define CONFIG_FILE "test.dcnf"
 
 int main() {
-  
   
   USER_CONFIG *user_config = NULL, *readed = NULL;
   user_config = new USER_CONFIG;
@@ -39,18 +38,21 @@ int main() {
   strcpy( user_config->user_sip, "sip:dmilith@drak.kill.pl");
   strcpy( user_config->user_sip_server, "ekiga.net");
   
-  printf( "zapis\n" );
+  //printf( "zapis\n" );
   FILE* config_file;
   config_file = fopen( CONFIG_FILE, "wb" );
   fwrite( user_config, sizeof( USER_CONFIG ), 1, config_file );
   fclose( config_file );
   
-  printf( "odczyt\n" );
+  //printf( "odczyt\n" );
   config_file = fopen( CONFIG_FILE, "rb" );
   fread( readed, sizeof( USER_CONFIG ), 1, config_file );
   fclose( config_file );
   
-  printf( "%s\n%s\n\n", readed->user_name, readed->user_password );
+  //printf( "%s\n%s\n\n", readed->user_name, readed->user_password );
+  
+  assert( (string)user_config->user_name == (string)readed->user_name );
+  assert( (string)user_config->user_password == (string)readed->user_password );
   
   return 0;
 }

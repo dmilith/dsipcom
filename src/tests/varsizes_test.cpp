@@ -8,24 +8,51 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
+#include <string>
 
-int main(int argc, char** argv) {
-  
-  int variable = 123;
-  printf( "\nint size: %d\n", sizeof( variable ) );
+using namespace std;
 
-  long int variable2 = 123;
-  printf( "\nlong int size: %d\n", sizeof( variable2 ) );
+int
+main(int argc, char** argv) {
   
-  short int variable3 = 123;
-  printf( "\nshort int size: %d\n", sizeof( variable3 ) );
-  
-  char user_list_header[] = "dulf0";
-  printf( "\ndulf0 size: %d", sizeof( user_list_header -1 ) );
-  
-  char* HOME = getenv( "HOME" );
-  assert( getenv( "HOME" ) == HOME );
-  
+    if ( sizeof( void * ) == 8 ) { // 64bit
+        printf( "64bit\n" );
+        assert( sizeof( int ) == 4 );
+        assert( sizeof( long int ) == 8 );
+        assert( sizeof( short int ) == 2 );
+
+        char a[] = "dulf0";
+        assert( sizeof( a ) == 5+1 );
+
+        string b = "dulf0";
+        assert( sizeof( b ) == 8 );
+        
+        char* HOME = getenv( "HOME" );
+        assert( getenv( "HOME" ) == HOME );
+        
+        string HOME2 = getenv( "HOME" );
+        assert( getenv( "HOME" ) == HOME2 );
+    }
+    
+    if ( sizeof( void * ) == 4 ) { // 32bit
+        printf( "32bit\n" );
+        assert( sizeof( int ) == 4 );
+        assert( sizeof( long int ) == 4 );
+        assert( sizeof( short int ) == 2 );
+
+        char a[] = "dulf0";
+        assert( sizeof( a ) == 5+1 );
+
+        string b = "dulf0";
+        assert( sizeof( b ) == 4 );
+        
+        char* HOME = getenv( "HOME" );
+        assert( getenv( "HOME" ) == HOME );
+        
+        string HOME2 = getenv( "HOME" );
+        assert( getenv( "HOME" ) == HOME2 );
+    }
+    
     return (EXIT_SUCCESS);
 }
 
