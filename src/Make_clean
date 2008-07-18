@@ -2,6 +2,7 @@
 
 make clean
 rm -f compile.log
+rm -f Makefile
 rm -f ../dsipcom
 cd tests/
 rm -f test*
