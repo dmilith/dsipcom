@@ -17,4 +17,4 @@ dsipcom-public-Makefile.mk
 user_list/*
 config/*
 .gitignore.swp
-
+dsipcom.valgrind*

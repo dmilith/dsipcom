@@ -322,11 +322,11 @@ void DSipCom::save_user_list() {
   char user_list_header[] = "dulf0";
   fwrite( user_list_header, sizeof( user_list_header ), 1, userlist_file );
   // writing amount of users
-  int user_list_size = user_list.size();
+  uint64_t user_list_size = user_list.size();
   fwrite( &user_list_size, sizeof( &user_list_size ), 1, userlist_file );
   // writing data
   if ( user_list_size > 0 ) {
-    for (int i = 0; i < user_list.size(); i++ ) {
+    for (uint64_t i = 0; i < user_list.size(); i++ ) {
       // each element in structure has 50 bytes length so we don't need to count it
       fwrite( &user_list[ i ].contact_name, 50, 1, userlist_file );
       fwrite( &user_list[ i ].contact_sip_address, 50, 1, userlist_file );
@@ -341,7 +341,7 @@ void DSipCom::load_user_list() {
   // FIXME: userlist isn't clear after this one:
   user_list.clear();
   // reading user_list from file
-  int size_of_list;
+  uint64_t size_of_list;
   FILE* userlist_file;
   userlist_file = fopen( USER_LIST_FILE.c_str(), "rb+" );
   // checking existance of list file
@@ -352,12 +352,15 @@ void DSipCom::load_user_list() {
     userlist_file = fopen( USER_LIST_FILE.c_str(), "rb+" );
   }
   // checking userlist file header
-  char* user_list_header = new char;
+  
   char user_list_header_correct[] = "dulf0";
+  char* user_list_header = new char[ sizeof( user_list_header_correct ) ];
+  
   fread( user_list_header, sizeof( user_list_header_correct ), 1, userlist_file );
   logger.log( "Userlist file header check: " + (QString)user_list_header + " vs " + (QString)user_list_header_correct );
   if ( strcmp( user_list_header, user_list_header_correct ) != 0 ) {
-    printf( "Error in user_list file header. (%s instead of %s) Probably I tried to read bad format user_list file!\n", user_list_header, user_list_header_correct );
+    printf( "Error in user_list file header. (%s instead of %s) Probably I tried to read bad format user_list file!\n",
+            user_list_header, user_list_header_correct );
     fflush( stdout );
     exit( 1 );
   }
@@ -368,7 +371,7 @@ void DSipCom::load_user_list() {
   // reading elements
   if ( size_of_list > 0 ) {
     USER_LIST *temp;
-    for ( int i = 0; i < size_of_list; i++ ) {
+    for ( uint64_t i = 0; i < size_of_list; i++ ) {
       temp = new USER_LIST;
       fread( temp->contact_name, 50, 1, userlist_file );
       fread( temp->contact_sip_address, 50, 1, userlist_file );
@@ -377,13 +380,13 @@ void DSipCom::load_user_list() {
     }
     // putting elements to user_list plus icons
     if (! user_list.empty() ) {
-      for ( int i = 0; i< size_of_list; i++ ) {
+      for ( uint64_t i = 0; i< size_of_list; i++ ) {
         // C-c C-v from Qt4 example. It will set specified icon to current list element, then will set caption, and add object to user_list
         QIcon icon1;
-        icon1.addPixmap( QPixmap( QString::fromUtf8( ":/images/images/user_green.png" ) ), QIcon::Active, QIcon::On);
-        QListWidgetItem *__listItem = new QListWidgetItem(this->contacts_list);
-        __listItem->setIcon(icon1);
-        __listItem->setText((QString)(user_list[i].contact_name) + " => " + (QString)(user_list[i].contact_sip_address));  
+        icon1.addPixmap( QPixmap( QString::fromUtf8( ":/images/images/user_green.png" ) ), QIcon::Active, QIcon::On );
+        QListWidgetItem *__listItem = new QListWidgetItem( this->contacts_list );
+        __listItem->setIcon( icon1 );
+        __listItem->setText( (QString)( user_list[ i ].contact_name ) + " => " + (QString)( user_list[i].contact_sip_address ) );  
       }
     }
   }
@@ -509,51 +512,51 @@ void DSipCom::action_save_user_list() {
 
 /* numbers enterance: */
 void DSipCom::action_enter_0() {
-  (this)->number_entry->setText( (this)->number_entry->text() + "0" );
+  this->number_entry->setText( this->number_entry->text() + "0" );
 }
 
 void DSipCom::action_enter_1() {
-  (this)->number_entry->setText( (this)->number_entry->text() + "1" );
+  this->number_entry->setText( this->number_entry->text() + "1" );
 }
 
 void DSipCom::action_enter_2() {
-  (this)->number_entry->setText( (this)->number_entry->text() + "2" );
+  this->number_entry->setText( this->number_entry->text() + "2" );
 }
 
 void DSipCom::action_enter_3() {
-  (this)->number_entry->setText( (this)->number_entry->text() + "3" );
+  this->number_entry->setText( this->number_entry->text() + "3" );
 }
 
 void DSipCom::action_enter_4() {
-  (this)->number_entry->setText( (this)->number_entry->text() + "4" );
+  this->number_entry->setText( this->number_entry->text() + "4" );
 }
 
 void DSipCom::action_enter_5() {
-  (this)->number_entry->setText( (this)->number_entry->text() + "5" );
+  this->number_entry->setText( this->number_entry->text() + "5" );
 }
 
 void DSipCom::action_enter_6() {
-  (this)->number_entry->setText( (this)->number_entry->text() + "6" );
+  this->number_entry->setText( this->number_entry->text() + "6" );
 }
 
 void DSipCom::action_enter_7() {
-  (this)->number_entry->setText( (this)->number_entry->text() + "7" );
+  this->number_entry->setText( this->number_entry->text() + "7" );
 }
 
 void DSipCom::action_enter_8() {
-  (this)->number_entry->setText( (this)->number_entry->text() + "8" );
+  this->number_entry->setText( this->number_entry->text() + "8" );
 }
 
 void DSipCom::action_enter_9() {
-  (this)->number_entry->setText( (this)->number_entry->text() + "9" );
+  this->number_entry->setText( this->number_entry->text() + "9" );
 }
 
 void DSipCom::action_enter_star() {
-  (this)->number_entry->setText( (this)->number_entry->text() + "*" );
+  this->number_entry->setText( this->number_entry->text() + "*" );
 }
 
 void DSipCom::action_enter_hash() {
-  (this)->number_entry->setText( (this)->number_entry->text() + "#" );
+  this->number_entry->setText( this->number_entry->text() + "#" );
 }
 
 void DSipCom::action_end_call() {
@@ -567,33 +570,35 @@ void DSipCom::action_make_a_call() {
   if ( ( ( this->contacts_list->count() != 0 ) && ( this->toolBox->currentIndex() == 0 ) ) || 
       // or number entry is at least one char long and we're on number entry page
        ( this->number_entry->text().length() > 0 ) && ( this->toolBox->currentIndex() == 1 ) ) {
-    switch ( this->toolBox->currentIndex() ) {
-      case 0:
-        // 0 => contact list page
-        this->status_bar->setText( "Dzwonię do: " + this->contacts_list->item( this->contacts_list->currentRow() )->text().section(' ', -1) ); // str == "myapp" );
-        break;
-      case 1:
-        // 1 => dialing page
-        this->status_bar->setText( "Dzwonię do: " + this->number_entry->text() );
-        break;
-    }
-    this->call_button->setEnabled( false );
-    this->hang_button->setEnabled( true );
+          switch ( this->toolBox->currentIndex() ) {
+            case 0:
+              // 0 => contact list page
+              this->status_bar->setText( "Dzwonię do: " + 
+                      this->contacts_list->item( this->contacts_list->currentRow() )->text().section( ' ', -1 ) ); // str == "myapp" );
+              break;
+            case 1:
+              // 1 => dialing page
+              this->status_bar->setText( "Dzwonię do: " + this->number_entry->text() );
+              break;
+          }
+      this->call_button->setEnabled( false );
+      this->hang_button->setEnabled( true );
   } else {
+      this->toolBox->setCurrentIndex( 0 );
   }
-  //QListWidgetItem* current_item = (this)->contacts_list->item( (this)->contacts_list->currentRow() );
-  //(this)->contacts_list->editItem( current_item );
+  //QListWidgetItem* current_item = this->contacts_list->item( this->contacts_list->currentRow() );
+  //this->contacts_list->editItem( current_item );
 }
 
 void DSipCom::action_help_func() {
   logger.log( "Visited -> Help" );
   // TODO: add own help dialog instead of QMessageBox
-  QMessageBox::information(this, MAIN_WINDOW_TITLE.c_str(), " Brak pliku pomocy [ niezainicjowano ] ");
+  QMessageBox::information( this, MAIN_WINDOW_TITLE.c_str(), " Brak pliku pomocy [ niezainicjowano ] ");
 }
 
 
 void DSipCom::action_about_func() {
-  logger.log( "From about dialog!" );
+  logger.log( "Visited -> about dialog!" );
   AboutBox *window = new AboutBox();
 }
 
@@ -602,11 +607,11 @@ void DSipCom::action_connect_to_sip_server_func() {
     if ( this->user_sip_server->text() == "" ) {
       QMessageBox::information( this, MAIN_WINDOW_TITLE.c_str(), " Proszę podać w preferencjach użytkownika nazwę serwera! " );
     } else if ( this->user_sip->text() == "" ) {
-      QMessageBox::information(this, MAIN_WINDOW_TITLE.c_str(), " Proszę podać w preferencjach adres SIP użytkownika! " );
+      QMessageBox::information( this, MAIN_WINDOW_TITLE.c_str(), " Proszę podać w preferencjach adres SIP użytkownika! " );
     } else if ( this->user_password->text() == "" ) {
-      QMessageBox::information(this, MAIN_WINDOW_TITLE.c_str(), " Proszę podać w preferencjach hasło SIP użytkownika! " );
+      QMessageBox::information( this, MAIN_WINDOW_TITLE.c_str(), " Proszę podać w preferencjach hasło SIP użytkownika! " );
     } else if ( this->user_name->text() == "" ) {
-      QMessageBox::information(this, MAIN_WINDOW_TITLE.c_str(), " Proszę podać w preferencjach nazwę użytkownika! " );
+      QMessageBox::information( this, MAIN_WINDOW_TITLE.c_str(), " Proszę podać w preferencjach nazwę użytkownika! " );
     } else {
       // all required settings are ok
       logger.log( "All required data is OK!" );

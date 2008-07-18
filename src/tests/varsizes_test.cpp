@@ -38,7 +38,7 @@ main(int argc, char** argv) {
         assert( sizeof( liczba ) == 8 );
         
         assert( sizeof( char ) == 1 );
-        
+        assert( sizeof( char[5] ) == 5 );
     }
     
     if ( sizeof( void * ) == 4 ) { // 32bit
@@ -63,6 +63,7 @@ main(int argc, char** argv) {
         assert( sizeof( liczba ) == 8 );
         
         assert( sizeof( char ) == 1 );
+        assert( sizeof( char[5] ) == 5 );
     }
     
     return (EXIT_SUCCESS);

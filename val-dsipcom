@@ -1,0 +1,17 @@
+#!/bin/sh
+
+#    --trace-malloc=yes \
+
+valgrind \
+   -v \
+   --tool=memcheck \
+   --log-file=dsipcom.valgrind-`date +%F_%R`.log \
+    --leak-check=yes \
+    --error-limit=no \
+    --demangle=yes \
+    --num-callers=20 \
+	--track-fds=yes \
+	--trace-children=yes \
+	--show-reachable=yes \
+   ./dsipcom "$@"
+

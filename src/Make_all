@@ -18,5 +18,7 @@ fi
 
 if [ -s "compile.log" ]; then
 	less compile.log
+	else
+	rm compile.log
 fi
 

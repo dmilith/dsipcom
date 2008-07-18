@@ -28,31 +28,31 @@ using namespace std;
 
 int main() {
   
-  USER_CONFIG *user_config = NULL, *readed = NULL;
-  user_config = new USER_CONFIG;
-  readed = new USER_CONFIG;
-  
-  strcpy( user_config->user_name, "dmilith" );
-  // TODO: make crypted passwords 
-  strcpy( user_config->user_password, "alaniemakota_nieszyfrowane!");
-  strcpy( user_config->user_sip, "sip:dmilith@drak.kill.pl");
-  strcpy( user_config->user_sip_server, "ekiga.net");
-  
-  //printf( "zapis\n" );
-  FILE* config_file;
-  config_file = fopen( CONFIG_FILE, "wb" );
-  fwrite( user_config, sizeof( USER_CONFIG ), 1, config_file );
-  fclose( config_file );
-  
-  //printf( "odczyt\n" );
-  config_file = fopen( CONFIG_FILE, "rb" );
-  fread( readed, sizeof( USER_CONFIG ), 1, config_file );
-  fclose( config_file );
-  
-  //printf( "%s\n%s\n\n", readed->user_name, readed->user_password );
-  
-  assert( (string)user_config->user_name == (string)readed->user_name );
-  assert( (string)user_config->user_password == (string)readed->user_password );
-  
+    USER_CONFIG *user_config = NULL, *readed = NULL;
+    user_config = new USER_CONFIG;
+    readed = new USER_CONFIG;
+
+    strcpy( user_config->user_name, "dmilith" );
+    // TODO: make crypted passwords 
+    strcpy( user_config->user_password, "alaniemakota_nieszyfrowane!");
+    strcpy( user_config->user_sip, "sip:dmilith@drak.kill.pl");
+    strcpy( user_config->user_sip_server, "ekiga.net");
+
+    //printf( "zapis\n" );
+    FILE* config_file;
+    config_file = fopen( CONFIG_FILE, "wb" );
+    fwrite( user_config, sizeof( USER_CONFIG ), 1, config_file );
+    fclose( config_file );
+
+    //printf( "odczyt\n" );
+    config_file = fopen( CONFIG_FILE, "rb" );
+    fread( readed, sizeof( USER_CONFIG ), 1, config_file );
+    fclose( config_file );
+
+    //printf( "%s\n%s\n\n", readed->user_name, readed->user_password );
+
+    assert( (string)user_config->user_name == (string)readed->user_name );
+    assert( (string)user_config->user_password == (string)readed->user_password );
+
   return 0;
 }

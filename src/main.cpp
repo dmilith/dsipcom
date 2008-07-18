@@ -20,21 +20,21 @@
 
 using namespace Ui;
 
-void quit_dsipcom( int param ) {
+void receive_signal( int param ) {
   printf( "Received signal :%d\n", param );
 }
 
 int main( int argc, char *argv[] ) {
   /* macro to load images from dsipcom.qrc
-     could be problematic on some archs.. but on linux seems to be unecessary
-     Q_INIT_RESOURCE(dsipcom); */
+     could be problematic on some archs.. but on linux seems to be unecessary */
+     Q_INIT_RESOURCE(dsipcom); 
    QApplication app( argc, argv );
    new DSipCom( MAIN_WINDOW_TITLE.c_str() );
 
    //signal handling
-   signal( SIGTERM, quit_dsipcom );
-   signal( SIGINT, quit_dsipcom );
-   signal( SIGSEGV, quit_dsipcom );
+   //signal( SIGTERM, receive_signal );
+   signal( SIGINT, receive_signal );
+   //signal( SIGSEGV, receive_signal );
    
   return app.exec();
 }

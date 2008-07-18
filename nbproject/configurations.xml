@@ -26,27 +26,20 @@
       <itemPath>../../../../Projects/dsipcom-public/src/Makefile</itemPath>
     </logicalFolder>
   </logicalFolder>
-  <sourceRootList>
-    <Elem>../../../../Projects/dsipcom-public/src</Elem>
-  </sourceRootList>
   <sourceEncoding>UTF-8</sourceEncoding>
   <projectmakefile>dsipcom-public-Makefile3.mk</projectmakefile>
   <confs>
-    <conf name="Default" type="0">
+    <conf name="Default" type="1">
       <toolsSet>
         <compilerSet>GNU|GNU</compilerSet>
         <platform>2</platform>
       </toolsSet>
-      <makefileType>
-        <makeTool>
-          <buildCommandWorkingDir>../../../../Projects/dsipcom-public/src</buildCommandWorkingDir>
-          <buildCommand>make -f Makefile</buildCommand>
-          <cleanCommand>make -f Makefile clean</cleanCommand>
-          <executablePath></executablePath>
-        </makeTool>
-        <requiredProjects>
-        </requiredProjects>
-      </makefileType>
+      <compileType>
+        <linkerTool>
+          <linkerLibItems>
+          </linkerLibItems>
+        </linkerTool>
+      </compileType>
       <item path="../../../../Projects/dsipcom-public/src/dsipcom_ui.cpp">
         <itemTool>1</itemTool>
       </item>
