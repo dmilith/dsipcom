@@ -24,6 +24,7 @@
 #include <linphone/config.h>
 #include <linphone/linphonecore.h>
 
+#include <string>
 #include <boost/filesystem/operations.hpp>
 
 #include "ui_dsipcom.h" // automaticly generated interface from ui file

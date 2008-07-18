@@ -28,7 +28,8 @@ static bool_t display_enabled = FALSE;
 static bool_t show_general_state = FALSE;
 static char configfile_name[ PATH_MAX ];
 static char* sipAddr = NULL; /* for autocall */
-bool pending_call = false;
+static bool pending_call = false;
+static string pending_call_sip;
 
 #ifdef	__cplusplus
 extern "C" {
@@ -624,10 +625,11 @@ DSipCom::action_enter_hash() {
 
 void
 DSipCom::action_end_call() {
-  this->status_bar->setText( "Program nie wykonuje żadnej akcji" );
+    // section here will cut "sip:" from contact address
+  this->status_bar->setText( "Rozłączam z " + ( (QString)pending_call_sip.c_str() ).section( ':', -1 ) );
   this->call_button->setEnabled( true );
   this->hang_button->setEnabled( false );
-  linphone_core_terminate_call( &linphonec, "sip:robot@127.0.0.1:5064" );
+  linphone_core_terminate_call( &linphonec, pending_call_sip.c_str() );
   pending_call = false;
 }
 
@@ -645,13 +647,17 @@ DSipCom::action_make_a_call() {
               
             // FIXME STATIC SIP should be taken from user list here
               pending_call = true;
-              linphone_core_invite( &linphonec, "sip:robot@127.0.0.1:5064" );
+              pending_call_sip = (string)"sip:" + (string)( this->contacts_list->item( this->contacts_list->currentRow() )->text().section( ' ', -1 ) ).toUtf8();
+              linphone_core_invite( &linphonec, pending_call_sip.c_str() );
               
               break;
             case 1:
               // 1 => dialing page
               this->status_bar->setText( "Dzwonię do: " + this->number_entry->text() );
               //fixme SHOULD call to number from here
+              pending_call = true;
+              pending_call_sip = (string)"sip:" + (string)( this->number_entry->text() ).toUtf8();
+              linphone_core_invite( &linphonec, pending_call_sip.c_str() );
               
               break;
           }
