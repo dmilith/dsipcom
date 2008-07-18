@@ -42,9 +42,9 @@ p, li { white-space: pre-wrap; }
    <property name="geometry" >
     <rect>
      <x>0</x>
-     <y>23</y>
+     <y>25</y>
      <width>382</width>
-     <height>814</height>
+     <height>813</height>
     </rect>
    </property>
    <widget class="QPushButton" name="call_button" >
@@ -133,15 +133,15 @@ p, li { white-space: pre-wrap; }
      <enum>QFrame::Sunken</enum>
     </property>
     <property name="currentIndex" >
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="page_contacts" >
      <property name="geometry" >
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>372</width>
-       <height>517</height>
+       <width>366</width>
+       <height>526</height>
       </rect>
      </property>
      <attribute name="label" >
@@ -212,8 +212,8 @@ p, li { white-space: pre-wrap; }
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>372</width>
-       <height>517</height>
+       <width>366</width>
+       <height>526</height>
       </rect>
      </property>
      <attribute name="label" >
@@ -584,8 +584,8 @@ p, li { white-space: pre-wrap; }
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>372</width>
-       <height>517</height>
+       <width>94</width>
+       <height>24</height>
       </rect>
      </property>
      <attribute name="label" >
@@ -765,8 +765,8 @@ p, li { white-space: pre-wrap; }
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>372</width>
-       <height>517</height>
+       <width>94</width>
+       <height>24</height>
       </rect>
      </property>
      <attribute name="label" >
@@ -1135,8 +1135,8 @@ p, li { white-space: pre-wrap; }
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>96</width>
-       <height>26</height>
+       <width>94</width>
+       <height>24</height>
       </rect>
      </property>
      <attribute name="label" >
@@ -1188,8 +1188,8 @@ p, li { white-space: pre-wrap; }
        <string>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
 &lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
 p, li { white-space: pre-wrap; }
-&lt;/style>&lt;/head>&lt;body style=" font-family:'Sans Serif'; font-size:10pt; font-weight:400; font-style:normal;">
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Brak raportów z wybranego dnia.&lt;/p>&lt;/body>&lt;/html></string>
+&lt;/style>&lt;/head>&lt;body style=" font-family:'DejaVu Sans'; font-size:9pt; font-weight:400; font-style:normal;">
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif'; font-size:10pt;">Brak raportów z wybranego dnia.&lt;/p>&lt;/body>&lt;/html></string>
       </property>
       <property name="openExternalLinks" >
        <bool>true</bool>
@@ -1263,7 +1263,7 @@ p, li { white-space: pre-wrap; }
       </font>
      </property>
      <property name="currentIndex" >
-      <number>3</number>
+      <number>0</number>
      </property>
      <item>
       <property name="text" >
@@ -1271,7 +1271,7 @@ p, li { white-space: pre-wrap; }
       </property>
       <property name="icon" >
        <iconset resource="dsipcom.qrc" >
-        <normaloff>:/images/images/user_orange.png</normaloff>:/images/images/user_orange.png</iconset>
+        <normaloff>:/images/images/user_green.png</normaloff>:/images/images/user_green.png</iconset>
       </property>
      </item>
      <item>
@@ -1298,7 +1298,7 @@ p, li { white-space: pre-wrap; }
       </property>
       <property name="icon" >
        <iconset resource="dsipcom.qrc" >
-        <normaloff>:/images/images/user_female.png</normaloff>:/images/images/user_female.png</iconset>
+        <normaloff>:/images/images/user_red.png</normaloff>:/images/images/user_red.png</iconset>
       </property>
      </item>
     </widget>
@@ -1310,7 +1310,7 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>382</width>
-     <height>23</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuDsipcom" >
@@ -1344,9 +1344,9 @@ p, li { white-space: pre-wrap; }
    <property name="geometry" >
     <rect>
      <x>0</x>
-     <y>837</y>
+     <y>838</y>
      <width>382</width>
-     <height>23</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>

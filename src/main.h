@@ -26,7 +26,7 @@ static const string LOGGER_LINPHONE = LOGS_DIR + "/dsipcom.linphone.log";
 static const string LOGGER_DSIPCOM_UI = LOGS_DIR + "/dsipcom.logger.ui.log";
 
 static const string CONFIG_FILE = CONF_DIR + "/dsipcom.dcnf";
-static const string LINPHONE_CONFIG = CONF_DIR + "/linphone.dcnf";
+static const string LINPHONE_CONFIG = CONF_DIR + "/linphone.conf";
 
 static const string USER_LIST_FILE = ULIST_DIR + "/dsipcom.dulf";
 

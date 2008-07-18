@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <signal.h>
+#include <assert.h>
 
 #include <qt4/QtCore/Qt>
 #include <qt4/QtCore/QFile>
@@ -140,6 +141,7 @@ namespace Ui {
       // init linphone
       void create_linphone_core();
       //LinphoneCore *_core;
+      LinphoneCore linphonec;
 	    //SipMutex _mutex;
       FILE* linphone_logger_file;
 

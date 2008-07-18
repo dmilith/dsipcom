@@ -1,0 +1,29 @@
+Installing in debian ( Lenny amd64 ):
+
+A. Preparing
+    0. What do You need?
+        libspeex-dev
+        libspeexdsp-dev
+
+B. Creating necessary libs ( sources in src/external )    
+    0. Set compiler flags:
+	export CFLAGS="-fPIC -march=athlon64" ( for amd64 )
+    
+    1. Compile ffmpeg
+        cd ffmpeg
+        git pull
+        ./configure --enable-shared
+        make
+        sudo make install
+
+	cd libswscale
+	git pull
+	make
+	sudo make install
+    
+    2. Compile linphone
+	cd linphone-cvs
+	cvs up
+	./autogen.sh
+	./configure
+	

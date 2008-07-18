@@ -18,7 +18,7 @@ using namespace boost::filesystem;
 //
 
 //Linphone Core
-LinphoneCore linphonec;
+
 LPC_AUTH_STACK auth_stack;
 char prompt[PROMPT_MAX_LEN];
 static bool_t auto_answer = FALSE;
@@ -27,7 +27,8 @@ static bool_t vcap_enabled = FALSE;
 static bool_t display_enabled = FALSE;
 static bool_t show_general_state = FALSE;
 static char configfile_name[ PATH_MAX ];
-static char *sipAddr = NULL; /* for autocall */
+static char* sipAddr = NULL; /* for autocall */
+bool pending_call = false;
 
 #ifdef	__cplusplus
 extern "C" {
@@ -95,8 +96,8 @@ extern "C" {
   
     static void
     linphonec_display_something (LinphoneCore * lc, const char *something) {
-      fprintf (stdout, "%s\n%s", something,prompt);
-      fflush(stdout);
+      //fprintf (stdout, "%s\n%s", something,prompt);
+      //fflush(stdout);
     }
 
     static void
@@ -118,8 +119,8 @@ extern "C" {
 
     static void
     linphonec_call_received(LinphoneCore *lc, const char *from) {
-      if ( auto_answer)  {
-        answer_call=TRUE;
+      if ( auto_answer )  {
+        answer_call = TRUE;
       }
     }
 
@@ -166,67 +167,101 @@ extern "C" {
     }
 
     static void 
-    linphonec_general_state (LinphoneCore *lc, LinphoneGeneralState *gstate) {
-            if (show_general_state) {
-              switch(gstate->new_state) {
+    linphonec_general_state ( LinphoneCore *lc, LinphoneGeneralState *gstate ) {
+            if ( show_general_state ) {
+              switch( gstate->new_state ) {
                case GSTATE_POWER_OFF:
-                 printf("GSTATE_POWER_OFF");
+                 printf( "GSTATE_POWER_OFF" );
                  break;
                case GSTATE_POWER_STARTUP:
-                 printf("GSTATE_POWER_STARTUP");
+                 printf( "GSTATE_POWER_STARTUP" );
                  break;
                case GSTATE_POWER_ON:
-                 printf("GSTATE_POWER_ON");
+                 printf( "GSTATE_POWER_ON" );
                  break;
                case GSTATE_POWER_SHUTDOWN:
-                 printf("GSTATE_POWER_SHUTDOWN");
+                 printf( "GSTATE_POWER_SHUTDOWN" );
                  break;
                case GSTATE_REG_NONE:
-                 printf("GSTATE_REG_NONE");
+                 printf( "GSTATE_REG_NONE" );
                  break;
                case GSTATE_REG_OK:
-                 printf("GSTATE_REG_OK");
+                 printf( "GSTATE_REG_OK" );
                  break;
                case GSTATE_REG_FAILED:
-                 printf("GSTATE_REG_FAILED");
+                 printf( "GSTATE_REG_FAILED" );
                  break;
                case GSTATE_CALL_IDLE:
-                 printf("GSTATE_CALL_IDLE");
+                 printf( "GSTATE_CALL_IDLE" );
                  break;
                case GSTATE_CALL_OUT_INVITE:
-                 printf("GSTATE_CALL_OUT_INVITE");
+                 printf( "GSTATE_CALL_OUT_INVITE" );
                  break;
                case GSTATE_CALL_OUT_CONNECTED:
-                 printf("GSTATE_CALL_OUT_CONNECTED");
+                 printf( "GSTATE_CALL_OUT_CONNECTED" );
                  break;
                case GSTATE_CALL_IN_INVITE:
-                 printf("GSTATE_CALL_IN_INVITE");
+                 printf( "GSTATE_CALL_IN_INVITE" );
                  break;
                case GSTATE_CALL_IN_CONNECTED:
-                 printf("GSTATE_CALL_IN_CONNECTED");
+                 printf( "GSTATE_CALL_IN_CONNECTED" );
                  break;
                case GSTATE_CALL_END:
-                 printf("GSTATE_CALL_END");
+                 printf( "GSTATE_CALL_END" );
                  break;
                case GSTATE_CALL_ERROR:
-                 printf("GSTATE_CALL_ERROR");
+                 printf( "GSTATE_CALL_ERROR" );
                  break;
                default:
-                  printf("GSTATE_UNKNOWN_%d",gstate->new_state);   
+                  printf( "GSTATE_UNKNOWN_%d", gstate->new_state );   
               }
-              if (gstate->message) printf(" %s", gstate->message);
-              printf("\n");
+              if ( gstate->message ) printf( " %s", gstate->message );
+              printf( "\n" );
             }  
     }
     
+    static int
+    linphonec_main_loop( LinphoneCore* opm, char* sipAddr ) {
+       // while ( true ) {
+       //   sleep( 0.2 ); 
+          linphone_core_iterate( opm ); 
+          
+          //int pid = fork();
+          //printf( "pid: %d", pid );
+          //fflush(stdout);
+      // }
+/*        bool_t run = TRUE;
+        char buf[ LINE_MAX_LEN ];
+        // FIXME testing purposes
+        char* input;
+        
+        if ( sipAddr != NULL ) {
+          snprintf ( buf, sizeof( buf ), "call %s", sipAddr );
+          run = linphonec_parse_command_line( &linphonec, buf );
+        }
+        
+        while ( sipAddr != NULL ) {
+            char* iptr;
+            size_t input_len;
+            input_len = strlen( iptr );
+            if ( ! input_len ) {
+              free( input );
+              continue;
+            }
+            
+        }
+*/
+    }
+
 #ifdef	__cplusplus
 } // extern C
 #endif
 
 
-//DSipCom objects
-Logger logger( LOGGER_DSIPCOM_UI.c_str(), "debug" );
 
+//DSipCom objects
+Logger
+logger( LOGGER_DSIPCOM_UI.c_str(), "debug" );
 
 //DSipCom methods
 
@@ -266,7 +301,8 @@ DSipCom::~DSipCom() {
   fclose( linphone_logger_file );
 }
 
-void DSipCom::setupDIRs() {
+void
+DSipCom::setupDIRs() {
   // this method will check existance of main program directories and it will try to create them if they doesn't exist
   if ( !exists( DSIP_MAIN_DIR ) ) create_directory( DSIP_MAIN_DIR );
   if ( !exists( LOGS_DIR ) ) create_directory( LOGS_DIR );
@@ -274,13 +310,14 @@ void DSipCom::setupDIRs() {
   if ( !exists( ULIST_DIR ) ) create_directory( ULIST_DIR );
 }
 
-void DSipCom::create_linphone_core() {
+void
+DSipCom::create_linphone_core() {
   logger.log( "Linphone config: " + (QString)( LINPHONE_CONFIG.c_str() ) );
   logger.log( "Initializing Linphone core logger" );
   
    /* tracing & logging for osip */
    linphone_logger_file = fopen( LOGGER_LINPHONE.c_str(), "w" );
-   TRACE_INITIALIZE( (trace_level_t)5, linphone_logger_file );
+   TRACE_INITIALIZE( (trace_level_t)0, linphone_logger_file );
    // TODO: when debugging disabled it should be:
    // linphone_core_disable_logs();
    linphone_core_enable_logs( linphone_logger_file );
@@ -290,13 +327,19 @@ void DSipCom::create_linphone_core() {
   // _core = linphone_core_new( &linphonec_vtable, config, NULL );
    logger.log( "Initializing LinPhone" );
    auth_stack.nitems = 0;
-   linphone_core_init ( &linphonec, &linphonec_vtable, LINPHONE_CONFIG.c_str(), NULL );
-   //linphonec_main_loop ( &linphonec, sipAddr );
 
+   linphone_core_init ( &linphonec, &linphonec_vtable, LINPHONE_CONFIG.c_str(), NULL );
+   
+  //linphonec_main_loop ( &linphonec, sipAddr );
+   
+   // FIXME: should be dynamic
+   linphonec_main_loop( &linphonec, "sip:robot@127.0.0.1:5064" ); //"sip:dmilith@127.0.0.1" );
+   
   logger.log( "Linphone core Ready!" );
 }
 
-void DSipCom::save_user_list() {
+void
+DSipCom::save_user_list() {
   /*  // test elements
       USER_LIST *temp;
       temp = new USER_LIST;
@@ -337,7 +380,8 @@ void DSipCom::save_user_list() {
   fclose( userlist_file );
 }
 
-void DSipCom::load_user_list() {
+void
+DSipCom::load_user_list() {
   // FIXME: userlist isn't clear after this one:
   user_list.clear();
   // reading user_list from file
@@ -395,7 +439,8 @@ void DSipCom::load_user_list() {
   this->contacts_list->setCurrentRow( 0 );
 }
 
-void DSipCom::load_user_config() {
+void
+DSipCom::load_user_config() {
   FILE* config_file;
   config_file = fopen( CONFIG_FILE.c_str(), "rb+" );
   if ( config_file == 0 ) {  
@@ -429,7 +474,8 @@ void DSipCom::load_user_config() {
   this->pcma_8_codec->setChecked( user_config->pcma_8_codec );
 }
 
-void DSipCom::save_user_config() {
+void
+DSipCom::save_user_config() {
   // taking values from main window objects
   strcpy( user_config->user_name, this->user_name->text().toUtf8() );
   strcpy( user_config->user_password, this->user_password->text().toUtf8() );
@@ -464,7 +510,8 @@ void DSipCom::save_user_config() {
 }
 
 // init_actions will init all actions and binds in application
-void DSipCom::init_actions() {
+void
+DSipCom::init_actions() {
   // buttons
   QObject::connect( call_button, SIGNAL( clicked() ), this, SLOT( action_make_a_call() ));
   QObject::connect( hang_button, SIGNAL( clicked() ), this, SLOT( action_end_call() ));
@@ -494,78 +541,98 @@ void DSipCom::init_actions() {
   QObject::connect( action_remove_contact_from_list, SIGNAL( activated() ), this, SLOT( action_remove_contact_func() ));
 }
 
-void DSipCom::action_save_user_config() {
+void
+DSipCom::action_save_user_config() {
   save_user_config();
 }
 
-void DSipCom::action_load_user_config() {
+void
+DSipCom::action_load_user_config() {
   load_user_config();
 }
 
-void DSipCom::action_load_user_list() {
+void
+DSipCom::action_load_user_list() {
   load_user_list();
 }
 
-void DSipCom::action_save_user_list() {
+void
+DSipCom::action_save_user_list() {
   save_user_list();
 }
 
 /* numbers enterance: */
-void DSipCom::action_enter_0() {
+void
+DSipCom::action_enter_0() {
   this->number_entry->setText( this->number_entry->text() + "0" );
 }
 
-void DSipCom::action_enter_1() {
+void
+DSipCom::action_enter_1() {
   this->number_entry->setText( this->number_entry->text() + "1" );
 }
 
-void DSipCom::action_enter_2() {
+void
+DSipCom::action_enter_2() {
   this->number_entry->setText( this->number_entry->text() + "2" );
 }
 
-void DSipCom::action_enter_3() {
+void
+DSipCom::action_enter_3() {
   this->number_entry->setText( this->number_entry->text() + "3" );
 }
 
-void DSipCom::action_enter_4() {
+void
+DSipCom::action_enter_4() {
   this->number_entry->setText( this->number_entry->text() + "4" );
 }
 
-void DSipCom::action_enter_5() {
+void
+DSipCom::action_enter_5() {
   this->number_entry->setText( this->number_entry->text() + "5" );
 }
 
-void DSipCom::action_enter_6() {
+void
+DSipCom::action_enter_6() {
   this->number_entry->setText( this->number_entry->text() + "6" );
 }
 
-void DSipCom::action_enter_7() {
+void
+DSipCom::action_enter_7() {
   this->number_entry->setText( this->number_entry->text() + "7" );
 }
 
-void DSipCom::action_enter_8() {
+void
+DSipCom::action_enter_8() {
   this->number_entry->setText( this->number_entry->text() + "8" );
 }
 
-void DSipCom::action_enter_9() {
+void
+DSipCom::action_enter_9() {
   this->number_entry->setText( this->number_entry->text() + "9" );
 }
 
-void DSipCom::action_enter_star() {
+void
+DSipCom::action_enter_star() {
   this->number_entry->setText( this->number_entry->text() + "*" );
 }
 
-void DSipCom::action_enter_hash() {
+void
+DSipCom::action_enter_hash() {
   this->number_entry->setText( this->number_entry->text() + "#" );
 }
 
-void DSipCom::action_end_call() {
+void
+DSipCom::action_end_call() {
   this->status_bar->setText( "Program nie wykonuje żadnej akcji" );
   this->call_button->setEnabled( true );
   this->hang_button->setEnabled( false );
+  linphone_core_terminate_call( &linphonec, "sip:robot@127.0.0.1:5064" );
+  pending_call = false;
 }
 
-void DSipCom::action_make_a_call() {
+void
+DSipCom::action_make_a_call() {
   // if we're on contacts list tab and this list isn't empty
   if ( ( ( this->contacts_list->count() != 0 ) && ( this->toolBox->currentIndex() == 0 ) ) || 
       // or number entry is at least one char long and we're on number entry page
@@ -574,11 +641,18 @@ void DSipCom::action_make_a_call() {
             case 0:
               // 0 => contact list page
               this->status_bar->setText( "Dzwonię do: " + 
-                      this->contacts_list->item( this->contacts_list->currentRow() )->text().section( ' ', -1 ) ); // str == "myapp" );
+                    this->contacts_list->item( this->contacts_list->currentRow() )->text().section( ' ', -1 ) ); // str == "myapp" );
+              
+            // FIXME STATIC SIP should be taken from user list here
+              pending_call = true;
+              linphone_core_invite( &linphonec, "sip:robot@127.0.0.1:5064" );
+              
               break;
             case 1:
               // 1 => dialing page
               this->status_bar->setText( "Dzwonię do: " + this->number_entry->text() );
+              //fixme SHOULD call to number from here
+              
               break;
           }
       this->call_button->setEnabled( false );
@@ -590,19 +664,22 @@ void DSipCom::action_make_a_call() {
   //this->contacts_list->editItem( current_item );
 }
 
-void DSipCom::action_help_func() {
+void
+DSipCom::action_help_func() {
   logger.log( "Visited -> Help" );
   // TODO: add own help dialog instead of QMessageBox
   QMessageBox::information( this, MAIN_WINDOW_TITLE.c_str(), " Brak pliku pomocy [ niezainicjowano ] ");
 }
 
 
-void DSipCom::action_about_func() {
+void
+DSipCom::action_about_func() {
   logger.log( "Visited -> about dialog!" );
   AboutBox *window = new AboutBox();
 }
 
-void DSipCom::action_connect_to_sip_server_func() {
+void
+DSipCom::action_connect_to_sip_server_func() {
   logger.log( "Trying to connect to server" );
     if ( this->user_sip_server->text() == "" ) {
       QMessageBox::information( this, MAIN_WINDOW_TITLE.c_str(), " Proszę podać w preferencjach użytkownika nazwę serwera! " );
@@ -618,11 +695,13 @@ void DSipCom::action_connect_to_sip_server_func() {
     }
 }
 
-void DSipCom::action_disconnect_from_sip_server_func() {
+void
+DSipCom::action_disconnect_from_sip_server_func() {
   logger.log( "Trying to disconnect from server" ); 
 }
 
-void DSipCom::action_add_contact_func() {
+void
+DSipCom::action_add_contact_func() {
   //creating new window with parent of current one
   dialog = new AddContactWindow( this );
   //switching to contacts list view
@@ -634,7 +713,8 @@ void DSipCom::action_add_contact_func() {
   dialog->show();
 }
 
-void DSipCom::action_remove_contact_func() {
+void
+DSipCom::action_remove_contact_func() {
   //removing entry from list ( taking it without destination so it goes to NULL ) but only if current window is 0 - contacts list
   if ( toolBox->currentIndex() == 0 ) {
     // FIXME: takeItem doesn't remove element from real list.
@@ -652,13 +732,15 @@ AddContactWindow::AddContactWindow( QWidget *parent ) {
 AddContactWindow::~AddContactWindow() {
 }
 
-void AddContactWindow::init_actions() {
+void
+AddContactWindow::init_actions() {
   // buttons
   QObject::connect( add_button, SIGNAL( clicked() ), this, SLOT( action_done() ));
   QObject::connect( cancel_button, SIGNAL( clicked() ), this, SLOT( action_cancel() ));
 }
 
-void AddContactWindow::action_done() {
+void
+AddContactWindow::action_done() {
   // finding parent
   DSipCom *object = ( (DSipCom*)this->parent() );
   // adding lineedit content from dialog on contact list
@@ -685,7 +767,8 @@ void AddContactWindow::action_done() {
   }
 }
 
-void AddContactWindow::action_cancel() {
+void
+AddContactWindow::action_cancel() {
   //object will be object pointing to parent window
   DSipCom *object = ( (DSipCom*)this->parent() );
   // moving all parent elements back up

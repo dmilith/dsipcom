@@ -18,3 +18,4 @@ user_list/*
 config/*
 .gitignore.swp
 dsipcom.valgrind*
+.dSipCom

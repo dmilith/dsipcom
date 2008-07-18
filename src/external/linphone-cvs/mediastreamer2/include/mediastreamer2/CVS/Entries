@@ -1,0 +1,23 @@
+/.cvsignore/1.1/Tue Jul 25 23:04:54 2006//
+/Makefile.am/1.7/Tue Feb 26 21:54:43 2008//
+/allfilters.h/1.15/Sun May 25 19:47:28 2008//
+/dtmfgen.h/1.1/Wed Jun 14 12:48:52 2006//
+/ice.h/1.3/Sat Jun 14 12:57:08 2008//
+/mediastream.h/1.14/Fri May 23 08:26:19 2008//
+/mscommon.h/1.17/Sat Jul 12 16:05:43 2008//
+/msfileplayer.h/1.3/Fri Sep 28 16:58:36 2007//
+/msfilerec.h/1.1/Wed Jun 14 12:48:52 2006//
+/msfilter.h/1.21/Fri Jan 11 17:51:32 2008//
+/msqueue.h/1.8/Fri Jan  4 21:00:28 2008//
+/msrtp.h/1.2/Fri Sep  8 01:12:42 2006//
+/mssndcard.h/1.7/Thu Nov 29 21:12:59 2007//
+/mstee.h/1.1/Fri Nov  9 10:50:21 2007//
+/msticker.h/1.12/Sat Nov  3 15:51:28 2007//
+/msv4l.h/1.5/Thu Feb  7 09:52:12 2008//
+/msvideo.h/1.15/Thu Dec  6 14:52:31 2007//
+/msvideoout.h/1.12/Wed Jan 23 16:56:33 2008//
+/msvolume.h/1.1/Fri May  4 16:09:58 2007//
+/mswebcam.h/1.2/Fri May 23 08:26:19 2008//
+/rfc3984.h/1.5/Wed Feb 20 21:23:56 2008//
+/waveheader.h/1.3/Tue Oct 24 13:12:34 2006//
+D
