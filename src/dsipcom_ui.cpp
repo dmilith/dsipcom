@@ -6,8 +6,11 @@
  *
  */
 
+// TODO: make header check for dsipcom.dcnf
+
 #include "dsipcom_ui.h"
 #include "version.h"
+//#include "main.h"
 
 using namespace Log;
 using namespace Ui;
@@ -225,7 +228,7 @@ extern "C" {
     linphonec_main_loop( LinphoneCore* opm, char* sipAddr ) {
        // while ( true ) {
        //   sleep( 0.2 ); 
-          linphone_core_iterate( opm ); 
+      linphone_core_iterate( opm ); 
           
           //int pid = fork();
           //printf( "pid: %d", pid );
@@ -261,16 +264,21 @@ extern "C" {
 
 
 //DSipCom objects
-Logger
-logger( LOGGER_DSIPCOM_UI.c_str(), "debug" );
-
+#ifdef DEBUG
+  Logger
+  logger( LOGGER_DSIPCOM_UI.c_str(), "debug" );
+#endif
+  
 //DSipCom methods
-
 DSipCom::DSipCom( const QString& title ) {
-  logger.log( "Checking HOME and DIRS" );
-   setupDIRs();
-  logger.log( "Initializing UI" );
-   setupUi( this );
+  #ifdef DEBUG
+    logger.log( "Checking HOME and DIRS" );
+  #endif
+    setupDIRs();
+  #ifdef DEBUG
+    logger.log( "Initializing UI" );
+  #endif
+  setupUi( this );
    // global ui encoding => utf8
    QTextCodec::setCodecForCStrings( QTextCodec::codecForName( "UTF-8" ) );
    // setting window flags
@@ -282,24 +290,37 @@ DSipCom::DSipCom( const QString& title ) {
    // contacts list in front by default
    toolBox->setCurrentIndex( 0 );
    show();
-  logger.log( "Initializing QT4 actions" );
-   init_actions();
-  logger.log( "DSipCom initialized" );
-  logger.log( "Loading User List" );
+   #ifdef DEBUG
+    logger.log( "Initializing QT4 actions" );
+   #endif
+    init_actions();
+   #ifdef DEBUG
+    logger.log( "DSipCom initialized" );
+    logger.log( "Loading User List" );
+   #endif
    //save_user_list();
-   load_user_list();
-  logger.log( "Loading User Config" );
-   user_config = new USER_CONFIG;
-   load_user_config();
-  logger.log( "Loading Linphone" );
-   create_linphone_core();
+  
+  load_user_list();
+   
+   #ifdef DEBUG
+    logger.log( "Loading User Config" );
+   #endif
+  user_config = new USER_CONFIG;
+  load_user_config();
+   #ifdef DEBUG
+    logger.log( "Loading Linphone" );
+   #endif
+  create_linphone_core();
 }
 
 DSipCom::~DSipCom() {
   // destroing main linphone core structure
   //  linphone_core_destroy( _core );
-	linphone_core_uninit( &linphonec );
-  fclose( linphone_logger_file );
+  linphone_core_uninit( &linphonec );
+ /* #ifdef DEBUG
+    fclose( linphone_logger_file );
+  #endif  
+  */
 }
 
 void
@@ -313,30 +334,36 @@ DSipCom::setupDIRs() {
 
 void
 DSipCom::create_linphone_core() {
-  logger.log( "Linphone config: " + (QString)( LINPHONE_CONFIG.c_str() ) );
-  logger.log( "Initializing Linphone core logger" );
-  
-   /* tracing & logging for osip */
-   linphone_logger_file = fopen( LOGGER_LINPHONE.c_str(), "w" );
-   TRACE_INITIALIZE( (trace_level_t)0, linphone_logger_file );
-   // TODO: when debugging disabled it should be:
-   // linphone_core_disable_logs();
-   linphone_core_enable_logs( linphone_logger_file );
+    #ifdef DEBUG
+       logger.log( "Linphone config: " + (QString)( LINPHONE_CONFIG.c_str() ) );
+       logger.log( "Initializing Linphone core logger" );
+    #endif
 
-  logger.log( "Linphone logger initialized" );
-  //creating linphone main structure
-  // _core = linphone_core_new( &linphonec_vtable, config, NULL );
-   logger.log( "Initializing LinPhone" );
-   auth_stack.nitems = 0;
+    #ifdef DEBUG
+       //linphone_core_enable_logs( linphone_logger_file );
+       linphone_core_enable_logs( stdout );
+       //linphone_logger_file = fopen( LOGGER_LINPHONE.c_str(), "w" );
+       //TRACE_INITIALIZE( (trace_level_t)0, linphone_logger_file );
+       TRACE_INITIALIZE( (trace_level_t)2, stdout );
+    #endif
+    #ifndef DEBUG   
+       linphone_core_disable_logs();
+    #endif
 
-   linphone_core_init ( &linphonec, &linphonec_vtable, LINPHONE_CONFIG.c_str(), NULL );
-   
-  //linphonec_main_loop ( &linphonec, sipAddr );
-   
-   // FIXME: should be dynamic
-   linphonec_main_loop( &linphonec, "sip:robot@127.0.0.1:5064" ); //"sip:dmilith@127.0.0.1" );
-   
-  logger.log( "Linphone core Ready!" );
+    #ifdef DEBUG
+      logger.log( "Linphone logger initialized" );
+      logger.log( "Initializing LinPhone" );
+    #endif
+
+      auth_stack.nitems = 0;
+      linphone_core_init ( &linphonec, &linphonec_vtable, LINPHONE_CONFIG.c_str(), NULL );
+       // FIXME: should be dynamic
+      //entering main linphone loop
+       linphonec_main_loop( &linphonec, NULL ); //"sip:dmilith@127.0.0.1" );
+
+    #ifdef DEBUG
+      logger.log( "Linphone core Ready!" );
+    #endif
 }
 
 void
@@ -376,8 +403,11 @@ DSipCom::save_user_list() {
       fwrite( &user_list[ i ].contact_sip_address, 50, 1, userlist_file );
     }
   }
+
+#ifdef DEBUG
   printf( "records written to file: %d\n", user_list_size );
   fflush( stdout ); // need to flush out data
+#endif  
   fclose( userlist_file );
 }
 
@@ -405,7 +435,10 @@ DSipCom::load_user_list() {
   char* user_list_header = new char[ sizeof( user_list_header_correct ) ];
   
   fread( user_list_header, sizeof( user_list_header_correct ), 1, userlist_file );
+
+#ifdef DEBUG
   logger.log( "Userlist file header check: " + (QString)user_list_header + " vs " + (QString)user_list_header_correct );
+#endif
   if ( strcmp( user_list_header, user_list_header_correct ) != 0 ) {
     printf( "Error in user_list file header. (%s instead of %s) Probably I tried to read bad format user_list file!\n",
             user_list_header, user_list_header_correct );
@@ -439,7 +472,7 @@ DSipCom::load_user_list() {
     }
   }
   fclose( userlist_file );
-  // matter of security - always one of elements on user list should be choosed:
+  // matter of security - always one of elements on user list need to be choosen:
   this->contacts_list->setCurrentRow( 0 );
 }
 
@@ -675,7 +708,9 @@ DSipCom::action_make_a_call() {
 
 void
 DSipCom::action_help_func() {
-  logger.log( "Visited -> Help" );
+  #ifdef DEBUG
+    logger.log( "Visited -> Help" );
+  #endif
   // TODO: add own help dialog instead of QMessageBox
   QMessageBox::information( this, MAIN_WINDOW_TITLE.c_str(), " Brak pliku pomocy [ niezainicjowano ] ");
 }
@@ -683,13 +718,17 @@ DSipCom::action_help_func() {
 
 void
 DSipCom::action_about_func() {
-  logger.log( "Visited -> about dialog!" );
+  #ifdef DEBUG
+    logger.log( "Visited -> about dialog!" );
+  #endif
   AboutBox *window = new AboutBox();
 }
 
 void
 DSipCom::action_connect_to_sip_server_func() {
-  logger.log( "Trying to connect to server" );
+  #ifdef DEBUG
+    logger.log( "Trying to connect to server" );
+  #endif
     if ( this->user_sip_server->text() == "" ) {
       QMessageBox::information( this, MAIN_WINDOW_TITLE.c_str(), " Proszę podać w preferencjach użytkownika nazwę serwera! " );
     } else if ( this->user_sip->text() == "" ) {
@@ -700,13 +739,17 @@ DSipCom::action_connect_to_sip_server_func() {
       QMessageBox::information( this, MAIN_WINDOW_TITLE.c_str(), " Proszę podać w preferencjach nazwę użytkownika! " );
     } else {
       // all required settings are ok
-      logger.log( "All required data is OK!" );
+      #ifdef DEBUG
+        logger.log( "All required config data is OK!" );
+      #endif  
     }
 }
 
 void
 DSipCom::action_disconnect_from_sip_server_func() {
-  logger.log( "Trying to disconnect from server" ); 
+  #ifdef DEBUG  
+    logger.log( "Trying to disconnect from server" ); 
+  #endif
 }
 
 void
@@ -724,21 +767,22 @@ DSipCom::action_add_contact_func() {
 
 void
 DSipCom::action_remove_contact_func() {
-  //removing entry from list ( taking it without destination so it goes to NULL ) but only if current window is 0 - contacts list
   if ( toolBox->currentIndex() == 0 ) {
-    
     // and from user_list QVector
-    printf( "Removed contact with index: %d\n", this->contacts_list->currentRow() );
-    fflush( stdout );
+    #ifdef DEBUG
+      printf( "Removed contact with index: %d\n", this->contacts_list->currentRow() );
+      fflush( stdout );
+    #endif  
     this->user_list.remove( this->contacts_list->currentRow() );
-
     // delete item from list
     delete this->contacts_list->item( this->contacts_list->currentRow() );
-    
-    printf( "Remove contact func contacts list: %d\n", this->contacts_list->count() );
-    fflush( stdout );
-    printf( "Remove contact func list size: %d\n", user_list.size() );
-    fflush( stdout );
+  
+    #ifdef DEBUG
+      printf( "Remove contact func contacts list: %d\n", this->contacts_list->count() );
+      fflush( stdout );
+      printf( "Remove contact func list size: %d\n", user_list.size() );
+      fflush( stdout );
+    #endif  
   }
 }
 

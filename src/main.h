@@ -10,6 +10,11 @@
 #ifndef _DSIPCOM_MAIN_H
 #define _DSIPCOM_MAIN_H
 
+// enabling debuging options
+#define DEBUG
+// enable asserts in code
+#define D_ASSERT
+
 #include <stdlib.h>
 
 using namespace std;
