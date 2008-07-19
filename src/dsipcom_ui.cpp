@@ -383,8 +383,11 @@ DSipCom::save_user_list() {
 
 void
 DSipCom::load_user_list() {
-  // FIXME: userlist isn't clear after this one:
-  user_list.clear();
+  // clear user_list QVector
+  this->user_list.clear(); // resize(0)
+  // clear items on list
+  this->contacts_list->clear();
+  
   // reading user_list from file
   uint64_t size_of_list;
   FILE* userlist_file;
@@ -723,8 +726,19 @@ void
 DSipCom::action_remove_contact_func() {
   //removing entry from list ( taking it without destination so it goes to NULL ) but only if current window is 0 - contacts list
   if ( toolBox->currentIndex() == 0 ) {
-    // FIXME: takeItem doesn't remove element from real list.
-    this->contacts_list->takeItem( this->contacts_list->currentRow() );
+    
+    // and from user_list QVector
+    printf( "Removed contact with index: %d\n", this->contacts_list->currentRow() );
+    fflush( stdout );
+    this->user_list.remove( this->contacts_list->currentRow() );
+
+    // delete item from list
+    delete this->contacts_list->item( this->contacts_list->currentRow() );
+    
+    printf( "Remove contact func contacts list: %d\n", this->contacts_list->count() );
+    fflush( stdout );
+    printf( "Remove contact func list size: %d\n", user_list.size() );
+    fflush( stdout );
   }
 }
 
