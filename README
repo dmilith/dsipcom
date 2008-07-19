@@ -5,11 +5,12 @@ A. About
     
 B. Prepare to compile
     0. What do You need?
-        libspeex-dev
-        libspeexdsp-dev
-        libqt4*-dev
+	qt4-dev-tools ( 4.4.0-X Cause You just don't want to compile it by Yourself.. )
 
-C. Creating necessary libs ( sources in src/external )    
+C. Installing precompiled libs ( in src/external/debs_lenny_ )
+    0. You have already precompiled libraries for Debian Lenny i686 and amd64 arch.
+		
+D. Creating necessary libs ( sources in src/external )
     0. Set compiler flags:
 	export CFLAGS="-march=athlon64 -Os" ( for amd64 arch and with optimize )
     1. Compile speex
