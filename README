@@ -13,28 +13,32 @@ C. Installing precompiled libs ( in src/external/debs_lenny_ )
 D. Creating necessary libs ( sources in src/external )
     0. Set compiler flags:
 	export CFLAGS="-march=athlon64 -Os" ( for amd64 arch and with optimize )
-    1. Compile speex
-	cd speex-1.2beta3
+    1. Download and compile speex
+	http://www.speex.org/downloads/
+	cd speex-1.2beta3o2
 	./configure --enable-shared
 	make
 	sudo make install
 	
-    2. Compile ffmpeg
-        cd ffmpeg
-        git pull
+    2. Download and compile ffmpeg
+	git clone git://git.mplayerhq.hu/ffmpeg/
+	cd ffmpeg
+	git clone git://git.mplayerhq.hu/libswscale/
+	( or svn checkout svn://svn.mplayerhq.hu/ffmpeg/trunk ffmpeg )
+
         ./configure --enable-shared
         make
         sudo make install
 
 	cd libswscale
-	git pull
 	make
 	sudo make install
     
-    3. Compile linphone
+    3. Download and compile linphone from cvs
+	cvs -z3 -d:pserver:anonymous@cvs.savannah.nongnu.org:/sources/linphone co linphone
 	cd linphone-cvs
-	cvs up
 	./autogen.sh
 	./configure --enable-shared
 	make
 	sudo make install
+	

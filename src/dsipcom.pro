@@ -13,7 +13,12 @@ FORMS += dsipcom.ui \
 					add_contact_dialog.ui \
 					about.ui
 RESOURCES += dsipcom.qrc
-LIBS += -lspeex -llinphone -losipparser2 -lasound -leXosip2 -lboost_filesystem
+
+LIBS += -llinphone -lboost_filesystem
+
+#old libs:
+#LIBS += -lspeex -llinphone -losipparser2 -lasound -leXosip2 -lboost_filesystem
+
 win32 {
      HEADERS += win_specification.h
 }
