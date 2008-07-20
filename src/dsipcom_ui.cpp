@@ -29,235 +29,238 @@ static bool_t answer_call = FALSE;
 static bool_t vcap_enabled = FALSE;
 static bool_t display_enabled = FALSE;
 static bool_t show_general_state = FALSE;
-static char configfile_name[ PATH_MAX ];
+//static char configfile_name[ PATH_MAX ];
 static char* sipAddr = NULL; /* for autocall */
+
+// pending_call == true when call is pending 
 static bool pending_call = false;
+// pending_call_sip contains sip address of caller
 static string pending_call_sip;
 
-#ifdef	__cplusplus
-extern "C" {
-#endif
-    
-// Linphone structs
-//
-  //static int handle_configfile_migration(void);
-  //static int copy_file(const char *from, const char *to);
-  //static int linphonec_parse_cmdline(int argc, char **argv);
-  //static int linphonec_initialize_readline(void);
-  //static int linphonec_finish_readline();  
-  char *lpc_strip_blanks(char *input);
-  static int linphonec_init( int argc, char **argv );
-  static int linphonec_main_loop ( LinphoneCore * opm, char * sipAddr );
-  static int linphonec_idle_call ( void );
-
-  /* These are callback for linphone core */
-  static void linphonec_call_received( LinphoneCore *lc, const char *from );
-  static void linphonec_prompt_for_auth( LinphoneCore *lc, const char *realm, const char *username );
-  static void linphonec_display_something ( LinphoneCore * lc, const char *something );
-  static void linphonec_display_url ( LinphoneCore * lc, const char *something, const char *url );
-  static void linphonec_display_warning ( LinphoneCore * lc, const char *something );
-  static void stub () {}
-  static void linphonec_notify_received( LinphoneCore *lc, LinphoneFriend *fid, 
-                                      const char *from, const char *status, const char *img );
-  static void linphonec_new_unknown_subscriber( LinphoneCore *lc,
-                                      LinphoneFriend *lf, const char *url );
-  static void linphonec_bye_received( LinphoneCore *lc, const char *from );
-  static void linphonec_text_received( LinphoneCore *lc, LinphoneChatRoom *cr,
-                                     const char *from, const char *msg );
-  static void linphonec_display_status ( LinphoneCore * lc, const char *something );
-
- // static bool_t vcap_enabled=FALSE;
- // static bool_t display_enabled=FALSE;
- // static int trace_level = 0;
- // static char *logfile_name = NULL;
- // static char configfile_name[PATH_MAX];
- // static char *sipAddr = NULL; /* for autocall */
- // static void linphonec_general_state ( LinphoneCore * lc, LinphoneGeneralState *gstate );
- // static void print_prompt( LinphoneCore *opm );
-  //static char *histfile_name=NULL;
-  //static char last_in_history[256];
-  //auto answer (-a) option  
-  
-  // main Linphone table.
-  LinphoneCoreVTable linphonec_vtable = {
-    show:(ShowInterfaceCb) stub,
-    inv_recv: linphonec_call_received,
-    bye_recv: linphonec_bye_received, 
-    notify_recv: linphonec_notify_received,
-    new_unknown_subscriber: linphonec_new_unknown_subscriber,
-    auth_info_requested: linphonec_prompt_for_auth,
-    display_status:linphonec_display_status,
-    display_message:linphonec_display_something,
-    display_warning:linphonec_display_warning,
-    display_url:linphonec_display_url,
-    display_question:(DisplayQuestionCb)stub
-  //  text_received:linphonec_text_received
-  //  general_state:linphonec_general_state
-  };
-
-
-  /* Linphone callbacks definitions */
-  
-    static void
-    linphonec_display_something (LinphoneCore * lc, const char *something) {
-      //fprintf (stdout, "%s\n%s", something,prompt);
-      //fflush(stdout);
-    }
-
-    static void
-    linphonec_display_status (LinphoneCore * lc, const char *something) {
-      fprintf (stdout, "%s\n%s", something,prompt);
-      fflush(stdout);
-    }
-
-    static void
-    linphonec_display_warning (LinphoneCore * lc, const char *something) {
-      fprintf (stdout, "Warning: %s\n%s", something,prompt);
-      fflush(stdout);
-    }
-
-    static void
-    linphonec_display_url (LinphoneCore * lc, const char *something, const char *url) {
-      fprintf (stdout, "%s : %s\n", something, url);
-    }
-
-    static void
-    linphonec_call_received(LinphoneCore *lc, const char *from) {
-      if ( auto_answer )  {
-        answer_call = TRUE;
-      }
-    }
-
-    static void
-    linphonec_prompt_for_auth(LinphoneCore *lc, const char *realm, const char *username) {
-      LinphoneAuthInfo *pending_auth;
-      if ( auth_stack.nitems+1 > MAX_PENDING_AUTH ) {
-        fprintf(stderr,
-          "Can't accept another authentication request.\n"
-          "Consider incrementing MAX_PENDING_AUTH macro.\n");
-        return;
-      } 
-
-      pending_auth = linphone_auth_info_new( username, NULL, NULL, NULL, realm );
-      auth_stack.elem[ auth_stack.nitems++ ] = pending_auth;
-    }
-
-    static void
-    linphonec_notify_received( LinphoneCore *lc,LinphoneFriend *fid,
-                            const char *from, const char *status, const char *img) {
-      printf("Friend %s is %s\n", from, status);
-      // todo: update Friend list state (unimplemented)
-    }
-
-    static void
-    linphonec_new_unknown_subscriber(LinphoneCore *lc, LinphoneFriend *lf, const char *url) {
-      printf("Friend %s requested subscription "
-        "(accept/deny is not implemented yet)\n", url); 
-      // This means that this person wishes to be notified 
-      // of your presence information (online, busy, away...).
-    }
-
-    static void
-    linphonec_bye_received(LinphoneCore *lc, const char *from) {
-      // printing this is unneeded as we'd get a "Communication ended"
-      // message trough display_status callback anyway
-      printf("Bye received from %s\n", from);
-    }
-
-    static void
-    linphonec_text_received( LinphoneCore *lc, LinphoneChatRoom *cr, const char *from, const char *msg) {
-      printf("%s: %s\n", from, msg);
-      // TODO: provide mechanism for answering.. ('say' command?)
-    }
-
-    static void 
-    linphonec_general_state ( LinphoneCore *lc, LinphoneGeneralState *gstate ) {
-            if ( show_general_state ) {
-              switch( gstate->new_state ) {
-               case GSTATE_POWER_OFF:
-                 printf( "GSTATE_POWER_OFF" );
-                 break;
-               case GSTATE_POWER_STARTUP:
-                 printf( "GSTATE_POWER_STARTUP" );
-                 break;
-               case GSTATE_POWER_ON:
-                 printf( "GSTATE_POWER_ON" );
-                 break;
-               case GSTATE_POWER_SHUTDOWN:
-                 printf( "GSTATE_POWER_SHUTDOWN" );
-                 break;
-               case GSTATE_REG_NONE:
-                 printf( "GSTATE_REG_NONE" );
-                 break;
-               case GSTATE_REG_OK:
-                 printf( "GSTATE_REG_OK" );
-                 break;
-               case GSTATE_REG_FAILED:
-                 printf( "GSTATE_REG_FAILED" );
-                 break;
-               case GSTATE_CALL_IDLE:
-                 printf( "GSTATE_CALL_IDLE" );
-                 break;
-               case GSTATE_CALL_OUT_INVITE:
-                 printf( "GSTATE_CALL_OUT_INVITE" );
-                 break;
-               case GSTATE_CALL_OUT_CONNECTED:
-                 printf( "GSTATE_CALL_OUT_CONNECTED" );
-                 break;
-               case GSTATE_CALL_IN_INVITE:
-                 printf( "GSTATE_CALL_IN_INVITE" );
-                 break;
-               case GSTATE_CALL_IN_CONNECTED:
-                 printf( "GSTATE_CALL_IN_CONNECTED" );
-                 break;
-               case GSTATE_CALL_END:
-                 printf( "GSTATE_CALL_END" );
-                 break;
-               case GSTATE_CALL_ERROR:
-                 printf( "GSTATE_CALL_ERROR" );
-                 break;
-               default:
-                  printf( "GSTATE_UNKNOWN_%d", gstate->new_state );   
-              }
-              if ( gstate->message ) printf( " %s", gstate->message );
-              printf( "\n" );
-            }  
-    }
-    
-    static int
-    linphonec_main_loop( LinphoneCore* opm, char* sipAddr ) {
-       // while ( true ) {
-       //   sleep( 0.2 ); 
-      linphone_core_iterate( opm ); 
-          
-          //int pid = fork();
-          //printf( "pid: %d", pid );
-          //fflush(stdout);
-      // }
-/*        bool_t run = TRUE;
-        char buf[ LINE_MAX_LEN ];
-        // FIXME testing purposes
-        char* input;
-        
-        if ( sipAddr != NULL ) {
-          snprintf ( buf, sizeof( buf ), "call %s", sipAddr );
-          run = linphonec_parse_command_line( &linphonec, buf );
-        }
-        
-        while ( sipAddr != NULL ) {
-            char* iptr;
-            size_t input_len;
-            input_len = strlen( iptr );
-            if ( ! input_len ) {
-              free( input );
-              continue;
-            }
-            
-        }
-*/
-    }
 
 #ifdef	__cplusplus
+	extern "C" {
+	#endif
+			
+	// Linphone structs
+	//
+		//static int handle_configfile_migration(void);
+		//static int copy_file(const char *from, const char *to);
+		//static int linphonec_parse_cmdline(int argc, char **argv);
+		//static int linphonec_initialize_readline(void);
+		//static int linphonec_finish_readline();  
+		char *lpc_strip_blanks(char *input);
+		static int linphonec_init( int argc, char **argv );
+		static int linphonec_main_loop ( LinphoneCore * opm, char * sipAddr );
+		static int linphonec_idle_call ( void );
+
+		/* These are callback for linphone core */
+		static void linphonec_call_received( LinphoneCore *lc, const char *from );
+		static void linphonec_prompt_for_auth( LinphoneCore *lc, const char *realm, const char *username );
+		static void linphonec_display_something ( LinphoneCore * lc, const char *something );
+		static void linphonec_display_url ( LinphoneCore * lc, const char *something, const char *url );
+		static void linphonec_display_warning ( LinphoneCore * lc, const char *something );
+		static void stub () {}
+		static void linphonec_notify_received( LinphoneCore *lc, LinphoneFriend *fid, 
+																				const char *from, const char *status, const char *img );
+		static void linphonec_new_unknown_subscriber( LinphoneCore *lc,
+																				LinphoneFriend *lf, const char *url );
+		static void linphonec_bye_received( LinphoneCore *lc, const char *from );
+		static void linphonec_text_received( LinphoneCore *lc, LinphoneChatRoom *cr,
+																			 const char *from, const char *msg );
+		static void linphonec_display_status ( LinphoneCore * lc, const char *something );
+
+	 // static bool_t vcap_enabled=FALSE;
+	 // static bool_t display_enabled=FALSE;
+	 // static int trace_level = 0;
+	 // static char *logfile_name = NULL;
+	 // static char configfile_name[PATH_MAX];
+	 // static char *sipAddr = NULL; /* for autocall */
+	 // static void linphonec_general_state ( LinphoneCore * lc, LinphoneGeneralState *gstate );
+	 // static void print_prompt( LinphoneCore *opm );
+		//static char *histfile_name=NULL;
+		//static char last_in_history[256];
+		//auto answer (-a) option  
+		
+		// main Linphone table.
+		LinphoneCoreVTable linphonec_vtable = {
+			show:(ShowInterfaceCb) stub,
+			inv_recv: linphonec_call_received,
+			bye_recv: linphonec_bye_received, 
+			notify_recv: linphonec_notify_received,
+			new_unknown_subscriber: linphonec_new_unknown_subscriber,
+			auth_info_requested: linphonec_prompt_for_auth,
+			display_status:linphonec_display_status,
+			display_message:linphonec_display_something,
+			display_warning:linphonec_display_warning,
+			display_url:linphonec_display_url,
+			display_question:(DisplayQuestionCb)stub
+		//  text_received:linphonec_text_received
+		//  general_state:linphonec_general_state
+		};
+
+
+		/* Linphone callbacks definitions */
+		
+			static void
+			linphonec_display_something (LinphoneCore * lc, const char *something) {
+				fprintf (stdout, "%s\n%s", something,prompt);
+			}
+
+			static void
+			linphonec_display_status (LinphoneCore * lc, const char *something) {
+				fprintf (stdout, "%s\n%s", something,prompt);
+			}
+
+			static void
+			linphonec_display_warning (LinphoneCore * lc, const char *something) {
+				fprintf (stdout, "Warning: %s\n%s", something,prompt);
+			}
+
+			static void
+			linphonec_display_url (LinphoneCore * lc, const char *something, const char *url) {
+				fprintf (stdout, "%s : %s\n", something, url);
+			}
+
+			static void
+			linphonec_call_received(LinphoneCore *lc, const char *from) {
+				if ( auto_answer )  {
+					answer_call = TRUE;
+				}
+			}
+
+			static void
+			linphonec_prompt_for_auth(LinphoneCore *lc, const char *realm, const char *username) {
+				LinphoneAuthInfo *pending_auth;
+				if ( auth_stack.nitems+1 > MAX_PENDING_AUTH ) {
+					fprintf(stderr,
+						"Can't accept another authentication request.\n"
+						"Consider incrementing MAX_PENDING_AUTH macro.\n");
+					return;
+				} 
+
+				pending_auth = linphone_auth_info_new( username, NULL, NULL, NULL, realm );
+				auth_stack.elem[ auth_stack.nitems++ ] = pending_auth;
+			}
+
+			static void
+			linphonec_notify_received( LinphoneCore *lc,LinphoneFriend *fid,
+															const char *from, const char *status, const char *img) {
+				printf("Friend %s is %s\n", from, status);
+				// todo: update Friend list state (unimplemented)
+			}
+
+			static void
+			linphonec_new_unknown_subscriber(LinphoneCore *lc, LinphoneFriend *lf, const char *url) {
+				printf("Friend %s requested subscription "
+					"(accept/deny is not implemented yet)\n", url); 
+				// This means that this person wishes to be notified 
+				// of your presence information (online, busy, away...).
+			}
+
+			static void
+			linphonec_bye_received(LinphoneCore *lc, const char *from) {
+				// printing this is unneeded as we'd get a "Communication ended"
+				// message trough display_status callback anyway
+				printf("Bye received from %s\n", from);
+				fflush( stdout );
+			}
+
+			static void
+			linphonec_text_received( LinphoneCore *lc, LinphoneChatRoom *cr, const char *from, const char *msg) {
+				// TODO: provide mechanism for answering.. ('say' command?)
+				printf("From: %s: Msg: %s\n", from, msg);
+				fflush( stdout );
+			}
+
+			static void 
+			linphonec_general_state ( LinphoneCore *lc, LinphoneGeneralState *gstate ) {
+							if ( show_general_state ) {
+								switch( gstate->new_state ) {
+								 case GSTATE_POWER_OFF:
+									 printf( "GSTATE_POWER_OFF" );
+									 break;
+								 case GSTATE_POWER_STARTUP:
+									 printf( "GSTATE_POWER_STARTUP" );
+									 break;
+								 case GSTATE_POWER_ON:
+									 printf( "GSTATE_POWER_ON" );
+									 break;
+								 case GSTATE_POWER_SHUTDOWN:
+									 printf( "GSTATE_POWER_SHUTDOWN" );
+									 break;
+								 case GSTATE_REG_NONE:
+									 printf( "GSTATE_REG_NONE" );
+									 break;
+								 case GSTATE_REG_OK:
+									 printf( "GSTATE_REG_OK" );
+									 break;
+								 case GSTATE_REG_FAILED:
+									 printf( "GSTATE_REG_FAILED" );
+									 break;
+								 case GSTATE_CALL_IDLE:
+									 printf( "GSTATE_CALL_IDLE" );
+									 break;
+								 case GSTATE_CALL_OUT_INVITE:
+									 printf( "GSTATE_CALL_OUT_INVITE" );
+									 break;
+								 case GSTATE_CALL_OUT_CONNECTED:
+									 printf( "GSTATE_CALL_OUT_CONNECTED" );
+									 break;
+								 case GSTATE_CALL_IN_INVITE:
+									 printf( "GSTATE_CALL_IN_INVITE" );
+									 break;
+								 case GSTATE_CALL_IN_CONNECTED:
+									 printf( "GSTATE_CALL_IN_CONNECTED" );
+									 break;
+								 case GSTATE_CALL_END:
+									 printf( "GSTATE_CALL_END" );
+									 break;
+								 case GSTATE_CALL_ERROR:
+									 printf( "GSTATE_CALL_ERROR" );
+									 break;
+								 default:
+										printf( "GSTATE_UNKNOWN_%d", gstate->new_state );   
+								}
+								if ( gstate->message ) printf( " %s", gstate->message );
+								printf( "\n" );
+							}  
+			}
+			
+			static int
+			linphonec_main_loop( LinphoneCore* opm, char* sipAddr ) {
+				 // while ( true ) {
+				 //   sleep( 0.2 ); 
+				linphone_core_iterate( opm ); 
+						
+						//int pid = fork();
+						//printf( "pid: %d", pid );
+						//fflush(stdout);
+				// }
+	/*        bool_t run = TRUE;
+					char buf[ LINE_MAX_LEN ];
+					// FIXME testing purposes
+					char* input;
+					
+					if ( sipAddr != NULL ) {
+						snprintf ( buf, sizeof( buf ), "call %s", sipAddr );
+						run = linphonec_parse_command_line( &linphonec, buf );
+					}
+					
+					while ( sipAddr != NULL ) {
+							char* iptr;
+							size_t input_len;
+							input_len = strlen( iptr );
+							if ( ! input_len ) {
+								free( input );
+								continue;
+							}
+							
+					}
+	*/
+			}
+
+	#ifdef	__cplusplus
 } // extern C
 #endif
 
@@ -315,7 +318,6 @@ DSipCom::DSipCom( const QString& title ) {
 
 DSipCom::~DSipCom() {
   // destroing main linphone core structure
-  //  linphone_core_destroy( _core );
   linphone_core_uninit( &linphonec );
  /* #ifdef DEBUG
     fclose( linphone_logger_file );
@@ -340,12 +342,10 @@ DSipCom::create_linphone_core() {
     #endif
 
     #ifdef DEBUG
-       //linphone_core_enable_logs( linphone_logger_file );
        linphone_core_enable_logs( stdout );
-       //linphone_logger_file = fopen( LOGGER_LINPHONE.c_str(), "w" );
-       //TRACE_INITIALIZE( (trace_level_t)0, linphone_logger_file );
        TRACE_INITIALIZE( (trace_level_t)2, stdout );
     #endif
+			 
     #ifndef DEBUG   
        linphone_core_disable_logs();
     #endif
@@ -355,11 +355,10 @@ DSipCom::create_linphone_core() {
       logger.log( "Initializing LinPhone" );
     #endif
 
-      auth_stack.nitems = 0;
-      linphone_core_init ( &linphonec, &linphonec_vtable, LINPHONE_CONFIG.c_str(), NULL );
-       // FIXME: should be dynamic
-      //entering main linphone loop
-       linphonec_main_loop( &linphonec, NULL ); //"sip:dmilith@127.0.0.1" );
+	auth_stack.nitems = 0;
+	linphone_core_init ( &linphonec, &linphonec_vtable, LINPHONE_CONFIG.c_str(), NULL );
+	//entering main linphone loop
+	linphonec_main_loop( &linphonec, NULL );
 
     #ifdef DEBUG
       logger.log( "Linphone core Ready!" );
@@ -414,8 +413,8 @@ DSipCom::save_user_list() {
 void
 DSipCom::load_user_list() {
   // clear user_list QVector
-  this->user_list.clear(); // resize(0)
-  // clear items on list
+  this->user_list.clear(); // == .resize(0)
+  // clear items on contacts list
   this->contacts_list->clear();
   
   // reading user_list from file
@@ -430,10 +429,8 @@ DSipCom::load_user_list() {
     userlist_file = fopen( USER_LIST_FILE.c_str(), "rb+" );
   }
   // checking userlist file header
-  
   char user_list_header_correct[] = "dulf0";
   char* user_list_header = new char[ sizeof( user_list_header_correct ) ];
-  
   fread( user_list_header, sizeof( user_list_header_correct ), 1, userlist_file );
 
 #ifdef DEBUG
@@ -472,7 +469,7 @@ DSipCom::load_user_list() {
     }
   }
   fclose( userlist_file );
-  // matter of security - always one of elements on user list need to be choosen:
+  // matter of security - always, one element on user list need to be choosen: ( SEGV when accessing unchoosen element )
   this->contacts_list->setCurrentRow( 0 );
 }
 
@@ -513,7 +510,7 @@ DSipCom::load_user_config() {
 
 void
 DSipCom::save_user_config() {
-  // taking values from main window objects
+  // getting values from main window objects
   strcpy( user_config->user_name, this->user_name->text().toUtf8() );
   strcpy( user_config->user_password, this->user_password->text().toUtf8() );
   strcpy( user_config->user_sip, this->user_sip->text().toUtf8() );
@@ -577,83 +574,67 @@ DSipCom::init_actions() {
   QObject::connect( action_add_contact_to_list, SIGNAL( activated() ), this, SLOT( action_add_contact_func() ));
   QObject::connect( action_remove_contact_from_list, SIGNAL( activated() ), this, SLOT( action_remove_contact_func() ));
 }
-
 void
 DSipCom::action_save_user_config() {
   save_user_config();
 }
-
 void
 DSipCom::action_load_user_config() {
   load_user_config();
 }
-
 void
 DSipCom::action_load_user_list() {
   load_user_list();
 }
-
 void
 DSipCom::action_save_user_list() {
   save_user_list();
 }
-
 /* numbers enterance: */
 void
 DSipCom::action_enter_0() {
   this->number_entry->setText( this->number_entry->text() + "0" );
 }
-
 void
 DSipCom::action_enter_1() {
   this->number_entry->setText( this->number_entry->text() + "1" );
 }
-
 void
 DSipCom::action_enter_2() {
   this->number_entry->setText( this->number_entry->text() + "2" );
 }
-
 void
 DSipCom::action_enter_3() {
   this->number_entry->setText( this->number_entry->text() + "3" );
 }
-
 void
 DSipCom::action_enter_4() {
   this->number_entry->setText( this->number_entry->text() + "4" );
 }
-
 void
 DSipCom::action_enter_5() {
   this->number_entry->setText( this->number_entry->text() + "5" );
 }
-
 void
 DSipCom::action_enter_6() {
   this->number_entry->setText( this->number_entry->text() + "6" );
 }
-
 void
 DSipCom::action_enter_7() {
   this->number_entry->setText( this->number_entry->text() + "7" );
 }
-
 void
 DSipCom::action_enter_8() {
   this->number_entry->setText( this->number_entry->text() + "8" );
 }
-
 void
 DSipCom::action_enter_9() {
   this->number_entry->setText( this->number_entry->text() + "9" );
 }
-
 void
 DSipCom::action_enter_star() {
   this->number_entry->setText( this->number_entry->text() + "*" );
 }
-
 void
 DSipCom::action_enter_hash() {
   this->number_entry->setText( this->number_entry->text() + "#" );
@@ -665,6 +646,10 @@ DSipCom::action_end_call() {
   this->status_bar->setText( "Rozłączam z " + ( (QString)pending_call_sip.c_str() ).section( ':', -1 ) );
   this->call_button->setEnabled( true );
   this->hang_button->setEnabled( false );
+#ifdef DEBUG
+	printf( "Ending call with: %s", pending_call_sip.c_str() );
+	fflush( stdout );
+#endif
   linphone_core_terminate_call( &linphonec, pending_call_sip.c_str() );
   pending_call = false;
 }
@@ -681,29 +666,35 @@ DSipCom::action_make_a_call() {
               this->status_bar->setText( "Dzwonię do: " + 
                     this->contacts_list->item( this->contacts_list->currentRow() )->text().section( ' ', -1 ) ); // str == "myapp" );
               
-            // FIXME STATIC SIP should be taken from user list here
-              pending_call = true;
-              pending_call_sip = (string)"sip:" + (string)( this->contacts_list->item( this->contacts_list->currentRow() )->text().section( ' ', -1 ) ).toUtf8();
+              pending_call_sip = (string)"sip:" + 
+																	(string)( this->contacts_list->item( 
+																	this->contacts_list->currentRow() )->text().section( ' ', -1 ) ).toUtf8() +
+																	(string)":" + (string)user_config->default_port;
               linphone_core_invite( &linphonec, pending_call_sip.c_str() );
-              
+						#ifdef DEBUG
+							printf( "Making new call with: %s\n", pending_call_sip.c_str() );
+							fflush( stdout );
+						#endif
               break;
             case 1:
               // 1 => dialing page
               this->status_bar->setText( "Dzwonię do: " + this->number_entry->text() );
-              //fixme SHOULD call to number from here
-              pending_call = true;
-              pending_call_sip = (string)"sip:" + (string)( this->number_entry->text() ).toUtf8();
+							// SIP address format is "sip:ADDR_OR_NUMBER_HERE:port"
+              pending_call_sip = (string)"sip:" + (string)( this->number_entry->text() ).toUtf8() +
+																 (string)":" + (string)user_config->default_port;
               linphone_core_invite( &linphonec, pending_call_sip.c_str() );
-              
+						#ifdef DEBUG
+							printf( "Making new call with: %s\n", pending_call_sip.c_str() );
+							fflush( stdout );
+						#endif
               break;
           }
       this->call_button->setEnabled( false );
       this->hang_button->setEnabled( true );
+      pending_call = true;
   } else {
       this->toolBox->setCurrentIndex( 0 );
   }
-  //QListWidgetItem* current_item = this->contacts_list->item( this->contacts_list->currentRow() );
-  //this->contacts_list->editItem( current_item );
 }
 
 void
@@ -731,25 +722,25 @@ DSipCom::action_connect_to_sip_server_func() {
   #endif
     if ( this->user_sip_server->text() == "" ) {
       QMessageBox::information( this, MAIN_WINDOW_TITLE.c_str(), " Proszę podać w preferencjach użytkownika nazwę serwera! " );
-    } else if ( this->user_sip->text() == "" ) {
+		} else if ( this->user_sip->text() == "" ) {
       QMessageBox::information( this, MAIN_WINDOW_TITLE.c_str(), " Proszę podać w preferencjach adres SIP użytkownika! " );
     } else if ( this->user_password->text() == "" ) {
       QMessageBox::information( this, MAIN_WINDOW_TITLE.c_str(), " Proszę podać w preferencjach hasło SIP użytkownika! " );
     } else if ( this->user_name->text() == "" ) {
       QMessageBox::information( this, MAIN_WINDOW_TITLE.c_str(), " Proszę podać w preferencjach nazwę użytkownika! " );
     } else {
-      // all required settings are ok
-      #ifdef DEBUG
-        logger.log( "All required config data is OK!" );
-      #endif  
+	// all required settings are ok
+	#ifdef DEBUG
+		logger.log( "All required config data is OK!" );
+	#endif  
     }
 }
 
 void
 DSipCom::action_disconnect_from_sip_server_func() {
-  #ifdef DEBUG  
-    logger.log( "Trying to disconnect from server" ); 
-  #endif
+	#ifdef DEBUG  
+		logger.log( "Trying to disconnect from server" ); 
+	#endif
 }
 
 void
@@ -769,20 +760,20 @@ void
 DSipCom::action_remove_contact_func() {
   if ( toolBox->currentIndex() == 0 ) {
     // and from user_list QVector
-    #ifdef DEBUG
-      printf( "Removed contact with index: %d\n", this->contacts_list->currentRow() );
-      fflush( stdout );
-    #endif  
+	#ifdef DEBUG
+		printf( "Removed contact with index: %d\n", this->contacts_list->currentRow() );
+		fflush( stdout );
+	#endif  
     this->user_list.remove( this->contacts_list->currentRow() );
     // delete item from list
     delete this->contacts_list->item( this->contacts_list->currentRow() );
   
-    #ifdef DEBUG
-      printf( "Remove contact func contacts list: %d\n", this->contacts_list->count() );
-      fflush( stdout );
-      printf( "Remove contact func list size: %d\n", user_list.size() );
-      fflush( stdout );
-    #endif  
+	#ifdef DEBUG
+		printf( "Remove contact func contacts list: %d\n", this->contacts_list->count() );
+		fflush( stdout );
+		printf( "Remove contact func list size: %d\n", user_list.size() );
+		fflush( stdout );
+	#endif  
   }
 }
 

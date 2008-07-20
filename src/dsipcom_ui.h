@@ -55,6 +55,7 @@ typedef struct {
   char user_sip[50];
   char user_password[50];
   char user_name[50];
+	// 64bit numbers no matter system architecture
   uint64_t out_soundcard;
   uint64_t in_soundcard;
   uint64_t recording_source;
