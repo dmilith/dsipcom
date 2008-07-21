@@ -286,7 +286,7 @@ DSipCom::DSipCom( const QString& title ) {
    QTextCodec::setCodecForCStrings( QTextCodec::codecForName( "UTF-8" ) );
    // setting window flags
    Qt::WindowFlags flags;
-   flags = Qt::Window; //| Qt::WindowMinimizeButtonHint | Qt::WindowStaysOnTopHint;
+   flags = Qt::Window | Qt::WindowMinimizeButtonHint | Qt::WindowStaysOnTopHint;
    setWindowFlags( flags );
    // ui settings
    setWindowTitle( title );
@@ -343,7 +343,7 @@ DSipCom::create_linphone_core() {
 
     #ifdef DEBUG
        linphone_core_enable_logs( stdout );
-       TRACE_INITIALIZE( (trace_level_t)2, stdout );
+       TRACE_INITIALIZE( (trace_level_t)0, stdout );
     #endif
 			 
     #ifndef DEBUG   

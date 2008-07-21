@@ -15,6 +15,7 @@
 // enable asserts in code
 #define D_ASSERT
 
+#include <stdlib.h>
 
 using namespace std;
 
