@@ -47,7 +47,7 @@ unix {
  		error( "Unable to find unix spec." )
 }
 
-QMAKE_CXXFLAGS += -W
+QMAKE_CXXFLAGS += -w
 # old: QMAKE_CXXFLAGS += -w
 TARGET = ../dsipcom
 target.path = ../

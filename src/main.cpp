@@ -40,4 +40,6 @@ main( int argc, char *argv[] ) {
    if ( app.exec() == 0 ) {
      delete main_obj;
    }
+   
+   return 0;
 }

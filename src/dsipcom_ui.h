@@ -25,6 +25,7 @@
 #include <linphone/linphonecore.h>
 
 #include <string>
+#include <sstream>
 #include <boost/filesystem/operations.hpp>
 
 #include "ui_dsipcom.h" // automaticly generated interface from ui file
@@ -33,6 +34,15 @@
 #include "logger.h" //logger defs
 #include "main.h"
 
+// integer to C string converter
+static const char*
+uint2cstr( uint64_t i ) {
+  stringstream ss;
+  string temp;
+  ss << i;
+  ss >> temp;
+  return temp.c_str();
+}
 
 #define MAX_PENDING_AUTH 8
 //#define HISTSIZE 500		/* how many lines of input history */

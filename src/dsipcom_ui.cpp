@@ -7,6 +7,7 @@
  */
 
 // TODO: make header check for dsipcom.dcnf
+// TODO: make use of MSList * linphone_core_get_call_logs(LinphoneCore *lc), while generation of daily call logs
 
 #include "dsipcom_ui.h"
 #include "version.h"
@@ -121,7 +122,14 @@ static string pending_call_sip;
 
 			static void
 			linphonec_call_received( LinphoneCore *lc, const char *from ) {
-				if ( auto_answer )  {
+				#ifdef DEBUG
+          printf("\ncall_received()\n %s", from);
+          fflush( stdout );
+        #endif
+        if ( auto_answer )  {
+          #ifdef DEBUG
+            printf( "\nAuto answered call\n" );
+          #endif
 					answer_call = TRUE;
 				}
 			}
@@ -135,7 +143,6 @@ static string pending_call_sip;
 						"Consider incrementing MAX_PENDING_AUTH macro.\n");
 					return;
 				} 
-
 				pending_auth = linphone_auth_info_new( username, NULL, NULL, NULL, realm );
 				auth_stack.elem[ auth_stack.nitems++ ] = pending_auth;
 			}
@@ -281,11 +288,11 @@ DSipCom::DSipCom( const QString& title ) {
     logger.log( "Loading User Config" );
    #endif
   user_config = new USER_CONFIG;
+  create_linphone_core();
   load_user_config();
    #ifdef DEBUG
-    logger.log( "Loading Linphone" );
+    logger.log( "Loading Linphone, version: " + (QString)linphone_core_get_version() );
    #endif
-  create_linphone_core();
 }
 
 DSipCom::~DSipCom() {
@@ -385,6 +392,10 @@ DSipCom::save_user_list() {
 
 void
 DSipCom::load_user_list() {
+  // TODO: each contact on DSipCom's user list should get linphone presence info
+  //void linphone_core_set_presence_info(LinphoneCore *lc,int minutes_away,const char *contact,LinphoneOnlineStatus os);
+  //linphone_core_set_presence_info( &linphonec, 0, )
+
   // clear user_list QVector
   this->user_list.clear(); // == .resize(0)
   // clear items on contacts list
@@ -446,6 +457,7 @@ DSipCom::load_user_list() {
   this->contacts_list->setCurrentRow( 0 );
 }
 
+// load_user_config() it's method which load application settings and apply them in linphone core right after init
 void
 DSipCom::load_user_config() {
   FILE* config_file;
@@ -479,6 +491,57 @@ DSipCom::load_user_config() {
   this->speex_16_codec->setChecked( user_config->speex_16_codec );
   this->pcmu_8_codec->setChecked( user_config->pcmu_8_codec );
   this->pcma_8_codec->setChecked( user_config->pcma_8_codec );
+  
+  //now apply these settings to linphone core:
+  uint64_t port = strtol( user_config->default_port, NULL, 10 ); //conversion from char[5] to uint64_t, 10 is numbering system
+  if ( ( port > 65535 ) || ( port < 0 ) ) {
+    linphone_core_set_sip_port( &linphonec, 5060 );
+  } else {
+    linphone_core_set_sip_port( &linphonec, port );
+  }
+  #ifdef DEBUG
+    printf( "\nConfig port value: %s, after conversion: %d\n", user_config->default_port, port );
+    fflush( stdout );
+    printf( "\nSetting default port to: %d\n", (uint64_t)linphone_core_get_sip_port( &linphonec ) );
+    fflush( stdout );
+  #endif
+    //linphone_core_set_inc_timeout( &linphonec, 60 ); // 60 seconds to timeout
+  // TODO: set stun server only when it's requested:
+  // void linphone_core_set_stun_server(LinphoneCore *lc, const char *server);
+  // TODO: set NAT only when it's requested
+  // void linphone_core_set_nat_address(LinphoneCore *lc, const char *addr);
+  // TODO: add ring volume level setting
+  // void linphone_core_set_ring_level(LinphoneCore *lc, int level);
+  linphone_core_set_ring_level( &linphonec, 2 );
+  // void linphone_core_set_play_level(LinphoneCore *lc, int level);
+  linphone_core_set_play_level( &linphonec, 5 );
+  // void linphone_core_set_rec_level(LinphoneCore *lc, int level);
+  linphone_core_set_rec_level( &linphonec, 6 );
+  // TODO: add option to manually choose ring sound
+  // void linphone_core_set_ring(LinphoneCore *lc, const char *path);
+  linphone_core_set_ring( &linphonec, "sounds/toyphone.wav" );
+  // TODO: add support for echo cancelation:
+  // void linphone_core_enable_echo_cancelation(LinphoneCore *lc, bool_t val);
+  linphone_core_set_ringer_device( &linphonec, uint2cstr( user_config->out_soundcard ) );
+  #ifdef DEBUG
+    printf( "\nSound RING OUT device: %s\n", linphone_core_get_ringer_device( &linphonec ) );
+    fflush( stdout );
+  #endif
+  linphone_core_set_playback_device( &linphonec, uint2cstr( user_config->out_soundcard ) );
+  #ifdef DEBUG
+    printf( "\nSound PLAYBACK OUT device: %s\n", linphone_core_get_playback_device( &linphonec ) );
+    fflush( stdout );
+  #endif
+  linphone_core_set_capture_device( &linphonec, uint2cstr( user_config->in_soundcard ) );
+  #ifdef DEBUG
+    printf( "\nSound CAPTURE IN device: %s\n",linphone_core_get_capture_device( &linphonec ) );
+    fflush( stdout );
+  #endif
+  linphone_core_set_guess_hostname( &linphonec, TRUE );
+  // TODO: make possible to set bandwith capacity
+  linphone_core_set_download_bandwidth( &linphonec, 0 ); // bandwidth unlimited
+  linphone_core_set_upload_bandwidth( &linphonec, 0 ); // same as above.
+
 }
 
 void
@@ -555,6 +618,7 @@ void
 DSipCom::action_load_user_config() {
   load_user_config();
 }
+// TODO: add support for void linphone_core_add_friend(LinphoneCore *lc, LinphoneFriend *fr), and LinphoneFriend structure in place of actual two user info fields
 void
 DSipCom::action_load_user_list() {
   load_user_list();
@@ -629,6 +693,9 @@ DSipCom::action_end_call() {
 
 void
 DSipCom::action_make_a_call() {
+  // TODO: make DSipCom able to get a call from someone, not only call to someone
+  // TODO: DSipCom should ask for video port. codecs should be choosen automaticly linphone_core_set_video_port
+  // TODO: void linphone_core_enable_video_preview(LinphoneCore *lc, bool_t val) - it should be "enable video window" setting somewhere with default FALSE.
   // if we're on contacts list tab and this list isn't empty
   if ( ( ( this->contacts_list->count() != 0 ) && ( this->toolBox->currentIndex() == 0 ) ) || 
       // or number entry is at least one char long and we're on number entry page
@@ -639,11 +706,12 @@ DSipCom::action_make_a_call() {
               this->status_bar->setText( "Dzwonię do: " + 
                     this->contacts_list->item( this->contacts_list->currentRow() )->text().section( ' ', -1 ) ); // str == "myapp" );
               
-              pending_call_sip = (string)"sip:" + 
+               pending_call_sip = (string)"sip:" + 
 																	(string)( this->contacts_list->item( 
 																	this->contacts_list->currentRow() )->text().section( ' ', -1 ) ).toUtf8() +
 																	(string)":" + (string)user_config->default_port;
               linphone_core_invite( &linphonec, pending_call_sip.c_str() );
+              //linphone_core_accept_call( &linphonec, );
 						#ifdef DEBUG
 							printf( "Making new call with: %s\n", pending_call_sip.c_str() );
 							fflush( stdout );
