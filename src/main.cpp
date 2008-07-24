@@ -28,14 +28,16 @@ receive_signal( int param ) {
 int
 main( int argc, char *argv[] ) {
   /* macro to load images from dsipcom.qrc
-     could be problematic on some archs.. but on linux seems to be unecessary */
-     Q_INIT_RESOURCE(dsipcom); 
+     could be problematic on some archs.. but on linux seems to be unecessary
+     Q_INIT_RESOURCE(dsipcom); */ 
+  
    QApplication app( argc, argv );
-   
-   new DSipCom( MAIN_WINDOW_TITLE.c_str() );
+   DSipCom* main_obj = new DSipCom( MAIN_WINDOW_TITLE.c_str() );
 
    //signal handling
    signal( SIGINT, receive_signal );
    
-  return app.exec();
+   if ( app.exec() == 0 ) {
+     delete main_obj;
+   }
 }

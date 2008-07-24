@@ -99,37 +99,37 @@ static string pending_call_sip;
 		/* Linphone callbacks definitions */
       
 			static void
-			linphonec_display_something (LinphoneCore * lc, const char *something) {
+			linphonec_display_something ( LinphoneCore * lc, const char *something ) {
 				fprintf (stdout, "%s\n%s", something,prompt);
         
 			}
 
 			static void
-			linphonec_display_status (LinphoneCore * lc, const char *something) {
+			linphonec_display_status ( LinphoneCore * lc, const char *something ) {
 				fprintf (stdout, "%s\n%s", something,prompt);
 			}
 
 			static void
-			linphonec_display_warning (LinphoneCore * lc, const char *something) {
+			linphonec_display_warning ( LinphoneCore * lc, const char *something ) {
 				fprintf (stdout, "Warning: %s\n%s", something,prompt);
 			}
 
 			static void
-			linphonec_display_url (LinphoneCore * lc, const char *something, const char *url) {
+			linphonec_display_url ( LinphoneCore * lc, const char *something, const char *url ) {
 				fprintf (stdout, "%s : %s\n", something, url);
 			}
 
 			static void
-			linphonec_call_received(LinphoneCore *lc, const char *from) {
+			linphonec_call_received( LinphoneCore *lc, const char *from ) {
 				if ( auto_answer )  {
 					answer_call = TRUE;
 				}
 			}
 
 			static void
-			linphonec_prompt_for_auth(LinphoneCore *lc, const char *realm, const char *username) {
+			linphonec_prompt_for_auth( LinphoneCore *lc, const char *realm, const char *username ) {
 				LinphoneAuthInfo *pending_auth;
-				if ( auth_stack.nitems+1 > MAX_PENDING_AUTH ) {
+				if ( auth_stack.nitems + 1 > MAX_PENDING_AUTH ) {
 					fprintf(stderr,
 						"Can't accept another authentication request.\n"
 						"Consider incrementing MAX_PENDING_AUTH macro.\n");
@@ -144,6 +144,7 @@ static string pending_call_sip;
 			linphonec_notify_received( LinphoneCore *lc,LinphoneFriend *fid,
 															const char *from, const char *status, const char *img) {
 				printf("Friend %s is %s\n", from, status);
+        fflush( stdout );
 				// todo: update Friend list state (unimplemented)
 			}
 
@@ -151,7 +152,8 @@ static string pending_call_sip;
 			linphonec_new_unknown_subscriber(LinphoneCore *lc, LinphoneFriend *lf, const char *url) {
 				printf("Friend %s requested subscription "
 					"(accept/deny is not implemented yet)\n", url); 
-				// This means that this person wishes to be notified 
+        fflush( stdout );
+        // This means that this person wishes to be notified 
 				// of your presence information (online, busy, away...).
 			}
 
@@ -289,10 +291,11 @@ DSipCom::DSipCom( const QString& title ) {
 DSipCom::~DSipCom() {
   // destroing main linphone core structure
   linphone_core_uninit( &linphonec );
- /* #ifdef DEBUG
-    fclose( linphone_logger_file );
-  #endif  
-  */
+ #ifdef DEBUG
+  printf( "\nDsipCom destructor.\n" );
+  fflush( stdout );
+ #endif 
+
 }
 
 void
