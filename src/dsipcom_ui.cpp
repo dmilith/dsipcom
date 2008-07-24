@@ -457,46 +457,14 @@ DSipCom::load_user_list() {
   this->contacts_list->setCurrentRow( 0 );
 }
 
-// load_user_config() it's method which load application settings and apply them in linphone core right after init
 void
-DSipCom::load_user_config() {
-  FILE* config_file;
-  config_file = fopen( CONFIG_FILE.c_str(), "rb+" );
-  if ( config_file == 0 ) {  
-    printf( "Error reading user config file!\nNew user config will be created.\n" );
-    fflush( stdout );
-    save_user_config();
-    config_file = fopen( CONFIG_FILE.c_str(), "rb+" );
-  }
-  // reading user config structure at once
-  fread( user_config, sizeof( USER_CONFIG ), 1, config_file );
-  fclose( config_file );
-  // putting values from file to edit objects
-  this->user_name->setText( user_config->user_name );
-  this->user_password->setText( user_config->user_password );
-  this->user_sip->setText( user_config->user_sip );
-  this->user_sip_server->setText( user_config->user_sip_server );
-  this->out_soundcard->setCurrentIndex( user_config->out_soundcard );
-  this->in_soundcard->setCurrentIndex( user_config->in_soundcard );
-  this->recording_source->setCurrentIndex( user_config->recording_source );
-  this->ring_sound->setCurrentIndex( user_config->ring_sound );
-  this->default_port->setText( user_config->default_port );
-  this->no_firewall->setChecked( user_config->no_firewall );
-  this->use_stun_server->setChecked( user_config->use_stun_server );
-  this->stun_address->setText( user_config->stun_address );
-  this->manual_firewall_address->setChecked( user_config->manual_firewall_address );
-  this->firewall_address->setText( user_config->firewall_address );
-  this->gsm_8_codec->setChecked( user_config->gsm_8_codec );
-  this->speex_8_codec->setChecked( user_config->speex_8_codec );
-  this->speex_16_codec->setChecked( user_config->speex_16_codec );
-  this->pcmu_8_codec->setChecked( user_config->pcmu_8_codec );
-  this->pcma_8_codec->setChecked( user_config->pcma_8_codec );
-  
+DSipCom::apply_settings_to_linphone() {
   //now apply these settings to linphone core:
-  uint64_t port = strtol( user_config->default_port, NULL, 10 ); //conversion from char[5] to uint64_t, 10 is numbering system
-  if ( ( port > 65535 ) || ( port < 0 ) ) {
+  uint64_t port = strtol( user_config->default_port, NULL, 10 ); //conversion from char[5] to uint64_t, 10 => decimal number sys.
+  if ( ( port > 65535 ) || ( port < 1024 ) ) { // 65535 is max port, greater than 1024 cause 0...1024 are root ports
     linphone_core_set_sip_port( &linphonec, 5060 );
-  } else {
+    strcpy( user_config->default_port, "5060" );
+  } else { 
     linphone_core_set_sip_port( &linphonec, port );
   }
   #ifdef DEBUG
@@ -505,11 +473,15 @@ DSipCom::load_user_config() {
     printf( "\nSetting default port to: %d\n", (uint64_t)linphone_core_get_sip_port( &linphonec ) );
     fflush( stdout );
   #endif
-    //linphone_core_set_inc_timeout( &linphonec, 60 ); // 60 seconds to timeout
+  linphone_core_set_inc_timeout( &linphonec, 60 ); // 60 seconds to timeout
   // TODO: set stun server only when it's requested:
-  // void linphone_core_set_stun_server(LinphoneCore *lc, const char *server);
+  if ( user_config->use_stun_server ) {
+    linphone_core_set_stun_server( &linphonec, user_config->stun_address );
+  }
   // TODO: set NAT only when it's requested
-  // void linphone_core_set_nat_address(LinphoneCore *lc, const char *addr);
+  if ( user_config->manual_firewall_address ) {
+    linphone_core_set_nat_address( &linphonec, user_config->firewall_address );
+  }
   // TODO: add ring volume level setting
   // void linphone_core_set_ring_level(LinphoneCore *lc, int level);
   linphone_core_set_ring_level( &linphonec, 2 );
@@ -518,7 +490,7 @@ DSipCom::load_user_config() {
   // void linphone_core_set_rec_level(LinphoneCore *lc, int level);
   linphone_core_set_rec_level( &linphonec, 6 );
   // TODO: add option to manually choose ring sound
-  // void linphone_core_set_ring(LinphoneCore *lc, const char *path);
+  strcpy( user_config->ring_sound, "sounds/toyphone.wav" ); 
   linphone_core_set_ring( &linphonec, "sounds/toyphone.wav" );
   // TODO: add support for echo cancelation:
   // void linphone_core_enable_echo_cancelation(LinphoneCore *lc, bool_t val);
@@ -541,7 +513,45 @@ DSipCom::load_user_config() {
   // TODO: make possible to set bandwith capacity
   linphone_core_set_download_bandwidth( &linphonec, 0 ); // bandwidth unlimited
   linphone_core_set_upload_bandwidth( &linphonec, 0 ); // same as above.
+}
 
+// load_user_config() it's method which load application settings and apply them in linphone core right after init
+void
+DSipCom::load_user_config() {
+  FILE* config_file;
+  config_file = fopen( CONFIG_FILE.c_str(), "rb+" );
+  if ( config_file == 0 ) {  
+    printf( "Error reading user config file!\nNew user config will be created.\n" );
+    fflush( stdout );
+    save_user_config();
+    config_file = fopen( CONFIG_FILE.c_str(), "rb+" );
+  }
+  // reading user config structure at once
+  fread( user_config, sizeof( USER_CONFIG ), 1, config_file );
+  fclose( config_file );
+  // putting values from file to edit objects
+  this->user_name->setText( user_config->user_name );
+  this->user_password->setText( user_config->user_password );
+  this->user_sip->setText( user_config->user_sip );
+  this->user_sip_server->setText( user_config->user_sip_server );
+  this->out_soundcard->setCurrentIndex( user_config->out_soundcard );
+  this->in_soundcard->setCurrentIndex( user_config->in_soundcard );
+  this->recording_source->setCurrentIndex( user_config->recording_source );
+  //this->ring_sound->setCurrentIndex( user_config->ring_sound );
+  this->ring_sound->setItemText( this->ring_sound->currentIndex(), user_config->ring_sound );
+  this->ring_sound->setEditable( true );
+  this->default_port->setText( user_config->default_port );
+  this->no_firewall->setChecked( user_config->no_firewall );
+  this->use_stun_server->setChecked( user_config->use_stun_server );
+  this->stun_address->setText( user_config->stun_address );
+  this->manual_firewall_address->setChecked( user_config->manual_firewall_address );
+  this->firewall_address->setText( user_config->firewall_address );
+  this->gsm_8_codec->setChecked( user_config->gsm_8_codec );
+  this->speex_8_codec->setChecked( user_config->speex_8_codec );
+  this->speex_16_codec->setChecked( user_config->speex_16_codec );
+  this->pcmu_8_codec->setChecked( user_config->pcmu_8_codec );
+  this->pcma_8_codec->setChecked( user_config->pcma_8_codec );
+  apply_settings_to_linphone();
 }
 
 void
@@ -554,7 +564,7 @@ DSipCom::save_user_config() {
   user_config->out_soundcard = this->out_soundcard->currentIndex();
   user_config->in_soundcard = this->in_soundcard->currentIndex();
   user_config->recording_source = this->recording_source->currentIndex();
-  user_config->ring_sound = this->ring_sound->currentIndex();
+  strcpy( user_config->ring_sound, this->ring_sound->currentText().toUtf8() );
   strcpy( user_config->default_port, this->default_port->text().toUtf8() );
   user_config->no_firewall = this->no_firewall->isChecked();
   user_config->use_stun_server = this->use_stun_server->isChecked();
@@ -566,7 +576,6 @@ DSipCom::save_user_config() {
   user_config->speex_16_codec = this->speex_16_codec->isChecked();
   user_config->pcmu_8_codec = this->pcmu_8_codec->isChecked();
   user_config->pcma_8_codec = this->pcma_8_codec->isChecked();
-  
   FILE* config_file;
   config_file = fopen( CONFIG_FILE.c_str(), "wb+" );
   if ( config_file == 0 ) {
@@ -577,6 +586,7 @@ DSipCom::save_user_config() {
   // writing whole structure with data to file
   fwrite( user_config, sizeof( USER_CONFIG ), 1, config_file );
   fclose( config_file );
+  apply_settings_to_linphone();
 }
 
 // init_actions will init all actions and binds in application
@@ -601,7 +611,6 @@ DSipCom::init_actions() {
   QObject::connect( load_config_button, SIGNAL( clicked() ), this, SLOT( action_load_user_config() ));
   QObject::connect( save_contact_list_button, SIGNAL( clicked() ), this, SLOT( action_save_user_list() ));
   QObject::connect( load_contact_list_button, SIGNAL( clicked() ), this, SLOT( action_load_user_list() ));
-  
   // menu bar:
   QObject::connect( action_help, SIGNAL( activated() ), this, SLOT( action_help_func() ));
   QObject::connect( action_about, SIGNAL( activated() ), this, SLOT( action_about_func() ));
@@ -880,4 +889,8 @@ AboutBox::AboutBox() {
 }
 
 AboutBox::~AboutBox() {
+  #ifdef DEBUG
+    printf( "AboutBox destructor." );
+    fflush( stdout );
+  #endif
 }

@@ -66,21 +66,21 @@ typedef struct {
   char user_password[50];
   char user_name[50];
 	// 64bit numbers no matter system architecture
-  uint64_t out_soundcard;
-  uint64_t in_soundcard;
-  uint64_t recording_source;
-  uint64_t ring_sound;
+  uint32_t out_soundcard;
+  uint32_t in_soundcard;
+  uint32_t recording_source;
+  char ring_sound[255];
   char default_port[5];
-  uint64_t no_firewall;
-  uint64_t use_stun_server;
+  uint32_t no_firewall;
+  uint32_t use_stun_server;
   char stun_address[50];
-  uint64_t manual_firewall_address;
+  uint32_t manual_firewall_address;
   char firewall_address[50];
-  uint64_t gsm_8_codec;
-  uint64_t speex_8_codec;
-  uint64_t speex_16_codec;
-  uint64_t pcmu_8_codec;
-  uint64_t pcma_8_codec;
+  uint32_t gsm_8_codec;
+  uint32_t speex_8_codec;
+  uint32_t speex_16_codec;
+  uint32_t pcmu_8_codec;
+  uint32_t pcma_8_codec;
 } USER_CONFIG;
 
 
@@ -151,6 +151,7 @@ namespace Ui {
       void save_user_config();
       
       // init linphone
+      void apply_settings_to_linphone();
       void create_linphone_core();
       //LinphoneCore *_core;
       LinphoneCore linphonec;
