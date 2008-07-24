@@ -26,11 +26,11 @@ LPC_AUTH_STACK auth_stack;
 char prompt[PROMPT_MAX_LEN];
 static bool_t auto_answer = FALSE;
 static bool_t answer_call = FALSE;
-static bool_t vcap_enabled = FALSE;
-static bool_t display_enabled = FALSE;
-static bool_t show_general_state = FALSE;
+//static bool_t vcap_enabled = FALSE;
+//static bool_t display_enabled = FALSE;
+//static bool_t show_general_state = FALSE;
 //static char configfile_name[ PATH_MAX ];
-static char* sipAddr = NULL; /* for autocall */
+//static char* sipAddr = NULL; /* for autocall */
 
 // pending_call == true when call is pending 
 static bool pending_call = false;
@@ -45,14 +45,10 @@ static string pending_call_sip;
 	// Linphone structs
 	//
 		//static int handle_configfile_migration(void);
-		//static int copy_file(const char *from, const char *to);
-		//static int linphonec_parse_cmdline(int argc, char **argv);
-		//static int linphonec_initialize_readline(void);
-		//static int linphonec_finish_readline();  
 		char *lpc_strip_blanks(char *input);
-		static int linphonec_init( int argc, char **argv );
+		//static int linphonec_init( int argc, char **argv );
 		static int linphonec_main_loop ( LinphoneCore * opm, char * sipAddr );
-		static int linphonec_idle_call ( void );
+		//static int linphonec_idle_call ( void );
 
 		/* These are callback for linphone core */
 		static void linphonec_call_received( LinphoneCore *lc, const char *from );
@@ -76,7 +72,7 @@ static string pending_call_sip;
 	 // static char *logfile_name = NULL;
 	 // static char configfile_name[PATH_MAX];
 	 // static char *sipAddr = NULL; /* for autocall */
-	 // static void linphonec_general_state ( LinphoneCore * lc, LinphoneGeneralState *gstate );
+	 // static void linphonec_general_state( LinphoneCore * lc, LinphoneGeneralState *gstate );
 	 // static void print_prompt( LinphoneCore *opm );
 		//static char *histfile_name=NULL;
 		//static char last_in_history[256];
@@ -94,17 +90,18 @@ static string pending_call_sip;
 			display_message:linphonec_display_something,
 			display_warning:linphonec_display_warning,
 			display_url:linphonec_display_url,
-			display_question:(DisplayQuestionCb)stub
-		//  text_received:linphonec_text_received
-		//  general_state:linphonec_general_state
+			display_question:(DisplayQuestionCb)stub,
+		  //text_received:linphonec_text_received,
+		  //general_state:linphonec_general_state
 		};
 
 
 		/* Linphone callbacks definitions */
-		
+      
 			static void
 			linphonec_display_something (LinphoneCore * lc, const char *something) {
 				fprintf (stdout, "%s\n%s", something,prompt);
+        
 			}
 
 			static void
@@ -169,10 +166,10 @@ static string pending_call_sip;
 			static void
 			linphonec_text_received( LinphoneCore *lc, LinphoneChatRoom *cr, const char *from, const char *msg) {
 				// TODO: provide mechanism for answering.. ('say' command?)
-				printf("From: %s: Msg: %s\n", from, msg);
+				printf("\n\nFrom: %s: Msg: %s\n", from, msg);
 				fflush( stdout );
 			}
-
+/*
 			static void 
 			linphonec_general_state ( LinphoneCore *lc, LinphoneGeneralState *gstate ) {
 							if ( show_general_state ) {
@@ -226,38 +223,11 @@ static string pending_call_sip;
 								printf( "\n" );
 							}  
 			}
-			
+*/			
 			static int
 			linphonec_main_loop( LinphoneCore* opm, char* sipAddr ) {
-				 // while ( true ) {
-				 //   sleep( 0.2 ); 
 				linphone_core_iterate( opm ); 
-						
-						//int pid = fork();
-						//printf( "pid: %d", pid );
-						//fflush(stdout);
-				// }
-	/*        bool_t run = TRUE;
-					char buf[ LINE_MAX_LEN ];
-					// FIXME testing purposes
-					char* input;
-					
-					if ( sipAddr != NULL ) {
-						snprintf ( buf, sizeof( buf ), "call %s", sipAddr );
-						run = linphonec_parse_command_line( &linphonec, buf );
-					}
-					
-					while ( sipAddr != NULL ) {
-							char* iptr;
-							size_t input_len;
-							input_len = strlen( iptr );
-							if ( ! input_len ) {
-								free( input );
-								continue;
-							}
-							
-					}
-	*/
+        return 0;
 			}
 
 	#ifdef	__cplusplus
@@ -396,7 +366,7 @@ DSipCom::save_user_list() {
   fwrite( &user_list_size, sizeof( &user_list_size ), 1, userlist_file );
   // writing data
   if ( user_list_size > 0 ) {
-    for (uint64_t i = 0; i < user_list.size(); i++ ) {
+    for (int i = 0; i < user_list.size(); i++ ) {
       // each element in structure has 50 bytes length so we don't need to count it
       fwrite( &user_list[ i ].contact_name, 50, 1, userlist_file );
       fwrite( &user_list[ i ].contact_sip_address, 50, 1, userlist_file );
@@ -404,7 +374,7 @@ DSipCom::save_user_list() {
   }
 
 #ifdef DEBUG
-  printf( "records written to file: %d\n", user_list_size );
+  printf( "records written to file: %d\n", (int)user_list_size );
   fflush( stdout ); // need to flush out data
 #endif  
   fclose( userlist_file );
@@ -712,7 +682,7 @@ DSipCom::action_about_func() {
   #ifdef DEBUG
     logger.log( "Visited -> about dialog!" );
   #endif
-  AboutBox *window = new AboutBox();
+  new AboutBox();
 }
 
 void
