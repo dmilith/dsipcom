@@ -1,17 +1,17 @@
 CONFIG += debug
 HEADERS += main.h \
-					 version.h \
-					 logger.h \
-					 dsipcom_ui.h \
-					 platform.h
+	 version.h \
+	 logger.h \
+	 dsipcom_ui.h \
+	 platform.h
 SOURCES += dsipcom_ui.cpp \
-					 logger.cpp \
-					 platform.cpp \
-					 main.cpp
+	 logger.cpp \
+	 platform.cpp \
+	 main.cpp
 					 
 FORMS += dsipcom.ui \
-					add_contact_dialog.ui \
-					about.ui
+	add_contact_dialog.ui \
+	about.ui
 RESOURCES += dsipcom.qrc
 
 LIBS += -llinphone -lboost_filesystem

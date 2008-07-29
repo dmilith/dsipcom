@@ -113,25 +113,6 @@ namespace Ui {
       ~AboutBox();
   };
   
-  class SipMutex {
-    public:
-      SipMutex() {
-        pthread_mutex_init( &_mutex, NULL );
-      }
-      void lock() {
-        pthread_mutex_lock( &_mutex );
-      }
-      void unlock() {
-        pthread_mutex_unlock( &_mutex );
-      }
-      ~SipMutex() {
-        pthread_mutex_destroy( &_mutex );
-      }
-    private:
-      pthread_mutex_t _mutex;
-  };
-  
-    
   class DSipCom : public QMainWindow, public Ui::MainWindow {
     // qt4 ui macro (for actions)
     Q_OBJECT
@@ -153,9 +134,7 @@ namespace Ui {
       // init linphone
       void apply_settings_to_linphone();
       void create_linphone_core();
-      //LinphoneCore *_core;
       LinphoneCore linphonec;
-	    //SipMutex _mutex;
       FILE* linphone_logger_file;
 
       // add contact dialog:

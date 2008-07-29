@@ -22,8 +22,7 @@ using namespace boost::filesystem;
 //
 
 //Linphone Core
-
-LPC_AUTH_STACK auth_stack;
+LPC_AUTH_STACK auth_stack; // stack of auth requests (?) 
 char prompt[PROMPT_MAX_LEN];
 static bool_t auto_answer = FALSE;
 static bool_t answer_call = FALSE;
@@ -372,6 +371,7 @@ DSipCom::save_user_list() {
   char user_list_header[] = "dulf0";
   fwrite( user_list_header, sizeof( user_list_header ), 1, userlist_file );
   // writing amount of users
+  
   uint64_t user_list_size = user_list.size();
   fwrite( &user_list_size, sizeof( &user_list_size ), 1, userlist_file );
   // writing data
@@ -459,6 +459,8 @@ DSipCom::load_user_list() {
 
 void
 DSipCom::apply_settings_to_linphone() {
+  //disable ipv6 by default.
+  linphone_core_enable_ipv6( &linphonec, FALSE );
   //now apply these settings to linphone core:
   uint64_t port = strtol( user_config->default_port, NULL, 10 ); //conversion from char[5] to uint64_t, 10 => decimal number sys.
   if ( ( port > 65535 ) || ( port < 1024 ) ) { // 65535 is max port, greater than 1024 cause 0...1024 are root ports
@@ -473,25 +475,23 @@ DSipCom::apply_settings_to_linphone() {
     printf( "\nSetting default port to: %d\n", (uint64_t)linphone_core_get_sip_port( &linphonec ) );
     fflush( stdout );
   #endif
-  linphone_core_set_inc_timeout( &linphonec, 60 ); // 60 seconds to timeout
-  // TODO: set stun server only when it's requested:
+  linphone_core_set_inc_timeout( &linphonec, 60 ); // 60 to timeout
   if ( user_config->use_stun_server ) {
     linphone_core_set_stun_server( &linphonec, user_config->stun_address );
   }
-  // TODO: set NAT only when it's requested
   if ( user_config->manual_firewall_address ) {
     linphone_core_set_nat_address( &linphonec, user_config->firewall_address );
   }
   // TODO: add ring volume level setting
   // void linphone_core_set_ring_level(LinphoneCore *lc, int level);
-  linphone_core_set_ring_level( &linphonec, 2 );
+  linphone_core_set_ring_level( &linphonec, 5 );
   // void linphone_core_set_play_level(LinphoneCore *lc, int level);
   linphone_core_set_play_level( &linphonec, 5 );
   // void linphone_core_set_rec_level(LinphoneCore *lc, int level);
   linphone_core_set_rec_level( &linphonec, 6 );
   // TODO: add option to manually choose ring sound
   strcpy( user_config->ring_sound, "sounds/toyphone.wav" ); 
-  linphone_core_set_ring( &linphonec, "sounds/toyphone.wav" );
+  linphone_core_set_ring( &linphonec, user_config->ring_sound );
   // TODO: add support for echo cancelation:
   // void linphone_core_enable_echo_cancelation(LinphoneCore *lc, bool_t val);
   linphone_core_set_ringer_device( &linphonec, uint2cstr( user_config->out_soundcard ) );
@@ -513,6 +513,12 @@ DSipCom::apply_settings_to_linphone() {
   // TODO: make possible to set bandwith capacity
   linphone_core_set_download_bandwidth( &linphonec, 0 ); // bandwidth unlimited
   linphone_core_set_upload_bandwidth( &linphonec, 0 ); // same as above.
+  //play ring on reloading
+  //void* userdata;
+  //LinphoneCoreCbFunc func;
+  //int result = linphone_core_preview_ring( &linphonec, user_config->ring_sound, func, userdata);
+
+  //LinphoneAuthInfo * linphone_auth_info_new_from_config_file(struct _LpConfig *config, int pos);
 }
 
 // load_user_config() it's method which load application settings and apply them in linphone core right after init
