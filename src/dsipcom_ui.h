@@ -14,6 +14,7 @@
 #include <signal.h>
 #include <assert.h>
 
+#include <qt4/QtCore/QTimer>
 #include <qt4/QtCore/Qt>
 #include <qt4/QtCore/QFile>
 #include <qt4/QtGui/QDialog>
@@ -54,11 +55,6 @@ typedef struct {
   LinphoneAuthInfo *elem[MAX_PENDING_AUTH];
   int nitems;
 } LPC_AUTH_STACK;
-
-typedef struct {
-  char contact_name[50];
-  char contact_sip_address[50];
-} USER_LIST;
 
 typedef struct {
   char user_sip_server[50];
@@ -130,16 +126,15 @@ namespace Ui {
       void save_user_list();
       void load_user_config();
       void save_user_config();
+      void linphonec_main_loop();
       
       // init linphone
       void apply_settings_to_linphone();
       void create_linphone_core();
-      LinphoneCore linphonec;
-      FILE* linphone_logger_file;
 
       // add contact dialog:
       AddContactWindow *dialog;
-      QVector<USER_LIST> user_list;
+      QVector<LinphoneAuthInfo> user_list;
       USER_CONFIG *user_config;
       
     // qt4 action slots

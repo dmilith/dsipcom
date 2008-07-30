@@ -6,6 +6,9 @@
  *
  */
 
+#include <qt4/QtCore/qtimer.h>
+
+
 // TODO: make header check for dsipcom.dcnf
 // TODO: make use of MSList * linphone_core_get_call_logs(LinphoneCore *lc), while generation of daily call logs
 
@@ -22,6 +25,8 @@ using namespace boost::filesystem;
 //
 
 //Linphone Core
+LinphoneCore linphonec;
+FILE* linphone_logger_file;
 LPC_AUTH_STACK auth_stack; // stack of auth requests (?) 
 char prompt[PROMPT_MAX_LEN];
 static bool_t auto_answer = FALSE;
@@ -47,7 +52,7 @@ static string pending_call_sip;
 		//static int handle_configfile_migration(void);
 		char *lpc_strip_blanks(char *input);
 		//static int linphonec_init( int argc, char **argv );
-		static int linphonec_main_loop ( LinphoneCore * opm, char * sipAddr );
+		//static void linphonec_main_loop ();
 		//static int linphonec_idle_call ( void );
 
 		/* These are callback for linphone core */
@@ -232,10 +237,13 @@ static string pending_call_sip;
 							}  
 			}
 */			
-			static int
-			linphonec_main_loop( LinphoneCore* opm, char* sipAddr ) {
-				linphone_core_iterate( opm ); 
-        return 0;
+			void
+      Ui::DSipCom::linphonec_main_loop() {
+        linphone_core_iterate( &linphonec ); 
+        #ifdef DEBUG
+          printf( "debug_loop_:%d", &linphonec );
+          fflush( stdout );
+        #endif
 			}
 
 	#ifdef	__cplusplus
@@ -337,7 +345,11 @@ DSipCom::create_linphone_core() {
 	auth_stack.nitems = 0;
 	linphone_core_init ( &linphonec, &linphonec_vtable, LINPHONE_CONFIG.c_str(), NULL );
 	//entering main linphone loop
-	linphonec_main_loop( &linphonec, NULL );
+  // Creating timer with 100ms trigger, and launch it to the background
+  linphonec_main_loop();
+  QTimer *timer = new QTimer( this );
+  connect( timer, SIGNAL( timeout() ) , this, SLOT( this->linphonec_main_loop() ) );
+  timer->start( 100 );
 
     #ifdef DEBUG
       logger.log( "Linphone core Ready!" );
@@ -368,7 +380,7 @@ DSipCom::save_user_list() {
     exit( 1 );
   }
   // writing header
-  char user_list_header[] = "dulf0";
+  char user_list_header[] = "dulf1";
   fwrite( user_list_header, sizeof( user_list_header ), 1, userlist_file );
   // writing amount of users
   
@@ -377,9 +389,13 @@ DSipCom::save_user_list() {
   // writing data
   if ( user_list_size > 0 ) {
     for (int i = 0; i < user_list.size(); i++ ) {
-      // each element in structure has 50 bytes length so we don't need to count it
-      fwrite( &user_list[ i ].contact_name, 50, 1, userlist_file );
-      fwrite( &user_list[ i ].contact_sip_address, 50, 1, userlist_file );
+      // each char* element in structure has 255 bytes length so we don't need to count it and work on workarounds
+      fwrite( &user_list[ i ].username, 255, 1, userlist_file );
+      fwrite( &user_list[ i ].realm, 255, 1, userlist_file );
+      //fwrite( &user_list[ i ].userid, 255, 1, userlist_file );
+      //fwrite( &user_list[ i ].passwd, 255, 1, userlist_file );
+      //fwrite( &user_list[ i ].works, sizeof( bool_t ), 1, userlist_file );
+      //fwrite( &user_list[ i ].first_time, sizeof( bool_t ), 1, userlist_file );
     }
   }
 
@@ -413,7 +429,7 @@ DSipCom::load_user_list() {
     userlist_file = fopen( USER_LIST_FILE.c_str(), "rb+" );
   }
   // checking userlist file header
-  char user_list_header_correct[] = "dulf0";
+  char user_list_header_correct[] = "dulf1";
   char* user_list_header = new char[ sizeof( user_list_header_correct ) ];
   fread( user_list_header, sizeof( user_list_header_correct ), 1, userlist_file );
 
@@ -426,17 +442,21 @@ DSipCom::load_user_list() {
     fflush( stdout );
     exit( 1 );
   }
-  delete user_list_header;
+  delete[] user_list_header;
   
   // reading number of elements
   fread( &size_of_list, sizeof( &size_of_list ), 1, userlist_file );
   // reading elements
   if ( size_of_list > 0 ) {
-    USER_LIST *temp;
+    LinphoneAuthInfo *temp;
     for ( uint64_t i = 0; i < size_of_list; i++ ) {
-      temp = new USER_LIST;
-      fread( temp->contact_name, 50, 1, userlist_file );
-      fread( temp->contact_sip_address, 50, 1, userlist_file );
+      temp = new LinphoneAuthInfo;
+      fread( temp->username, 255, 1, userlist_file );
+      fread( temp->realm, 255, 1, userlist_file );
+      //fread( temp->userid, 255, 1, userlist_file );
+      //fread( temp->passwd, 255, 1, userlist_file );
+      // unnecessary here temp->works
+      temp->first_time = false;
       user_list.append( *temp );
       delete temp;
     }
@@ -448,7 +468,7 @@ DSipCom::load_user_list() {
         icon1.addPixmap( QPixmap( QString::fromUtf8( ":/images/images/user_green.png" ) ), QIcon::Active, QIcon::On );
         QListWidgetItem *__listItem = new QListWidgetItem( this->contacts_list );
         __listItem->setIcon( icon1 );
-        __listItem->setText( (QString)( user_list[ i ].contact_name ) + " => " + (QString)( user_list[i].contact_sip_address ) );  
+        __listItem->setText( QString( user_list[ i ].username ) + "@" + QString( user_list[ i ].realm ) );  
       }
     }
   }
@@ -861,20 +881,26 @@ AddContactWindow::action_done() {
     // after setting icon, we'll bind it to an item, then update text elements
     QListWidgetItem *__listItem = new QListWidgetItem( object->contacts_list );
     __listItem->setIcon(icon1);
-    __listItem->setText( this->contact_name->text() + " => " + this->contact_sip_address->text() );
+    __listItem->setText( this->contact_name->text() + "@" + this->contact_sip_address->text() );
     // marking last element ( just added one )
-    object->contacts_list->setCurrentRow( object->contacts_list->count() -1 );
-    
     // creating new user list element and appending it to user_list object 
-    USER_LIST *temp = new USER_LIST;
-    strcpy( temp->contact_name, this->contact_name->text().toUtf8() );
-    strcpy( temp->contact_sip_address, this->contact_sip_address->text().toUtf8() );
-    object->user_list.append( *temp );
-    delete temp;
+    LinphoneAuthInfo temp; 
+    #ifdef DEBUG
+      printf( "debug_action_done_: UN(%s), CN(%s), RL(%s)", temp.username, this->contact_name->text().toUtf8(), temp.realm );
+      fflush( stdout );
+    #endif
+    strcpy( temp.username, this->contact_name->text().toUtf8() ); //.toUtf8();
+    strcpy( temp.realm, this->contact_sip_address->text().toUtf8() );
+    // strcpy( temp->userid, this->contact_name->text().toUtf8() );
+    // TODO: only for dsipcom local user: strcpy( temp->passwd, "password" );
+    temp.works = true;
+    temp.first_time = true;
+    object->user_list.append( temp );
+    //delete temp;
   
     object->toolBox->setGeometry( object->toolBox->x(), object->toolBox->y() - 220, object->toolBox->width(), object->toolBox->height() - 220 );
     object->status_box->setGeometry( object->status_box->x(), object->status_box->y() - 220, object->status_box->width(), object->status_box->height() - 220 );
-    close();
+    this->close();
   }
 }
 
