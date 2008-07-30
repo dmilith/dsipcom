@@ -238,10 +238,10 @@ static string pending_call_sip;
 			}
 */			
 			void
-      Ui::DSipCom::linphonec_main_loop() {
+      DSipCom::linphonec_main_loop() {
         linphone_core_iterate( &linphonec ); 
         #ifdef DEBUG
-          printf( "debug_loop_:%d", &linphonec );
+          printf( "debug_loop_:%d ", &linphonec );
           fflush( stdout );
         #endif
 			}
@@ -346,10 +346,10 @@ DSipCom::create_linphone_core() {
 	linphone_core_init ( &linphonec, &linphonec_vtable, LINPHONE_CONFIG.c_str(), NULL );
 	//entering main linphone loop
   // Creating timer with 100ms trigger, and launch it to the background
-  linphonec_main_loop();
+  //critical part of Linphone. Here we going to iterate main Linphone engine.
   QTimer *timer = new QTimer( this );
-  connect( timer, SIGNAL( timeout() ) , this, SLOT( this->linphonec_main_loop() ) );
-  timer->start( 100 );
+  connect( timer, SIGNAL( timeout() ) , this, SLOT( linphonec_main_loop() ) );
+  timer->start( 60 ); // 60ms is enough
 
     #ifdef DEBUG
       logger.log( "Linphone core Ready!" );

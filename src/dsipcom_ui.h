@@ -126,7 +126,6 @@ namespace Ui {
       void save_user_list();
       void load_user_config();
       void save_user_config();
-      void linphonec_main_loop();
       
       // init linphone
       void apply_settings_to_linphone();
@@ -139,6 +138,7 @@ namespace Ui {
       
     // qt4 action slots
     public slots:
+      void linphonec_main_loop();
       void action_help_func();
       void action_make_a_call();
       void action_end_call();
