@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <assert.h>
-#include <string>
+#include <iostream>
 
 typedef struct {
   char contact_name[50];
@@ -26,6 +26,13 @@ typedef struct {
 using namespace std;
 #define CONFIG_FILE "test.dcnf"
 
+string strip( string s, char sign ) {
+  std::string::iterator it = std::remove_if(s.begin(), s.end(),
+  std::bind2nd(std::equal_to<char>(), sign ));
+  s = std::string(s.begin(), it);
+  return s;
+}
+        
 int main() {
   
     USER_CONFIG *user_config = NULL, *readed = NULL;
@@ -54,5 +61,14 @@ int main() {
     assert( (string)user_config->user_name == (string)readed->user_name );
     assert( (string)user_config->user_password == (string)readed->user_password );
 
+
+    std::string s = " V er   tic es ";
+    // removing spaces from string (utils.h):
+    assert( strip( " v d f  ", ' ' ) == (string)"vdf" );
+    assert( strip( " z***ło s,23*(%^&#  *", '*') == (string)" zło s,23(%^&#  " );
+    assert( strip( "  ", ' ') == (string)"" );
+    assert( strip( "123", '*') == (string)"123" );
+    assert( strip( "% % %", '%') == (string)"  " );
+    
   return 0;
 }

@@ -8,7 +8,6 @@ src/*.s
 src/*.so
 src/compile.log
 src/Makefile
-dsipcom*Makefile*.mk
 nbproject/private/*
 nbproject/private/
 docs/UML/*/nbproject/private/*

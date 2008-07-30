@@ -50,7 +50,6 @@ static string pending_call_sip;
 	// Linphone structs
 	//
 		//static int handle_configfile_migration(void);
-		char *lpc_strip_blanks(char *input);
 		//static int linphonec_init( int argc, char **argv );
 		//static void linphonec_main_loop ();
 		//static int linphonec_idle_call ( void );
@@ -241,7 +240,7 @@ static string pending_call_sip;
       DSipCom::linphonec_main_loop() {
         linphone_core_iterate( &linphonec ); 
         #ifdef DEBUG
-          printf( "debug_loop_:%d ", &linphonec );
+          printf( "." );
           fflush( stdout );
         #endif
 			}
@@ -358,20 +357,23 @@ DSipCom::create_linphone_core() {
 
 void
 DSipCom::save_user_list() {
-  /*  // test elements
-      USER_LIST *temp;
-      temp = new USER_LIST;
-      strcpy( temp->contact_name, "dmilith" );
-      strcpy( temp->contact_sip_address, "sip:dmilith@drakor.eu" );
-      user_list.append( *temp );
-      delete temp;
-
-      temp = new USER_LIST;
-      strcpy( temp->contact_name, "annasliw" );
-      strcpy( temp->contact_sip_address, "sip:annasliw@drakor.eu" );
-      user_list.append( *temp );
-      delete temp;
-  */
+//  LinphoneAuthInfo *linphone_auth_info_new(const char *username, const char *userid,
+//		const char *passwd, const char *ha1,const char *realm);
+//void linphone_auth_info_set_passwd(LinphoneAuthInfo *info, const char *passwd);
+/* you don't need those function*/
+// void linphone_auth_info_destroy(LinphoneAuthInfo *info);
+//  LinphoneAuthInfo * linphone_auth_info_new_from_config_file(struct _LpConfig *config, int pos);
+    // test elements
+  #ifdef DEBUG
+    printf( "\nsave_user_list_:Appending testing data to list. " );
+    fflush( stdout );
+    LinphoneAuthInfo *temp = linphone_auth_info_new( "dmilith.6", "userid", "haseło", "ha1!", "dmilith@192.168.0.6" );
+    user_list.append( temp );
+    temp = linphone_auth_info_new( "dmilith.2", "userid2", "haseło2", "ha1!2", "dmilith@192.168.0.2" );
+    user_list.append( temp );
+    printf( "\nsave_user_list_:QVector_Contains_:%s,%s", temp->username, temp->realm );
+    fflush( stdout );
+  #endif 
   FILE* userlist_file;
   userlist_file = fopen( USER_LIST_FILE.c_str(), "wb+" );
   if ( userlist_file == 0 ) {
@@ -383,24 +385,26 @@ DSipCom::save_user_list() {
   char user_list_header[] = "dulf1";
   fwrite( user_list_header, sizeof( user_list_header ), 1, userlist_file );
   // writing amount of users
-  
-  uint64_t user_list_size = user_list.size();
-  fwrite( &user_list_size, sizeof( &user_list_size ), 1, userlist_file );
+  uint32_t user_list_size = user_list.size();
+  fwrite( &user_list_size, sizeof( uint32_t ), 1, userlist_file );
   // writing data
   if ( user_list_size > 0 ) {
     for (int i = 0; i < user_list.size(); i++ ) {
+      char username[255];
+      char realm[255];
       // each char* element in structure has 255 bytes length so we don't need to count it and work on workarounds
-      fwrite( &user_list[ i ].username, 255, 1, userlist_file );
-      fwrite( &user_list[ i ].realm, 255, 1, userlist_file );
-      //fwrite( &user_list[ i ].userid, 255, 1, userlist_file );
-      //fwrite( &user_list[ i ].passwd, 255, 1, userlist_file );
-      //fwrite( &user_list[ i ].works, sizeof( bool_t ), 1, userlist_file );
-      //fwrite( &user_list[ i ].first_time, sizeof( bool_t ), 1, userlist_file );
+      strcpy( username, user_list[ i ]->username );
+      strcpy( realm, user_list[ i ]->realm );
+      #ifdef DEBUG
+        printf( "\nsave_user_list_:%s@%s vs %s@%s", username, realm, user_list[ i ]->username, user_list[ i ]->realm );
+        fflush( stdout );
+      #endif
+      fwrite( username, sizeof( username ), 1, userlist_file );
+      fwrite( realm, sizeof( realm ), 1, userlist_file );
     }
   }
-
 #ifdef DEBUG
-  printf( "records written to file: %d\n", (int)user_list_size );
+  printf( "\nsave_user_list_:records written to file: %d\n", (uint32_t)user_list_size );
   fflush( stdout ); // need to flush out data
 #endif  
   fclose( userlist_file );
@@ -411,14 +415,13 @@ DSipCom::load_user_list() {
   // TODO: each contact on DSipCom's user list should get linphone presence info
   //void linphone_core_set_presence_info(LinphoneCore *lc,int minutes_away,const char *contact,LinphoneOnlineStatus os);
   //linphone_core_set_presence_info( &linphonec, 0, )
-
   // clear user_list QVector
   this->user_list.clear(); // == .resize(0)
   // clear items on contacts list
   this->contacts_list->clear();
   
   // reading user_list from file
-  uint64_t size_of_list;
+  uint32_t size_of_list;
   FILE* userlist_file;
   userlist_file = fopen( USER_LIST_FILE.c_str(), "rb+" );
   // checking existance of list file
@@ -430,7 +433,7 @@ DSipCom::load_user_list() {
   }
   // checking userlist file header
   char user_list_header_correct[] = "dulf1";
-  char* user_list_header = new char[ sizeof( user_list_header_correct ) ];
+  char* user_list_header = new char[ sizeof( user_list_header_correct ) + 1 ];
   fread( user_list_header, sizeof( user_list_header_correct ), 1, userlist_file );
 
 #ifdef DEBUG
@@ -443,32 +446,29 @@ DSipCom::load_user_list() {
     exit( 1 );
   }
   delete[] user_list_header;
-  
   // reading number of elements
-  fread( &size_of_list, sizeof( &size_of_list ), 1, userlist_file );
+  fread( &size_of_list, sizeof( uint32_t ), 1, userlist_file );
   // reading elements
   if ( size_of_list > 0 ) {
-    LinphoneAuthInfo *temp;
-    for ( uint64_t i = 0; i < size_of_list; i++ ) {
-      temp = new LinphoneAuthInfo;
-      fread( temp->username, 255, 1, userlist_file );
-      fread( temp->realm, 255, 1, userlist_file );
-      //fread( temp->userid, 255, 1, userlist_file );
-      //fread( temp->passwd, 255, 1, userlist_file );
-      // unnecessary here temp->works
-      temp->first_time = false;
-      user_list.append( *temp );
-      delete temp;
+    char realm[255];
+    char username[255]; //temp ones
+    bool first_time = false;
+    for ( uint32_t i = 0; i < size_of_list; i++ ) {
+      //fread( username, sizeof( username ), 1, userlist_file );
+      fread( username, sizeof( username ), 1, userlist_file );
+      fread( realm, sizeof( realm ), 1, userlist_file );
+      LinphoneAuthInfo* temp = linphone_auth_info_new( username, "", "", "", realm );
+      user_list.append( temp );
     }
     // putting elements to user_list plus icons
     if (! user_list.empty() ) {
-      for ( uint64_t i = 0; i< size_of_list; i++ ) {
+      for ( uint32_t i = 0; i< size_of_list; i++ ) {
         // C-c C-v from Qt4 example. It will set specified icon to current list element, then will set caption, and add object to user_list
         QIcon icon1;
         icon1.addPixmap( QPixmap( QString::fromUtf8( ":/images/images/user_green.png" ) ), QIcon::Active, QIcon::On );
         QListWidgetItem *__listItem = new QListWidgetItem( this->contacts_list );
         __listItem->setIcon( icon1 );
-        __listItem->setText( QString( user_list[ i ].username ) + "@" + QString( user_list[ i ].realm ) );  
+        __listItem->setText( QString( user_list[ i ]->username ) + QString( " : " ) + QString( user_list[ i ]->realm ) );  
       }
     }
   }
@@ -715,7 +715,7 @@ DSipCom::action_enter_hash() {
 void
 DSipCom::action_end_call() {
     // section here will cut "sip:" from contact address
-  this->status_bar->setText( "Rozłączam z " + ( (QString)pending_call_sip.c_str() ).section( ':', -1 ) );
+  this->status_bar->setText( "Rozłączam z " + ( (QString)pending_call_sip.c_str() ).section( ':', 1 ) );
   this->call_button->setEnabled( true );
   this->hang_button->setEnabled( false );
 #ifdef DEBUG
@@ -739,16 +739,16 @@ DSipCom::action_make_a_call() {
             case 0:
               // 0 => contact list page
               this->status_bar->setText( "Dzwonię do: " + 
-                    this->contacts_list->item( this->contacts_list->currentRow() )->text().section( ' ', -1 ) ); // str == "myapp" );
+                this->contacts_list->item( this->contacts_list->currentRow() )->text().section( ':', 1 ) ); // str == "myapp" );
               
-               pending_call_sip = (string)"sip:" + 
-																	(string)( this->contacts_list->item( 
-																	this->contacts_list->currentRow() )->text().section( ' ', -1 ) ).toUtf8() +
+               pending_call_sip = (string)"sip:" + (string)( this->contacts_list->item( 
+                                   this->contacts_list->currentRow() )->text().section( ':', 1 ) ).toUtf8() +
 																	(string)":" + (string)user_config->default_port;
+               pending_call_sip = strip( pending_call_sip, ' ' );
               linphone_core_invite( &linphonec, pending_call_sip.c_str() );
               //linphone_core_accept_call( &linphonec, );
 						#ifdef DEBUG
-							printf( "Making new call with: %s\n", pending_call_sip.c_str() );
+							printf( "\nMaking new call with: %s\n", pending_call_sip.c_str() );
 							fflush( stdout );
 						#endif
               break;
@@ -758,6 +758,7 @@ DSipCom::action_make_a_call() {
 							// SIP address format is "sip:ADDR_OR_NUMBER_HERE:port"
               pending_call_sip = (string)"sip:" + (string)( this->number_entry->text() ).toUtf8() +
 																 (string)":" + (string)user_config->default_port;
+              pending_call_sip = strip( pending_call_sip, ' ' );
               linphone_core_invite( &linphonec, pending_call_sip.c_str() );
 						#ifdef DEBUG
 							printf( "Making new call with: %s\n", pending_call_sip.c_str() );
@@ -834,7 +835,7 @@ DSipCom::action_add_contact_func() {
 
 void
 DSipCom::action_remove_contact_func() {
-  if ( toolBox->currentIndex() == 0 ) {
+  if ( ( toolBox->currentIndex() == 0 ) && ( this->contacts_list->count() > 0 ) ) {
     // and from user_list QVector
 	#ifdef DEBUG
 		printf( "Removed contact with index: %d\n", this->contacts_list->currentRow() );
@@ -850,6 +851,12 @@ DSipCom::action_remove_contact_func() {
 		printf( "Remove contact func list size: %d\n", user_list.size() );
 		fflush( stdout );
 	#endif  
+  } else {
+	#ifdef DEBUG
+		printf( "\nNo elements on list.\n" );
+		fflush( stdout );
+	#endif  
+    
   }
 }
 
@@ -873,31 +880,29 @@ AddContactWindow::init_actions() {
 void
 AddContactWindow::action_done() {
   // finding parent
+  LinphoneAuthInfo* temp;
+  char username[255];
+  char realm[255];
   DSipCom *object = ( (DSipCom*)this->parent() );
   // adding lineedit content from dialog on contact list
-  if ( ( this->contact_name->text().length() > 0 ) && ( this->contact_sip_address->text().length() > 0 ) ) {
+  if ( ( contact_name->text().length() > 0 ) && ( contact_sip_address->text().length() > 0 ) ) {
     QIcon icon1;
     icon1.addPixmap( QPixmap( QString::fromUtf8( ":/images/images/user_green.png" ) ), QIcon::Active, QIcon::On );
     // after setting icon, we'll bind it to an item, then update text elements
     QListWidgetItem *__listItem = new QListWidgetItem( object->contacts_list );
-    __listItem->setIcon(icon1);
-    __listItem->setText( this->contact_name->text() + "@" + this->contact_sip_address->text() );
+    __listItem->setIcon( icon1 );
+    __listItem->setText( contact_name->text() + QString( " : " ) + contact_sip_address->text() );
     // marking last element ( just added one )
     // creating new user list element and appending it to user_list object 
-    LinphoneAuthInfo temp; 
+    strcpy( username, contact_name->text().toUtf8() ); //.toUtf8();
+    strcpy( realm, contact_sip_address->text().toUtf8() );
+    temp = linphone_auth_info_new( username, "", "", "", realm );
     #ifdef DEBUG
-      printf( "debug_action_done_: UN(%s), CN(%s), RL(%s)", temp.username, this->contact_name->text().toUtf8(), temp.realm );
+      printf( "debug_action_done_: UN(%s), CN(%s), RL(%s)", username, this->contact_name->text().toUtf8(), realm );
       fflush( stdout );
     #endif
-    strcpy( temp.username, this->contact_name->text().toUtf8() ); //.toUtf8();
-    strcpy( temp.realm, this->contact_sip_address->text().toUtf8() );
-    // strcpy( temp->userid, this->contact_name->text().toUtf8() );
     // TODO: only for dsipcom local user: strcpy( temp->passwd, "password" );
-    temp.works = true;
-    temp.first_time = true;
     object->user_list.append( temp );
-    //delete temp;
-  
     object->toolBox->setGeometry( object->toolBox->x(), object->toolBox->y() - 220, object->toolBox->width(), object->toolBox->height() - 220 );
     object->status_box->setGeometry( object->status_box->x(), object->status_box->y() - 220, object->status_box->width(), object->status_box->height() - 220 );
     this->close();

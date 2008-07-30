@@ -4,7 +4,8 @@
     <logicalFolder name="src" displayName="src" projectFiles="true">
       <logicalFolder name="tests" displayName="tests" projectFiles="true">
         <itemPath>../../../../Projects/dsipcom-public/src/tests/IO_file_test.cpp</itemPath>
-        <itemPath>../../../../Projects/dsipcom-public/src/tests/varsizes_test.c</itemPath>
+        <itemPath>../../../../Projects/dsipcom-public/src/tests/qt_test_dialog.cpp</itemPath>
+        <itemPath>../../../../Projects/dsipcom-public/src/tests/qt_test_main.cpp</itemPath>
         <itemPath>../../../../Projects/dsipcom-public/src/tests/varsizes_test.cpp</itemPath>
       </logicalFolder>
       <itemPath>../../../../Projects/dsipcom-public/src/dsipcom_ui.cpp</itemPath>
@@ -16,30 +17,39 @@
       <itemPath>../../../../Projects/dsipcom-public/src/platform.cpp</itemPath>
       <itemPath>../../../../Projects/dsipcom-public/src/platform.h</itemPath>
       <itemPath>../../../../Projects/dsipcom-public/src/unix_specification.h</itemPath>
+      <itemPath>../../../../Projects/dsipcom-public/src/utils.cpp</itemPath>
+      <itemPath>../../../../Projects/dsipcom-public/src/utils.h</itemPath>
       <itemPath>../../../../Projects/dsipcom-public/src/version.h</itemPath>
       <itemPath>../../../../Projects/dsipcom-public/src/win_specification.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
                    projectFiles="false">
-      <itemPath>dsipcom-public-Makefile3.mk</itemPath>
+      <itemPath>dsipcom-public-Makefile.mk</itemPath>
       <itemPath>../../../../Projects/dsipcom-public/src/Makefile</itemPath>
     </logicalFolder>
   </logicalFolder>
+  <sourceRootList>
+    <Elem>../../../../Projects/dsipcom-public/src</Elem>
+  </sourceRootList>
   <sourceEncoding>UTF-8</sourceEncoding>
-  <projectmakefile>dsipcom-public-Makefile3.mk</projectmakefile>
+  <projectmakefile>dsipcom-public-Makefile.mk</projectmakefile>
   <confs>
-    <conf name="Default" type="1">
+    <conf name="Default" type="0">
       <toolsSet>
         <compilerSet>GNU|GNU</compilerSet>
         <platform>2</platform>
       </toolsSet>
-      <compileType>
-        <linkerTool>
-          <linkerLibItems>
-          </linkerLibItems>
-        </linkerTool>
-      </compileType>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>../../../../Projects/dsipcom-public/src</buildCommandWorkingDir>
+          <buildCommand>make -f Makefile</buildCommand>
+          <cleanCommand>make -f Makefile clean</cleanCommand>
+          <executablePath></executablePath>
+        </makeTool>
+        <requiredProjects>
+        </requiredProjects>
+      </makefileType>
       <item path="../../../../Projects/dsipcom-public/src/dsipcom_ui.cpp">
         <itemTool>1</itemTool>
       </item>
@@ -67,13 +77,22 @@
       <item path="../../../../Projects/dsipcom-public/src/tests/IO_file_test.cpp">
         <itemTool>1</itemTool>
       </item>
-      <item path="../../../../Projects/dsipcom-public/src/tests/varsizes_test.c">
+      <item path="../../../../Projects/dsipcom-public/src/tests/qt_test_dialog.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="../../../../Projects/dsipcom-public/src/tests/qt_test_main.cpp">
         <itemTool>1</itemTool>
       </item>
       <item path="../../../../Projects/dsipcom-public/src/tests/varsizes_test.cpp">
         <itemTool>1</itemTool>
       </item>
       <item path="../../../../Projects/dsipcom-public/src/unix_specification.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="../../../../Projects/dsipcom-public/src/utils.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="../../../../Projects/dsipcom-public/src/utils.h">
         <itemTool>3</itemTool>
       </item>
       <item path="../../../../Projects/dsipcom-public/src/version.h">

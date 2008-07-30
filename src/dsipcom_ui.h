@@ -29,21 +29,13 @@
 #include <sstream>
 #include <boost/filesystem/operations.hpp>
 
+#include "utils.h"
 #include "ui_dsipcom.h" // automaticly generated interface from ui file
 #include "ui_add_contact_dialog.h" // automaticly generated widget window
 #include "ui_about.h" // obviously, just about window
 #include "logger.h" //logger defs
 #include "main.h"
 
-// integer to C string converter
-static const char*
-uint2cstr( uint64_t i ) {
-  stringstream ss;
-  string temp;
-  ss << i;
-  ss >> temp;
-  return temp.c_str();
-}
 
 #define MAX_PENDING_AUTH 8
 //#define HISTSIZE 500		/* how many lines of input history */
@@ -133,7 +125,7 @@ namespace Ui {
 
       // add contact dialog:
       AddContactWindow *dialog;
-      QVector<LinphoneAuthInfo> user_list;
+      QVector<LinphoneAuthInfo*> user_list;
       USER_CONFIG *user_config;
       
     // qt4 action slots

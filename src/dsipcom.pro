@@ -3,9 +3,11 @@ HEADERS += main.h \
 	 version.h \
 	 logger.h \
 	 dsipcom_ui.h \
-	 platform.h
+	 platform.h \
+	 utils.h
 SOURCES += dsipcom_ui.cpp \
 	 logger.cpp \
+	 utils.cpp \
 	 platform.cpp \
 	 main.cpp
 					 

@@ -16,7 +16,6 @@
 // enable asserts in code
 #define D_ASSERT
 
-#include <stdlib.h>
 
 using namespace std;
 
@@ -26,6 +25,7 @@ static string pp = SLASH; // "normal" UNIX slash to separate parts path
 
 // main declarations and constants
 #ifndef WIN32
+ #include <stdlib.h>
  const string DSIP_MAIN_DIR = string( getenv( "HOME" ) ) + pp + ".dSipCom";
 #else
  pp = BACKSLASH;

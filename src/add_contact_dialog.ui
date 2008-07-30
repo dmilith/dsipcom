@@ -31,12 +31,12 @@
     <rect>
      <x>10</x>
      <y>90</y>
-     <width>201</width>
+     <width>281</width>
      <height>18</height>
     </rect>
    </property>
    <property name="text" >
-    <string>Adres SIP nowego użytkownika</string>
+    <string>Adres SIP użytkownika ( username@realm )</string>
    </property>
   </widget>
   <widget class="QPushButton" name="add_button" >
@@ -61,20 +61,20 @@
     <rect>
      <x>10</x>
      <y>20</y>
-     <width>201</width>
+     <width>126</width>
      <height>18</height>
     </rect>
    </property>
    <property name="text" >
-    <string>Nazwa nowego użytkownika</string>
+    <string>Nazwa użytkownika</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="contact_name" >
    <property name="geometry" >
     <rect>
-     <x>10</x>
+     <x>40</x>
      <y>40</y>
-     <width>321</width>
+     <width>291</width>
      <height>24</height>
     </rect>
    </property>
@@ -110,7 +110,6 @@
    </property>
   </widget>
  </widget>
- <includes/>
  <resources>
   <include location="dsipcom.qrc" />
  </resources>
