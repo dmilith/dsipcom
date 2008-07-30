@@ -11,9 +11,9 @@
 using namespace std;
 
 string strip( string s, char sign ) {
-  std::string::iterator it = std::remove_if(s.begin(), s.end(),
-  std::bind2nd(std::equal_to<char>(), sign ));
-  s = std::string(s.begin(), it);
+  std::string::iterator it = std::remove_if( s.begin(), s.end(),
+  std::bind2nd( std::equal_to<char>(), sign ) );
+  s = std::string( s.begin(), it );
   return s;
 }
 
@@ -25,5 +25,3 @@ uint2cstr( uint64_t i ) {
   ss >> temp;
   return temp.c_str();
 }
-
-

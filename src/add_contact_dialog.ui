@@ -16,9 +16,9 @@
   <widget class="QLineEdit" name="contact_sip_address" >
    <property name="geometry" >
     <rect>
-     <x>35</x>
+     <x>40</x>
      <y>110</y>
-     <width>296</width>
+     <width>291</width>
      <height>24</height>
     </rect>
    </property>
@@ -99,7 +99,7 @@
   <widget class="QLabel" name="label_13" >
    <property name="geometry" >
     <rect>
-     <x>10</x>
+     <x>15</x>
      <y>110</y>
      <width>26</width>
      <height>21</height>
