@@ -61,36 +61,30 @@ int main() {
   cout << "\nz64_:" << z64 << endl;
   assert( uint2cstr( z64 ) == (string)"12345678901234567890" );
   
-  // data writing to file
+  // data writing to file test
     USER_CONFIG *user_config = NULL, *readed = NULL;
     user_config = new USER_CONFIG;
     readed = new USER_CONFIG;
-
     strcpy( user_config->user_name, "dmilith" );
     // TODO: make crypted passwords 
     strcpy( user_config->user_password, "alaniemakota_nieszyfrowane!");
     strcpy( user_config->user_sip, "sip:dmilith@drak.kill.pl");
     strcpy( user_config->user_sip_server, "ekiga.net");
-
     //printf( "zapis\n" );
     FILE* config_file;
     config_file = fopen( CONFIG_FILE, "wb" );
     fwrite( user_config, sizeof( USER_CONFIG ), 1, config_file );
     fclose( config_file );
-
     //printf( "odczyt\n" );
     config_file = fopen( CONFIG_FILE, "rb" );
     fread( readed, sizeof( USER_CONFIG ), 1, config_file );
     fclose( config_file );
-
-    //printf( "%s\n%s\n\n", readed->user_name, readed->user_password );
-
     assert( (string)user_config->user_name == (string)readed->user_name );
     assert( (string)user_config->user_password == (string)readed->user_password );
 
 
-    std::string s = " V er   tic es ";
     // removing spaces from string (utils.h):
+    assert( strip( " V er   tic es ", ' ' ) == (string)"Vertices" );
     assert( strip( " v d f  ", ' ' ) == (string)"vdf" );
     assert( strip( " z***ło s,23*(%^&#  *", '*') == (string)" zło s,23(%^&#  " );
     assert( strip( "  ", ' ') == (string)"" );

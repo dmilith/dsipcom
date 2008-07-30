@@ -43,10 +43,6 @@ static bool pending_call = false;
 static string pending_call_sip;
 
 
-#ifdef	__cplusplus
-	extern "C" {
-	#endif
-			
 	// Linphone structs
 	//
 		//static int handle_configfile_migration(void);
@@ -245,10 +241,10 @@ static string pending_call_sip;
         #endif
 			}
 
-	#ifdef	__cplusplus
-} // extern C
-#endif
-
+      void
+      DSipCom::reset_status_bar() {
+         this->status_bar->setText( "Program nie wykonuje żadnej akcji" );
+      }
 
 
 //DSipCom objects
@@ -712,6 +708,7 @@ DSipCom::action_enter_hash() {
   this->number_entry->setText( this->number_entry->text() + "#" );
 }
 
+
 void
 DSipCom::action_end_call() {
     // section here will cut "sip:" from contact address
@@ -724,6 +721,11 @@ DSipCom::action_end_call() {
 #endif
   linphone_core_terminate_call( &linphonec, pending_call_sip.c_str() );
   pending_call = false;
+
+  QTimer *timer = new QTimer( this );
+  connect( timer, SIGNAL( timeout() ) , this, SLOT( reset_status_bar() ) );
+  timer->setSingleShot ( true ); //activate only once
+  timer->start( 3000 ); // 3s
 }
 
 void

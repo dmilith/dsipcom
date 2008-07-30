@@ -131,6 +131,7 @@ namespace Ui {
     // qt4 action slots
     public slots:
       void linphonec_main_loop();
+      void reset_status_bar();
       void action_help_func();
       void action_make_a_call();
       void action_end_call();
