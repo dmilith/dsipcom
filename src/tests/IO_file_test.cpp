@@ -10,6 +10,7 @@
 #include <string.h>
 #include <assert.h>
 #include <iostream>
+#include <algorithm>
 #include <sstream>
 
 typedef struct {
