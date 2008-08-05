@@ -6,25 +6,13 @@
  *
  */
 
-#include <qt4/QtGui/QApplication>
-
-//#include <osip2/osip.h>
-//#include <osipparser2/osip_message.h>
-
-#include <stdio.h>
-#include <string>
-#include <execinfo.h> 
+#include "main.h" // main constants and settings
 #include "version.h" // main program version
 #include "platform.h" // platform specific setting
-#include "main.h" // main constants and settings
 #include "dsipcom_ui.h" // main user interface
 
 using namespace Ui;
 
-void
-received_normal_signal( int param ) {
-  printf( "Received signal :%d\n", param );
-}
 
 void
 backtrace( void ) {
@@ -32,17 +20,23 @@ backtrace( void ) {
   char **strings;
   uint64_t size = backtrace( addresses, 10 );
   strings = backtrace_symbols( addresses, size );
-   printf( "Stack frames: %d\n", size );
+   cout << "Stack frames: " << size << endl;
     for ( uint64_t i = 0; i < size; i++ ) {
-      printf( "%ld: %X\n", i, (uint64_t)addresses[ i ] );
-      printf( "%s\n", strings[ i ] ); 
+      cout << i << " : " << (uint64_t)addresses[ i ] << endl;
+      cout << strings[ i ]; 
     }
   free(strings);
 }
 
 void
+received_normal_signal( int param ) {
+  cout << "\n\nReceived signal : " << param << endl;
+  backtrace();
+}
+
+void
 received_SIGSEGV_signal( int param ) {
-  printf( "\n\nSIGSEGV!\n" );
+  cout << "\n\nSIGSEGV : " << param << " !\n";
   backtrace();
   exit(11);
 }
@@ -64,5 +58,5 @@ main( int argc, char *argv[] ) {
      delete main_obj;
    }
    
-   return 0;
+  return 0;
 }

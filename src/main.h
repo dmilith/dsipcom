@@ -10,6 +10,10 @@
 #ifndef _DSIPCOM_MAIN_H
 #define _DSIPCOM_MAIN_H
 
+#include <qt4/QtGui/QApplication>
+#include <string>
+#include <execinfo.h> 
+
 // enabling debuging options
 #define DEBUG
 //#define WIN32
