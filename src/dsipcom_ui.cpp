@@ -358,8 +358,9 @@ DSipCom::create_linphone_core() {
 
 	auth_stack.nitems = 0;
 	linphone_core_init ( &linphonec, &linphonec_vtable, LINPHONE_CONFIG.c_str(), NULL );
-	//entering main linphone loop
-  // Creating timer with 100ms trigger, and launch it to the background
+	// entering main linphone loop
+  // THIS TIMER IS CRITICAL SECTION OF DSIPCOM
+  // Creating timer with 60ms trigger, and launch it to the background
   //critical part of Linphone. Here we going to iterate main Linphone engine.
   QTimer *timer = new QTimer( this );
   connect( timer, SIGNAL( timeout() ) , this, SLOT( linphonec_main_loop() ) );
@@ -821,7 +822,6 @@ DSipCom::action_help_func() {
   QMessageBox::information( this, MAIN_WINDOW_TITLE.c_str(), " Brak pliku pomocy [ niezainicjowano ] ");
 }
 
-
 void
 DSipCom::action_about_func() {
   #ifdef DEBUG
@@ -844,15 +844,17 @@ DSipCom::action_connect_to_sip_server_func() {
     } else if ( this->user_name->text() == "" ) {
       QMessageBox::information( this, MAIN_WINDOW_TITLE.c_str(), " Proszę podać w preferencjach nazwę użytkownika! " );
     } else {
-	// all required settings are ok
-	#ifdef DEBUG
-		logger.log( "All required config data is OK!" );
-	#endif  
+      QMessageBox::information( this, MAIN_WINDOW_TITLE.c_str(), " Połączono z serwerem: " + (QString)this->user_config->user_sip_server );
+      // all required settings are ok
+      #ifdef DEBUG
+        logger.log( "All required config data is OK!" );
+      #endif  
     }
 }
 
 void
 DSipCom::action_disconnect_from_sip_server_func() {
+  QMessageBox::information( this, MAIN_WINDOW_TITLE.c_str(), " Rozłączono z serwerem: " + (QString)this->user_config->user_sip_server );
 	#ifdef DEBUG  
 		logger.log( "Trying to disconnect from server" ); 
 	#endif
