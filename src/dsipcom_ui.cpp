@@ -61,8 +61,8 @@ static string pending_call_sip;
 		static void linphonec_new_unknown_subscriber( LinphoneCore *lc,
 																				LinphoneFriend *lf, const char *url );
 		static void linphonec_bye_received( LinphoneCore *lc, const char *from );
-		static void linphonec_text_received( LinphoneCore *lc, LinphoneChatRoom *cr,
-																			 const char *from, const char *msg );
+/*		static void linphonec_text_received( LinphoneCore *lc, LinphoneChatRoom *cr,
+																			 const char *from, const char *msg ); */
 		static void linphonec_display_status ( LinphoneCore * lc, const char *something );
 
 	 // static bool_t vcap_enabled=FALSE;
@@ -169,13 +169,14 @@ static string pending_call_sip;
 				printf("Bye received from %s\n", from);
 				fflush( stdout );
 			}
-
+/*
 			static void
 			linphonec_text_received( LinphoneCore *lc, LinphoneChatRoom *cr, const char *from, const char *msg) {
 				// TODO: provide mechanism for answering.. ('say' command?)
 				printf("\n\nFrom: %s: Msg: %s\n", from, msg);
 				fflush( stdout );
 			}
+*/
 /*
 			static void 
 			linphonec_general_state ( LinphoneCore *lc, LinphoneGeneralState *gstate ) {
@@ -447,7 +448,6 @@ DSipCom::load_user_list() {
   if ( size_of_list > 0 ) {
     char realm[255];
     char username[255]; //temp ones
-    bool first_time = false;
     for ( uint32_t i = 0; i < size_of_list; i++ ) {
       //fread( username, sizeof( username ), 1, userlist_file );
       fread( username, sizeof( username ), 1, userlist_file );
@@ -485,9 +485,9 @@ DSipCom::apply_settings_to_linphone() {
     linphone_core_set_sip_port( &linphonec, port );
   }
   #ifdef DEBUG
-    printf( "\nConfig port value: %s, after conversion: %d\n", user_config->default_port, port );
+    printf( "\nConfig port value: %s, after conversion: %ld\n", user_config->default_port, port );
     fflush( stdout );
-    printf( "\nSetting default port to: %d\n", (uint64_t)linphone_core_get_sip_port( &linphonec ) );
+    printf( "\nSetting default port to: %ld\n", (uint64_t)linphone_core_get_sip_port( &linphonec ) );
     fflush( stdout );
   #endif
   linphone_core_set_inc_timeout( &linphonec, 60 ); // 60 to timeout
@@ -735,7 +735,7 @@ DSipCom::action_make_a_call() {
   // if we're on contacts list tab and this list isn't empty
   if ( ( ( this->contacts_list->count() != 0 ) && ( this->toolBox->currentIndex() == 0 ) ) || 
       // or number entry is at least one char long and we're on number entry page
-       ( this->number_entry->text().length() > 0 ) && ( this->toolBox->currentIndex() == 1 ) ) {
+       ( ( this->number_entry->text().length() > 0 ) && ( this->toolBox->currentIndex() == 1 ) ) ) {
           switch ( this->toolBox->currentIndex() ) {
             case 0:
               // 0 => contact list page
@@ -898,8 +898,8 @@ AddContactWindow::action_done() {
     username = (string)this->contact_name->text().toUtf8(); //.toUtf8();
     realm = (string)this->contact_sip_address->text().toUtf8();
     #ifdef DEBUG
-      printf( "debug_action_done_: UN(%s), CN(%s), RL(%s)", username, this->contact_name->text().toUtf8(), realm );
-      fflush( stdout );
+      //printf( "debug_action_done_: UN(%s), CN(%s), RL(%s)", username, this->contact_name->text().toUtf8(), realm );
+      //fflush( stdout );
     #endif
     strcpy( temp->username, username.c_str() );
     strcpy( temp->realm, realm.c_str() ); //linphone_auth_info_new( username.c_str(), "", "", "", realm.c_str() );
@@ -907,8 +907,8 @@ AddContactWindow::action_done() {
     object->user_list.append( temp );
     object->toolBox->setGeometry( object->toolBox->x(), object->toolBox->y() - 220, object->toolBox->width(), object->toolBox->height() - 220 );
     object->status_box->setGeometry( object->status_box->x(), object->status_box->y() - 220, object->status_box->width(), object->status_box->height() - 220 );
-    this->close();
     delete temp;
+    this->close();
   }
 }
 
