@@ -5,12 +5,12 @@
  * Created on 30 lipiec 2008, 14:04
  */
 
-#ifndef _UTILS_H
-#define	_UTILS_H
+#ifndef D_UTILS_H
+#define D_UTILS_H
 
 #include <iostream>
+#include <algorithm>
 #include <string.h>
-#include <stdlib.h>
 #include <sstream>
 
 using namespace std;
@@ -23,5 +23,5 @@ using namespace std;
   const char*
   uint2cstr( uint64_t i );
 
-#endif	/* _UTILS_H */
+#endif /* _UTILS_H */
 

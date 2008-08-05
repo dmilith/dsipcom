@@ -6,14 +6,14 @@
  *
  */
 
-#include "utils.h"
+#include "d_utils.h"
 
 using namespace std;
 
 string strip( string s, char sign ) {
-  std::string::iterator it = std::remove_if( s.begin(), s.end(),
-  std::bind2nd( std::equal_to<char>(), sign ) );
-  s = std::string( s.begin(), it );
+  string::iterator it = remove_if( s.begin(), s.end(),
+  bind2nd( equal_to<char>(), sign ) );
+  s = string( s.begin(), it );
   return s;
 }
 

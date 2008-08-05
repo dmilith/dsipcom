@@ -4,10 +4,10 @@ HEADERS += main.h \
 	 logger.h \
 	 dsipcom_ui.h \
 	 platform.h \
-	 utils.h
+	 d_utils.h
 SOURCES += dsipcom_ui.cpp \
 	 logger.cpp \
-	 utils.cpp \
+	 d_utils.cpp \
 	 platform.cpp \
 	 main.cpp
 					 
@@ -38,7 +38,7 @@ unix {
 }
 
 !exists( logger.cpp ) {
-    error( "No main.cpp file found" )
+    error( "No logger.cpp file found" )
 }
 
 !exists( win_specification.h ) {
@@ -49,7 +49,7 @@ unix {
  		error( "Unable to find unix spec." )
 }
 
-QMAKE_CXXFLAGS += -w -pg
+#QMAKE_CXXFLAGS +=
 # old: QMAKE_CXXFLAGS += -w
 TARGET = ../dsipcom
 target.path = ../

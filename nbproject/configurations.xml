@@ -45,7 +45,7 @@
           <buildCommandWorkingDir>../../../../Projects/dsipcom-public/src</buildCommandWorkingDir>
           <buildCommand>make -f Makefile</buildCommand>
           <cleanCommand>make -f Makefile clean</cleanCommand>
-          <executablePath></executablePath>
+          <executablePath>dsipcom</executablePath>
         </makeTool>
         <requiredProjects>
         </requiredProjects>

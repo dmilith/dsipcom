@@ -8,7 +8,6 @@
 
 #include <qt4/QtCore/qtimer.h>
 
-
 // TODO: make header check for dsipcom.dcnf
 // TODO: make use of MSList * linphone_core_get_call_logs(LinphoneCore *lc), while generation of daily call logs
 
@@ -882,9 +881,9 @@ AddContactWindow::init_actions() {
 void
 AddContactWindow::action_done() {
   // finding parent
-  LinphoneAuthInfo* temp;
-  char username[255];
-  char realm[255];
+  LinphoneAuthInfo* temp = new LinphoneAuthInfo;
+  string username;
+  string realm;
   DSipCom *object = ( (DSipCom*)this->parent() );
   // adding lineedit content from dialog on contact list
   if ( ( contact_name->text().length() > 0 ) && ( contact_sip_address->text().length() > 0 ) ) {
@@ -893,21 +892,23 @@ AddContactWindow::action_done() {
     // after setting icon, we'll bind it to an item, then update text elements
     QListWidgetItem *__listItem = new QListWidgetItem( object->contacts_list );
     __listItem->setIcon( icon1 );
-    __listItem->setText( contact_name->text() + QString( " : " ) + contact_sip_address->text() );
+    __listItem->setText( this->contact_name->text() + QString( " : " ) + this->contact_sip_address->text() );
     // marking last element ( just added one )
     // creating new user list element and appending it to user_list object 
-    strcpy( username, contact_name->text().toUtf8() ); //.toUtf8();
-    strcpy( realm, contact_sip_address->text().toUtf8() );
-    temp = linphone_auth_info_new( username, "", "", "", realm );
+    username = (string)this->contact_name->text().toUtf8(); //.toUtf8();
+    realm = (string)this->contact_sip_address->text().toUtf8();
     #ifdef DEBUG
       printf( "debug_action_done_: UN(%s), CN(%s), RL(%s)", username, this->contact_name->text().toUtf8(), realm );
       fflush( stdout );
     #endif
+    strcpy( temp->username, username.c_str() );
+    strcpy( temp->realm, realm.c_str() ); //linphone_auth_info_new( username.c_str(), "", "", "", realm.c_str() );
     // TODO: only for dsipcom local user: strcpy( temp->passwd, "password" );
     object->user_list.append( temp );
     object->toolBox->setGeometry( object->toolBox->x(), object->toolBox->y() - 220, object->toolBox->width(), object->toolBox->height() - 220 );
     object->status_box->setGeometry( object->status_box->x(), object->status_box->y() - 220, object->status_box->width(), object->status_box->height() - 220 );
     this->close();
+    delete temp;
   }
 }
 

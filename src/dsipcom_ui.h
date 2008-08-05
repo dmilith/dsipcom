@@ -26,10 +26,11 @@
 #include <linphone/linphonecore.h>
 
 #include <string>
+#include <iostream>
 #include <sstream>
 #include <boost/filesystem/operations.hpp>
 
-#include "utils.h"
+#include "d_utils.h"
 #include "ui_dsipcom.h" // automaticly generated interface from ui file
 #include "ui_add_contact_dialog.h" // automaticly generated widget window
 #include "ui_about.h" // obviously, just about window
