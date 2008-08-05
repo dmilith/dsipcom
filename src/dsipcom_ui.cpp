@@ -10,7 +10,6 @@
 
 // TODO: make header check for dsipcom.dcnf
 // TODO: make use of MSList * linphone_core_get_call_logs(LinphoneCore *lc), while generation of daily call logs
-
 #include "dsipcom_ui.h"
 #include "version.h"
 //#include "main.h"
@@ -25,6 +24,8 @@ using namespace boost::filesystem;
 
 //Linphone Core
 LinphoneCore linphonec;
+//List of sound devices
+const char **sound_dev_names;
 FILE* linphone_logger_file;
 LPC_AUTH_STACK auth_stack; // stack of auth requests (?) 
 char prompt[PROMPT_MAX_LEN];
@@ -253,11 +254,13 @@ static string pending_call_sip;
 */			
 			void
       DSipCom::linphonec_main_loop() {
-        linphone_core_iterate( &linphonec ); 
-        #ifdef DEBUG
-          cout << ".";
-          //fflush( stdout );
-        #endif
+        if ( pending_call ) {
+          linphone_core_iterate( &linphonec ); 
+          #ifdef DEBUG
+            cout << ".";
+            fflush( stdout );
+          #endif
+        }
 			}
 
       void
@@ -311,6 +314,8 @@ DSipCom::DSipCom( const QString& title ) {
   user_config = new USER_CONFIG;
   create_linphone_core();
   load_user_config();
+  // iterate once only to initiate video window for example ;} it's nasty hack but it works ;}
+  linphone_core_iterate( &linphonec ); 
    #ifdef DEBUG
     logger.log( "Loading Linphone, version: " + (QString)linphone_core_get_version() );
    #endif
@@ -338,9 +343,6 @@ DSipCom::create_linphone_core() {
     #ifdef DEBUG
        logger.log( "Linphone config: " + (QString)( LINPHONE_CONFIG.c_str() ) );
        logger.log( "Initializing Linphone core logger" );
-    #endif
-
-    #ifdef DEBUG
        linphone_core_enable_logs( stdout );
        TRACE_INITIALIZE( (trace_level_t)0, stdout );
     #endif
@@ -362,7 +364,10 @@ DSipCom::create_linphone_core() {
   QTimer *timer = new QTimer( this );
   connect( timer, SIGNAL( timeout() ) , this, SLOT( linphonec_main_loop() ) );
   timer->start( 60 ); // 60ms is enough
-
+ 
+  // char** with list of sound devices
+  sound_dev_names = linphone_core_get_sound_devices( &linphonec );
+  
     #ifdef DEBUG
       logger.log( "Linphone core Ready!" );
     #endif
@@ -392,7 +397,7 @@ DSipCom::save_user_list() {
     exit( 1 );
   }
   // writing header
-  char user_list_header[] = "dulf1";
+  char user_list_header[] = "dulf2";
   fwrite( user_list_header, sizeof( user_list_header ), 1, userlist_file );
   // writing amount of users
   uint32_t user_list_size = user_list.size();
@@ -413,9 +418,9 @@ DSipCom::save_user_list() {
       fwrite( realm, sizeof( realm ), 1, userlist_file );
     }
   }
-#ifdef DEBUG
-  cout << "\nsave_user_list_: amount of records written to file: " << (uint32_t)user_list_size << endl;
-#endif  
+  #ifdef DEBUG
+    cout << "\nsave_user_list_: amount of records written to file: " << (uint32_t)user_list_size << endl;
+  #endif  
   fclose( userlist_file );
 }
 
@@ -440,15 +445,15 @@ DSipCom::load_user_list() {
     userlist_file = fopen( USER_LIST_FILE.c_str(), "rb+" );
   }
   // checking userlist file header
-  char user_list_header_correct[] = "dulf1";
+  char user_list_header_correct[] = "dulf2";
   char* user_list_header = new char[ sizeof( user_list_header_correct ) + 1 ];
   fread( user_list_header, sizeof( user_list_header_correct ), 1, userlist_file );
 
-#ifdef DEBUG
-  logger.log( "Userlist file header check: " + (QString)user_list_header + " vs " + (QString)user_list_header_correct );
-#endif
+  #ifdef DEBUG
+    logger.log( "Userlist file header check: " + (QString)user_list_header + " vs " + (QString)user_list_header_correct );
+  #endif
   if ( strcmp( user_list_header, user_list_header_correct ) != 0 ) {
-    cout << "Error in user_list file header. " << user_list_header << " instead of " << 
+    cout << "Error in user_list file header. (" << user_list_header << " instead of " << 
             user_list_header_correct << ") Probably I tried to read bad format user_list" <<
             " file! Delete this file, maybe it's broken or smth" << endl;
     exit( 1 );
@@ -501,12 +506,16 @@ DSipCom::apply_settings_to_linphone() {
     cout << "\nSetting default port to: " << (uint64_t)linphone_core_get_sip_port( &linphonec ) << endl;
   #endif
   linphone_core_set_inc_timeout( &linphonec, 60 ); // 60 to timeout
+  linphone_core_set_firewall_policy( &linphonec, LINPHONE_POLICY_NO_FIREWALL );
   if ( user_config->use_stun_server ) {
     linphone_core_set_stun_server( &linphonec, user_config->stun_address );
+    linphone_core_set_firewall_policy( &linphonec, LINPHONE_POLICY_USE_STUN );
   }
   if ( user_config->manual_firewall_address ) {
     linphone_core_set_nat_address( &linphonec, user_config->firewall_address );
+    linphone_core_set_firewall_policy( &linphonec, LINPHONE_POLICY_USE_NAT_ADDRESS );
   }
+  
   // TODO: add ring volume level setting
   // void linphone_core_set_ring_level(LinphoneCore *lc, int level);
   linphone_core_set_ring_level( &linphonec, 5 );
@@ -519,15 +528,15 @@ DSipCom::apply_settings_to_linphone() {
   linphone_core_set_ring( &linphonec, user_config->ring_sound );
   // TODO: add support for echo cancelation:
   // void linphone_core_enable_echo_cancelation(LinphoneCore *lc, bool_t val);
-  linphone_core_set_ringer_device( &linphonec, uint2cstr( user_config->out_soundcard ) );
+  linphone_core_set_ringer_device( &linphonec, user_config->out_soundcard  );
   #ifdef DEBUG
     cout << "\nSound RING OUT device: " << linphone_core_get_ringer_device( &linphonec ) << endl;
   #endif
-  linphone_core_set_playback_device( &linphonec, uint2cstr( user_config->out_soundcard ) );
+  linphone_core_set_playback_device( &linphonec, user_config->out_soundcard );
   #ifdef DEBUG
     cout << "\nSound PLAYBACK OUT device: " << linphone_core_get_playback_device( &linphonec ) << endl;
   #endif
-  linphone_core_set_capture_device( &linphonec, uint2cstr( user_config->in_soundcard ) );
+  linphone_core_set_capture_device( &linphonec, user_config->in_soundcard );
   #ifdef DEBUG
     cout << "\nSound CAPTURE IN device: " << linphone_core_get_capture_device( &linphonec ) << endl;
   #endif
@@ -536,10 +545,19 @@ DSipCom::apply_settings_to_linphone() {
   linphone_core_set_download_bandwidth( &linphonec, 0 ); // bandwidth unlimited
   linphone_core_set_upload_bandwidth( &linphonec, 0 ); // same as above.
   //play ring on reloading
-  //void* userdata;
-  //LinphoneCoreCbFunc func;
-  //int result = linphone_core_preview_ring( &linphonec, user_config->ring_sound, func, userdata);
-
+ /* #ifdef DEBUG
+    cout << sound_dev_names[0] << endl; // alsa
+    cout << sound_dev_names[1] << endl; // oss
+    void* userdata;
+    LinphoneCoreCbFunc func;
+    int result = linphone_core_preview_ring( &linphonec, user_config->ring_sound, func, userdata );
+    if ( result != 0 ) {
+      cout << "\nError in preview!";
+      exit( 1 );
+    }
+    cout << "\n\n\nRing preview: " << user_config->ring_sound << " - " << endl;
+    fflush(stdout);
+  #endif */
   //LinphoneAuthInfo * linphone_auth_info_new_from_config_file(struct _LpConfig *config, int pos);
 }
 
@@ -561,9 +579,16 @@ DSipCom::load_user_config() {
   this->user_password->setText( user_config->user_password );
   this->user_sip->setText( user_config->user_sip );
   this->user_sip_server->setText( user_config->user_sip_server );
-  this->out_soundcard->setCurrentIndex( user_config->out_soundcard );
-  this->in_soundcard->setCurrentIndex( user_config->in_soundcard );
-  this->recording_source->setCurrentIndex( user_config->recording_source );
+ 
+// TODO: it should set properly those, now we'll set OSS as CONST!: 
+  this->out_soundcard->setCurrentIndex( 0 ); //user_config->out_soundcard );
+  this->in_soundcard->setCurrentIndex( 0 ); //user_config->in_soundcard );
+  this->recording_source->setCurrentIndex( 0 ); //user_config->recording_source );
+  
+  strcpy( user_config->out_soundcard, sound_dev_names[ 1 ] ); // );
+  strcpy( user_config->in_soundcard, sound_dev_names[ 1 ] ); // );
+  strcpy( user_config->recording_source, sound_dev_names[ 1 ] ); // );
+  
   //this->ring_sound->setCurrentIndex( user_config->ring_sound );
   this->ring_sound->setItemText( this->ring_sound->currentIndex(), user_config->ring_sound );
   this->ring_sound->setEditable( true );
@@ -588,9 +613,21 @@ DSipCom::save_user_config() {
   strcpy( user_config->user_password, this->user_password->text().toUtf8() );
   strcpy( user_config->user_sip, this->user_sip->text().toUtf8() );
   strcpy( user_config->user_sip_server, this->user_sip_server->text().toUtf8() );
-  user_config->out_soundcard = this->out_soundcard->currentIndex();
-  user_config->in_soundcard = this->in_soundcard->currentIndex();
-  user_config->recording_source = this->recording_source->currentIndex();
+  if ( this->out_soundcard->currentIndex() == 0 ) { // index 0 means OSS on dSipCom device list, but it's 1 on sound_dev_names list
+    strcpy( user_config->out_soundcard, sound_dev_names[ 1 ] );
+  } else {
+    strcpy( user_config->out_soundcard, sound_dev_names[ 0 ] );
+  }
+  if ( this->in_soundcard->currentIndex() == 0 ) {
+    strcpy( user_config->in_soundcard, sound_dev_names[ 1 ] );
+  } else {
+    strcpy( user_config->in_soundcard, sound_dev_names[ 0 ] );
+  }  
+  if ( this->recording_source->currentIndex() == 0 ) {
+    strcpy( user_config->recording_source, sound_dev_names[ 1 ] );  
+  } else {
+    strcpy( user_config->recording_source, sound_dev_names[ 0 ] );  
+  }
   strcpy( user_config->ring_sound, this->ring_sound->currentText().toUtf8() );
   strcpy( user_config->default_port, this->default_port->text().toUtf8() );
   user_config->no_firewall = this->no_firewall->isChecked();
@@ -711,7 +748,6 @@ void
 DSipCom::action_enter_hash() {
   this->number_entry->setText( this->number_entry->text() + "#" );
 }
-
 
 void
 DSipCom::action_end_call() {

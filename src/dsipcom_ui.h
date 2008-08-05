@@ -21,6 +21,7 @@
 #include <qt4/QtCore/QTextCodec>
 #include <qt4/QtGui/QMessageBox>
 #include <qt4/QtCore/QQueue>
+// interesting way to make widget int omain window.. #include <qt4/QtGui/QDockWidget>
 
 #include <linphone/config.h>
 #include <linphone/linphonecore.h>
@@ -39,7 +40,6 @@
 
 
 #define MAX_PENDING_AUTH 8
-//#define HISTSIZE 500		/* how many lines of input history */
 #define PROMPT_MAX_LEN 256	/* max len of prompt string */
 #define LINE_MAX_LEN 256	/* really needed ? */
 
@@ -55,9 +55,9 @@ typedef struct {
   char user_password[50];
   char user_name[50];
 	// 64bit numbers no matter system architecture
-  uint32_t out_soundcard;
-  uint32_t in_soundcard;
-  uint32_t recording_source;
+  char out_soundcard[50];
+  char in_soundcard[50];
+  char recording_source[50];
   char ring_sound[255];
   char default_port[5];
   uint32_t no_firewall;

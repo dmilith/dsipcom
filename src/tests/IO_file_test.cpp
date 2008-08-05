@@ -91,6 +91,6 @@ int main() {
     assert( strip( "  ", ' ') == (string)"" );
     assert( strip( "123", '*') == (string)"123" );
     assert( strip( "% % %", '%') == (string)"  " );
-    
+
   return 0;
 }
