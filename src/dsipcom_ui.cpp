@@ -791,10 +791,11 @@ DSipCom::action_make_a_call() {
                                    this->contacts_list->currentRow() )->text().section( ':', 1 ) ).toUtf8() +
 																	(string)":" + (string)user_config->default_port;
                pending_call_sip = strip( pending_call_sip, ' ' );
+              pending_call = true;
               linphone_core_invite( &linphonec, pending_call_sip.c_str() );
               //linphone_core_accept_call( &linphonec, );
 						#ifdef DEBUG
-							cout << "\nMaking new call with: " << pending_call_sip.c_str() << endl;
+							cout << "\ndebug_action_make_a_call_:Making new call with: " << pending_call_sip.c_str() << endl;
 						#endif
               break;
             case 1:
@@ -804,6 +805,7 @@ DSipCom::action_make_a_call() {
               pending_call_sip = (string)"sip:" + (string)( this->number_entry->text() ).toUtf8() +
 																 (string)":" + (string)user_config->default_port;
               pending_call_sip = strip( pending_call_sip, ' ' );
+              pending_call = true;
               linphone_core_invite( &linphonec, pending_call_sip.c_str() );
 						#ifdef DEBUG
 							cout << "Making new call with: " << pending_call_sip.c_str() << endl;
@@ -812,7 +814,6 @@ DSipCom::action_make_a_call() {
           }
       this->call_button->setEnabled( false );
       this->hang_button->setEnabled( true );
-      pending_call = true;
   } else {
       this->toolBox->setCurrentIndex( 0 );
   }
