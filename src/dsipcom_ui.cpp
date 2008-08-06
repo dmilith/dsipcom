@@ -24,6 +24,8 @@ using namespace boost::filesystem;
 
 //Linphone Core
 LinphoneCore linphonec;
+LinphoneCallLog linphone_call_log;
+static string log = "";
 // List of sound devices
 const char **sound_dev_names;
 // List of sound codecs
@@ -67,8 +69,8 @@ static string pending_call_sip;
 /*		static void linphonec_text_received( LinphoneCore *lc, LinphoneChatRoom *cr,
 																			 const char *from, const char *msg ); */
 		static void linphonec_display_status ( LinphoneCore * lc, const char *something );
-
-	 // static bool_t vcap_enabled=FALSE;
+    static void linphonec_call_log_updated( LinphoneCore *lc, LinphoneCallLog *call_log );
+  // static bool_t vcap_enabled=FALSE;
 	 // static bool_t display_enabled=FALSE;
 	 // static int trace_level = 0;
 	 // static char *logfile_name = NULL;
@@ -88,11 +90,13 @@ static string pending_call_sip;
 			notify_recv: linphonec_notify_received,
 			new_unknown_subscriber: linphonec_new_unknown_subscriber,
 			auth_info_requested: linphonec_prompt_for_auth,
-			display_status:linphonec_display_status,
-			display_message:linphonec_display_something,
-			display_warning:linphonec_display_warning,
-			display_url:linphonec_display_url,
-			display_question:(DisplayQuestionCb)stub,
+			display_status: linphonec_display_status,
+			display_message: linphonec_display_something,
+			display_warning: linphonec_display_warning,
+			display_url: linphonec_display_url,
+			display_question: (DisplayQuestionCb)stub,
+     	call_log_updated: linphonec_call_log_updated,
+
 		  //text_received:linphonec_text_received,
 		  //general_state:linphonec_general_state
 		};
@@ -113,6 +117,20 @@ static string pending_call_sip;
       }
 
 		/* Linphone callbacks definitions */
+      static void
+      linphonec_call_log_updated( LinphoneCore *lc, LinphoneCallLog *call_log ) {
+        lc = &linphonec;
+        call_log = &linphone_call_log;
+        MSList *elem = linphone_core_get_call_logs( lc );
+        for ( ; elem != NULL; elem = ms_list_next( elem ) ) {
+                LinphoneCallLog *cl = (LinphoneCallLog*)elem->data;
+                char *str = linphone_call_log_to_str( cl );
+                cout << endl << "Log:" << str << endl;
+                log += (string)str + "\n"; // adding call logs to common log
+                ms_free( str );
+        }
+        
+      }
       
 			static void
 			linphonec_display_something ( LinphoneCore * lc, const char *something ) {
@@ -120,6 +138,7 @@ static string pending_call_sip;
         #ifdef DEBUG
           cout << "\ndebug_linphonec_display_something_: " << something << endl;
         #endif
+        display_qt4_message( something );  
 			}
 
 			static void
@@ -198,6 +217,8 @@ static string pending_call_sip;
         #ifdef DEBUG
          cout << "\ndebug_linphonec_notify_received_: From: " << from << " Status: " << status << " img: " << img << endl;
         #endif
+        string concated = "Odebrano zdarzenie od " + (string)from + " ( status:" + (string)status + ") ";
+        display_qt4_message( concated.c_str() );
 			}
 
 			static void
@@ -283,7 +304,7 @@ static string pending_call_sip;
 */			
 			void
       DSipCom::linphonec_main_loop() {
-        if ( pending_call ) {
+        if ( pending_call ) { //iterate only while call is pending
           linphone_core_iterate( &linphonec ); 
           #ifdef DEBUG
             cout << ".";
@@ -355,6 +376,7 @@ DSipCom::~DSipCom() {
   linphone_core_uninit( &linphonec );
  #ifdef DEBUG
   cout << "\nDsipCom destructor." << endl;
+  cout << log;
  #endif 
 }
 
@@ -802,8 +824,8 @@ void
 DSipCom::action_end_call() {
     // section here will cut "sip:" from contact address
   this->status_bar->setText( "Rozłączam z " + ( (QString)pending_call_sip.c_str() ).section( ':', 1 ) );
-  this->call_button->setEnabled( true );
-  this->hang_button->setEnabled( false );
+  //this->call_button->setEnabled( true );
+  //this->hang_button->setEnabled( false );
 #ifdef DEBUG
 	cout << "Ending call with: " << pending_call_sip.c_str() << endl;
 #endif
@@ -855,7 +877,7 @@ DSipCom::action_make_a_call() {
 						#endif
               break;
           }
-      this->call_button->setEnabled( false );
+   //   this->call_button->setEnabled( false );
       this->hang_button->setEnabled( true );
   } else {
       this->toolBox->setCurrentIndex( 0 );

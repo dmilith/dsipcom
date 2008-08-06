@@ -120,6 +120,10 @@ namespace Ui {
       void load_user_config();
       void save_user_config();
       
+      void display_qt4_error_message( const char* message );
+      void display_qt4_warning_message( const char* message );
+      void display_qt4_message( const char* message );
+      
       // init linphone
       void apply_settings_to_linphone();
       void create_linphone_core();
