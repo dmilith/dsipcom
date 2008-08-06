@@ -305,8 +305,8 @@ DSipCom::DSipCom( const QString& title ) {
     logger.log( "Loading User List" );
    #endif
    //save_user_list();
-  
-  load_user_list();
+   user_list.reserve( 100 ); // reserve place for 100 elements 
+   load_user_list();
    
    #ifdef DEBUG
     logger.log( "Loading User Config" );
@@ -384,13 +384,15 @@ DSipCom::save_user_list() {
 //  LinphoneAuthInfo * linphone_auth_info_new_from_config_file(struct _LpConfig *config, int pos);
     // test elements
   #ifdef DEBUG
-    cout << "\nsave_user_list_:Appending testing data to list. " << endl;
+  /*  cout << "\nsave_user_list_:Appending testing data to list. " << endl;
     LinphoneAuthInfo *temp = linphone_auth_info_new( "dmilith.6", "userid", "haseło", "ha1!", "dmilith@192.168.0.6" );
-    user_list.append( temp );
-    temp = linphone_auth_info_new( "dmilith.2", "userid2", "haseło2", "ha1!2", "dmilith@192.168.0.2" );
-    user_list.append( temp );
+    user_list.append( *temp );
+    temp = linphone_auth_info_new( "robot", "userid2", "haseło2", "ha1!2", "robot@127.0.0.1" );
+    user_list.append( *temp );
     cout << "\nsave_user_list_:QVector_Contains_: username: " << temp->username << ", realm: " << temp->realm << endl;
-  #endif 
+  */
+  #endif
+  LinphoneAuthInfo* temp;
   FILE* userlist_file;
   userlist_file = fopen( USER_LIST_FILE.c_str(), "wb+" );
   if ( userlist_file == 0 ) {
@@ -403,17 +405,20 @@ DSipCom::save_user_list() {
   // writing amount of users
   uint32_t user_list_size = user_list.size();
   fwrite( &user_list_size, sizeof( uint32_t ), 1, userlist_file );
+  cout << "\nuser_list_size_:" << user_list_size << endl;
   // writing data
   if ( user_list_size > 0 ) {
     for (int i = 0; i < user_list.size(); i++ ) {
-      char username[255];
-      char realm[255];
-      // each char* element in structure has 255 bytes length so we don't need to count it and work on workarounds
-      strcpy( username, user_list[ i ]->username );
-      strcpy( realm, user_list[ i ]->realm );
+      char realm[255] = "";
+      char username[255] = "";
+      temp = linphone_auth_info_new( user_list.at( i ).username, NULL, NULL, NULL, user_list.at( i ).realm );
+      strcpy( username, user_list.at( i ).username );
+      strcpy( realm, user_list.at( i ).realm );
+      cout << username << " " << realm << endl;
+      fflush( stdout );
       #ifdef DEBUG
         cout << "\nsave_user_list_: " << username << "@" << realm << " vs " << 
-                user_list[ i ]->username << "@" << user_list[ i ]->realm << endl;
+                user_list.at( i ).username << "@" << user_list.at( i ).realm << endl;
       #endif
       fwrite( username, sizeof( username ), 1, userlist_file );
       fwrite( realm, sizeof( realm ), 1, userlist_file );
@@ -471,7 +476,7 @@ DSipCom::load_user_list() {
       fread( username, sizeof( username ), 1, userlist_file );
       fread( realm, sizeof( realm ), 1, userlist_file );
       LinphoneAuthInfo* temp = linphone_auth_info_new( username, "", "", "", realm );
-      user_list.append( temp );
+      user_list.append( *temp );
     }
     // putting elements to user_list plus icons
     if (! user_list.empty() ) {
@@ -481,7 +486,7 @@ DSipCom::load_user_list() {
         icon1.addPixmap( QPixmap( QString::fromUtf8( ":/images/images/user_green.png" ) ), QIcon::Active, QIcon::On );
         QListWidgetItem *__listItem = new QListWidgetItem( this->contacts_list );
         __listItem->setIcon( icon1 );
-        __listItem->setText( QString( user_list[ i ]->username ) + QString( " : " ) + QString( user_list[ i ]->realm ) );  
+        __listItem->setText( QString( user_list.at( i ).username ) + QString( " : " ) + QString( user_list.at( i ).realm ) );  
       }
     }
   }
@@ -933,11 +938,16 @@ AddContactWindow::action_done() {
     #ifdef DEBUG
       cout << "\ndebug_action_done_: " << "UN: " << username << ", RL: " << realm << endl;
     #endif
-    temp->username = username;
-    temp->realm = realm; //linphone_auth_info_new( username.c_str(), "", "", "", realm.c_str() );
+    temp = linphone_auth_info_new( username, NULL, NULL, NULL, realm );
+    #ifdef DEBUG
+      cout << "\ndebug_action_done_: " << "TUN: " << temp->username << ", TRL: " << temp->realm << endl;
+    #endif
     // TODO: only for dsipcom local user: strcpy( temp->passwd, "password" );
-    object->user_list.append( temp );
-    delete temp;
+    object->user_list.append( *temp );
+    #ifdef DEBUG
+      cout << "\nZŁO: " << object->user_list.last().username << endl; 
+    #endif
+    //delete temp;
     object->toolBox->setGeometry( object->toolBox->x(), object->toolBox->y() - 220, object->toolBox->width(), object->toolBox->height() - 220 );
     object->status_box->setGeometry( object->status_box->x(), object->status_box->y() - 220, object->status_box->width(), object->status_box->height() - 220 );
     this->close();

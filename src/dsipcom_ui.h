@@ -126,7 +126,7 @@ namespace Ui {
 
       // add contact dialog:
       AddContactWindow *dialog;
-      QVector<LinphoneAuthInfo*> user_list;
+      QVector<LinphoneAuthInfo> user_list;
       USER_CONFIG *user_config;
       
     // qt4 action slots
