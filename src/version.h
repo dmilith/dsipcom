@@ -11,7 +11,7 @@
 
 using namespace std;
 
-static const string DSIPCOM_VERSION = "v0.6.1a";
+static const string DSIPCOM_VERSION = "v0.6.2a";
 static const string MAIN_WINDOW_TITLE = "dSipCom (open-devel)";
 
 #endif

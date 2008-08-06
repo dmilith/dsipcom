@@ -24,13 +24,15 @@ using namespace boost::filesystem;
 
 //Linphone Core
 LinphoneCore linphonec;
-//List of sound devices
+// List of sound devices
 const char **sound_dev_names;
+// List of sound codecs
+const MSList *audio_codec_list, *video_codec_list;
 FILE* linphone_logger_file;
 LPC_AUTH_STACK auth_stack; // stack of auth requests (?) 
 char prompt[PROMPT_MAX_LEN];
 static bool_t auto_answer = FALSE;
-static bool_t answer_call = FALSE;
+//static bool_t answer_call = FALSE;
 //static bool_t vcap_enabled = FALSE;
 //static bool_t display_enabled = FALSE;
 //static bool_t show_general_state = FALSE;
@@ -95,6 +97,20 @@ static string pending_call_sip;
 		  //general_state:linphonec_general_state
 		};
 
+      void
+      display_qt4_error_message( const char* message ) {
+        QMessageBox::critical( 0, MAIN_WINDOW_TITLE.c_str(), message );
+      }
+      
+      void
+      display_qt4_warning_message( const char* message ) {
+        QMessageBox::warning( 0, MAIN_WINDOW_TITLE.c_str(), message );
+      }
+      
+      void
+      display_qt4_message( const char* message ) {
+        QMessageBox::information( 0, MAIN_WINDOW_TITLE.c_str(), message );
+      }
 
 		/* Linphone callbacks definitions */
       
@@ -112,6 +128,14 @@ static string pending_call_sip;
         #ifdef DEBUG
           cout << "\ndebug_linphonec_display_status_: " << something << endl;
         #endif
+        // inform about everything but Ready
+        if ( (string)"Ready" == (string)something ) {
+          //display_qt4_message( something );  
+        } else if ( (string)something == (string)"Could not reach destination." ) {
+          display_qt4_error_message( something );  
+          linphone_core_terminate_call( &linphonec, pending_call_sip.c_str() );
+          pending_call = false;
+        }
 			}
 
 			static void
@@ -120,6 +144,7 @@ static string pending_call_sip;
         #ifdef DEBUG
           cout << "\ndebug_linphonec_display_warning_: " << something << endl;
         #endif
+        display_qt4_warning_message( something );    
 			}
 
 			static void
@@ -128,6 +153,7 @@ static string pending_call_sip;
         #ifdef DEBUG
           cout << "\ndebug_linphonec_display_url_: " << something << ", url: " << url << endl;
         #endif
+        display_qt4_message( something );  
       }
 
 			static void
@@ -140,8 +166,9 @@ static string pending_call_sip;
           #ifdef DEBUG
             cout << "\ndebug_linphonec_call_received_: Auto answered call" << endl;
           #endif
-					answer_call = TRUE;
+				//	answer_call = TRUE;
 				}
+        display_qt4_message( from );    
 			}
 
 			static void
@@ -158,6 +185,8 @@ static string pending_call_sip;
 				} 
 				pending_auth = linphone_auth_info_new( username, NULL, NULL, NULL, realm );
 				auth_stack.elem[ auth_stack.nitems++ ] = pending_auth;
+        string concated = "Odebrano żądanie autoryzacji od " + (string)username + " (" + (string)realm + ") ";
+        display_qt4_message( concated.c_str() );  
 			}
 
 			static void
@@ -267,8 +296,8 @@ static string pending_call_sip;
       DSipCom::reset_status_bar() {
          this->status_bar->setText( "Program nie wykonuje żadnej akcji" );
       }
-
-
+      
+      
 //DSipCom objects
 #ifdef DEBUG
   Logger
@@ -368,6 +397,12 @@ DSipCom::create_linphone_core() {
  
   // char** with list of sound devices
   sound_dev_names = linphone_core_get_sound_devices( &linphonec );
+  // MSlist with audio codecs list
+  audio_codec_list = linphone_core_get_audio_codecs( &linphonec );
+  video_codec_list = linphone_core_get_video_codecs( &linphonec );
+  
+ // linphone_core_set_audio_codecs( &linphonec, (MSList*)audio_codec_list->next );
+ // linphone_core_set_video_codecs( &linphonec, (MSList*)video_codec_list );
   
     #ifdef DEBUG
       logger.log( "Linphone core Ready!" );
@@ -522,6 +557,14 @@ DSipCom::apply_settings_to_linphone() {
     linphone_core_set_firewall_policy( &linphonec, LINPHONE_POLICY_USE_NAT_ADDRESS );
   }
   
+ // linphone_core_set_audio_codecs( &linphonec, (MSList*)audio_codec_list );
+  #ifdef DEBUG
+    PayloadType *pt = NULL;
+    for( MSList* elem = (MSList*)audio_codec_list; elem != NULL; elem = elem->next ) {
+      cout << elem << endl;
+      
+    }
+  #endif
   // TODO: add ring volume level setting
   // void linphone_core_set_ring_level(LinphoneCore *lc, int level);
   linphone_core_set_ring_level( &linphonec, 5 );
