@@ -45,6 +45,7 @@ static bool_t auto_answer = FALSE;
 
 // pending_call == true when call is pending 
 static bool pending_call = false;
+static bool someone_calling = false;
 // pending_call_sip contains sip address of caller
 static string pending_call_sip;
 
@@ -191,7 +192,9 @@ static string pending_call_sip;
           #endif
 				//	answer_call = TRUE;
 				}
-        display_qt4_message( from );    
+        display_qt4_message( from );
+        someone_calling = true;
+        pending_call = true;
 			}
 
 			static void
@@ -859,6 +862,7 @@ DSipCom::action_end_call() {
   #endif
     linphone_core_terminate_call( &linphonec, pending_call_sip.c_str() );
     pending_call = false;
+    someone_calling = false;
     QTimer *timer = new QTimer( this );
     connect( timer, SIGNAL( timeout() ) , this, SLOT( reset_status_bar() ) );
     timer->setSingleShot ( true ); //activate only once
@@ -888,8 +892,7 @@ DSipCom::action_make_a_call() {
 																	(string)":" + (string)user_config->default_port;
                pending_call_sip = strip( pending_call_sip, ' ' );
               pending_call = true;
-              linphone_core_invite( &linphonec, pending_call_sip.c_str() );
-              //linphone_core_accept_call( &linphonec, );
+              //linphone_core_accept_call( &linphonec, NULL ); //to accept call
 						#ifdef DEBUG
 							cout << "\ndebug_action_make_a_call_:Making new call with: " << pending_call_sip.c_str() << endl;
 						#endif
@@ -902,13 +905,15 @@ DSipCom::action_make_a_call() {
 																 (string)":" + (string)user_config->default_port;
               pending_call_sip = strip( pending_call_sip, ' ' );
               pending_call = true;
-              linphone_core_invite( &linphonec, pending_call_sip.c_str() );
 						#ifdef DEBUG
 							cout << "Making new call with: " << pending_call_sip.c_str() << endl;
 						#endif
               break;
           }
-   //   this->call_button->setEnabled( false );
+          
+          if ( someone_calling ) linphone_core_accept_call( &linphonec, NULL );
+          else linphone_core_invite( &linphonec, pending_call_sip.c_str() ); // to invite
+//   this->call_button->setEnabled( false );
       this->hang_button->setEnabled( true );
   } else {
       this->toolBox->setCurrentIndex( 0 );
