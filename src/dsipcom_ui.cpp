@@ -311,13 +311,13 @@ static string pending_call_sip;
 */			
 			void
       DSipCom::linphonec_main_loop() {
-        if ( pending_call ) { //iterate only while call is pending
+        //if ( pending_call ) { //iterate only while call is pending
           linphone_core_iterate( &linphonec ); 
           #ifdef DEBUG
             cout << ".";
             fflush( stdout );
           #endif
-        }
+       // }
 			}
 
       void
