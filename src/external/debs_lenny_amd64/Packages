@@ -1,0 +1,79 @@
+Package: ffmpeg
+Version: 20080806.dSipCom-1
+Architecture: amd64
+Maintainer: dmilith@drakor.eu
+Installed-Size: 39460
+Provides: ffmpeg
+Filename: ./ffmpeg_20080806.dSipCom-1_amd64.deb
+Size: 12327906
+MD5sum: f96b9fcff65e4c012e42db4a6c6e513e
+Section: checkinstall
+Priority: extra
+Description: ffmpeg for dSipCom
+
+Package: gsm
+Version: 20080806.dSipCom-1
+Architecture: amd64
+Maintainer: dmilith@drakor.eu
+Installed-Size: 376
+Provides: gsm
+Filename: ./gsm_20080806.dSipCom-1_amd64.deb
+Size: 102196
+MD5sum: 1d612cafdbda1c5b72c1f6daeb9fe9c3
+Section: checkinstall
+Priority: extra
+Description: gsm for dSipCom
+
+Package: libexosip2
+Version: 3.1.0.dSipCom-1
+Architecture: amd64
+Maintainer: dmilith@drakor.eu
+Installed-Size: 1960
+Provides: libexosip2
+Filename: ./libexosip2_3.1.0.dSipCom-1_amd64.deb
+Size: 569856
+MD5sum: c3570293d05978f6481b79bc92bfc2dc
+Section: checkinstall
+Priority: extra
+Description: libexosip dSipCom version
+
+Package: libosip2
+Version: 3.1.0.dSipCom-1
+Architecture: amd64
+Maintainer: dmilith@drakor.eu
+Installed-Size: 2052
+Provides: libosip2
+Filename: ./libosip2_3.1.0.dSipCom-1_amd64.deb
+Size: 438362
+MD5sum: 024524a5dadbfead3f1a8e81d576ba3f
+Section: checkinstall
+Priority: extra
+Description: osip2 for dSipCom
+
+Package: libspeex1
+Version: 1.4.dSipCom-1
+Architecture: amd64
+Maintainer: dmilith@drakor.eu
+Installed-Size: 3364
+Provides: speex
+Filename: ./libspeex1_1.4.dSipCom-1_amd64.deb
+Size: 1622484
+MD5sum: 8211068cb5cccd2c31a8b18e189edc7e
+Section: checkinstall
+Priority: extra
+Description: libspeex1
+ for dSipCom
+
+Package: linphone
+Version: 2.2.cvs.dSipCom-1
+Architecture: amd64
+Maintainer: dmilith@drakor.eu
+Installed-Size: 11568
+Provides: linphone-cvs
+Filename: ./linphone_2.2.cvs.dSipCom-1_amd64.deb
+Size: 7322602
+MD5sum: 8f7fb873fe5bd396464b47bc479695cb
+Section: checkinstall
+Priority: extra
+Description: linphone
+

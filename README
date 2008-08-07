@@ -1,16 +1,30 @@
-Installing from sources in Linux Debian ( Lenny amd64 ):
 
 A. About
     dSipCom is SIP audio/ video communicator software written with QT4 UI
-    
+    This program is free software licensed on LGPL public license.
+    Program author: Daniel (dmilith) Dettlaff ( dmilith at gmail.com )
+
 B. Prepare to compile
     0. What do You need?
-	qt4-dev-tools ( 4.4.0-X Cause You just don't want to compile it by Yourself.. )
+	qt4-dev-tools ( 4.4.X Cause You just don't want to compile it by Yourself.. it may take whole day )
 
-C. Installing precompiled libs ( in src/external/debs_lenny_ )
-    0. You have already precompiled libraries for Debian Lenny i686 and amd64 arch.
-		
-D. Creating necessary libs ( sources in src/external )
+C. Installing precompiled libs ( in src/external/debs_lenny_amd64 )
+    0. You have already precompiled libraries for Debian Lenny amd64 arch.
+    1. Install them via apt-get/ aptitude/ synaptic
+	You need to put line similar to this one to your /etc/apt/sources.list:
+	deb file:/full/path/to/dsipcom/src/debs_lenny_amd64/ ./
+	then apt-get update
+	then install dSipCom versions of packages:
+	ffmpeg gsm libexosip2 libosip2 libspeex1 linphone
+	
+    2. Install them manually:
+	cd your/path/to/dsipcom/src/external/debs_lenny_amd64
+	sudo dpkg -i *.deb
+	
+    3. Proceed to compilation of dSipCom source ( just exec src/Make_all )
+	You're done!
+
+D. Creating necessary libs ( from sources )
     0. Set compiler flags:
 	export CFLAGS="-march=athlon64 -Os" ( for amd64 arch and with optimize )
     1. Download and compile speex
@@ -19,7 +33,7 @@ D. Creating necessary libs ( sources in src/external )
 	./configure --enable-shared
 	make
 	sudo make install
-	
+
     2. Download and compile ffmpeg
 	git clone git://git.mplayerhq.hu/ffmpeg/
 	cd ffmpeg
@@ -33,7 +47,7 @@ D. Creating necessary libs ( sources in src/external )
 	cd libswscale
 	make
 	sudo make install
-    
+
     3. Download and compile linphone from cvs
 	cvs -z3 -d:pserver:anonymous@cvs.savannah.nongnu.org:/sources/linphone co linphone
 	cd linphone-cvs
@@ -41,4 +55,5 @@ D. Creating necessary libs ( sources in src/external )
 	./configure --enable-shared
 	make
 	sudo make install
-	
+
+    4. Go back to section C, point 3.
