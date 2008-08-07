@@ -21,7 +21,6 @@ using namespace boost::filesystem;
 
 // Linphone variables & consts
 //
-
 //Linphone Core
 LinphoneCore linphonec;
 LinphoneCallLog linphone_call_log;
@@ -35,29 +34,14 @@ FILE* linphone_logger_file;
 LPC_AUTH_STACK auth_stack; // stack of auth requests (?) 
 char prompt[PROMPT_MAX_LEN];
 static bool_t auto_answer = FALSE;
-
-//static bool_t answer_call = FALSE;
-//static bool_t vcap_enabled = FALSE;
-//static bool_t display_enabled = FALSE;
-//static bool_t show_general_state = FALSE;
-//static char configfile_name[ PATH_MAX ];
-//static char* sipAddr = NULL; /* for autocall */
-
-// pending_call == true when call is pending 
-static bool pending_call = false;
-static bool someone_calling = false;
+static bool_t vcap_enabled = FALSE;
+static bool_t display_enabled = FALSE;
 // pending_call_sip contains sip address of caller
 static string pending_call_sip;
 
 
-	// Linphone structs
-	//
-		//static int handle_configfile_migration(void);
-		//static int linphonec_init( int argc, char **argv );
-		//static void linphonec_main_loop ();
-		//static int linphonec_idle_call ( void );
-
-		/* These are callback for linphone core */
+	/* Linphone structs
+	    These are callback for linphone core */
 		static void linphonec_call_received( LinphoneCore *lc, const char *from );
 		static void linphonec_prompt_for_auth( LinphoneCore *lc, const char *realm, const char *username );
 		static void linphonec_display_something ( LinphoneCore * lc, const char *something );
@@ -73,17 +57,6 @@ static string pending_call_sip;
 																			 const char *from, const char *msg ); */
 		static void linphonec_display_status ( LinphoneCore * lc, const char *something );
     static void linphonec_call_log_updated( LinphoneCore *lc, LinphoneCallLog *call_log );
-  // static bool_t vcap_enabled=FALSE;
-	 // static bool_t display_enabled=FALSE;
-	 // static int trace_level = 0;
-	 // static char *logfile_name = NULL;
-	 // static char configfile_name[PATH_MAX];
-	 // static char *sipAddr = NULL; /* for autocall */
-	 // static void linphonec_general_state( LinphoneCore * lc, LinphoneGeneralState *gstate );
-	 // static void print_prompt( LinphoneCore *opm );
-		//static char *histfile_name=NULL;
-		//static char last_in_history[256];
-		//auto answer (-a) option  
 		
 		// main Linphone table.
 		LinphoneCoreVTable linphonec_vtable = {
@@ -101,7 +74,6 @@ static string pending_call_sip;
      	call_log_updated: linphonec_call_log_updated,
 
 		  //text_received:linphonec_text_received,
-		  //general_state:linphonec_general_state
 		};
 
       void
@@ -134,7 +106,6 @@ static string pending_call_sip;
                 today_log += (string)str + "\n"; // adding call logs to common log
                 ms_free( str );
         }
-        
       }
       
 			static void
@@ -158,7 +129,6 @@ static string pending_call_sip;
         } else if ( (string)something == (string)"Could not reach destination." ) {
           display_qt4_error_message( something );  
           linphone_core_terminate_call( &linphonec, pending_call_sip.c_str() );
-          pending_call = false;
         }
 			}
 
@@ -190,11 +160,12 @@ static string pending_call_sip;
           #ifdef DEBUG
             cout << "\ndebug_linphonec_call_received_: Auto answered call" << endl;
           #endif
-				//	answer_call = TRUE;
 				}
-        display_qt4_message( from );
-        someone_calling = true;
-        pending_call = true;
+        //display_qt4_message( from );
+        /*LinphoneAuthInfo *info;
+            info = linphone_auth_info_new( "ktokolwiek_bo_kazdemu_ufamy", NULL, NULL, NULL, from );
+            linphone_core_add_auth_info( lc, info );
+            */
 			}
 
 			static void
@@ -248,76 +219,25 @@ static string pending_call_sip;
           cout << "\ndebug_linphonec_bye_received_: from: " << from << endl;
         #endif
 			}
-/*
+
+ // TODO: text chats should be implemented soon     
+ /*
 			static void
 			linphonec_text_received( LinphoneCore *lc, LinphoneChatRoom *cr, const char *from, const char *msg) {
 				// TODO: provide mechanism for answering.. ('say' command?)
 				printf("\n\nFrom: %s: Msg: %s\n", from, msg);
 				fflush( stdout );
 			}
-			static void 
-			linphonec_general_state ( LinphoneCore *lc, LinphoneGeneralState *gstate ) {
-							if ( show_general_state ) {
-								switch( gstate->new_state ) {
-								 case GSTATE_POWER_OFF:
-									 printf( "GSTATE_POWER_OFF" );
-									 break;
-								 case GSTATE_POWER_STARTUP:
-									 printf( "GSTATE_POWER_STARTUP" );
-									 break;
-								 case GSTATE_POWER_ON:
-									 printf( "GSTATE_POWER_ON" );
-									 break;
-								 case GSTATE_POWER_SHUTDOWN:
-									 printf( "GSTATE_POWER_SHUTDOWN" );
-									 break;
-								 case GSTATE_REG_NONE:
-									 printf( "GSTATE_REG_NONE" );
-									 break;
-								 case GSTATE_REG_OK:
-									 printf( "GSTATE_REG_OK" );
-									 break;
-								 case GSTATE_REG_FAILED:
-									 printf( "GSTATE_REG_FAILED" );
-									 break;
-								 case GSTATE_CALL_IDLE:
-									 printf( "GSTATE_CALL_IDLE" );
-									 break;
-								 case GSTATE_CALL_OUT_INVITE:
-									 printf( "GSTATE_CALL_OUT_INVITE" );
-									 break;
-								 case GSTATE_CALL_OUT_CONNECTED:
-									 printf( "GSTATE_CALL_OUT_CONNECTED" );
-									 break;
-								 case GSTATE_CALL_IN_INVITE:
-									 printf( "GSTATE_CALL_IN_INVITE" );
-									 break;
-								 case GSTATE_CALL_IN_CONNECTED:
-									 printf( "GSTATE_CALL_IN_CONNECTED" );
-									 break;
-								 case GSTATE_CALL_END:
-									 printf( "GSTATE_CALL_END" );
-									 break;
-								 case GSTATE_CALL_ERROR:
-									 printf( "GSTATE_CALL_ERROR" );
-									 break;
-								 default:
-										printf( "GSTATE_UNKNOWN_%d", gstate->new_state );   
-								}
-								if ( gstate->message ) printf( " %s", gstate->message );
-								printf( "\n" );
-							}  
-			}
-*/			
+ */
 			void
       DSipCom::linphonec_main_loop() {
-        //if ( pending_call ) { //iterate only while call is pending
-          linphone_core_iterate( &linphonec ); 
+        linphone_core_iterate( &linphonec );
+        if ( linphonec.call != NULL ) {
           #ifdef DEBUG
             cout << ".";
             fflush( stdout );
           #endif
-       // }
+        }
 			}
 
       void
@@ -379,10 +299,8 @@ DSipCom::DSipCom( const QString& title ) {
   user_config = new USER_CONFIG;
   create_linphone_core();
   load_user_config();
-  //reading logs to calendar
+  //reading logs for calendar
   read_logs();
-  // iterate once only to initiate video window for example ;} it's nasty hack but it works ;}
-  linphone_core_iterate( &linphonec ); 
    #ifdef DEBUG
     logger.log( "Loading Linphone, version: " + (QString)linphone_core_get_version() );
    #endif
@@ -414,35 +332,32 @@ DSipCom::create_linphone_core() {
        linphone_core_enable_logs( stdout );
        TRACE_INITIALIZE( (trace_level_t)0, stdout );
     #endif
-			 
     #ifndef DEBUG   
        linphone_core_disable_logs();
     #endif
-
     #ifdef DEBUG
       logger.log( "Linphone logger initialized" );
       logger.log( "Initializing LinPhone" );
     #endif
-
-	auth_stack.nitems = 0;
-	linphone_core_init ( &linphonec, &linphonec_vtable, LINPHONE_CONFIG.c_str(), NULL );
-	// entering main linphone loop
-  // THIS TIMER IS CRITICAL SECTION OF DSIPCOM
-  // Creating timer with 60ms trigger, and launch it to the background
-  //critical part of Linphone. Here we going to iterate main Linphone engine.
-  QTimer *timer = new QTimer( this );
-  connect( timer, SIGNAL( timeout() ) , this, SLOT( linphonec_main_loop() ) );
-  timer->start( 60 ); // 60ms is enough
- 
-  // char** with list of sound devices
-  sound_dev_names = linphone_core_get_sound_devices( &linphonec );
-  // MSlist with audio codecs list
-  audio_codec_list = linphone_core_get_audio_codecs( &linphonec );
-  video_codec_list = linphone_core_get_video_codecs( &linphonec );
-  
- // linphone_core_set_audio_codecs( &linphonec, (MSList*)audio_codec_list->next );
- // linphone_core_set_video_codecs( &linphonec, (MSList*)video_codec_list );
-  
+    // TODO: make configurable choosing ipv4/v6  
+    // disable ipv6 by default.
+    linphone_core_enable_ipv6( &linphonec, FALSE );
+    auth_stack.nitems = 0;
+    linphone_core_init ( &linphonec, &linphonec_vtable, LINPHONE_CONFIG.c_str(), NULL );
+    linphone_core_enable_video( &linphonec, vcap_enabled, display_enabled );
+    // CRITICAL SECTION OF DSIPCOM:
+    // Creating timer with 60ms trigger, and launch it in the background thread
+    // Here we going to iterate main Linphone engine.
+    QTimer *timer = new QTimer( this );
+    connect( timer, SIGNAL( timeout() ) , this, SLOT( linphonec_main_loop() ) );
+    timer->start( 60 ); // 60ms is enough
+    // char** with list of sound devices
+    sound_dev_names = linphone_core_get_sound_devices( &linphonec );
+    // MSlist with audio codecs list
+    audio_codec_list = linphone_core_get_audio_codecs( &linphonec );
+    video_codec_list = linphone_core_get_video_codecs( &linphonec );
+   // linphone_core_set_audio_codecs( &linphonec, (MSList*)audio_codec_list->next );
+   // linphone_core_set_video_codecs( &linphonec, (MSList*)video_codec_list );
     #ifdef DEBUG
       logger.log( "Linphone core Ready!" );
     #endif
@@ -450,22 +365,11 @@ DSipCom::create_linphone_core() {
 
 void
 DSipCom::save_user_list() {
+// TODO: implement User Authorisation for linphone core
 //  LinphoneAuthInfo *linphone_auth_info_new(const char *username, const char *userid,
 //		const char *passwd, const char *ha1,const char *realm);
 //void linphone_auth_info_set_passwd(LinphoneAuthInfo *info, const char *passwd);
-/* you don't need those function*/
-// void linphone_auth_info_destroy(LinphoneAuthInfo *info);
 //  LinphoneAuthInfo * linphone_auth_info_new_from_config_file(struct _LpConfig *config, int pos);
-    // test elements
-  #ifdef DEBUG
-  /*  cout << "\nsave_user_list_:Appending testing data to list. " << endl;
-    LinphoneAuthInfo *temp = linphone_auth_info_new( "dmilith.6", "userid", "haseło", "ha1!", "dmilith@192.168.0.6" );
-    user_list.append( *temp );
-    temp = linphone_auth_info_new( "robot", "userid2", "haseło2", "ha1!2", "robot@127.0.0.1" );
-    user_list.append( *temp );
-    cout << "\nsave_user_list_:QVector_Contains_: username: " << temp->username << ", realm: " << temp->realm << endl;
-  */
-  #endif
   LinphoneAuthInfo* temp;
   FILE* userlist_file;
   userlist_file = fopen( USER_LIST_FILE.c_str(), "wb+" );
@@ -513,7 +417,6 @@ DSipCom::load_user_list() {
   this->user_list.clear(); // == .resize(0)
   // clear items on contacts list
   this->contacts_list->clear();
-  
   // reading user_list from file
   uint32_t size_of_list;
   FILE* userlist_file;
@@ -528,7 +431,6 @@ DSipCom::load_user_list() {
   char user_list_header_correct[] = "dulf2";
   char* user_list_header = new char[ sizeof( user_list_header_correct ) + 1 ];
   fread( user_list_header, sizeof( user_list_header_correct ), 1, userlist_file );
-
   #ifdef DEBUG
     logger.log( "Userlist file header check: " + (QString)user_list_header + " vs " + (QString)user_list_header_correct );
   #endif
@@ -546,7 +448,6 @@ DSipCom::load_user_list() {
     char realm[255];
     char username[255]; //temp ones
     for ( uint32_t i = 0; i < size_of_list; i++ ) {
-      //fread( username, sizeof( username ), 1, userlist_file );
       fread( username, sizeof( username ), 1, userlist_file );
       fread( realm, sizeof( realm ), 1, userlist_file );
       LinphoneAuthInfo* temp = linphone_auth_info_new( username, "", "", "", realm );
@@ -571,9 +472,7 @@ DSipCom::load_user_list() {
 
 void
 DSipCom::apply_settings_to_linphone() {
-  //disable ipv6 by default.
-  linphone_core_enable_ipv6( &linphonec, FALSE );
-  //now apply these settings to linphone core:
+  // applying settings to linphone core:
   uint64_t port = strtol( user_config->default_port, NULL, 10 ); //conversion from char[5] to uint64_t, 10 => decimal number sys.
   if ( ( port > 65535 ) || ( port < 1024 ) ) { // 65535 is max port, greater than 1024 cause 0...1024 are root ports
     linphone_core_set_sip_port( &linphonec, 5060 );
@@ -595,8 +494,6 @@ DSipCom::apply_settings_to_linphone() {
     linphone_core_set_nat_address( &linphonec, user_config->firewall_address );
     linphone_core_set_firewall_policy( &linphonec, LINPHONE_POLICY_USE_NAT_ADDRESS );
   }
-  
- // linphone_core_set_audio_codecs( &linphonec, (MSList*)audio_codec_list );
   #ifdef DEBUG
     PayloadType *pt = NULL;
     for( MSList* elem = (MSList*)audio_codec_list; elem != NULL; elem = elem->next ) {
@@ -632,7 +529,7 @@ DSipCom::apply_settings_to_linphone() {
   // TODO: make possible to set bandwith capacity
   linphone_core_set_download_bandwidth( &linphonec, 0 ); // bandwidth unlimited
   linphone_core_set_upload_bandwidth( &linphonec, 0 ); // same as above.
-  //play ring on reloading
+  // TODO: make able to preview selected ring 
  /* #ifdef DEBUG
     cout << sound_dev_names[0] << endl; // alsa
     cout << sound_dev_names[1] << endl; // oss
@@ -646,7 +543,6 @@ DSipCom::apply_settings_to_linphone() {
     cout << "\n\n\nRing preview: " << user_config->ring_sound << " - " << endl;
     fflush(stdout);
   #endif */
-  //LinphoneAuthInfo * linphone_auth_info_new_from_config_file(struct _LpConfig *config, int pos);
 }
 
 // load_user_config() it's method which load application settings and apply them in linphone core right after init
@@ -667,17 +563,13 @@ DSipCom::load_user_config() {
   this->user_password->setText( user_config->user_password );
   this->user_sip->setText( user_config->user_sip );
   this->user_sip_server->setText( user_config->user_sip_server );
- 
 // TODO: it should set properly those, now we'll set OSS as CONST!: 
   this->out_soundcard->setCurrentIndex( 0 ); //user_config->out_soundcard );
   this->in_soundcard->setCurrentIndex( 0 ); //user_config->in_soundcard );
   this->recording_source->setCurrentIndex( 0 ); //user_config->recording_source );
-  
-  strcpy( user_config->out_soundcard, sound_dev_names[ 1 ] ); // );
-  strcpy( user_config->in_soundcard, sound_dev_names[ 1 ] ); // );
-  strcpy( user_config->recording_source, sound_dev_names[ 1 ] ); // );
-  
-  //this->ring_sound->setCurrentIndex( user_config->ring_sound );
+  strcpy( user_config->out_soundcard, sound_dev_names[ 1 ] );
+  strcpy( user_config->in_soundcard, sound_dev_names[ 1 ] );
+  strcpy( user_config->recording_source, sound_dev_names[ 1 ] );
   this->ring_sound->setItemText( this->ring_sound->currentIndex(), user_config->ring_sound );
   this->ring_sound->setEditable( true );
   this->default_port->setText( user_config->default_port );
@@ -771,8 +663,8 @@ DSipCom::init_actions() {
   QObject::connect( action_remove_contact_from_list, SIGNAL( activated() ), this, SLOT( action_remove_contact_func() ));
   // calendar
   QObject::connect( calendar, SIGNAL( selectionChanged() ), this, SLOT( action_get_log_func() ));
-  
 }
+
 void
 DSipCom::action_get_log_func() {
   QDate selected = this->calendar->selectedDate();
@@ -852,8 +744,8 @@ DSipCom::action_enter_hash() {
 
 void
 DSipCom::action_end_call() {
-  if ( pending_call ) { // end call only when pending call
-    // section here will cut "sip:" from contact address
+  if ( linphonec.call != NULL ) {
+    // section is equivalent of ruby split method
     this->status_bar->setText( "Rozłączam z " + ( (QString)pending_call_sip.c_str() ).section( ':', 1 ) );
     //this->call_button->setEnabled( true );
     //this->hang_button->setEnabled( false );
@@ -861,8 +753,6 @@ DSipCom::action_end_call() {
     cout << "Ending call with: " << pending_call_sip.c_str() << endl;
   #endif
     linphone_core_terminate_call( &linphonec, pending_call_sip.c_str() );
-    pending_call = false;
-    someone_calling = false;
     QTimer *timer = new QTimer( this );
     connect( timer, SIGNAL( timeout() ) , this, SLOT( reset_status_bar() ) );
     timer->setSingleShot ( true ); //activate only once
@@ -891,7 +781,6 @@ DSipCom::action_make_a_call() {
                                    this->contacts_list->currentRow() )->text().section( ':', 1 ) ).toUtf8() +
 																	(string)":" + (string)user_config->default_port;
                pending_call_sip = strip( pending_call_sip, ' ' );
-              pending_call = true;
               //linphone_core_accept_call( &linphonec, NULL ); //to accept call
 						#ifdef DEBUG
 							cout << "\ndebug_action_make_a_call_:Making new call with: " << pending_call_sip.c_str() << endl;
@@ -904,14 +793,13 @@ DSipCom::action_make_a_call() {
               pending_call_sip = (string)"sip:" + (string)( this->number_entry->text() ).toUtf8() +
 																 (string)":" + (string)user_config->default_port;
               pending_call_sip = strip( pending_call_sip, ' ' );
-              pending_call = true;
 						#ifdef DEBUG
 							cout << "Making new call with: " << pending_call_sip.c_str() << endl;
 						#endif
               break;
           }
           
-          if ( someone_calling ) linphone_core_accept_call( &linphonec, NULL );
+          if ( linphonec.call != NULL ) linphone_core_accept_call( &linphonec, pending_call_sip.c_str() );
           else linphone_core_invite( &linphonec, pending_call_sip.c_str() ); // to invite
 //   this->call_button->setEnabled( false );
       this->hang_button->setEnabled( true );
