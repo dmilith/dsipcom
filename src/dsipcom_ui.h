@@ -124,6 +124,8 @@ namespace Ui {
       void display_qt4_warning_message( const char* message );
       void display_qt4_message( const char* message );
       
+      void read_logs();
+      
       // init linphone
       void apply_settings_to_linphone();
       void create_linphone_core();
@@ -161,6 +163,7 @@ namespace Ui {
       void action_load_user_config();
       void action_save_user_list();
       void action_load_user_list();
+      void action_get_log_func();
       
     // qt4 action signals
     signals:

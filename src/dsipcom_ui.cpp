@@ -25,7 +25,8 @@ using namespace boost::filesystem;
 //Linphone Core
 LinphoneCore linphonec;
 LinphoneCallLog linphone_call_log;
-static string log = "";
+// today_log will contain current session call log
+static string today_log = "";
 // List of sound devices
 const char **sound_dev_names;
 // List of sound codecs
@@ -34,6 +35,7 @@ FILE* linphone_logger_file;
 LPC_AUTH_STACK auth_stack; // stack of auth requests (?) 
 char prompt[PROMPT_MAX_LEN];
 static bool_t auto_answer = FALSE;
+
 //static bool_t answer_call = FALSE;
 //static bool_t vcap_enabled = FALSE;
 //static bool_t display_enabled = FALSE;
@@ -125,8 +127,10 @@ static string pending_call_sip;
         for ( ; elem != NULL; elem = ms_list_next( elem ) ) {
                 LinphoneCallLog *cl = (LinphoneCallLog*)elem->data;
                 char *str = linphone_call_log_to_str( cl );
-                cout << endl << "Log:" << str << endl;
-                log += (string)str + "\n"; // adding call logs to common log
+             #ifdef DEBUG
+                cout << endl << "CallLog:" << str << endl << endl;
+             #endif   
+                today_log += (string)str + "\n"; // adding call logs to common log
                 ms_free( str );
         }
         
@@ -324,7 +328,15 @@ static string pending_call_sip;
   Logger
   logger( LOGGER_DSIPCOM_UI.c_str(), "debug" );
 #endif
-  
+
+  void DSipCom::read_logs() {
+    // this->calendar->selectedDate().day();
+    // TODO: make proper structure for log data
+    // log_data
+    //
+    
+  }
+ 
 //DSipCom methods
 DSipCom::DSipCom( const QString& title ) {
   #ifdef DEBUG
@@ -364,6 +376,8 @@ DSipCom::DSipCom( const QString& title ) {
   user_config = new USER_CONFIG;
   create_linphone_core();
   load_user_config();
+  //reading logs to calendar
+  read_logs();
   // iterate once only to initiate video window for example ;} it's nasty hack but it works ;}
   linphone_core_iterate( &linphonec ); 
    #ifdef DEBUG
@@ -376,7 +390,7 @@ DSipCom::~DSipCom() {
   linphone_core_uninit( &linphonec );
  #ifdef DEBUG
   cout << "\nDsipCom destructor." << endl;
-  cout << log;
+  cout << today_log;
  #endif 
 }
 
@@ -752,6 +766,19 @@ DSipCom::init_actions() {
   QObject::connect( action_disconnect_from_sip_server, SIGNAL( activated() ), this, SLOT( action_disconnect_from_sip_server_func() ));
   QObject::connect( action_add_contact_to_list, SIGNAL( activated() ), this, SLOT( action_add_contact_func() ));
   QObject::connect( action_remove_contact_from_list, SIGNAL( activated() ), this, SLOT( action_remove_contact_func() ));
+  // calendar
+  QObject::connect( calendar, SIGNAL( selectionChanged() ), this, SLOT( action_get_log_func() ));
+  
+}
+void
+DSipCom::action_get_log_func() {
+  QDate selected = this->calendar->selectedDate();
+  #ifdef DEBUG
+    cout << endl << "Current selected day: " << selected.day() << endl;
+    fflush(stdout);
+  #endif
+  // TODO: it should be readed from special call log file
+  raport_viewer->setPlainText( "\n" + (QString)today_log.c_str() );  
 }
 void
 DSipCom::action_save_user_config() {
@@ -822,19 +849,23 @@ DSipCom::action_enter_hash() {
 
 void
 DSipCom::action_end_call() {
+  if ( pending_call ) { // end call only when pending call
     // section here will cut "sip:" from contact address
-  this->status_bar->setText( "Rozłączam z " + ( (QString)pending_call_sip.c_str() ).section( ':', 1 ) );
-  //this->call_button->setEnabled( true );
-  //this->hang_button->setEnabled( false );
-#ifdef DEBUG
-	cout << "Ending call with: " << pending_call_sip.c_str() << endl;
-#endif
-  linphone_core_terminate_call( &linphonec, pending_call_sip.c_str() );
-  pending_call = false;
-  QTimer *timer = new QTimer( this );
-  connect( timer, SIGNAL( timeout() ) , this, SLOT( reset_status_bar() ) );
-  timer->setSingleShot ( true ); //activate only once
-  timer->start( 3000 ); // 3s
+    this->status_bar->setText( "Rozłączam z " + ( (QString)pending_call_sip.c_str() ).section( ':', 1 ) );
+    //this->call_button->setEnabled( true );
+    //this->hang_button->setEnabled( false );
+  #ifdef DEBUG
+    cout << "Ending call with: " << pending_call_sip.c_str() << endl;
+  #endif
+    linphone_core_terminate_call( &linphonec, pending_call_sip.c_str() );
+    pending_call = false;
+    QTimer *timer = new QTimer( this );
+    connect( timer, SIGNAL( timeout() ) , this, SLOT( reset_status_bar() ) );
+    timer->setSingleShot ( true ); //activate only once
+    timer->start( 3000 ); // 3s
+    // filling raport viewer log for current day:
+    raport_viewer->setPlainText( "\n" + (QString)today_log.c_str() );  
+  }
 }
 
 void

@@ -69,7 +69,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Nawiązuje połączenie z kontaktem SIP&lt;/p>&lt;/body>&lt;/html></string>
     </property>
     <property name="text" >
-     <string>Zadzwoń</string>
+     <string>Zadzwoń lub Odbierz</string>
     </property>
     <property name="icon" >
      <iconset resource="dsipcom.qrc" >
@@ -136,7 +136,7 @@ p, li { white-space: pre-wrap; }
      <enum>QFrame::Sunken</enum>
     </property>
     <property name="currentIndex" >
-     <number>0</number>
+     <number>4</number>
     </property>
     <widget class="QWidget" name="page_contacts" >
      <property name="geometry" >
@@ -173,6 +173,27 @@ p, li { white-space: pre-wrap; }
       </property>
       <property name="cursor" stdset="0" >
        <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="mouseTracking" >
+       <bool>true</bool>
+      </property>
+      <property name="lineWidth" >
+       <number>1</number>
+      </property>
+      <property name="movement" >
+       <enum>QListView::Static</enum>
+      </property>
+      <property name="isWrapping" stdset="0" >
+       <bool>false</bool>
+      </property>
+      <property name="spacing" >
+       <number>1</number>
+      </property>
+      <property name="wordWrap" >
+       <bool>true</bool>
+      </property>
+      <property name="selectionRectVisible" >
+       <bool>true</bool>
       </property>
      </widget>
      <widget class="QPushButton" name="save_contact_list_button" >
@@ -1158,6 +1179,12 @@ p, li { white-space: pre-wrap; }
         <height>211</height>
        </rect>
       </property>
+      <property name="mouseTracking" >
+       <bool>true</bool>
+      </property>
+      <property name="gridVisible" >
+       <bool>false</bool>
+      </property>
      </widget>
      <widget class="QLabel" name="label_4" >
       <property name="geometry" >
@@ -1174,7 +1201,7 @@ p, li { white-space: pre-wrap; }
      </widget>
      <widget class="QTextBrowser" name="raport_viewer" >
       <property name="enabled" >
-       <bool>false</bool>
+       <bool>true</bool>
       </property>
       <property name="geometry" >
        <rect>
