@@ -29,9 +29,6 @@
       <itemPath>../../../../Projects/dsipcom-public/src/Makefile</itemPath>
     </logicalFolder>
   </logicalFolder>
-  <sourceRootList>
-    <Elem>../../../../Projects/dsipcom-public/src</Elem>
-  </sourceRootList>
   <sourceEncoding>UTF-8</sourceEncoding>
   <projectmakefile>dsipcom-public-Makefile.mk</projectmakefile>
   <confs>
@@ -42,7 +39,7 @@
       </toolsSet>
       <makefileType>
         <makeTool>
-          <buildCommandWorkingDir>../../../../Projects/dsipcom-public/src</buildCommandWorkingDir>
+          <buildCommandWorkingDir>src</buildCommandWorkingDir>
           <buildCommand>make -f Makefile</buildCommand>
           <cleanCommand>make -f Makefile clean</cleanCommand>
           <executablePath>dsipcom</executablePath>

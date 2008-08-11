@@ -41,14 +41,14 @@ LDLIBSOPTIONS=
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS} 
-	cd ../../../../Projects/dsipcom-public/src && make -f Makefile
+	cd src && make -f Makefile
 
 # Subprojects
 .build-subprojects:
 
 # Clean Targets
 .clean-conf:
-	cd ../../../../Projects/dsipcom-public/src && make -f Makefile clean
+	cd src && make -f Makefile clean
 
 # Subprojects
 .clean-subprojects:
