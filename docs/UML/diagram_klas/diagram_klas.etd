@@ -1,2 +1,497 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- <!DOCTYPE XMI SYSTEM "/home/dmilith/.netbeans/6.1/.uml/config/UML_2.0EMBT.dtd"> --><XMI xmlns:UML="omg.org/UML/1.4" xmi.version="2.0"> <XMI.header> <XMI.metamodel xmi.name="UML" xmi.version="1.4"/> <XMI.documentation> <XMI.exporter> Embarcadero's Describe </XMI.exporter> <XMI.exporterVersion> 6.0 </XMI.exporterVersion> </XMI.documentation> </XMI.header> <XMI.content> <UML:Project xmi.id="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" mode="Design" defaultLanguage="UML" projVersion="6.1.4.837" name="diagram_klas"/></XMI.content> </XMI>
+<!-- <!DOCTYPE XMI SYSTEM "/home/dmilith/.netbeans/6.1/.uml/config/UML_2.0EMBT.dtd"> --><XMI xmlns:UML="omg.org/UML/1.4" xmi.version="2.0"> <XMI.header> <XMI.metamodel xmi.name="UML" xmi.version="1.4"/> <XMI.documentation> <XMI.exporter> Embarcadero's Describe </XMI.exporter> <XMI.exporterVersion> 6.0 </XMI.exporterVersion> </XMI.documentation> </XMI.header> <XMI.content> <UML:Project xmi.id="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" mode="Design" defaultLanguage="UML" projVersion="6.1.4.837" name="diagram_klas"><UML:Element.ownedElement>
+<UML:Package xmi.id="DCE.942332AC-6CB6-F4D3-650B-F0D0DAE5AEE0" name="Pakiet dSipCom" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" clientDependency="DCE.C6C55B41-9CB0-FE7F-6F42-C3C9D544EA68 DCE.13D0C102-7ADF-D33C-1C9C-40FF8B797907 DCE.E9A9E8C0-CB5A-68D2-DB48-F0DF5137ECF2"><UML:Element.presentation>
+
+
+</UML:Element.presentation><UML:Element.ownedElement>
+
+
+<UML:Component xmi.id="DCE.2C7671C5-94D1-CC0A-F58B-D9766018DBF6" name="dSipCom Core" owner="DCE.942332AC-6CB6-F4D3-650B-F0D0DAE5AEE0" clientDependency="DCE.8166DD4F-B293-CED8-EF2E-B09D61A3354B"><UML:Element.presentation>
+
+
+</UML:Element.presentation></UML:Component>
+<UML:Component xmi.id="DCE.83C194AF-4AED-8F81-FACC-918ED7AA83BA" name="Unnamed" owner="DCE.942332AC-6CB6-F4D3-650B-F0D0DAE5AEE0"><UML:Element.presentation>
+</UML:Element.presentation></UML:Component>
+<UML:Component xmi.id="DCE.8791B5B0-6CCB-1644-3B23-74A5752F9438" name="Unnamed" owner="DCE.942332AC-6CB6-F4D3-650B-F0D0DAE5AEE0"><UML:Element.presentation>
+</UML:Element.presentation></UML:Component>
+<UML:Component xmi.id="DCE.01F8C7E6-7E88-95DF-398B-0858D287F28A" name="Interfejs Qt4" owner="DCE.942332AC-6CB6-F4D3-650B-F0D0DAE5AEE0" supplierDependency="DCE.8166DD4F-B293-CED8-EF2E-B09D61A3354B"><UML:Element.presentation>
+
+
+</UML:Element.presentation></UML:Component>
+<UML:Comment xmi.id="DCE.006B129F-CC48-6F3B-0364-A5F9924B3CC0" owner="DCE.942332AC-6CB6-F4D3-650B-F0D0DAE5AEE0" annotatedElement="DCE.2C7671C5-94D1-CC0A-F58B-D9766018DBF6"><UML:Element.presentation>
+
+
+
+
+
+
+</UML:Element.presentation>
+<UML:Comment.body>Główny silnik sterujący wszystkimi wątkami</UML:Comment.body></UML:Comment>
+<UML:Comment xmi.id="DCE.C7B735CA-5044-F7A5-3EB4-6B022A17D6D7" owner="DCE.942332AC-6CB6-F4D3-650B-F0D0DAE5AEE0" annotatedElement="DCE.01F8C7E6-7E88-95DF-398B-0858D287F28A"><UML:Element.presentation>
+
+
+
+
+
+
+</UML:Element.presentation>
+<UML:Comment.body>Okienkowy interfejs użytkownika</UML:Comment.body></UML:Comment></UML:Element.ownedElement></UML:Package>
+<UML:Package xmi.id="DCE.2B1A5072-9623-A3C3-78C0-7A0DF00A0263" name="Pakiet Linphone" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" supplierDependency="DCE.C6C55B41-9CB0-FE7F-6F42-C3C9D544EA68"><UML:Element.presentation>
+
+
+</UML:Element.presentation><UML:Element.ownedElement>
+
+<UML:Component xmi.id="DCE.CC3C7D5B-793F-16FB-A6E2-2257BA496847" name="oRTP" owner="DCE.2B1A5072-9623-A3C3-78C0-7A0DF00A0263" associationEnd="DCE.9B7CB36E-DC04-E9F0-FB09-15DDDBF0DE9A DCE.7A14B8D2-97D9-937D-8E78-90AD6AA8B764" supplierDependency="DCE.E40A5ED8-9474-5A76-9474-F20CD71E87C9"><UML:Element.presentation>
+
+
+</UML:Element.presentation></UML:Component>
+
+
+<UML:Association xmi.id="DCE.C7A9499E-E1D8-98B9-D624-DA62B350B35E" owner="DCE.2B1A5072-9623-A3C3-78C0-7A0DF00A0263"><UML:Association.end>
+<UML:AssociationEnd xmi.id="DCE.9B7CB36E-DC04-E9F0-FB09-15DDDBF0DE9A" visibility="private" association="DCE.C7A9499E-E1D8-98B9-D624-DA62B350B35E" type="DCE.CC3C7D5B-793F-16FB-A6E2-2257BA496847"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.690A7BA5-2541-9888-DD56-E3D2C5086DB4"/></UML:TypedElement.multiplicity></UML:AssociationEnd>
+<UML:AssociationEnd xmi.id="DCE.417274ED-58B1-7A63-94FB-62801F242F18" visibility="private" association="DCE.C7A9499E-E1D8-98B9-D624-DA62B350B35E" type="DCE.63D05DB6-9EEB-FA28-B802-C417DBAEAB7A"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.62B18348-23EF-EC32-1A38-7F5F15672E77"/></UML:TypedElement.multiplicity></UML:AssociationEnd></UML:Association.end><UML:Element.presentation>
+</UML:Element.presentation></UML:Association>
+<UML:Association xmi.id="DCE.25E77298-DF97-CCA0-CF5D-19CC2CE66C6D" owner="DCE.2B1A5072-9623-A3C3-78C0-7A0DF00A0263"><UML:Association.end>
+<UML:AssociationEnd xmi.id="DCE.7A14B8D2-97D9-937D-8E78-90AD6AA8B764" visibility="private" association="DCE.25E77298-DF97-CCA0-CF5D-19CC2CE66C6D" type="DCE.CC3C7D5B-793F-16FB-A6E2-2257BA496847"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.BA9DAC52-5E33-3999-AAB2-DA9A36EDA208"/></UML:TypedElement.multiplicity></UML:AssociationEnd>
+<UML:AssociationEnd xmi.id="DCE.3D79E686-EC78-9E4D-A9AF-A0F8DFDCA68F" visibility="private" association="DCE.25E77298-DF97-CCA0-CF5D-19CC2CE66C6D" type="DCE.238F8313-447C-6FD5-CA22-83EE30FC3F5B"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.BAAC100F-6B38-7F99-16B3-B20E8B278976"/></UML:TypedElement.multiplicity></UML:AssociationEnd></UML:Association.end><UML:Element.presentation>
+</UML:Element.presentation></UML:Association>
+<UML:Component xmi.id="DCE.63D05DB6-9EEB-FA28-B802-C417DBAEAB7A" name="Linphone" owner="DCE.2B1A5072-9623-A3C3-78C0-7A0DF00A0263" associationEnd="DCE.417274ED-58B1-7A63-94FB-62801F242F18" clientDependency="DCE.19A4E9DC-F485-06DF-E601-62B1AF643540 DCE.60793C5C-4472-0DE8-2D06-DA44C7C9D7B1 DCE.E40A5ED8-9474-5A76-9474-F20CD71E87C9 DCE.C7DA92A6-72E2-D03E-9BAF-1ADEAA91C53C DCE.B0001DBF-446D-B23A-7A42-C38322B2D817 DCE.FE20103B-A582-738C-73CA-25A476A6350A DCE.305EE4DA-25CF-AEB0-A88F-3E71B7E181E8"><UML:Element.presentation>
+
+
+</UML:Element.presentation></UML:Component>
+<UML:Component xmi.id="DCE.238F8313-447C-6FD5-CA22-83EE30FC3F5B" name="MediaStreamer" owner="DCE.2B1A5072-9623-A3C3-78C0-7A0DF00A0263" associationEnd="DCE.3D79E686-EC78-9E4D-A9AF-A0F8DFDCA68F" supplierDependency="DCE.60793C5C-4472-0DE8-2D06-DA44C7C9D7B1"><UML:Element.presentation>
+
+
+</UML:Element.presentation></UML:Component>
+
+
+<UML:Component xmi.id="DCE.85266138-6932-A281-5D94-4F9C56476AC3" name="Speex" owner="DCE.2B1A5072-9623-A3C3-78C0-7A0DF00A0263" supplierDependency="DCE.305EE4DA-25CF-AEB0-A88F-3E71B7E181E8"><UML:Element.presentation>
+
+
+</UML:Element.presentation></UML:Component>
+<UML:Component xmi.id="DCE.0D76E5DE-8182-C89B-EE99-07A3F0A00224" name="GSM" owner="DCE.2B1A5072-9623-A3C3-78C0-7A0DF00A0263" supplierDependency="DCE.B0001DBF-446D-B23A-7A42-C38322B2D817"><UML:Element.presentation>
+
+
+</UML:Element.presentation></UML:Component>
+<UML:Component xmi.id="DCE.58B83D3E-D69E-B3F0-CF86-691E34FF2919" name="oSIP" owner="DCE.2B1A5072-9623-A3C3-78C0-7A0DF00A0263" supplierDependency="DCE.19A4E9DC-F485-06DF-E601-62B1AF643540 DCE.B6639034-DEA8-DB46-7871-2E61F616B886"><UML:Element.presentation>
+
+
+</UML:Element.presentation></UML:Component>
+
+<UML:Component xmi.id="DCE.9818977E-0593-8E42-A6E5-A6A17AC7905F" name="exOSIP" owner="DCE.2B1A5072-9623-A3C3-78C0-7A0DF00A0263" supplierDependency="DCE.C7DA92A6-72E2-D03E-9BAF-1ADEAA91C53C" clientDependency="DCE.B6639034-DEA8-DB46-7871-2E61F616B886"><UML:Element.presentation>
+
+
+</UML:Element.presentation></UML:Component>
+<UML:Component xmi.id="DCE.36574FBE-AA73-2048-F93B-1F32181095FB" name="FFMPEG" owner="DCE.2B1A5072-9623-A3C3-78C0-7A0DF00A0263" supplierDependency="DCE.FE20103B-A582-738C-73CA-25A476A6350A"><UML:Element.presentation>
+
+
+</UML:Element.presentation></UML:Component>
+
+
+<UML:Comment xmi.id="DCE.43C0DF4E-C66F-5B50-D133-83A5C589A658" owner="DCE.2B1A5072-9623-A3C3-78C0-7A0DF00A0263" annotatedElement="DCE.CC3C7D5B-793F-16FB-A6E2-2257BA496847 DCE.238F8313-447C-6FD5-CA22-83EE30FC3F5B DCE.58B83D3E-D69E-B3F0-CF86-691E34FF2919 DCE.9818977E-0593-8E42-A6E5-A6A17AC7905F"><UML:Element.presentation>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</UML:Element.presentation>
+<UML:Comment.body>Biblioteki dodatkowe</UML:Comment.body></UML:Comment>
+<UML:Comment xmi.id="DCE.F0CA75C1-C162-EDEE-2861-68AF73DB40C2" owner="DCE.2B1A5072-9623-A3C3-78C0-7A0DF00A0263" annotatedElement="DCE.36574FBE-AA73-2048-F93B-1F32181095FB DCE.0D76E5DE-8182-C89B-EE99-07A3F0A00224 DCE.85266138-6932-A281-5D94-4F9C56476AC3"><UML:Element.presentation>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</UML:Element.presentation>
+<UML:Comment.body>Kodeki Audio/ Wideo</UML:Comment.body></UML:Comment>
+<UML:Comment xmi.id="DCE.97C14371-18B3-8872-0E8D-E1B6E662C105" owner="DCE.2B1A5072-9623-A3C3-78C0-7A0DF00A0263" annotatedElement="DCE.63D05DB6-9EEB-FA28-B802-C417DBAEAB7A"><UML:Element.presentation>
+
+
+
+
+
+
+</UML:Element.presentation>
+<UML:Comment.body>Biblioteka wspomagająca</UML:Comment.body></UML:Comment></UML:Element.ownedElement></UML:Package>
+
+
+
+
+
+
+
+
+<UML:Node xmi.id="DCE.41D0A35F-E0C5-72A0-BEEC-DF8BA07EAFD0" name="Unnamed" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA"><UML:Element.presentation>
+</UML:Element.presentation></UML:Node>
+
+
+
+
+
+
+
+
+
+
+<UML:Comment xmi.id="DCE.0C6702E6-DE8E-9D41-07D1-24B82FE5DE68" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" annotatedElement="DCE.238F8313-447C-6FD5-CA22-83EE30FC3F5B DCE.58B83D3E-D69E-B3F0-CF86-691E34FF2919 DCE.63D05DB6-9EEB-FA28-B802-C417DBAEAB7A DCE.9818977E-0593-8E42-A6E5-A6A17AC7905F DCE.CC3C7D5B-793F-16FB-A6E2-2257BA496847"><UML:Element.presentation>
+
+
+
+
+
+
+
+
+
+
+
+
+</UML:Element.presentation>
+<UML:Comment.body>Biblioteki multimedialne</UML:Comment.body></UML:Comment>
+<UML:Comment xmi.id="DCE.B6D70E5E-F3B8-28CD-AECF-063339AAE872" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" annotatedElement="DCE.85266138-6932-A281-5D94-4F9C56476AC3 DCE.0D76E5DE-8182-C89B-EE99-07A3F0A00224 DCE.36574FBE-AA73-2048-F93B-1F32181095FB"><UML:Element.presentation>
+
+
+
+
+
+
+</UML:Element.presentation>
+<UML:Comment.body>Kodeki Audio/ Video</UML:Comment.body></UML:Comment>
+
+<UML:Package xmi.id="DCE.99AA798B-8D28-5EEA-3CFF-1C88C88136B4" name="Pakiet Qt4" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" supplierDependency="DCE.13D0C102-7ADF-D33C-1C9C-40FF8B797907"><UML:Element.presentation>
+
+
+</UML:Element.presentation><UML:Element.ownedElement>
+<UML:Component xmi.id="DCE.619712E7-B74D-466B-BC15-23A6AF40390A" name="Unnamed" owner="DCE.99AA798B-8D28-5EEA-3CFF-1C88C88136B4"><UML:Element.presentation>
+</UML:Element.presentation></UML:Component>
+<UML:Component xmi.id="DCE.C5479E38-8A43-ADCC-4D10-F1F29C5C8592" name="Unnamed" owner="DCE.99AA798B-8D28-5EEA-3CFF-1C88C88136B4"><UML:Element.presentation>
+</UML:Element.presentation></UML:Component>
+<UML:Comment xmi.id="DCE.4F369593-13DC-7F03-01E2-27768B6D3AB0" owner="DCE.99AA798B-8D28-5EEA-3CFF-1C88C88136B4" annotatedElement="DCE.99AA798B-8D28-5EEA-3CFF-1C88C88136B4"><UML:Element.presentation>
+
+
+
+
+
+
+</UML:Element.presentation>
+<UML:Comment.body>Pakiet zawierający implementację interfejsu Qt4</UML:Comment.body></UML:Comment></UML:Element.ownedElement></UML:Package>
+<UML:Dependency xmi.id="DCE.C6C55B41-9CB0-FE7F-6F42-C3C9D544EA68" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" client="DCE.942332AC-6CB6-F4D3-650B-F0D0DAE5AEE0" supplier="DCE.2B1A5072-9623-A3C3-78C0-7A0DF00A0263"><UML:Element.presentation>
+
+
+</UML:Element.presentation></UML:Dependency>
+<UML:Dependency xmi.id="DCE.19A4E9DC-F485-06DF-E601-62B1AF643540" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" client="DCE.63D05DB6-9EEB-FA28-B802-C417DBAEAB7A" supplier="DCE.58B83D3E-D69E-B3F0-CF86-691E34FF2919"><UML:Element.presentation>
+
+
+</UML:Element.presentation></UML:Dependency>
+<UML:Dependency xmi.id="DCE.60793C5C-4472-0DE8-2D06-DA44C7C9D7B1" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" client="DCE.63D05DB6-9EEB-FA28-B802-C417DBAEAB7A" supplier="DCE.238F8313-447C-6FD5-CA22-83EE30FC3F5B"><UML:Element.presentation>
+
+
+</UML:Element.presentation></UML:Dependency>
+<UML:Dependency xmi.id="DCE.E40A5ED8-9474-5A76-9474-F20CD71E87C9" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" client="DCE.63D05DB6-9EEB-FA28-B802-C417DBAEAB7A" supplier="DCE.CC3C7D5B-793F-16FB-A6E2-2257BA496847"><UML:Element.presentation>
+
+
+</UML:Element.presentation></UML:Dependency>
+<UML:Dependency xmi.id="DCE.C7DA92A6-72E2-D03E-9BAF-1ADEAA91C53C" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" client="DCE.63D05DB6-9EEB-FA28-B802-C417DBAEAB7A" supplier="DCE.9818977E-0593-8E42-A6E5-A6A17AC7905F"><UML:Element.presentation>
+
+
+</UML:Element.presentation></UML:Dependency>
+<UML:Dependency xmi.id="DCE.B0001DBF-446D-B23A-7A42-C38322B2D817" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" client="DCE.63D05DB6-9EEB-FA28-B802-C417DBAEAB7A" supplier="DCE.0D76E5DE-8182-C89B-EE99-07A3F0A00224"><UML:Element.presentation>
+
+
+</UML:Element.presentation></UML:Dependency>
+<UML:Dependency xmi.id="DCE.FE20103B-A582-738C-73CA-25A476A6350A" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" client="DCE.63D05DB6-9EEB-FA28-B802-C417DBAEAB7A" supplier="DCE.36574FBE-AA73-2048-F93B-1F32181095FB"><UML:Element.presentation>
+
+
+</UML:Element.presentation></UML:Dependency>
+<UML:Dependency xmi.id="DCE.305EE4DA-25CF-AEB0-A88F-3E71B7E181E8" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" client="DCE.63D05DB6-9EEB-FA28-B802-C417DBAEAB7A" supplier="DCE.85266138-6932-A281-5D94-4F9C56476AC3"><UML:Element.presentation>
+
+
+</UML:Element.presentation></UML:Dependency>
+<UML:Dependency xmi.id="DCE.8166DD4F-B293-CED8-EF2E-B09D61A3354B" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" client="DCE.2C7671C5-94D1-CC0A-F58B-D9766018DBF6" supplier="DCE.01F8C7E6-7E88-95DF-398B-0858D287F28A"><UML:Element.presentation>
+
+
+</UML:Element.presentation></UML:Dependency>
+<UML:Dependency xmi.id="DCE.B6639034-DEA8-DB46-7871-2E61F616B886" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" client="DCE.9818977E-0593-8E42-A6E5-A6A17AC7905F" supplier="DCE.58B83D3E-D69E-B3F0-CF86-691E34FF2919"><UML:Element.presentation>
+
+
+</UML:Element.presentation></UML:Dependency>
+
+
+
+
+<UML:Artifact xmi.id="DCE.9715C013-4880-6EA5-EC9B-EC819E8B68DD" name="Unnamed" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA"><UML:Element.presentation>
+</UML:Element.presentation></UML:Artifact>
+
+
+<UML:Dependency xmi.id="DCE.13D0C102-7ADF-D33C-1C9C-40FF8B797907" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" client="DCE.942332AC-6CB6-F4D3-650B-F0D0DAE5AEE0" supplier="DCE.99AA798B-8D28-5EEA-3CFF-1C88C88136B4"><UML:Element.presentation>
+
+
+</UML:Element.presentation></UML:Dependency>
+
+
+<UML:Package xmi.id="DCE.228DCCC6-5B42-E291-934A-97B00C870B5B" name="Pakiet C++ Boost" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" supplierDependency="DCE.E9A9E8C0-CB5A-68D2-DB48-F0DF5137ECF2"><UML:Element.presentation>
+
+
+</UML:Element.presentation></UML:Package>
+<UML:Dependency xmi.id="DCE.E9A9E8C0-CB5A-68D2-DB48-F0DF5137ECF2" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" client="DCE.942332AC-6CB6-F4D3-650B-F0D0DAE5AEE0" supplier="DCE.228DCCC6-5B42-E291-934A-97B00C870B5B"><UML:Element.presentation>
+
+
+</UML:Element.presentation></UML:Dependency>
+
+
+
+<UML:Class xmi.id="DCE.B26EFBF8-80AA-90F0-E1D4-30C7F72C2D20" name="DSipCom" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" clientDependency="DCE.8E80DBFA-9665-CD2A-D8A7-B768D133E061 DCE.32236726-4CF0-F074-3CA6-B78ABBB07EC1 DCE.4A1AB09E-1A27-419C-DF09-CE5C958B9926 DCE.533E48D7-8887-B0E6-B88E-77F447C07169 DCE.0FFAEA5B-3BE1-F87B-AD59-55AEE0C6BEAC DCE.C72A379A-6F37-9545-6295-8E47BCBE930A DCE.C61D7442-4B2C-877D-1A85-A8E17D0567AA DCE.0C498AC5-679E-40EA-BFBF-38F62BEAE440 DCE.43EE3A91-ED8A-F1FA-FD1A-E00018AC8061 DCE.E274698F-A35D-61C0-E780-059D74F91521"><UML:Element.presentation>
+
+</UML:Element.presentation><UML:Element.ownedElement>
+<UML:Attribute xmi.id="DCE.1A1E1F4B-C267-06EE-7CB7-D9ED7A567CA7" visibility="public" name="linphone_logger_file" type="DCE.8E2A70EB-CF54-78FE-9DF1-F90AF20178F9" owner="DCE.B26EFBF8-80AA-90F0-E1D4-30C7F72C2D20"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.3F685830-8ACD-F838-824D-04635EFDDF2F"/></UML:TypedElement.multiplicity><UML:Attribute.default>
+<UML:Expression xmi.id="DCE.58832315-6948-02D8-04C4-D565E612F074"/></UML:Attribute.default></UML:Attribute>
+<UML:Attribute xmi.id="DCE.335BEFBC-B462-1ACF-A6E9-EC7564689C9E" visibility="public" name="dialog" type="DCE.6C9AE2F7-1531-7C56-B765-F19FD74C6FEF" owner="DCE.B26EFBF8-80AA-90F0-E1D4-30C7F72C2D20"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.0216C9B4-18E8-52DC-0F0F-45CE76D3087A"/></UML:TypedElement.multiplicity><UML:Attribute.default>
+<UML:Expression xmi.id="DCE.E51D91D0-28D8-D0A0-66A9-3F542274BB5E"/></UML:Attribute.default></UML:Attribute>
+<UML:Attribute xmi.id="DCE.A8AB13A7-8D46-CEEF-7191-CED94F893692" visibility="public" name="user_list" type="DCE.4E76DB6E-8EE0-DBF5-0802-F86BCD88B632" owner="DCE.B26EFBF8-80AA-90F0-E1D4-30C7F72C2D20"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.B61A2184-77F2-DF7A-CF60-2732B3BBB340"/></UML:TypedElement.multiplicity><UML:Attribute.default>
+<UML:Expression xmi.id="DCE.A683930F-B867-AA95-19FC-B15134C76DB0"/></UML:Attribute.default></UML:Attribute>
+<UML:Attribute xmi.id="DCE.17355341-A441-0017-4D6D-75A76CE2DBAC" visibility="public" name="user_config" type="DCE.AC18EBA2-F55C-A4DE-6F0E-82763A4C1DE9" owner="DCE.B26EFBF8-80AA-90F0-E1D4-30C7F72C2D20"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.F1242E28-9665-0408-0382-1FFE5D2C5DA8"/></UML:TypedElement.multiplicity><UML:Attribute.default>
+<UML:Expression xmi.id="DCE.9367E2E5-134B-B254-ACE6-78420F7E0DE6"/></UML:Attribute.default></UML:Attribute>
+<UML:Operation xmi.id="DCE.419FAB6A-4ADB-EB5D-D0DA-B997ABD2C71D" name="init_actions" owner="DCE.B26EFBF8-80AA-90F0-E1D4-30C7F72C2D20"><UML:Element.ownedElement>
+<UML:Parameter xmi.id="DCE.0381E293-2114-4E9F-08AC-F86B90A091FD" type="DCE.F425C124-4FD9-6FFD-D6FB-B7CEB40BC5CD" direction="result" owner="DCE.419FAB6A-4ADB-EB5D-D0DA-B997ABD2C71D"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.613F81B4-F861-7ACB-A573-834840028F95"/></UML:TypedElement.multiplicity></UML:Parameter></UML:Element.ownedElement></UML:Operation>
+<UML:Operation xmi.id="DCE.C882435D-8A07-A4AA-8E23-E6468BBAE9BE" name="setupDIRs" owner="DCE.B26EFBF8-80AA-90F0-E1D4-30C7F72C2D20"><UML:Element.ownedElement>
+<UML:Parameter xmi.id="DCE.44516AD4-8F7A-DC33-3BF4-F471BF6A289A" type="DCE.F425C124-4FD9-6FFD-D6FB-B7CEB40BC5CD" direction="result" owner="DCE.C882435D-8A07-A4AA-8E23-E6468BBAE9BE"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.9C96F456-9434-3FAB-F693-0A8E3F4FD1A5"/></UML:TypedElement.multiplicity></UML:Parameter></UML:Element.ownedElement></UML:Operation>
+<UML:Operation xmi.id="DCE.349C82B1-48C0-12F0-FABC-1E71C4317D67" name="load_user_list" owner="DCE.B26EFBF8-80AA-90F0-E1D4-30C7F72C2D20"><UML:Element.ownedElement>
+<UML:Parameter xmi.id="DCE.BBEE4EF7-B921-11E7-E9CC-2FD548C2036E" type="DCE.F425C124-4FD9-6FFD-D6FB-B7CEB40BC5CD" direction="result" owner="DCE.349C82B1-48C0-12F0-FABC-1E71C4317D67"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.C1FFE21C-1518-4632-05A3-BC909E2C4238"/></UML:TypedElement.multiplicity></UML:Parameter></UML:Element.ownedElement></UML:Operation>
+<UML:Operation xmi.id="DCE.1FB1B1F3-C2A6-4A07-9429-26A22C9D628D" name="save_user_list" owner="DCE.B26EFBF8-80AA-90F0-E1D4-30C7F72C2D20"><UML:Element.ownedElement>
+<UML:Parameter xmi.id="DCE.80B0762F-0ABC-E23B-68C1-D69D72B36B39" type="DCE.F425C124-4FD9-6FFD-D6FB-B7CEB40BC5CD" direction="result" owner="DCE.1FB1B1F3-C2A6-4A07-9429-26A22C9D628D"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.CBC9DDC0-563F-B04D-7461-06ADFFDF98E9"/></UML:TypedElement.multiplicity></UML:Parameter></UML:Element.ownedElement></UML:Operation>
+<UML:Operation xmi.id="DCE.794760A5-93C4-F39E-D3BB-0F837C0E9123" name="load_user_config" owner="DCE.B26EFBF8-80AA-90F0-E1D4-30C7F72C2D20"><UML:Element.ownedElement>
+<UML:Parameter xmi.id="DCE.572A1F6F-9DC4-DA06-31BE-D9B50C430ED5" type="DCE.F425C124-4FD9-6FFD-D6FB-B7CEB40BC5CD" direction="result" owner="DCE.794760A5-93C4-F39E-D3BB-0F837C0E9123"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.5F95F0F0-F563-CB8B-9E35-ABADCA16F102"/></UML:TypedElement.multiplicity></UML:Parameter></UML:Element.ownedElement></UML:Operation>
+<UML:Operation xmi.id="DCE.33EF1F2D-9C75-3FEA-276C-880001633F1D" name="save_user_config" owner="DCE.B26EFBF8-80AA-90F0-E1D4-30C7F72C2D20"><UML:Element.ownedElement>
+<UML:Parameter xmi.id="DCE.77D3FA73-6038-389B-2F23-8CCC441F9681" type="DCE.F425C124-4FD9-6FFD-D6FB-B7CEB40BC5CD" direction="result" owner="DCE.33EF1F2D-9C75-3FEA-276C-880001633F1D"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.51BC6376-2657-9E60-EC8D-1B2D2831CC9A"/></UML:TypedElement.multiplicity></UML:Parameter></UML:Element.ownedElement></UML:Operation>
+<UML:Operation xmi.id="DCE.EB673AF5-7FB9-2105-422C-0365E3BE487F" name="display_qt4_message" owner="DCE.B26EFBF8-80AA-90F0-E1D4-30C7F72C2D20"><UML:Element.ownedElement>
+<UML:Parameter xmi.id="DCE.2084E6FA-C0FE-2528-021D-81A068285EA9" type="DCE.F425C124-4FD9-6FFD-D6FB-B7CEB40BC5CD" direction="result" owner="DCE.EB673AF5-7FB9-2105-422C-0365E3BE487F"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.8E56F8B2-E427-F849-0FD0-1D830FAF12FC"/></UML:TypedElement.multiplicity></UML:Parameter></UML:Element.ownedElement></UML:Operation>
+<UML:Operation xmi.id="DCE.9921C95A-4308-796A-94B6-FF3682D8BBA9" name="display_qt4_error_message" owner="DCE.B26EFBF8-80AA-90F0-E1D4-30C7F72C2D20"><UML:Element.ownedElement>
+<UML:Parameter xmi.id="DCE.C86E8C3D-4BB6-4119-FB8A-44B2FDEA3885" type="DCE.F425C124-4FD9-6FFD-D6FB-B7CEB40BC5CD" direction="result" owner="DCE.9921C95A-4308-796A-94B6-FF3682D8BBA9"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.9F28AA2F-A57E-6BD2-1626-F16E06884ACD"/></UML:TypedElement.multiplicity></UML:Parameter></UML:Element.ownedElement></UML:Operation>
+<UML:Operation xmi.id="DCE.BACACBD0-4C3E-F4BB-A8C3-B5845C892B9E" name="display_qt4_warning_message" owner="DCE.B26EFBF8-80AA-90F0-E1D4-30C7F72C2D20"><UML:Element.ownedElement>
+<UML:Parameter xmi.id="DCE.4DE5813A-DE0E-7A9D-B6B4-4810AD5B78F0" type="DCE.F425C124-4FD9-6FFD-D6FB-B7CEB40BC5CD" direction="result" owner="DCE.BACACBD0-4C3E-F4BB-A8C3-B5845C892B9E"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.142EB75D-34C9-A6D1-C5DA-AE1D5CA2A0D2"/></UML:TypedElement.multiplicity></UML:Parameter></UML:Element.ownedElement></UML:Operation>
+<UML:Operation xmi.id="DCE.3BF205C5-0987-BA6F-B1CB-A7CBB1322B8B" name="read_logs" owner="DCE.B26EFBF8-80AA-90F0-E1D4-30C7F72C2D20"><UML:Element.ownedElement>
+<UML:Parameter xmi.id="DCE.5F0ECDDE-0518-519F-8301-BB1B97460AB8" type="DCE.F425C124-4FD9-6FFD-D6FB-B7CEB40BC5CD" direction="result" owner="DCE.3BF205C5-0987-BA6F-B1CB-A7CBB1322B8B"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.320341DF-D248-FA62-F831-EBE5FCBC6A5F"/></UML:TypedElement.multiplicity></UML:Parameter></UML:Element.ownedElement></UML:Operation>
+<UML:Operation xmi.id="DCE.2BEACBA1-A6CB-8D36-F748-E8C2BEFB8461" name="apply_settings_to_linphone" owner="DCE.B26EFBF8-80AA-90F0-E1D4-30C7F72C2D20"><UML:Element.ownedElement>
+<UML:Parameter xmi.id="DCE.F6218FB8-863B-B1BD-F0FC-44C32F55A00C" type="DCE.F425C124-4FD9-6FFD-D6FB-B7CEB40BC5CD" direction="result" owner="DCE.2BEACBA1-A6CB-8D36-F748-E8C2BEFB8461"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.9D59E578-0050-842E-2E87-620D8571F4FE"/></UML:TypedElement.multiplicity></UML:Parameter></UML:Element.ownedElement></UML:Operation>
+<UML:Operation xmi.id="DCE.3C2D57FC-CA50-E968-70E4-B1D54BDB862C" name="create_linphone_core" owner="DCE.B26EFBF8-80AA-90F0-E1D4-30C7F72C2D20"><UML:Element.ownedElement>
+<UML:Parameter xmi.id="DCE.552C5C72-96CB-2FEF-2643-90BC27DDC2BD" type="DCE.F425C124-4FD9-6FFD-D6FB-B7CEB40BC5CD" direction="result" owner="DCE.3C2D57FC-CA50-E968-70E4-B1D54BDB862C"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.FDF75F45-7A05-A773-C4CE-8199131BB248"/></UML:TypedElement.multiplicity></UML:Parameter></UML:Element.ownedElement></UML:Operation>
+<UML:Operation xmi.id="DCE.0E262134-E9AC-1B37-1874-7CF7BC7E8DCF" name="action_make_a_call" owner="DCE.B26EFBF8-80AA-90F0-E1D4-30C7F72C2D20"><UML:Element.ownedElement>
+<UML:Parameter xmi.id="DCE.1863E1B9-8C62-7444-575F-AFBC97BF0763" type="DCE.F425C124-4FD9-6FFD-D6FB-B7CEB40BC5CD" direction="result" owner="DCE.0E262134-E9AC-1B37-1874-7CF7BC7E8DCF"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.ADE18F80-E9BB-A65F-3F00-79B51D7A7A7D"/></UML:TypedElement.multiplicity></UML:Parameter></UML:Element.ownedElement></UML:Operation>
+<UML:Operation xmi.id="DCE.C49BDFE6-DF79-0A57-2DDB-C5CA5B64D247" name="action_end_call" owner="DCE.B26EFBF8-80AA-90F0-E1D4-30C7F72C2D20"><UML:Element.ownedElement>
+<UML:Parameter xmi.id="DCE.54677B5C-65FD-86B9-033D-7501B5CFE2D2" type="DCE.F425C124-4FD9-6FFD-D6FB-B7CEB40BC5CD" direction="result" owner="DCE.C49BDFE6-DF79-0A57-2DDB-C5CA5B64D247"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.610A9E3E-CF40-E403-6332-AE2688D7E3DD"/></UML:TypedElement.multiplicity></UML:Parameter></UML:Element.ownedElement></UML:Operation>
+<UML:Operation xmi.id="DCE.32F51707-89B4-6ECA-2DC2-7A3D5FC0CC9C" name="action_about_func" owner="DCE.B26EFBF8-80AA-90F0-E1D4-30C7F72C2D20"><UML:Element.ownedElement>
+<UML:Parameter xmi.id="DCE.79E58B73-9659-21A9-D4FB-2F772F746F2B" type="DCE.F425C124-4FD9-6FFD-D6FB-B7CEB40BC5CD" direction="result" owner="DCE.32F51707-89B4-6ECA-2DC2-7A3D5FC0CC9C"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.D28D3887-B54A-6A97-2FCF-0DCF22F9CD14"/></UML:TypedElement.multiplicity></UML:Parameter></UML:Element.ownedElement></UML:Operation>
+<UML:Operation xmi.id="DCE.B7492F9B-9751-8237-69CF-C056345432A5" name="action_connect_to_sip_server_func" owner="DCE.B26EFBF8-80AA-90F0-E1D4-30C7F72C2D20"><UML:Element.ownedElement>
+<UML:Parameter xmi.id="DCE.6F99DF38-8762-B886-0919-6CA3AF88A993" type="DCE.F425C124-4FD9-6FFD-D6FB-B7CEB40BC5CD" direction="result" owner="DCE.B7492F9B-9751-8237-69CF-C056345432A5"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.53578423-3D98-E7D8-02B8-C249E190DD87"/></UML:TypedElement.multiplicity></UML:Parameter></UML:Element.ownedElement></UML:Operation>
+<UML:Operation xmi.id="DCE.284C4302-55F5-9DE1-1663-9DC11FD117CC" name="action_disconnect_from_server_func" owner="DCE.B26EFBF8-80AA-90F0-E1D4-30C7F72C2D20"><UML:Element.ownedElement>
+<UML:Parameter xmi.id="DCE.9CFFB05A-BF00-3CFB-5B8B-C06123DF1A11" type="DCE.F425C124-4FD9-6FFD-D6FB-B7CEB40BC5CD" direction="result" owner="DCE.284C4302-55F5-9DE1-1663-9DC11FD117CC"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.E5CA0B70-3A03-A6B3-AB1F-450D2712EC76"/></UML:TypedElement.multiplicity></UML:Parameter></UML:Element.ownedElement></UML:Operation>
+
+<UML:Attribute xmi.id="DCE.5C7823A9-0544-E2C2-2D46-9607A9FC49EE" visibility="public" name="linphonec" type="DCE.E0559998-867C-04C8-DA5C-EF266DFAADAF" owner="DCE.B26EFBF8-80AA-90F0-E1D4-30C7F72C2D20"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.A5137F4A-31D4-0C93-5163-C9703F27E52F"/></UML:TypedElement.multiplicity><UML:Attribute.default>
+<UML:Expression xmi.id="DCE.675835CD-CA32-92D4-0C1F-2B4D55675916"/></UML:Attribute.default></UML:Attribute>
+<UML:Attribute xmi.id="DCE.99F7C361-A889-73F8-FB29-3400F6FF9329" visibility="private" name="linphone_call_log" type="DCE.6622B05B-326B-6F83-6ABD-38142FFD2284" owner="DCE.B26EFBF8-80AA-90F0-E1D4-30C7F72C2D20"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.E99CD7AF-AEB0-6A4A-5632-1C999F1D6CE6"/></UML:TypedElement.multiplicity><UML:Attribute.default>
+<UML:Expression xmi.id="DCE.761D6B73-5248-5641-60AB-BEB8399822D4"/></UML:Attribute.default></UML:Attribute></UML:Element.ownedElement></UML:Class>
+
+<UML:Class xmi.id="DCE.4289580E-9CF3-3C24-2D71-2E9243351272" name="QMessageBox" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" supplierDependency="DCE.533E48D7-8887-B0E6-B88E-77F447C07169"><UML:Element.presentation>
+</UML:Element.presentation><UML:Element.ownedElement>
+
+<UML:Operation xmi.id="DCE.6A2523E7-037D-AC7A-866C-2B502C392CB3" name="information" owner="DCE.4289580E-9CF3-3C24-2D71-2E9243351272"><UML:Element.ownedElement>
+<UML:Parameter xmi.id="DCE.58583064-3516-FA63-6A3F-2836C5147AD4" type="DCE.F425C124-4FD9-6FFD-D6FB-B7CEB40BC5CD" direction="result" owner="DCE.6A2523E7-037D-AC7A-866C-2B502C392CB3"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.FC4FD10D-4038-7FE0-E0CA-7146002BC67F"/></UML:TypedElement.multiplicity></UML:Parameter></UML:Element.ownedElement></UML:Operation>
+<UML:Operation xmi.id="DCE.30D540B4-D412-E845-08AA-F291D34AC2BE" name="warning" owner="DCE.4289580E-9CF3-3C24-2D71-2E9243351272"><UML:Element.ownedElement>
+<UML:Parameter xmi.id="DCE.92D8752E-BA09-5147-DBC5-2D35CC3AADDE" type="DCE.F425C124-4FD9-6FFD-D6FB-B7CEB40BC5CD" direction="result" owner="DCE.30D540B4-D412-E845-08AA-F291D34AC2BE"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.256F69E9-FDFC-C7D4-13C1-514954BFDA31"/></UML:TypedElement.multiplicity></UML:Parameter></UML:Element.ownedElement></UML:Operation>
+<UML:Operation xmi.id="DCE.DEA1F0D6-0117-FC9B-ED33-EE0A4C3653BC" name="error" owner="DCE.4289580E-9CF3-3C24-2D71-2E9243351272"><UML:Element.ownedElement>
+<UML:Parameter xmi.id="DCE.1A517BDA-A04C-6F39-424E-07A4702F1770" type="DCE.F425C124-4FD9-6FFD-D6FB-B7CEB40BC5CD" direction="result" owner="DCE.DEA1F0D6-0117-FC9B-ED33-EE0A4C3653BC"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.AC5D39F4-2E05-900C-79CA-C3631A6230C2"/></UML:TypedElement.multiplicity></UML:Parameter></UML:Element.ownedElement></UML:Operation></UML:Element.ownedElement></UML:Class>
+<UML:Class xmi.id="DCE.9013886B-8EFF-8439-9A35-0DD7DE52270C" name="QVector" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" supplierDependency="DCE.8E80DBFA-9665-CD2A-D8A7-B768D133E061"><UML:Element.presentation>
+</UML:Element.presentation><UML:Element.ownedElement>
+<UML:Operation xmi.id="DCE.89E88A5E-673F-EC36-1B79-7EF6C3AAB253" name="at" owner="DCE.9013886B-8EFF-8439-9A35-0DD7DE52270C"><UML:Element.ownedElement>
+<UML:Parameter xmi.id="DCE.6D7260A7-9429-14E6-FCB1-5A63B2CF4408" type="DCE.F425C124-4FD9-6FFD-D6FB-B7CEB40BC5CD" direction="result" owner="DCE.89E88A5E-673F-EC36-1B79-7EF6C3AAB253"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.16EA75F7-462A-6784-264F-6134980CE5E0"/></UML:TypedElement.multiplicity></UML:Parameter></UML:Element.ownedElement></UML:Operation>
+<UML:Operation xmi.id="DCE.0B6137C3-A944-4FF0-8135-30C8912B7BFA" name="clear" owner="DCE.9013886B-8EFF-8439-9A35-0DD7DE52270C"><UML:Element.ownedElement>
+<UML:Parameter xmi.id="DCE.1237CF5E-F1F1-F7DE-A8A3-FE99CD253441" type="DCE.F425C124-4FD9-6FFD-D6FB-B7CEB40BC5CD" direction="result" owner="DCE.0B6137C3-A944-4FF0-8135-30C8912B7BFA"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.D7B1E78D-2567-20F3-E752-1DC1F1974301"/></UML:TypedElement.multiplicity></UML:Parameter></UML:Element.ownedElement></UML:Operation>
+<UML:Operation xmi.id="DCE.5244EABD-2714-9D8F-BB37-69E2B121E403" name="append" owner="DCE.9013886B-8EFF-8439-9A35-0DD7DE52270C"><UML:Element.ownedElement>
+<UML:Parameter xmi.id="DCE.0F0384BA-538E-A238-948A-6365B5387571" type="DCE.F425C124-4FD9-6FFD-D6FB-B7CEB40BC5CD" direction="result" owner="DCE.5244EABD-2714-9D8F-BB37-69E2B121E403"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.0DE6DAFF-7E4E-5C3F-E115-204A17036FE0"/></UML:TypedElement.multiplicity></UML:Parameter></UML:Element.ownedElement></UML:Operation>
+<UML:Operation xmi.id="DCE.0C92C40C-8B56-B7A8-813D-619903C3F3D6" name="empty" owner="DCE.9013886B-8EFF-8439-9A35-0DD7DE52270C"><UML:Element.ownedElement>
+<UML:Parameter xmi.id="DCE.74D25EE5-751A-E3CA-DF00-C0083122D37C" type="DCE.F425C124-4FD9-6FFD-D6FB-B7CEB40BC5CD" direction="result" owner="DCE.0C92C40C-8B56-B7A8-813D-619903C3F3D6"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.62564F52-EBA7-997F-AD30-06BDA9DCF777"/></UML:TypedElement.multiplicity></UML:Parameter></UML:Element.ownedElement></UML:Operation>
+<UML:Operation xmi.id="DCE.369F5A88-2E57-EF90-C3B4-E3B391BCE4CD" name="remove" owner="DCE.9013886B-8EFF-8439-9A35-0DD7DE52270C"><UML:Element.ownedElement>
+<UML:Parameter xmi.id="DCE.56297889-AD95-7068-78ED-218ED5F74F14" type="DCE.F425C124-4FD9-6FFD-D6FB-B7CEB40BC5CD" direction="result" owner="DCE.369F5A88-2E57-EF90-C3B4-E3B391BCE4CD"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.652E737E-2821-EBE7-4FCC-FB9F73FAA95F"/></UML:TypedElement.multiplicity></UML:Parameter></UML:Element.ownedElement></UML:Operation>
+<UML:Operation xmi.id="DCE.CF99EB9B-9BC3-DBE2-C4BB-6ED1E8C15857" name="size" owner="DCE.9013886B-8EFF-8439-9A35-0DD7DE52270C"><UML:Element.ownedElement>
+<UML:Parameter xmi.id="DCE.21EE8374-FCED-D772-CB4E-483D24DC2A5D" type="DCE.F425C124-4FD9-6FFD-D6FB-B7CEB40BC5CD" direction="result" owner="DCE.CF99EB9B-9BC3-DBE2-C4BB-6ED1E8C15857"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.69F71F28-EC6A-66D6-8FCA-1C8A060D69A2"/></UML:TypedElement.multiplicity></UML:Parameter></UML:Element.ownedElement></UML:Operation>
+<UML:Operation xmi.id="DCE.12A72771-F9A5-4E7B-4E66-E5EEF7B8F177" name="last" owner="DCE.9013886B-8EFF-8439-9A35-0DD7DE52270C"><UML:Element.ownedElement>
+<UML:Parameter xmi.id="DCE.729DAD72-DB83-7249-0895-CC9E04F5ECE8" type="DCE.F425C124-4FD9-6FFD-D6FB-B7CEB40BC5CD" direction="result" owner="DCE.12A72771-F9A5-4E7B-4E66-E5EEF7B8F177"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.B0536E98-CB0E-72B5-85AF-09B9A3B64B05"/></UML:TypedElement.multiplicity></UML:Parameter></UML:Element.ownedElement></UML:Operation></UML:Element.ownedElement></UML:Class>
+
+<UML:Class xmi.id="DCE.C5007054-6B8C-29B6-2AD7-1C4C92243BA0" name="QTimer" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" supplierDependency="DCE.32236726-4CF0-F074-3CA6-B78ABBB07EC1"><UML:Element.presentation>
+</UML:Element.presentation><UML:Element.ownedElement>
+<UML:Operation xmi.id="DCE.87902F7B-6611-7A0B-85AC-ECCD6E5DEF69" name="start" owner="DCE.C5007054-6B8C-29B6-2AD7-1C4C92243BA0"><UML:Element.ownedElement>
+<UML:Parameter xmi.id="DCE.3164195B-E51D-C5CC-26E3-CDDD55D34028" type="DCE.F425C124-4FD9-6FFD-D6FB-B7CEB40BC5CD" direction="result" owner="DCE.87902F7B-6611-7A0B-85AC-ECCD6E5DEF69"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.F3CB7982-8ED7-32F9-75D8-86458BD7275A"/></UML:TypedElement.multiplicity></UML:Parameter></UML:Element.ownedElement></UML:Operation>
+<UML:Operation xmi.id="DCE.C012ED14-B57A-7661-A7EF-6110031D7206" name="setSingleShot" owner="DCE.C5007054-6B8C-29B6-2AD7-1C4C92243BA0"><UML:Element.ownedElement>
+<UML:Parameter xmi.id="DCE.955C1AB7-E8F8-C1B2-A756-37722A850CB2" type="DCE.F425C124-4FD9-6FFD-D6FB-B7CEB40BC5CD" direction="result" owner="DCE.C012ED14-B57A-7661-A7EF-6110031D7206"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.0D01EF81-EE5C-0E9E-9F08-952155A4FC2E"/></UML:TypedElement.multiplicity></UML:Parameter></UML:Element.ownedElement></UML:Operation></UML:Element.ownedElement></UML:Class>
+<UML:Class xmi.id="DCE.AE63D3A6-DA50-53DA-B48E-039DAA1E8397" name="QString" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" supplierDependency="DCE.2714A181-B9FB-73E2-1350-DF5F67C2DE7A"><UML:Element.presentation>
+</UML:Element.presentation><UML:Classifier.generalization>
+</UML:Classifier.generalization></UML:Class>
+<UML:DataType xmi.id="DCE.466AF65E-1853-9B9E-85B1-65B0CD909CA2" name="int" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA"/>
+<UML:DataType xmi.id="DCE.8E2A70EB-CF54-78FE-9DF1-F90AF20178F9" name="FILE*" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA"/>
+<UML:DataType xmi.id="DCE.6C9AE2F7-1531-7C56-B765-F19FD74C6FEF" name="AddContactWindow*" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA"/>
+<UML:DataType xmi.id="DCE.C762E673-A2B7-6083-E3D7-C6A9B2E715C8" name="QVector&lt;&gt;" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA"/>
+<UML:DataType xmi.id="DCE.4E76DB6E-8EE0-DBF5-0802-F86BCD88B632" name="QVector&lt;LinphoneAuthInfo&gt;" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA"/>
+<UML:DataType xmi.id="DCE.878F1B61-BA5B-950B-3B42-CAB3B6519192" name="USER_CONFIG" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA"/>
+<UML:DataType xmi.id="DCE.AC18EBA2-F55C-A4DE-6F0E-82763A4C1DE9" name="USER_CONFIG*" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA"/>
+<UML:DataType xmi.id="DCE.F425C124-4FD9-6FFD-D6FB-B7CEB40BC5CD" name="void" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA"/>
+<UML:DataType xmi.id="DCE.E0559998-867C-04C8-DA5C-EF266DFAADAF" name="LinphoneCore" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA"/>
+<UML:DataType xmi.id="DCE.6622B05B-326B-6F83-6ABD-38142FFD2284" name="LinphoneCallLog" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA"/>
+<UML:Class xmi.id="DCE.BE568AD7-4F2A-7DB2-3269-C67D1BFBD773" name="Logger" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" clientDependency="DCE.2714A181-B9FB-73E2-1350-DF5F67C2DE7A" supplierDependency="DCE.0FFAEA5B-3BE1-F87B-AD59-55AEE0C6BEAC" specialization="DCE.4E94BC51-D39E-748F-F540-C931724B002B"><UML:Element.presentation>
+</UML:Element.presentation><UML:Element.ownedElement>
+<UML:Attribute xmi.id="DCE.239841F9-6E88-B894-0457-044DF0133B62" visibility="private" name="logger_filename" type="DCE.AE63D3A6-DA50-53DA-B48E-039DAA1E8397" owner="DCE.BE568AD7-4F2A-7DB2-3269-C67D1BFBD773"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.E16F31C8-54A5-7A86-D299-E2D604641F46"/></UML:TypedElement.multiplicity><UML:Attribute.default>
+<UML:Expression xmi.id="DCE.9CD09AEC-5286-D0D6-C82E-1F867B482CBE"/></UML:Attribute.default></UML:Attribute>
+<UML:Attribute xmi.id="DCE.9D9C51D9-38EE-B4D1-F241-D4F81879E725" visibility="private" name="logger_level" type="DCE.AE63D3A6-DA50-53DA-B48E-039DAA1E8397" owner="DCE.BE568AD7-4F2A-7DB2-3269-C67D1BFBD773"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.40659006-314D-4549-AD2D-8C3FAAE9679E"/></UML:TypedElement.multiplicity><UML:Attribute.default>
+<UML:Expression xmi.id="DCE.0A5D9485-B7AD-2F24-BF58-96A1422BC3E3"/></UML:Attribute.default></UML:Attribute>
+<UML:Operation xmi.id="DCE.A57A83D4-3789-04CD-6ADD-A1B43F1152ED" name="set_level" owner="DCE.BE568AD7-4F2A-7DB2-3269-C67D1BFBD773"><UML:Element.ownedElement>
+<UML:Parameter xmi.id="DCE.644ED703-A121-F5D7-9739-C7092A16709D" type="DCE.F425C124-4FD9-6FFD-D6FB-B7CEB40BC5CD" direction="result" owner="DCE.A57A83D4-3789-04CD-6ADD-A1B43F1152ED"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.B1DE49D3-D399-3A19-D54B-DF7BB6D26585"/></UML:TypedElement.multiplicity></UML:Parameter></UML:Element.ownedElement></UML:Operation>
+<UML:Operation xmi.id="DCE.DF1224EA-9531-FBA5-C809-96C41DE0C1B2" name="log" owner="DCE.BE568AD7-4F2A-7DB2-3269-C67D1BFBD773"><UML:Element.ownedElement>
+<UML:Parameter xmi.id="DCE.DCEB8CC6-75EF-B973-47AF-EADB2899E226" type="DCE.F425C124-4FD9-6FFD-D6FB-B7CEB40BC5CD" direction="result" owner="DCE.DF1224EA-9531-FBA5-C809-96C41DE0C1B2"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.E3EC813F-0A45-AB89-3CD4-D412E426C877"/></UML:TypedElement.multiplicity></UML:Parameter></UML:Element.ownedElement></UML:Operation></UML:Element.ownedElement></UML:Class>
+<UML:Class xmi.id="DCE.E5AAD9E9-9E4C-5D46-3199-89BD45BACB13" name="QMainWindow" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" clientDependency="DCE.5371995C-4C05-4E50-A926-22CD92694D0A" specialization="DCE.B7BA2274-2435-1C51-732E-AEF37C39FCBE" supplierDependency="DCE.43EE3A91-ED8A-F1FA-FD1A-E00018AC8061 DCE.44FDF6F2-C239-8568-A3EA-774B94395E2E"><UML:Element.presentation>
+</UML:Element.presentation><UML:Element.ownedElement>
+</UML:Element.ownedElement></UML:Class>
+<UML:Class xmi.id="DCE.15EBAF45-18C5-FA19-E7D3-EB8551AEC39D" name="AboutBox" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" clientDependency="DCE.041F31E5-7F6A-5EA8-C9CD-EB21D025B096" supplierDependency="DCE.C72A379A-6F37-9545-6295-8E47BCBE930A"><UML:Element.presentation>
+</UML:Element.presentation><UML:Element.ownedElement>
+<UML:Operation xmi.id="DCE.FDE9663F-03F9-6478-8637-58B8ED44AF11" name="setupUI" owner="DCE.15EBAF45-18C5-FA19-E7D3-EB8551AEC39D"><UML:Element.ownedElement>
+<UML:Parameter xmi.id="DCE.D330D2BF-D562-498A-29FF-EE9720F4B0DF" type="DCE.F425C124-4FD9-6FFD-D6FB-B7CEB40BC5CD" direction="result" owner="DCE.FDE9663F-03F9-6478-8637-58B8ED44AF11"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.2DF0478F-D1A6-C068-347B-E54E74E1DA02"/></UML:TypedElement.multiplicity></UML:Parameter></UML:Element.ownedElement></UML:Operation></UML:Element.ownedElement></UML:Class>
+<UML:Class xmi.id="DCE.1E901DC1-F395-9591-C1C0-A1211995BD2E" name="MainWindow" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" supplierDependency="DCE.5371995C-4C05-4E50-A926-22CD92694D0A DCE.E274698F-A35D-61C0-E780-059D74F91521" clientDependency="DCE.44FDF6F2-C239-8568-A3EA-774B94395E2E"><UML:Element.presentation>
+</UML:Element.presentation><UML:Element.ownedElement>
+<UML:Operation xmi.id="DCE.34389E30-B6BE-A5E8-9FFA-C5F8644B6CE3" name="setCodec_For_C_Strings" owner="DCE.1E901DC1-F395-9591-C1C0-A1211995BD2E"><UML:Element.ownedElement>
+<UML:Parameter xmi.id="DCE.C3479A8E-9C7F-8EB4-33B4-BC81AC639974" type="DCE.F425C124-4FD9-6FFD-D6FB-B7CEB40BC5CD" direction="result" owner="DCE.34389E30-B6BE-A5E8-9FFA-C5F8644B6CE3"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.39FCB79E-D0CA-81E7-8439-70D9D9806809"/></UML:TypedElement.multiplicity></UML:Parameter></UML:Element.ownedElement></UML:Operation>
+<UML:Operation xmi.id="DCE.FD5924EB-2D86-7295-08C1-927C3502B1AA" name="setWindowFlags" owner="DCE.1E901DC1-F395-9591-C1C0-A1211995BD2E"><UML:Element.ownedElement>
+<UML:Parameter xmi.id="DCE.CE7CABB8-4CFC-FE6A-E6A2-3DDDB22708BB" type="DCE.F425C124-4FD9-6FFD-D6FB-B7CEB40BC5CD" direction="result" owner="DCE.FD5924EB-2D86-7295-08C1-927C3502B1AA"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.EE34CBF0-69A4-DD76-4C62-32B932A1F481"/></UML:TypedElement.multiplicity></UML:Parameter></UML:Element.ownedElement></UML:Operation>
+<UML:Operation xmi.id="DCE.C9B1BFA4-4809-C5C0-6944-1841BB3EC01A" name="setWindowTitle" owner="DCE.1E901DC1-F395-9591-C1C0-A1211995BD2E"><UML:Element.ownedElement>
+<UML:Parameter xmi.id="DCE.C64E33CB-F432-6AD8-C7DD-5F10D4B6912C" type="DCE.F425C124-4FD9-6FFD-D6FB-B7CEB40BC5CD" direction="result" owner="DCE.C9B1BFA4-4809-C5C0-6944-1841BB3EC01A"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.63F7A8C2-CDB1-9579-204E-A7003ED15FBC"/></UML:TypedElement.multiplicity></UML:Parameter></UML:Element.ownedElement></UML:Operation>
+<UML:Operation xmi.id="DCE.BEDEBB19-239A-7A1A-EE4D-372ABBD165B6" name="show" owner="DCE.1E901DC1-F395-9591-C1C0-A1211995BD2E"><UML:Element.ownedElement>
+<UML:Parameter xmi.id="DCE.9768F718-5182-66A3-4D2C-B4E510913E84" type="DCE.F425C124-4FD9-6FFD-D6FB-B7CEB40BC5CD" direction="result" owner="DCE.BEDEBB19-239A-7A1A-EE4D-372ABBD165B6"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.0BEB9752-34E3-59C7-8DB7-4F716947B0F2"/></UML:TypedElement.multiplicity></UML:Parameter></UML:Element.ownedElement></UML:Operation>
+<UML:Operation xmi.id="DCE.DA7EBDDA-25AC-BAA1-9F6F-37890EAF421A" name="hide" owner="DCE.1E901DC1-F395-9591-C1C0-A1211995BD2E"><UML:Element.ownedElement>
+<UML:Parameter xmi.id="DCE.33F688D2-5A7D-2EAD-9118-0ECF2945A886" type="DCE.F425C124-4FD9-6FFD-D6FB-B7CEB40BC5CD" direction="result" owner="DCE.DA7EBDDA-25AC-BAA1-9F6F-37890EAF421A"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.C1D17658-7FE7-44A1-237E-E046B93A49E0"/></UML:TypedElement.multiplicity></UML:Parameter></UML:Element.ownedElement></UML:Operation>
+<UML:Operation xmi.id="DCE.49B12346-A7C8-22D0-8E45-14F10C9094E7" name="setupUI" owner="DCE.1E901DC1-F395-9591-C1C0-A1211995BD2E"><UML:Element.ownedElement>
+<UML:Parameter xmi.id="DCE.2B67E882-1B29-FCB7-5CF3-852AD78BCA6D" type="DCE.F425C124-4FD9-6FFD-D6FB-B7CEB40BC5CD" direction="result" owner="DCE.49B12346-A7C8-22D0-8E45-14F10C9094E7"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.B28580C2-1A39-CA9C-F45A-8A3817CE859F"/></UML:TypedElement.multiplicity></UML:Parameter></UML:Element.ownedElement></UML:Operation></UML:Element.ownedElement><UML:Classifier.generalization>
+</UML:Classifier.generalization></UML:Class>
+<UML:Class xmi.id="DCE.B4EB1AD0-DA30-32BE-7498-60D3452F023A" name="AboutWindow" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" clientDependency="DCE.4AE90915-CE84-CFA4-D207-C5C92842B3D8" supplierDependency="DCE.041F31E5-7F6A-5EA8-C9CD-EB21D025B096"><UML:Element.presentation>
+</UML:Element.presentation></UML:Class>
+<UML:Class xmi.id="DCE.4ED04E03-E65D-41EC-44A2-B0D1F8138F14" name="AddContactWindow" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" supplierDependency="DCE.330B458F-2FE6-4237-B24C-E199A9AFCABA DCE.0C498AC5-679E-40EA-BFBF-38F62BEAE440" clientDependency="DCE.DFD0E1A1-F56E-F041-BD9F-E80E3402DAA5"><UML:Element.presentation>
+</UML:Element.presentation><UML:Element.ownedElement>
+<UML:Operation xmi.id="DCE.31C7617C-50AC-B8A6-80B1-CDB9F4B2B0F2" name="setupUI" owner="DCE.4ED04E03-E65D-41EC-44A2-B0D1F8138F14"><UML:Element.ownedElement>
+<UML:Parameter xmi.id="DCE.5067A4B1-E192-A18B-390C-A86078B76FE7" type="DCE.F425C124-4FD9-6FFD-D6FB-B7CEB40BC5CD" direction="result" owner="DCE.31C7617C-50AC-B8A6-80B1-CDB9F4B2B0F2"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.0F81BA7B-9322-265A-2DBF-E5673B94B724"/></UML:TypedElement.multiplicity></UML:Parameter></UML:Element.ownedElement></UML:Operation>
+<UML:Operation xmi.id="DCE.B5765ED6-4596-E955-0AB1-65F7F7F8229C" name="init_actions" owner="DCE.4ED04E03-E65D-41EC-44A2-B0D1F8138F14"><UML:Element.ownedElement>
+<UML:Parameter xmi.id="DCE.2E3205EE-BD36-7960-D1D9-CC74CAAC445B" type="DCE.F425C124-4FD9-6FFD-D6FB-B7CEB40BC5CD" direction="result" owner="DCE.B5765ED6-4596-E955-0AB1-65F7F7F8229C"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.A4F5D335-3231-072D-8244-C0F05D7FCC50"/></UML:TypedElement.multiplicity></UML:Parameter></UML:Element.ownedElement></UML:Operation>
+<UML:Operation xmi.id="DCE.BD2C9328-E89B-E92B-8AED-ADB5F9EA6EA3" name="action_cancel" owner="DCE.4ED04E03-E65D-41EC-44A2-B0D1F8138F14"><UML:Element.ownedElement>
+<UML:Parameter xmi.id="DCE.68A4BF6C-E06B-3354-338F-5EE69CCF37F5" type="DCE.F425C124-4FD9-6FFD-D6FB-B7CEB40BC5CD" direction="result" owner="DCE.BD2C9328-E89B-E92B-8AED-ADB5F9EA6EA3"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.758FD70F-0623-962A-0B15-FAA30F25280B"/></UML:TypedElement.multiplicity></UML:Parameter></UML:Element.ownedElement></UML:Operation>
+<UML:Operation xmi.id="DCE.A7A1110D-3DA0-4C47-B97A-6F33F578C21B" name="action_done" owner="DCE.4ED04E03-E65D-41EC-44A2-B0D1F8138F14"><UML:Element.ownedElement>
+<UML:Parameter xmi.id="DCE.AC7FB482-C227-0CB6-D4AE-88E2B10D08BF" type="DCE.F425C124-4FD9-6FFD-D6FB-B7CEB40BC5CD" direction="result" owner="DCE.A7A1110D-3DA0-4C47-B97A-6F33F578C21B"><UML:TypedElement.multiplicity>
+<UML:Multiplicity xmi.id="DCE.CA6B1329-760A-66AD-ED08-086130B588B4"/></UML:TypedElement.multiplicity></UML:Parameter></UML:Element.ownedElement></UML:Operation></UML:Element.ownedElement></UML:Class>
+<UML:Class xmi.id="DCE.77E65EB6-618A-1385-8834-E176EA745D14" name="QDialog" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" supplierDependency="DCE.0683EDFC-3ACD-3A47-B628-5386394CDDAC DCE.4AE90915-CE84-CFA4-D207-C5C92842B3D8"><UML:Element.presentation>
+</UML:Element.presentation></UML:Class>
+<UML:Class xmi.id="DCE.7E2434B9-7050-3C12-98C8-E8C7EA0FD727" name="AddUserDialog" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" clientDependency="DCE.0683EDFC-3ACD-3A47-B628-5386394CDDAC DCE.330B458F-2FE6-4237-B24C-E199A9AFCABA" supplierDependency="DCE.DFD0E1A1-F56E-F041-BD9F-E80E3402DAA5 DCE.C61D7442-4B2C-877D-1A85-A8E17D0567AA"><UML:Element.presentation>
+</UML:Element.presentation></UML:Class>
+
+<UML:Dependency xmi.id="DCE.2714A181-B9FB-73E2-1350-DF5F67C2DE7A" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" client="DCE.BE568AD7-4F2A-7DB2-3269-C67D1BFBD773" supplier="DCE.AE63D3A6-DA50-53DA-B48E-039DAA1E8397"><UML:Element.presentation>
+</UML:Element.presentation></UML:Dependency>
+<UML:Dependency xmi.id="DCE.0683EDFC-3ACD-3A47-B628-5386394CDDAC" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" client="DCE.7E2434B9-7050-3C12-98C8-E8C7EA0FD727" supplier="DCE.77E65EB6-618A-1385-8834-E176EA745D14"><UML:Element.presentation>
+</UML:Element.presentation></UML:Dependency>
+<UML:Dependency xmi.id="DCE.4AE90915-CE84-CFA4-D207-C5C92842B3D8" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" client="DCE.B4EB1AD0-DA30-32BE-7498-60D3452F023A" supplier="DCE.77E65EB6-618A-1385-8834-E176EA745D14"><UML:Element.presentation>
+</UML:Element.presentation></UML:Dependency>
+<UML:Dependency xmi.id="DCE.041F31E5-7F6A-5EA8-C9CD-EB21D025B096" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" client="DCE.15EBAF45-18C5-FA19-E7D3-EB8551AEC39D" supplier="DCE.B4EB1AD0-DA30-32BE-7498-60D3452F023A"><UML:Element.presentation>
+</UML:Element.presentation></UML:Dependency>
+
+<UML:Dependency xmi.id="DCE.DFD0E1A1-F56E-F041-BD9F-E80E3402DAA5" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" client="DCE.4ED04E03-E65D-41EC-44A2-B0D1F8138F14" supplier="DCE.7E2434B9-7050-3C12-98C8-E8C7EA0FD727"><UML:Element.presentation>
+</UML:Element.presentation></UML:Dependency>
+<UML:Dependency xmi.id="DCE.8E80DBFA-9665-CD2A-D8A7-B768D133E061" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" client="DCE.B26EFBF8-80AA-90F0-E1D4-30C7F72C2D20" supplier="DCE.9013886B-8EFF-8439-9A35-0DD7DE52270C"><UML:Element.presentation>
+</UML:Element.presentation></UML:Dependency>
+<UML:Dependency xmi.id="DCE.32236726-4CF0-F074-3CA6-B78ABBB07EC1" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" client="DCE.B26EFBF8-80AA-90F0-E1D4-30C7F72C2D20" supplier="DCE.C5007054-6B8C-29B6-2AD7-1C4C92243BA0"><UML:Element.presentation>
+</UML:Element.presentation></UML:Dependency>
+
+<UML:Dependency xmi.id="DCE.533E48D7-8887-B0E6-B88E-77F447C07169" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" client="DCE.B26EFBF8-80AA-90F0-E1D4-30C7F72C2D20" supplier="DCE.4289580E-9CF3-3C24-2D71-2E9243351272"><UML:Element.presentation>
+</UML:Element.presentation></UML:Dependency>
+<UML:Dependency xmi.id="DCE.0FFAEA5B-3BE1-F87B-AD59-55AEE0C6BEAC" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" client="DCE.B26EFBF8-80AA-90F0-E1D4-30C7F72C2D20" supplier="DCE.BE568AD7-4F2A-7DB2-3269-C67D1BFBD773"><UML:Element.presentation>
+</UML:Element.presentation></UML:Dependency>
+<UML:Dependency xmi.id="DCE.C72A379A-6F37-9545-6295-8E47BCBE930A" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" client="DCE.B26EFBF8-80AA-90F0-E1D4-30C7F72C2D20" supplier="DCE.15EBAF45-18C5-FA19-E7D3-EB8551AEC39D"><UML:Element.presentation>
+</UML:Element.presentation></UML:Dependency>
+
+<UML:Dependency xmi.id="DCE.0C498AC5-679E-40EA-BFBF-38F62BEAE440" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" client="DCE.B26EFBF8-80AA-90F0-E1D4-30C7F72C2D20" supplier="DCE.4ED04E03-E65D-41EC-44A2-B0D1F8138F14"><UML:Element.presentation>
+</UML:Element.presentation></UML:Dependency>
+
+<UML:Dependency xmi.id="DCE.44FDF6F2-C239-8568-A3EA-774B94395E2E" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" client="DCE.1E901DC1-F395-9591-C1C0-A1211995BD2E" supplier="DCE.E5AAD9E9-9E4C-5D46-3199-89BD45BACB13"><UML:Element.presentation>
+</UML:Element.presentation></UML:Dependency>
+<UML:Dependency xmi.id="DCE.E274698F-A35D-61C0-E780-059D74F91521" owner="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" client="DCE.B26EFBF8-80AA-90F0-E1D4-30C7F72C2D20" supplier="DCE.1E901DC1-F395-9591-C1C0-A1211995BD2E"><UML:Element.presentation>
+</UML:Element.presentation></UML:Dependency></UML:Element.ownedElement></UML:Project></XMI.content> </XMI>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TSX edition="Java Edition" product="Tom Sawyer Visualization" version="6.0.1">
-    <graphManager id="4">
+    <graphManager id="2">
         <resources>
             <shapes>
                 <rectangleShape id="0"/>
@@ -8,27 +8,15 @@
             <fonts>
                 <font id="1">
                     <name value="SansSerif"/>
-                    <bold value="true"/>
-                    <italic value="false"/>
-                    <fontHeight value="16"/>
-                </font>
-                <font id="2">
-                    <name value="SansSerif"/>
                     <bold value="false"/>
                     <italic value="false"/>
                     <fontHeight value="10"/>
-                </font>
-                <font id="3">
-                    <name value="SansSerif"/>
-                    <bold value="false"/>
-                    <italic value="false"/>
-                    <fontHeight value="8"/>
                 </font>
             </fonts>
         </resources>
         <instances>
             <graphs>
-                <graph id="5">
+                <graph id="3">
                     <name/>
                     <margins>
                         <proportional bottom="0.0" left="0.0" right="0.0" top="0.0"/>
@@ -46,14 +34,14 @@
                         <drawNodesBeforeEdges value="true"/>
                     </graphics>
                 </graph>
-                <graph id="6">
+                <graph id="4">
                     <name/>
                     <nodes>
-                        <node id="7">
-                            <name value="Wybór Ruby'ego"/>
-                            <center x="-15.0" y="-13.0"/>
-                            <size height="80.0" width="150.0"/>
-                            <originalSize height="80.0" width="150.0"/>
+                        <node id="5">
+                            <name/>
+                            <center x="-202.10000000000002" y="-272.04999999999984"/>
+                            <size height="141.9000000000001" width="165.0000000000002"/>
+                            <originalSize height="141.9" width="165.0"/>
                             <shape resource="0"/>
                             <url/>
                             <visible value="true"/>
@@ -67,36 +55,57 @@
                                 <textColor value="0 0 0"/>
                                 <justification value="CENTER"/>
                                 <childGraphMark value="true"/>
-                                <PEID value="DCE.EF1C0D7F-8C95-4840-562C-6CC27C641E60"/>
+                                <PEID value="DCE.5C8405DC-404B-C95D-5939-5D55A211B57A"/>
+                            </graphics>
+                        </node>
+                        <node id="6">
+                            <name/>
+                            <center x="-476.14999999999986" y="-313.05000000000007"/>
+                            <size height="214.5" width="137.49999999999994"/>
+                            <originalSize height="214.5" width="137.5"/>
+                            <shape resource="0"/>
+                            <url/>
+                            <visible value="true"/>
+                            <resizability value="RESIZABILITY_NO_FIT"/>
+                            <graphics type="ETGenericNodeUI">
+                                <fillColor value="204 204 204"/>
+                                <borderColor value="0 0 0"/>
+                                <transparent value="false"/>
+                                <drawBorder value="true"/>
+                                <textFont resource="1"/>
+                                <textColor value="0 0 0"/>
+                                <justification value="CENTER"/>
+                                <childGraphMark value="true"/>
+                                <PEID value="DCE.98EC9797-AA45-9FE8-C9AA-35CFC8FA7C41"/>
+                            </graphics>
+                        </node>
+                        <node id="7">
+                            <name/>
+                            <center x="-296.4000000000001" y="-426.1499999999999"/>
+                            <size height="124.29999999999961" width="175.99999999999977"/>
+                            <originalSize height="124.3" width="176.0"/>
+                            <shape resource="0"/>
+                            <url/>
+                            <visible value="true"/>
+                            <resizability value="RESIZABILITY_NO_FIT"/>
+                            <graphics type="ETGenericNodeUI">
+                                <fillColor value="204 204 204"/>
+                                <borderColor value="0 0 0"/>
+                                <transparent value="false"/>
+                                <drawBorder value="true"/>
+                                <textFont resource="1"/>
+                                <textColor value="0 0 0"/>
+                                <justification value="CENTER"/>
+                                <childGraphMark value="true"/>
+                                <PEID value="DCE.50798D04-B7BE-C518-AD10-1054F74FD8D8"/>
                             </graphics>
                         </node>
                         <node id="8">
                             <name/>
-                            <center x="27.0" y="316.0"/>
-                            <size height="22.0" width="22.0"/>
-                            <originalSize height="22.0" width="22.0"/>
+                            <center x="380.9500000000001" y="-89.30000000000004"/>
+                            <size height="112.19999999999987" width="128.70000000000005"/>
+                            <originalSize height="112.2" width="128.70000000000005"/>
                             <shape resource="0"/>
-                            <nodeLabels>
-                                <nodeLabel id="9">
-                                    <name value="Wybór języka programowania"/>
-                                    <size height="23.0" width="221.0"/>
-                                    <proportionalOffset x="0.0" y="1.0"/>
-                                    <constantOffset x="0.0" y="23.0"/>
-                                    <url/>
-                                    <visible value="true"/>
-                                    <resizability value="RESIZABILITY_TIGHT_FIT"/>
-                                    <graphics type="ETGenericNodeLabelUI">
-                                        <fillColor value="255 255 255"/>
-                                        <borderColor value="0 0 0"/>
-                                        <transparent value="true"/>
-                                        <drawBorder value="false"/>
-                                        <textFont resource="3"/>
-                                        <textColor value="0 0 0"/>
-                                        <justification value="CENTER"/>
-                                        <PEID value="DCE.494AC234-87A6-1197-7AC5-F6FC1C483ABC"/>
-                                    </graphics>
-                                </nodeLabel>
-                            </nodeLabels>
                             <url/>
                             <visible value="true"/>
                             <resizability value="RESIZABILITY_NO_FIT"/>
@@ -105,40 +114,40 @@
                                 <borderColor value="0 0 0"/>
                                 <transparent value="false"/>
                                 <drawBorder value="true"/>
-                                <textFont resource="2"/>
+                                <textFont resource="1"/>
                                 <textColor value="0 0 0"/>
                                 <justification value="CENTER"/>
                                 <childGraphMark value="true"/>
-                                <PEID value="DCE.480E2850-537F-A9E6-7CF9-5036454D8574"/>
+                                <PEID value="DCE.F2ACA46A-02CE-D5F3-8FAB-0EFBF8BA2856"/>
+                            </graphics>
+                        </node>
+                        <node id="9">
+                            <name value="I have been pasted"/>
+                            <center x="-384.2999999999997" y="83.0500000000001"/>
+                            <size height="502.7" width="323.40000000000003"/>
+                            <originalSize height="502.7" width="323.40000000000003"/>
+                            <shape resource="0"/>
+                            <url/>
+                            <visible value="true"/>
+                            <resizability value="RESIZABILITY_NO_FIT"/>
+                            <graphics type="ETGenericNodeUI">
+                                <fillColor value="204 204 204"/>
+                                <borderColor value="0 0 0"/>
+                                <transparent value="false"/>
+                                <drawBorder value="true"/>
+                                <textFont resource="1"/>
+                                <textColor value="0 0 0"/>
+                                <justification value="CENTER"/>
+                                <childGraphMark value="true"/>
+                                <PEID value="DCE.B8823F34-5470-D9C9-EA36-C6F26C09223F"/>
                             </graphics>
                         </node>
                         <node id="10">
                             <name/>
-                            <center x="2.0" y="-307.0"/>
-                            <size height="16.0" width="16.0"/>
-                            <originalSize height="16.0" width="16.0"/>
+                            <center x="383.45" y="82.95000000000007"/>
+                            <size height="160.59999999999997" width="194.70000000000027"/>
+                            <originalSize height="160.6" width="194.7"/>
                             <shape resource="0"/>
-                            <nodeLabels>
-                                <nodeLabel id="11">
-                                    <name value="Unnamed"/>
-                                    <size height="23.0" width="75.0"/>
-                                    <proportionalOffset x="0.0" y="1.0"/>
-                                    <constantOffset x="0.0" y="10.0"/>
-                                    <url/>
-                                    <visible value="true"/>
-                                    <resizability value="RESIZABILITY_TIGHT_FIT"/>
-                                    <graphics type="ETGenericNodeLabelUI">
-                                        <fillColor value="255 255 255"/>
-                                        <borderColor value="0 0 0"/>
-                                        <transparent value="true"/>
-                                        <drawBorder value="false"/>
-                                        <textFont resource="3"/>
-                                        <textColor value="0 0 0"/>
-                                        <justification value="CENTER"/>
-                                        <PEID value="DCE.C125E519-7D8F-8164-F980-789B201FA67C"/>
-                                    </graphics>
-                                </nodeLabel>
-                            </nodeLabels>
                             <url/>
                             <visible value="true"/>
                             <resizability value="RESIZABILITY_NO_FIT"/>
@@ -147,18 +156,39 @@
                                 <borderColor value="0 0 0"/>
                                 <transparent value="false"/>
                                 <drawBorder value="true"/>
-                                <textFont resource="2"/>
+                                <textFont resource="1"/>
                                 <textColor value="0 0 0"/>
                                 <justification value="CENTER"/>
                                 <childGraphMark value="true"/>
-                                <PEID value="DCE.262DCE3D-5258-5039-2FC4-BBC1DC3E7CAE"/>
+                                <PEID value="DCE.1707E7EC-4BD8-38D8-4F23-B7E47217FB2F"/>
+                            </graphics>
+                        </node>
+                        <node id="11">
+                            <name/>
+                            <center x="191.49999999999977" y="223.7500000000001"/>
+                            <size height="112.20000000000005" width="140.79999999999998"/>
+                            <originalSize height="112.19999999999999" width="140.8"/>
+                            <shape resource="0"/>
+                            <url/>
+                            <visible value="true"/>
+                            <resizability value="RESIZABILITY_NO_FIT"/>
+                            <graphics type="ETGenericNodeUI">
+                                <fillColor value="204 204 204"/>
+                                <borderColor value="0 0 0"/>
+                                <transparent value="false"/>
+                                <drawBorder value="true"/>
+                                <textFont resource="1"/>
+                                <textColor value="0 0 0"/>
+                                <justification value="CENTER"/>
+                                <childGraphMark value="true"/>
+                                <PEID value="DCE.C3960850-A629-7061-A31E-CBE5EC3B4981"/>
                             </graphics>
                         </node>
                         <node id="12">
-                            <name value="Wybór Javy"/>
-                            <center x="211.0" y="44.0"/>
-                            <size height="80.0" width="150.0"/>
-                            <originalSize height="80.0" width="150.0"/>
+                            <name/>
+                            <center x="-21.35000000000015" y="-126.05000000000001"/>
+                            <size height="112.19999999999999" width="139.70000000000005"/>
+                            <originalSize height="112.19999999999999" width="139.70000000000002"/>
                             <shape resource="0"/>
                             <url/>
                             <visible value="true"/>
@@ -172,14 +202,14 @@
                                 <textColor value="0 0 0"/>
                                 <justification value="CENTER"/>
                                 <childGraphMark value="true"/>
-                                <PEID value="DCE.5FA8F03A-6273-58C4-7C61-1757C7DC73F3"/>
+                                <PEID value="DCE.9542F267-D3B8-D5D5-D2A6-8D1AB48C3EDB"/>
                             </graphics>
                         </node>
                         <node id="13">
-                            <name value="Wybór C++"/>
-                            <center x="-230.0" y="29.0"/>
-                            <size height="80.0" width="150.0"/>
-                            <originalSize height="80.0" width="150.0"/>
+                            <name/>
+                            <center x="-40.04999999999981" y="225.4000000000001"/>
+                            <size height="196.89999999999986" width="243.10000000000002"/>
+                            <originalSize height="196.9" width="243.10000000000002"/>
                             <shape resource="0"/>
                             <url/>
                             <visible value="true"/>
@@ -193,35 +223,14 @@
                                 <textColor value="0 0 0"/>
                                 <justification value="CENTER"/>
                                 <childGraphMark value="true"/>
-                                <PEID value="DCE.F6C81037-3F08-E854-F821-F83D0348806A"/>
+                                <PEID value="DCE.89C2119C-75C1-AE78-6079-B8AF47489085"/>
                             </graphics>
                         </node>
                         <node id="14">
                             <name/>
-                            <center x="25.0" y="138.5"/>
-                            <size height="7.0" width="314.0"/>
-                            <originalSize height="7.0" width="314.0"/>
-                            <shape resource="0"/>
-                            <url/>
-                            <visible value="true"/>
-                            <resizability value="RESIZABILITY_NO_FIT"/>
-                            <graphics type="ETGenericNodeUI">
-                                <fillColor value="204 204 204"/>
-                                <borderColor value="0 0 0"/>
-                                <transparent value="false"/>
-                                <drawBorder value="true"/>
-                                <textFont resource="2"/>
-                                <textColor value="0 0 0"/>
-                                <justification value="CENTER"/>
-                                <childGraphMark value="true"/>
-                                <PEID value="DCE.190A94A9-A17E-D085-15E3-4A9CAF0CAD5C"/>
-                            </graphics>
-                        </node>
-                        <node id="15">
-                            <name value="Wybór biblioteki SIP zgodnej ze standardem rfc3261"/>
-                            <center x="-107.5" y="-157.0"/>
-                            <size height="80.0" width="279.0"/>
-                            <originalSize height="80.0" width="279.0"/>
+                            <center x="-19.150000000000123" y="-274.55000000000007"/>
+                            <size height="112.19999999999993" width="137.5"/>
+                            <originalSize height="112.20000000000002" width="137.5"/>
                             <shape resource="0"/>
                             <url/>
                             <visible value="true"/>
@@ -235,36 +244,36 @@
                                 <textColor value="0 0 0"/>
                                 <justification value="CENTER"/>
                                 <childGraphMark value="true"/>
-                                <PEID value="DCE.54A3CFBE-D10F-3982-9958-D1DE4FB43011"/>
+                                <PEID value="DCE.48406E71-58E5-34A7-0EC6-53F6B2093580"/>
+                            </graphics>
+                        </node>
+                        <node id="15">
+                            <name/>
+                            <center x="183.2499999999997" y="-60.049999999999955"/>
+                            <size height="160.60000000000014" width="183.69999999999976"/>
+                            <originalSize height="160.59999999999997" width="183.70000000000002"/>
+                            <shape resource="0"/>
+                            <url/>
+                            <visible value="true"/>
+                            <resizability value="RESIZABILITY_NO_FIT"/>
+                            <graphics type="ETGenericNodeUI">
+                                <fillColor value="204 204 204"/>
+                                <borderColor value="0 0 0"/>
+                                <transparent value="false"/>
+                                <drawBorder value="true"/>
+                                <textFont resource="1"/>
+                                <textColor value="0 0 0"/>
+                                <justification value="CENTER"/>
+                                <childGraphMark value="true"/>
+                                <PEID value="DCE.9C02FAA4-D75A-1F85-9049-3548D3FE8E2E"/>
                             </graphics>
                         </node>
                         <node id="16">
                             <name/>
-                            <center x="98.5" y="-173.5"/>
-                            <size height="16.0" width="16.0"/>
-                            <originalSize height="16.0" width="16.0"/>
+                            <center x="176.64999999999986" y="-365.8500000000001"/>
+                            <size height="112.19999999999993" width="128.6999999999997"/>
+                            <originalSize height="112.19999999999999" width="128.70000000000002"/>
                             <shape resource="0"/>
-                            <nodeLabels>
-                                <nodeLabel id="17">
-                                    <name value="aborted"/>
-                                    <size height="23.0" width="75.0"/>
-                                    <proportionalOffset x="-0.0625" y="1.0"/>
-                                    <constantOffset x="0.0" y="10.5"/>
-                                    <url/>
-                                    <visible value="true"/>
-                                    <resizability value="RESIZABILITY_TIGHT_FIT"/>
-                                    <graphics type="ETGenericNodeLabelUI">
-                                        <fillColor value="255 255 255"/>
-                                        <borderColor value="0 0 0"/>
-                                        <transparent value="true"/>
-                                        <drawBorder value="false"/>
-                                        <textFont resource="3"/>
-                                        <textColor value="0 0 0"/>
-                                        <justification value="CENTER"/>
-                                        <PEID value="DCE.0714DC14-6C77-B70B-3380-70D4875C644D"/>
-                                    </graphics>
-                                </nodeLabel>
-                            </nodeLabels>
                             <url/>
                             <visible value="true"/>
                             <resizability value="RESIZABILITY_NO_FIT"/>
@@ -273,40 +282,19 @@
                                 <borderColor value="0 0 0"/>
                                 <transparent value="false"/>
                                 <drawBorder value="true"/>
-                                <textFont resource="2"/>
+                                <textFont resource="1"/>
                                 <textColor value="0 0 0"/>
                                 <justification value="CENTER"/>
                                 <childGraphMark value="true"/>
-                                <PEID value="DCE.004DF7F5-41C1-CD3F-4D92-8D5A15072681"/>
+                                <PEID value="DCE.2F7DA15A-0647-596B-469E-D31F4E730272"/>
                             </graphics>
                         </node>
-                        <node id="18">
+                        <node id="17">
                             <name/>
-                            <center x="245.5" y="-229.5"/>
-                            <size height="16.0" width="16.0"/>
-                            <originalSize height="16.0" width="16.0"/>
+                            <center x="178.8499999999998" y="-217.3499999999999"/>
+                            <size height="112.19999999999982" width="146.30000000000018"/>
+                            <originalSize height="112.19999999999999" width="146.3"/>
                             <shape resource="0"/>
-                            <nodeLabels>
-                                <nodeLabel id="19">
-                                    <name value="Brak Bibliotek Opensource"/>
-                                    <size height="23.0" width="198.0"/>
-                                    <proportionalOffset x="-0.0625" y="1.0"/>
-                                    <constantOffset x="0.0" y="23.5"/>
-                                    <url/>
-                                    <visible value="true"/>
-                                    <resizability value="RESIZABILITY_TIGHT_FIT"/>
-                                    <graphics type="ETGenericNodeLabelUI">
-                                        <fillColor value="255 255 255"/>
-                                        <borderColor value="0 0 0"/>
-                                        <transparent value="true"/>
-                                        <drawBorder value="false"/>
-                                        <textFont resource="3"/>
-                                        <textColor value="0 0 0"/>
-                                        <justification value="CENTER"/>
-                                        <PEID value="DCE.060BF489-4D04-5E76-D71D-13412854982C"/>
-                                    </graphics>
-                                </nodeLabel>
-                            </nodeLabels>
                             <url/>
                             <visible value="true"/>
                             <resizability value="RESIZABILITY_NO_FIT"/>
@@ -315,16 +303,16 @@
                                 <borderColor value="0 0 0"/>
                                 <transparent value="false"/>
                                 <drawBorder value="true"/>
-                                <textFont resource="2"/>
+                                <textFont resource="1"/>
                                 <textColor value="0 0 0"/>
                                 <justification value="CENTER"/>
                                 <childGraphMark value="true"/>
-                                <PEID value="DCE.D0E4F5F5-52C6-19F4-B6D2-5FCB6CB4483A"/>
+                                <PEID value="DCE.D66B1732-EDAB-3720-6BD6-65F9D15E248D"/>
                             </graphics>
                         </node>
                     </nodes>
                     <edges>
-                        <edge id="20" source="14" target="14">
+                        <edge id="18" source="10" target="8">
                             <sourceClipping/>
                             <targetClipping/>
                             <url/>
@@ -337,10 +325,10 @@
                                 <bendWidth value="5.0"/>
                                 <bendHeight value="5.0"/>
                                 <antiAliasing value="false"/>
-                                <PEID value="DCE.A00EB553-8B2A-0B3C-6118-31CEE458C46A"/>
+                                <PEID value="DCE.B563EB1F-561D-A139-0FA2-BEA18BF404C9"/>
                             </graphics>
                         </edge>
-                        <edge id="21" source="14" target="7">
+                        <edge id="19" source="17" target="16">
                             <sourceClipping/>
                             <targetClipping/>
                             <url/>
@@ -353,10 +341,10 @@
                                 <bendWidth value="5.0"/>
                                 <bendHeight value="5.0"/>
                                 <antiAliasing value="false"/>
-                                <PEID value="DCE.5B300EDB-81CA-FCA7-72BA-DAFD685F2CFC"/>
+                                <PEID value="DCE.10C77D25-0633-5F6E-9334-0075126E9352"/>
                             </graphics>
                         </edge>
-                        <edge id="22" source="14" target="12">
+                        <edge id="20" source="14" target="16">
                             <sourceClipping/>
                             <targetClipping/>
                             <url/>
@@ -369,10 +357,10 @@
                                 <bendWidth value="5.0"/>
                                 <bendHeight value="5.0"/>
                                 <antiAliasing value="false"/>
-                                <PEID value="DCE.C2639F4C-8B06-1D55-6BA6-A622A1C92469"/>
+                                <PEID value="DCE.8149BD45-BD19-9855-5DDC-38623D11A336"/>
                             </graphics>
                         </edge>
-                        <edge id="23" source="14" target="13">
+                        <edge id="21" source="12" target="14">
                             <sourceClipping/>
                             <targetClipping/>
                             <url/>
@@ -385,7 +373,151 @@
                                 <bendWidth value="5.0"/>
                                 <bendHeight value="5.0"/>
                                 <antiAliasing value="false"/>
-                                <PEID value="DCE.2D27D8A6-4A4E-49F0-7484-DCF43242D4D4"/>
+                                <PEID value="DCE.1D6AF09C-8450-AEBA-AE07-6B3EE918671D"/>
+                            </graphics>
+                        </edge>
+                        <edge id="22" source="15" target="17">
+                            <sourceClipping/>
+                            <targetClipping/>
+                            <url/>
+                            <visible value="true"/>
+                            <graphics type="relationEdge">
+                                <lineColor value="0 0 0"/>
+                                <arrowWidth value="6.0"/>
+                                <arrowHeight value="6.0"/>
+                                <arrowType value="NO_ARROW"/>
+                                <bendWidth value="5.0"/>
+                                <bendHeight value="5.0"/>
+                                <antiAliasing value="false"/>
+                                <PEID value="DCE.D1643E95-5C9C-0F66-301F-7344A5939A8E"/>
+                            </graphics>
+                        </edge>
+                        <edge id="23" source="9" target="6">
+                            <sourceClipping/>
+                            <targetClipping/>
+                            <url/>
+                            <visible value="true"/>
+                            <graphics type="relationEdge">
+                                <lineColor value="0 0 0"/>
+                                <arrowWidth value="6.0"/>
+                                <arrowHeight value="6.0"/>
+                                <arrowType value="NO_ARROW"/>
+                                <bendWidth value="5.0"/>
+                                <bendHeight value="5.0"/>
+                                <antiAliasing value="false"/>
+                                <PEID value="DCE.7537B03A-3503-D870-8087-FFB4687A6CBA"/>
+                            </graphics>
+                        </edge>
+                        <edge id="24" source="9" target="7">
+                            <sourceClipping/>
+                            <targetClipping/>
+                            <url/>
+                            <visible value="true"/>
+                            <graphics type="relationEdge">
+                                <lineColor value="0 0 0"/>
+                                <arrowWidth value="6.0"/>
+                                <arrowHeight value="6.0"/>
+                                <arrowType value="NO_ARROW"/>
+                                <bendWidth value="5.0"/>
+                                <bendHeight value="5.0"/>
+                                <antiAliasing value="false"/>
+                                <PEID value="DCE.A556EC0A-05C0-0B03-10BC-8C59803366DA"/>
+                            </graphics>
+                        </edge>
+                        <edge id="25" source="9" target="5">
+                            <sourceClipping/>
+                            <targetClipping/>
+                            <url/>
+                            <visible value="true"/>
+                            <graphics type="relationEdge">
+                                <lineColor value="0 0 0"/>
+                                <arrowWidth value="6.0"/>
+                                <arrowHeight value="6.0"/>
+                                <arrowType value="NO_ARROW"/>
+                                <bendWidth value="5.0"/>
+                                <bendHeight value="5.0"/>
+                                <antiAliasing value="false"/>
+                                <PEID value="DCE.E68140CB-0BB1-E3CA-4F08-A7511E9D796B"/>
+                            </graphics>
+                        </edge>
+                        <edge id="26" source="9" target="10">
+                            <sourceClipping/>
+                            <targetClipping/>
+                            <url/>
+                            <visible value="true"/>
+                            <graphics type="relationEdge">
+                                <lineColor value="0 0 0"/>
+                                <arrowWidth value="6.0"/>
+                                <arrowHeight value="6.0"/>
+                                <arrowType value="NO_ARROW"/>
+                                <bendWidth value="5.0"/>
+                                <bendHeight value="5.0"/>
+                                <antiAliasing value="false"/>
+                                <PEID value="DCE.EA0CFEC2-5217-DCFF-28AD-00C25E9BF4D2"/>
+                            </graphics>
+                        </edge>
+                        <edge id="27" source="9" target="12">
+                            <sourceClipping/>
+                            <targetClipping/>
+                            <url/>
+                            <visible value="true"/>
+                            <graphics type="relationEdge">
+                                <lineColor value="0 0 0"/>
+                                <arrowWidth value="6.0"/>
+                                <arrowHeight value="6.0"/>
+                                <arrowType value="NO_ARROW"/>
+                                <bendWidth value="5.0"/>
+                                <bendHeight value="5.0"/>
+                                <antiAliasing value="false"/>
+                                <PEID value="DCE.095962A8-CD31-D2CA-64FB-F1C93CECFA94"/>
+                            </graphics>
+                        </edge>
+                        <edge id="28" source="9" target="15">
+                            <sourceClipping/>
+                            <targetClipping/>
+                            <url/>
+                            <visible value="true"/>
+                            <graphics type="relationEdge">
+                                <lineColor value="0 0 0"/>
+                                <arrowWidth value="6.0"/>
+                                <arrowHeight value="6.0"/>
+                                <arrowType value="NO_ARROW"/>
+                                <bendWidth value="5.0"/>
+                                <bendHeight value="5.0"/>
+                                <antiAliasing value="false"/>
+                                <PEID value="DCE.C53A320C-B860-2B4E-977E-F926ED397030"/>
+                            </graphics>
+                        </edge>
+                        <edge id="29" source="13" target="11">
+                            <sourceClipping/>
+                            <targetClipping/>
+                            <url/>
+                            <visible value="true"/>
+                            <graphics type="relationEdge">
+                                <lineColor value="0 0 0"/>
+                                <arrowWidth value="6.0"/>
+                                <arrowHeight value="6.0"/>
+                                <arrowType value="NO_ARROW"/>
+                                <bendWidth value="5.0"/>
+                                <bendHeight value="5.0"/>
+                                <antiAliasing value="false"/>
+                                <PEID value="DCE.1C0B8378-DE2B-FA6A-7ED9-9D4302ACF795"/>
+                            </graphics>
+                        </edge>
+                        <edge id="30" source="9" target="13">
+                            <sourceClipping/>
+                            <targetClipping/>
+                            <url/>
+                            <visible value="true"/>
+                            <graphics type="relationEdge">
+                                <lineColor value="0 0 0"/>
+                                <arrowWidth value="6.0"/>
+                                <arrowHeight value="6.0"/>
+                                <arrowType value="NO_ARROW"/>
+                                <bendWidth value="5.0"/>
+                                <bendHeight value="5.0"/>
+                                <antiAliasing value="false"/>
+                                <PEID value="DCE.753E842B-D5F5-5BC7-2CAC-7E04B6D2B5BD"/>
                             </graphics>
                         </edge>
                     </edges>
@@ -406,7 +538,7 @@
                     </graphics>
                 </graph>
             </graphs>
-            <rootGraph value="6"/>
+            <rootGraph value="4"/>
         </instances>
     </graphManager>
     <serviceInput type="jlayout">
@@ -492,7 +624,7 @@
                 <optionDefault name="routing:all:graphManager:fixedSize" value="true"/>
             </optionDefaults>
         </defaults>
-        <option context="none" name="all:all:none:graphManager" value="4"/>
+        <option context="none" name="all:all:none:graphManager" value="2"/>
     </serviceInput>
     <preferences>
         <preference name="maximumZoomLevel" value="50.0"/>
