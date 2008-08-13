@@ -1227,7 +1227,7 @@
       <entry fontholderid="1" name="SansSerif" CharSet="0" Height="12" Italic="false" Strikeout="false" Underline="false" Weight="400"/>
     </FontHolderTable>
   </resources>
-  <diagramInfo zoom="1.0" xPos="-8.0" yPos="100.0" name="Diagram funkcjonalnych przypadków użycia" alias="" docs="" diagramKind="Use Case Diagram" lastShowAliasState="false" namespaceToplevelID="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" namespaceMEID="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" diagramXMIID="DCE.D1769C8A-EF07-531A-85C6-D6226AC3C38B"/>
+  <diagramInfo zoom="1.0926243567753002" xPos="-102.0" yPos="60.0" name="Diagram funkcjonalnych przypadków użycia" alias="" docs="" diagramKind="Use Case Diagram" lastShowAliasState="false" namespaceToplevelID="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" namespaceMEID="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" diagramXMIID="DCE.D1769C8A-EF07-531A-85C6-D6226AC3C38B"/>
   <DCE.D90EBD21-AF61-C143-8967-FF8DB08FC05F PEID="DCE.D90EBD21-AF61-C143-8967-FF8DB08FC05F" MEID="DCE.3127B20A-D502-5D2F-C6C2-9866A89AA2B3" toplevelMEID="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" initString="org.netbeans.modules.uml.ui.products.ad.viewfactory.ETGenericNodeUI Package">
     <engine name="PackageDrawEngine" editLocked="false" TabLocation="true">
       <resources>
@@ -1239,7 +1239,7 @@
       </resources>
       <compartment name="1" MEID="DCE.3127B20A-D502-5D2F-C6C2-9866A89AA2B3" value="" textStyles="VCENTER|HCENTER|SINGLELINE" DefaultCompartment="ADClassNameCompartment" staticText="">
         <resources/>
-        <compartment name="2" MEID="DCE.3127B20A-D502-5D2F-C6C2-9866A89AA2B3" value="dSipCom_ f" textStyles="VCENTER|HCENTER|SINGLELINE" nameCompartmentBorderKind="0">
+        <compartment name="2" MEID="DCE.3127B20A-D502-5D2F-C6C2-9866A89AA2B3" value="DSipCom" textStyles="VCENTER|HCENTER|SINGLELINE" nameCompartmentBorderKind="0">
           <resources>
             <resource type="font" resourceStringID="6" fontID="169"/>
             <resource type="color" resourceStringID="6" colorID="306"/>
@@ -1266,7 +1266,7 @@
       </resources>
       <compartment name="1" MEID="DCE.60B43166-18EE-6978-30FF-A9913FE33B1E" value="" textStyles="VCENTER|HCENTER|SINGLELINE" DefaultCompartment="ADClassNameCompartment" staticText="">
         <resources/>
-        <compartment name="2" MEID="DCE.60B43166-18EE-6978-30FF-A9913FE33B1E" value="Wpis raportu z połączenia" textStyles="VCENTER|HCENTER|MULTILINE" nameCompartmentBorderKind="0">
+        <compartment name="2" MEID="DCE.60B43166-18EE-6978-30FF-A9913FE33B1E" value="Stworzenie wpisu raportu z przebytego połączenia" textStyles="VCENTER|HCENTER|MULTILINE" nameCompartmentBorderKind="0">
           <resources>
             <resource type="font" resourceStringID="6" fontID="89"/>
             <resource type="color" resourceStringID="6" colorID="182"/>
@@ -1290,7 +1290,7 @@
       </resources>
       <compartment name="1" MEID="DCE.509234C0-D02A-59D2-FD7D-61658C8C68CD" value="" textStyles="VCENTER|HCENTER|SINGLELINE" DefaultCompartment="ADClassNameCompartment" staticText="">
         <resources/>
-        <compartment name="2" MEID="DCE.509234C0-D02A-59D2-FD7D-61658C8C68CD" value="Wybieranie numeru lub adresu kontaktu docelowego" textStyles="VCENTER|HCENTER|MULTILINE" nameCompartmentBorderKind="0">
+        <compartment name="2" MEID="DCE.509234C0-D02A-59D2-FD7D-61658C8C68CD" value="Wybieranie numeru lub adresu do innego użytkownika" textStyles="VCENTER|HCENTER|MULTILINE" nameCompartmentBorderKind="0">
           <resources>
             <resource type="font" resourceStringID="6" fontID="89"/>
             <resource type="color" resourceStringID="6" colorID="182"/>
@@ -1350,30 +1350,6 @@
       </compartment>
     </engine>
   </DCE.85EC39D6-9805-4766-0DA2-AFD88448A442>
-  <DCE.4E33715A-4F88-1D7D-957B-F983AC4213C8 PEID="DCE.4E33715A-4F88-1D7D-957B-F983AC4213C8" MEID="DCE.FCC54127-82CA-EEB4-64CF-9592358113F9" toplevelMEID="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" initString="org.netbeans.modules.uml.ui.products.ad.viewfactory.ETGenericNodeUI UseCase">
-    <engine name="UseCaseDrawEngine" editLocked="false">
-      <resources>
-        <resource type="font" resourceStringID="9" fontID="92"/>
-        <resource type="font" resourceStringID="6" fontID="89"/>
-        <resource type="color" resourceStringID="131" colorID="179"/>
-        <resource type="color" resourceStringID="6" colorID="182"/>
-        <resource type="color" resourceStringID="202" colorID="322"/>
-        <resource type="color" resourceStringID="133" colorID="181"/>
-      </resources>
-      <compartment name="1" MEID="DCE.FCC54127-82CA-EEB4-64CF-9592358113F9" value="" textStyles="VCENTER|HCENTER|SINGLELINE" DefaultCompartment="ADClassNameCompartment" staticText="">
-        <resources/>
-        <compartment name="2" MEID="DCE.FCC54127-82CA-EEB4-64CF-9592358113F9" value="Kontrola logów połączeń" textStyles="VCENTER|HCENTER|MULTILINE" nameCompartmentBorderKind="0">
-          <resources>
-            <resource type="font" resourceStringID="6" fontID="89"/>
-            <resource type="color" resourceStringID="6" colorID="182"/>
-          </resources>
-        </compartment>
-      </compartment>
-      <compartment name="3" value="values" textStyles="VCENTER|HCENTER|SINGLELINE">
-        <resources/>
-      </compartment>
-    </engine>
-  </DCE.4E33715A-4F88-1D7D-957B-F983AC4213C8>
   <DCE.D95734D2-F7E9-A961-4BD1-F6554BC78B84 PEID="DCE.D95734D2-F7E9-A961-4BD1-F6554BC78B84" MEID="DCE.B2E5EDF8-8141-6E17-A8EC-D4B963D30CE3" toplevelMEID="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" initString="org.netbeans.modules.uml.ui.products.ad.viewfactory.ETGenericNodeUI UseCase">
     <engine name="UseCaseDrawEngine" editLocked="false">
       <resources>
@@ -1411,7 +1387,7 @@
       </resources>
       <compartment name="1" MEID="DCE.82B048EC-8662-A43D-CB0F-51379FBA0D9E" value="" textStyles="VCENTER|HCENTER|SINGLELINE" DefaultCompartment="ADClassNameCompartment" staticText="">
         <resources/>
-        <compartment name="2" MEID="DCE.82B048EC-8662-A43D-CB0F-51379FBA0D9E" value="Zmiana ustawień/ parametrów programu" textStyles="VCENTER|HCENTER|MULTILINE" nameCompartmentBorderKind="0">
+        <compartment name="2" MEID="DCE.82B048EC-8662-A43D-CB0F-51379FBA0D9E" value="Zmiana konfiguracji programu" textStyles="VCENTER|HCENTER|MULTILINE" nameCompartmentBorderKind="0">
           <resources>
             <resource type="font" resourceStringID="6" fontID="89"/>
             <resource type="color" resourceStringID="6" colorID="182"/>
@@ -1536,7 +1512,7 @@
       </compartment>
       <compartment name="1" MEID="DCE.7F31D698-43B5-22E5-FE24-8C92AEAEE810" value="" textStyles="VCENTER|HCENTER|SINGLELINE" DefaultCompartment="ADClassNameCompartment" staticText="">
         <resources/>
-        <compartment name="2" MEID="DCE.7F31D698-43B5-22E5-FE24-8C92AEAEE810" value="Administrator." textStyles="VCENTER|HCENTER|SINGLELINE" nameCompartmentBorderKind="0">
+        <compartment name="2" MEID="DCE.7F31D698-43B5-22E5-FE24-8C92AEAEE810" value="Administator" textStyles="VCENTER|HCENTER|SINGLELINE" nameCompartmentBorderKind="0">
           <resources>
             <resource type="font" resourceStringID="6" fontID="96"/>
             <resource type="color" resourceStringID="6" colorID="191"/>
@@ -1622,13 +1598,6 @@
       </resources>
     </engine>
   </DCE.6705B3C7-5D05-9278-A995-2A372DB5B550>
-  <DCE.F4138C78-5EB1-ED6C-5BCE-C734D0178187 PEID="DCE.F4138C78-5EB1-ED6C-5BCE-C734D0178187" MEID="DCE.E8551302-A4D6-ED53-52F3-EF21837A3B68" toplevelMEID="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" initString="org.netbeans.modules.uml.ui.products.ad.viewfactory.RelationEdge Association NN NN">
-    <engine name="AssociationEdgeDrawEngine">
-      <resources>
-        <resource type="color" resourceStringID="145" colorID="209"/>
-      </resources>
-    </engine>
-  </DCE.F4138C78-5EB1-ED6C-5BCE-C734D0178187>
   <DCE.41A5178E-9A63-4215-2C0E-58B0AB1F638C PEID="DCE.41A5178E-9A63-4215-2C0E-58B0AB1F638C" MEID="DCE.1E3F9EA0-903A-6F20-EA0E-9FFE31FFD88F" toplevelMEID="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" initString="org.netbeans.modules.uml.ui.products.ad.viewfactory.RelationEdge Association NN NN">
     <engine name="AssociationEdgeDrawEngine">
       <resources>
