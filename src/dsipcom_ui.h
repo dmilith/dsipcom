@@ -130,10 +130,12 @@ namespace Ui {
       void apply_settings_to_linphone();
       void create_linphone_core();
 
-      // add contact dialog:
-      AddContactWindow *dialog;
       QVector<LinphoneAuthInfo> user_list;
       USER_CONFIG *user_config;
+
+    private:
+      // add contact dialog:
+      AddContactWindow *dialog;
       
     // qt4 action slots
     public slots:

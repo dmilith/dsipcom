@@ -141,9 +141,9 @@
                         </node>
                         <node id="10">
                             <name value="I have been pasted"/>
-                            <center x="-384.2999999999997" y="83.0500000000001"/>
-                            <size height="502.7" width="323.40000000000003"/>
-                            <originalSize height="502.7" width="323.40000000000003"/>
+                            <center x="-383.4819466248035" y="82.49701726844597"/>
+                            <size height="503.80596546310824" width="325.03610675039243"/>
+                            <originalSize height="503.80596546310824" width="325.03610675039243"/>
                             <shape resource="0"/>
                             <url/>
                             <visible value="true"/>

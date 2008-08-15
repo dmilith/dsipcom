@@ -54,8 +54,8 @@
                         </node>
                         <node id="7">
                             <name/>
-                            <center x="155.0" y="-1.5"/>
-                            <size height="135.0" width="186.0"/>
+                            <center x="102.20502092050205" y="173.38336820083668"/>
+                            <size height="135.0000000000001" width="186.0"/>
                             <originalSize height="135.0" width="186.0"/>
                             <shape resource="0"/>
                             <url/>
@@ -75,8 +75,8 @@
                         </node>
                         <node id="8">
                             <name/>
-                            <center x="146.5" y="324.0"/>
-                            <size height="120.0" width="191.0"/>
+                            <center x="102.50418410041846" y="341.59832635983213"/>
+                            <size height="120.0" width="190.99999999999955"/>
                             <originalSize height="120.0" width="191.0"/>
                             <shape resource="0"/>
                             <url/>
@@ -119,7 +119,7 @@
                             <name value="Odbieranie przychodzącego połączenia"/>
                             <center x="-163.5" y="261.0"/>
                             <size height="60.0" width="225.0"/>
-                            <originalSize height="60.0" width="225.0"/>
+                            <originalSize height="57.194560669456024" width="223.2787656903766"/>
                             <shape resource="0"/>
                             <url/>
                             <visible value="true"/>
@@ -137,10 +137,10 @@
                             </graphics>
                         </node>
                         <node id="11">
-                            <name value="Wpis raportu z połączenia"/>
-                            <center x="-186.5" y="119.0"/>
-                            <size height="60.0" width="159.0"/>
-                            <originalSize height="60.0" width="159.0"/>
+                            <name value="Wpis raportu z odbytego połączenia"/>
+                            <center x="-193.649320083682" y="111.30073221757321"/>
+                            <size height="60.00000000000003" width="177.6982217573222"/>
+                            <originalSize height="58.29445606694563" width="175.98326359832635"/>
                             <shape resource="0"/>
                             <url/>
                             <visible value="true"/>
@@ -203,7 +203,7 @@
                             <name value="Usunięcie kontaktu z listy kontaktów"/>
                             <center x="-366.0" y="77.5"/>
                             <size height="69.0" width="160.0"/>
-                            <originalSize height="69.0" width="160.0"/>
+                            <originalSize height="65.99372384937237" width="157.28504184100416"/>
                             <shape resource="0"/>
                             <url/>
                             <visible value="true"/>
@@ -285,9 +285,9 @@
                         </node>
                         <node id="18">
                             <name value="Inni użytkownicy"/>
-                            <center x="144.0" y="311.0"/>
-                            <size height="60.0" width="128.0"/>
-                            <originalSize height="60.0" width="128.0"/>
+                            <center x="102.20397489539754" y="326.39853556485303"/>
+                            <size height="59.99999999999932" width="127.99999999999991"/>
+                            <originalSize height="58.2944560669456" width="125.38807531380752"/>
                             <shape resource="0"/>
                             <url/>
                             <visible value="true"/>
@@ -306,9 +306,9 @@
                         </node>
                         <node id="19">
                             <name value="Serwer"/>
-                            <center x="152.0" y="-17.0"/>
-                            <size height="60.0" width="90.0"/>
-                            <originalSize height="60.0" width="90.0"/>
+                            <center x="99.20502092050205" y="157.88336820083668"/>
+                            <size height="60.0" width="90.00000000000028"/>
+                            <originalSize height="57.19456066945608" width="86.89173640167363"/>
                             <shape resource="0"/>
                             <url/>
                             <visible value="true"/>
@@ -348,8 +348,8 @@
                         </node>
                         <node id="21">
                             <name value="Rejestracja nowego użytkownika"/>
-                            <center x="-172.5" y="-159.5"/>
-                            <size height="61.0" width="147.0"/>
+                            <center x="-113.10564853556482" y="-156.2003138075314"/>
+                            <size height="61.0" width="146.99999999999983"/>
                             <originalSize height="61.0" width="147.0"/>
                             <shape resource="0"/>
                             <url/>
@@ -369,7 +369,7 @@
                         </node>
                         <node id="22">
                             <name value="Logowanie do serwera połączeń"/>
-                            <center x="-105.5" y="-14.0"/>
+                            <center x="-113.19926778242677" y="36.59518828451884"/>
                             <size height="60.0" width="139.0"/>
                             <originalSize height="60.0" width="139.0"/>
                             <shape resource="0"/>
@@ -475,7 +475,7 @@
                             <edgeLabels>
                                 <edgeLabel id="28">
                                     <name value="&lt;&lt;usage&gt;&gt;"/>
-                                    <size height="20.000000000000043" width="75.0"/>
+                                    <size height="20.000000000000227" width="75.00000000000011"/>
                                     <constantOffset x="0.0" y="-10.0"/>
                                     <distanceFromSource value="0.5"/>
                                     <url/>
@@ -512,7 +512,7 @@
                             <edgeLabels>
                                 <edgeLabel id="30">
                                     <name value="&lt;&lt;usage&gt;&gt;"/>
-                                    <size height="20.0" width="75.0"/>
+                                    <size height="20.0" width="75.00000000000011"/>
                                     <constantOffset x="0.0" y="-10.0"/>
                                     <distanceFromSource value="0.5"/>
                                     <url/>

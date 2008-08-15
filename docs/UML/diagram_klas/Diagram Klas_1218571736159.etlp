@@ -1864,7 +1864,7 @@
       <entry fontholderid="1" name="SansSerif" CharSet="0" Height="12" Italic="false" Strikeout="false" Underline="false" Weight="400"/>
     </FontHolderTable>
   </resources>
-  <diagramInfo zoom="0.909090909090909" xPos="-48.0" yPos="-140.0" name="Diagram Klas" alias="" docs="" diagramKind="Class Diagram" lastShowAliasState="false" namespaceToplevelID="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" namespaceMEID="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" diagramXMIID="DCE.97D657D1-6A5E-ED23-5A4A-9DCA86C4E7E6"/>
+  <diagramInfo zoom="0.7383795062014606" xPos="-32.0" yPos="-77.0" name="Diagram Klas" alias="" docs="" diagramKind="Class Diagram" lastShowAliasState="false" namespaceToplevelID="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" namespaceMEID="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" diagramXMIID="DCE.97D657D1-6A5E-ED23-5A4A-9DCA86C4E7E6"/>
   <DCE.5C8405DC-404B-C95D-5939-5D55A211B57A PEID="DCE.5C8405DC-404B-C95D-5939-5D55A211B57A" MEID="DCE.4289580E-9CF3-3C24-2D71-2E9243351272" toplevelMEID="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" initString="org.netbeans.modules.uml.ui.products.ad.viewfactory.ETGenericNodeUI Class">
     <engine name="ClassDrawEngine" editLocked="false">
       <resources>
@@ -2074,7 +2074,7 @@
       </resources>
       <compartment name="1" MEID="DCE.B26EFBF8-80AA-90F0-E1D4-30C7F72C2D20" value="" textStyles="VCENTER|HCENTER|SINGLELINE" DefaultCompartment="ADClassNameCompartment" staticText="">
         <resources/>
-        <compartment name="2" MEID="DCE.B26EFBF8-80AA-90F0-E1D4-30C7F72C2D20" value="DSipCom" textStyles="VCENTER|HCENTER|SINGLELINE" nameCompartmentBorderKind="0">
+        <compartment name="2" MEID="DCE.B26EFBF8-80AA-90F0-E1D4-30C7F72C2D20" value="DSipComClass" textStyles="VCENTER|HCENTER|SINGLELINE" nameCompartmentBorderKind="0">
           <resources>
             <resource type="font" resourceStringID="6" fontID="2"/>
             <resource type="color" resourceStringID="6" colorID="5"/>
@@ -2083,15 +2083,19 @@
       </compartment>
       <compartment name="3" value="Attributes" textStyles="VCENTER|HCENTER|SINGLELINE">
         <resources/>
-        <compartment name="6" MEID="DCE.1A1E1F4B-C267-06EE-7CB7-D9ED7A567CA7" value="+ linphone_logger_file : FILE*" textStyles="VCENTER|SINGLELINE" nameCompartmentBorderKind="0">
+        <compartment name="6" MEID="DCE.1A1E1F4B-C267-06EE-7CB7-D9ED7A567CA7" value="- linphone_logger_file : FILE*" textStyles="VCENTER|SINGLELINE" nameCompartmentBorderKind="0">
           <resources>
+            <resource type="font" resourceStringID="13" fontID="9"/>
             <resource type="font" resourceStringID="12" fontID="8"/>
+            <resource type="color" resourceStringID="13" colorID="12"/>
             <resource type="color" resourceStringID="12" colorID="11"/>
           </resources>
         </compartment>
-        <compartment name="6" MEID="DCE.335BEFBC-B462-1ACF-A6E9-EC7564689C9E" value="+ dialog : AddContactWindow*" textStyles="VCENTER|SINGLELINE" nameCompartmentBorderKind="0">
+        <compartment name="6" MEID="DCE.335BEFBC-B462-1ACF-A6E9-EC7564689C9E" value="- dialog : AddContactWindow*" textStyles="VCENTER|SINGLELINE" nameCompartmentBorderKind="0">
           <resources>
+            <resource type="font" resourceStringID="13" fontID="9"/>
             <resource type="font" resourceStringID="12" fontID="8"/>
+            <resource type="color" resourceStringID="13" colorID="12"/>
             <resource type="color" resourceStringID="12" colorID="11"/>
           </resources>
         </compartment>
@@ -2107,7 +2111,7 @@
             <resource type="color" resourceStringID="12" colorID="11"/>
           </resources>
         </compartment>
-        <compartment name="6" MEID="DCE.5C7823A9-0544-E2C2-2D46-9607A9FC49EE" value="+ linphonec : LinphoneCore" textStyles="VCENTER|SINGLELINE" nameCompartmentBorderKind="0">
+        <compartment name="6" MEID="DCE.5C7823A9-0544-E2C2-2D46-9607A9FC49EE" value="- linphonec : LinphoneCore" textStyles="VCENTER|SINGLELINE" nameCompartmentBorderKind="0">
           <resources>
             <resource type="font" resourceStringID="13" fontID="9"/>
             <resource type="font" resourceStringID="12" fontID="8"/>

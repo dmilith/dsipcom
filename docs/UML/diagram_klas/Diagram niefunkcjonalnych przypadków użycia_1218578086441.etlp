@@ -1227,7 +1227,7 @@
       <entry fontholderid="1" name="SansSerif" CharSet="0" Height="12" Italic="false" Strikeout="false" Underline="false" Weight="400"/>
     </FontHolderTable>
   </resources>
-  <diagramInfo zoom="1.0" xPos="-307.0" yPos="376.0" name="Diagram niefunkcjonalnych przypadków użycia" alias="" docs="" diagramKind="Use Case Diagram" lastShowAliasState="false" namespaceToplevelID="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" namespaceMEID="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" diagramXMIID="DCE.01A93011-883B-9273-F677-F2DCFC4F65FC"/>
+  <diagramInfo zoom="0.9091773656680932" xPos="-257.0" yPos="110.0" name="Diagram niefunkcjonalnych przypadków użycia" alias="" docs="" diagramKind="Use Case Diagram" lastShowAliasState="false" namespaceToplevelID="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" namespaceMEID="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" diagramXMIID="DCE.01A93011-883B-9273-F677-F2DCFC4F65FC"/>
   <DCE.D5D033BD-F8D5-A010-D799-FBD8C7DFA00D PEID="DCE.D5D033BD-F8D5-A010-D799-FBD8C7DFA00D" MEID="DCE.F0E3FED3-0011-FAAE-AB66-8DD01C1C6E21" toplevelMEID="DCE.A6D34C2D-FB06-4FAE-F409-C76C167FCBBA" initString="org.netbeans.modules.uml.ui.products.ad.viewfactory.ETGenericNodeUI Package">
     <engine name="PackageDrawEngine" editLocked="false" TabLocation="true">
       <resources>
@@ -1355,7 +1355,7 @@
       </resources>
       <compartment name="1" MEID="DCE.CE49D748-AA30-5DCB-C37A-AA1B2F4BF4C0" value="" textStyles="VCENTER|HCENTER|SINGLELINE" DefaultCompartment="ADClassNameCompartment" staticText="">
         <resources/>
-        <compartment name="2" MEID="DCE.CE49D748-AA30-5DCB-C37A-AA1B2F4BF4C0" value="Wpis raportu z połączenia" textStyles="VCENTER|HCENTER|MULTILINE" nameCompartmentBorderKind="0">
+        <compartment name="2" MEID="DCE.CE49D748-AA30-5DCB-C37A-AA1B2F4BF4C0" value="Wpis raportu z odbytego połączenia" textStyles="VCENTER|HCENTER|MULTILINE" nameCompartmentBorderKind="0">
           <resources>
             <resource type="font" resourceStringID="6" fontID="89"/>
             <resource type="color" resourceStringID="6" colorID="182"/>
