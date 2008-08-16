@@ -47,6 +47,7 @@ static string pp = SLASH; // "normal" UNIX slash to separate parts path
 
  const string CONFIG_FILE = CONF_DIR + pp + "dsipcom.dcnf";
  const string LINPHONE_CONFIG = CONF_DIR + pp + "linphone.conf";
+ const string CALL_LOG_FILE = DSIP_MAIN_DIR + pp + "call_logs.dlog";
 
  const string USER_LIST_FILE = ULIST_DIR + pp + "dsipcom.dulf";
 #endif

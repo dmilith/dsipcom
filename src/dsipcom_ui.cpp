@@ -12,7 +12,6 @@
 // TODO: make use of MSList * linphone_core_get_call_logs(LinphoneCore *lc), while generation of daily call logs
 #include "dsipcom_ui.h"
 #include "version.h"
-//#include "main.h"
 
 using namespace Log;
 using namespace Ui;
@@ -104,6 +103,7 @@ static string pending_call_sip;
                 cout << endl << "CallLog:" << str << endl << endl;
              #endif   
                 today_log += (string)str + "\n"; // adding call logs to common log
+                //write_one_log_by_date( today_log, )
                 ms_free( str );
         }
       }

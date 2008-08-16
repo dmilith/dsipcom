@@ -23,5 +23,11 @@ using namespace std;
   const char*
   uint2cstr( uint64_t i );
 
+  void
+  write_one_log_by_date( string log, uint32_t day, uint32_t month, uint32_t year, std::string filename );
+  
+  const string
+  read_one_log_by_date( uint32_t day, uint32_t month, uint32_t year, std::string filename );
+
 #endif /* _UTILS_H */
 
