@@ -9,7 +9,11 @@
   <boolean id="import_recursive">1</boolean>
   <string id="import_type">useFolders</string>
 </preference-set>
+<preference-set idref="eb67ede2-b307-48ab-af6c-7e5a7b59aa61/dsipcom_ui.cpp">
+</preference-set>
 <preference-set idref="eb67ede2-b307-48ab-af6c-7e5a7b59aa61/dsipcom_ui.h">
   <string id="spellcheckLangID">en-US</string>
+</preference-set>
+<preference-set idref="eb67ede2-b307-48ab-af6c-7e5a7b59aa61/main.h">
 </preference-set>
 </project>

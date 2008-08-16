@@ -4,10 +4,21 @@ cd tests/
 rm -f test_*
 echo "Compiling tests:"
 g++ -w -g IO_file_test.cpp -o test_IO
+g++ -w -g log_module_test.cpp -o test_LOG
 g++ -w -g varsizes_test.cpp -o test_varsize64
 g++ -m32 -w -g varsizes_test.cpp -o test_varsize32
 
 echo "Performing tests:"
+
+echo "LOG test"
+./test_LOG
+if [ $? = 0 ]; then
+    echo "* Passed"
+    read
+else
+    echo "* Failed!"
+    read
+fi
 
 echo "IO test"
 ./test_IO
@@ -15,6 +26,7 @@ if [ $? = 0 ]; then
     echo "* Passed"
 else
     echo "* Failed!"
+    read
 fi
 echo "Variable size tests"
 ./test_varsize32
@@ -22,10 +34,12 @@ if [ $? = 0 ]; then
     echo "* Passed"
 else
     echo "* Failed!"
+    read
 fi
 ./test_varsize64
 if [ $? = 0 ]; then
     echo "* Passed"
 else
     echo "* Failed!"
+    read
 fi

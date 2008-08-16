@@ -257,7 +257,7 @@ static string pending_call_sip;
     // TODO: make proper structure for log data
     // log_data
     //
-    
+		    
   }
  
 //DSipCom methods

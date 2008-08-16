@@ -7,11 +7,14 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <assert.h>
 #include <iostream>
 #include <algorithm>
 #include <sstream>
+
+using namespace std;
 
 typedef struct {
   char contact_name[50];
@@ -25,11 +28,12 @@ typedef struct {
   char user_name[50];
 } USER_CONFIG;
 
-using namespace std;
+
 #define CONFIG_FILE "test.dcnf"
 
 //from utils.h
-string strip( string s, char sign ) {
+string
+strip( string s, char sign ) {
   std::string::iterator it = std::remove_if(s.begin(), s.end(),
   std::bind2nd(std::equal_to<char>(), sign ));
   s = std::string(s.begin(), it);
@@ -46,7 +50,8 @@ uint2cstr( uint64_t i ) {
   return temp.c_str();
 }
 
-int main() {
+int
+main() {
 // uint2cstr test
   uint32_t z32 = 1234567890;
   cout << "\nz32_:" << z32 << endl;
@@ -62,7 +67,7 @@ int main() {
   cout << "\nz64_:" << z64 << endl;
   assert( uint2cstr( z64 ) == (string)"12345678901234567890" );
   
-  // data writing to file test
+  // data writing to file test 1
     USER_CONFIG *user_config = NULL, *readed = NULL;
     user_config = new USER_CONFIG;
     readed = new USER_CONFIG;
@@ -83,7 +88,7 @@ int main() {
     assert( (string)user_config->user_name == (string)readed->user_name );
     assert( (string)user_config->user_password == (string)readed->user_password );
 
-
+  
     // removing spaces from string (utils.h):
     assert( strip( " V er   tic es ", ' ' ) == (string)"Vertices" );
     assert( strip( " v d f  ", ' ' ) == (string)"vdf" );

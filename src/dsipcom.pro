@@ -5,6 +5,7 @@ HEADERS += main.h \
 	 dsipcom_ui.h \
 	 platform.h \
 	 d_utils.h
+   
 SOURCES += dsipcom_ui.cpp \
 	 logger.cpp \
 	 d_utils.cpp \
@@ -14,12 +15,9 @@ SOURCES += dsipcom_ui.cpp \
 FORMS += dsipcom.ui \
 	add_contact_dialog.ui \
 	about.ui
+  
 RESOURCES += dsipcom.qrc
-
 LIBS += -llinphone -lboost_filesystem
-
-#old libs:
-#LIBS += -lspeex -llinphone -losipparser2 -lasound -leXosip2 -lboost_filesystem
 
 win32 {
      HEADERS += win_specification.h
