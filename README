@@ -7,6 +7,8 @@ A. About
 B. Prepare to compile
     0. What do You need?
 	qt4-dev-tools ( 4.4.X Cause You just don't want to compile it by Yourself.. it may take whole day )
+  libboost-filesystem-dev ( boost filesystem libraries )
+  libboost-date-time-dev ( boost date-time libraries )
 
 C. Installing precompiled libs ( in src/external/debs_lenny_amd64 )
     0. You have already precompiled libraries for Debian Lenny amd64 arch.

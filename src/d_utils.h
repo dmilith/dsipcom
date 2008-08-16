@@ -12,8 +12,15 @@
 #include <algorithm>
 #include <string.h>
 #include <sstream>
+#include <vector>
 
 using namespace std;
+  
+ typedef struct {
+  uint32_t day, month, year;
+  string str1;
+  uint32_t str1_len;
+} LOG_ELEMENT;
   
 // strips specified string from all ''sign'' chars 
   string

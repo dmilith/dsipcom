@@ -101,6 +101,7 @@ static string pending_call_sip;
                 char *str = linphone_call_log_to_str( cl );
              #ifdef DEBUG
                 cout << endl << "CallLog:" << str << endl << endl;
+                cout.flush();
              #endif   
                 today_log += (string)str + "\n"; // adding call logs to common log
                 //write_one_log_by_date( today_log, )
@@ -253,11 +254,22 @@ static string pending_call_sip;
 #endif
 
   void DSipCom::read_logs() {
-    // this->calendar->selectedDate().day();
-    // TODO: make proper structure for log data
-    // log_data
-    //
-		    
+    string log;
+    if ( read_one_log_by_date( this->calendar->selectedDate().day(),
+                          this->calendar->selectedDate().month(),
+                          this->calendar->selectedDate().year(), CALL_LOG_FILE ) == "" )
+      log = "Brak logów";
+    else {
+      log = read_one_log_by_date( this->calendar->selectedDate().day(),
+                          this->calendar->selectedDate().month(),
+                          this->calendar->selectedDate().year(), CALL_LOG_FILE );
+      raport_viewer->setPlainText( (QString)log.c_str() );
+    }
+#ifdef DEBUG
+  cout << "debug_read_logs_:" << log;
+  cout.flush();
+#endif
+    raport_viewer->setPlainText( (QString)log.c_str() );
   }
  
 //DSipCom methods
@@ -312,7 +324,11 @@ DSipCom::~DSipCom() {
  #ifdef DEBUG
   cout << "\nDsipCom destructor." << endl;
   cout << today_log;
- #endif 
+ #endif
+  write_one_log_by_date( today_log,
+                         this->calendar->selectedDate().day(),
+                         this->calendar->selectedDate().month(),
+                         this->calendar->selectedDate().year(), CALL_LOG_FILE );
 }
 
 void
@@ -673,7 +689,8 @@ DSipCom::action_get_log_func() {
     fflush(stdout);
   #endif
   // TODO: it should be readed from special call log file
-  raport_viewer->setPlainText( "\n" + (QString)today_log.c_str() );  
+  //raport_viewer->setPlainText( "\n" + (QString)today_log.c_str() );
+  read_logs();
 }
 void
 DSipCom::action_save_user_config() {

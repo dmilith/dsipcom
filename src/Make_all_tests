@@ -14,10 +14,8 @@ echo "LOG test"
 ./test_LOG
 if [ $? = 0 ]; then
     echo "* Passed"
-    read
 else
     echo "* Failed!"
-    read
 fi
 
 echo "IO test"
@@ -26,7 +24,6 @@ if [ $? = 0 ]; then
     echo "* Passed"
 else
     echo "* Failed!"
-    read
 fi
 echo "Variable size tests"
 ./test_varsize32
@@ -34,12 +31,10 @@ if [ $? = 0 ]; then
     echo "* Passed"
 else
     echo "* Failed!"
-    read
 fi
 ./test_varsize64
 if [ $? = 0 ]; then
     echo "* Passed"
 else
     echo "* Failed!"
-    read
 fi
