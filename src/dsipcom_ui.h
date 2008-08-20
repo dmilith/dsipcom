@@ -9,8 +9,8 @@
 #ifndef _DSIPCOM_UI_H
 #define	_DSIPCOM_UI_H
 
-#include <stdio.h>
-#include <stdint.h>
+#include <cstdio>
+#include <cstdint>
 #include <signal.h>
 #include <assert.h>
 
@@ -71,6 +71,7 @@ typedef struct {
   uint32_t pcmu_8_codec;
   uint32_t pcma_8_codec;
 } USER_CONFIG;
+
 
 
 /* User Interface namespace is providing main UI inherited from automaticaly generated qt-designer templates */

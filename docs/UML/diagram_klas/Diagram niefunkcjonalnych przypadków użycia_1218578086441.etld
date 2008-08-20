@@ -30,8 +30,26 @@
             <graphs>
                 <graph id="5">
                     <name/>
+                    <margins>
+                        <proportional bottom="0.0" left="0.0" right="0.0" top="0.0"/>
+                        <constant bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+                    </margins>
+                    <url/>
+                    <graphics type="basicGraph">
+                        <backgroundColor value="255 255 255"/>
+                        <imageUsed/>
+                        <imageTiled value="false"/>
+                        <imageStyle value="WORLD_OFFSET"/>
+                        <imageMinTileStep value="25"/>
+                        <imageX value="0.0"/>
+                        <imageY value="0.0"/>
+                        <drawNodesBeforeEdges value="true"/>
+                    </graphics>
+                </graph>
+                <graph id="6">
+                    <name/>
                     <nodes>
-                        <node id="6">
+                        <node id="7">
                             <name/>
                             <center x="-316.5" y="105.5"/>
                             <size height="655.0" width="587.0"/>
@@ -52,9 +70,9 @@
                                 <PEID value="DCE.D5D033BD-F8D5-A010-D799-FBD8C7DFA00D"/>
                             </graphics>
                         </node>
-                        <node id="7">
+                        <node id="8">
                             <name/>
-                            <center x="102.20502092050205" y="173.38336820083668"/>
+                            <center x="104.40481171548112" y="80.99215481171532"/>
                             <size height="135.0000000000001" width="186.0"/>
                             <originalSize height="135.0" width="186.0"/>
                             <shape resource="0"/>
@@ -73,11 +91,11 @@
                                 <PEID value="DCE.BCC49795-0B3F-7F0F-5672-922F346DA906"/>
                             </graphics>
                         </node>
-                        <node id="8">
+                        <node id="9">
                             <name/>
-                            <center x="102.50418410041846" y="341.59832635983213"/>
-                            <size height="120.0" width="190.99999999999955"/>
-                            <originalSize height="120.0" width="191.0"/>
+                            <center x="101.40428870292891" y="295.95266736401624"/>
+                            <size height="226.68985355648533" width="190.99999999999955"/>
+                            <originalSize height="226.68985355648533" width="190.99999999999955"/>
                             <shape resource="0"/>
                             <url/>
                             <visible value="true"/>
@@ -94,10 +112,10 @@
                                 <PEID value="DCE.862BFCDC-CBD5-5E55-87D9-FD29FEB6D1B3"/>
                             </graphics>
                         </node>
-                        <node id="9">
+                        <node id="10">
                             <name value="Wybieranie numeru lub adresu kontaktu docelowego"/>
-                            <center x="-165.5" y="343.5"/>
-                            <size height="71.0" width="233.0"/>
+                            <center x="-284.2887029288703" y="328.1014644351464"/>
+                            <size height="71.0" width="233.00000000000023"/>
                             <originalSize height="71.0" width="233.0"/>
                             <shape resource="0"/>
                             <url/>
@@ -115,11 +133,11 @@
                                 <PEID value="DCE.68BEC065-9DE2-C4F4-DA1E-33FE14D1A7AC"/>
                             </graphics>
                         </node>
-                        <node id="10">
+                        <node id="11">
                             <name value="Odbieranie przychodzącego połączenia"/>
-                            <center x="-163.5" y="261.0"/>
-                            <size height="60.0" width="225.0"/>
-                            <originalSize height="57.194560669456024" width="223.2787656903766"/>
+                            <center x="-244.8922594142259" y="241.2018828451883"/>
+                            <size height="59.99999999999994" width="225.00000000000006"/>
+                            <originalSize height="57.19456066945605" width="222.17887029288704"/>
                             <shape resource="0"/>
                             <url/>
                             <visible value="true"/>
@@ -136,11 +154,11 @@
                                 <PEID value="DCE.AC1B59EE-953A-5861-B836-1E566F29BE80"/>
                             </graphics>
                         </node>
-                        <node id="11">
-                            <name value="Wpis raportu z odbytego połączenia"/>
-                            <center x="-193.649320083682" y="111.30073221757321"/>
-                            <size height="60.00000000000003" width="177.6982217573222"/>
-                            <originalSize height="58.29445606694563" width="175.98326359832635"/>
+                        <node id="12">
+                            <name value="Wpis raportu z połączenia"/>
+                            <center x="-193.649320083682" y="111.30073221757323"/>
+                            <size height="60.0" width="177.6982217573222"/>
+                            <originalSize height="58.29445606694563" width="174.88336820083683"/>
                             <shape resource="0"/>
                             <url/>
                             <visible value="true"/>
@@ -157,7 +175,7 @@
                                 <PEID value="DCE.F0B17B21-0225-F5A6-04F0-E8EDAF6399C0"/>
                             </graphics>
                         </node>
-                        <node id="12">
+                        <node id="13">
                             <name value="Podanie danych logowania (użytkownika i hasła)"/>
                             <center x="-299.0" y="-32.0"/>
                             <size height="60.0" width="200.0"/>
@@ -178,11 +196,11 @@
                                 <PEID value="DCE.34219C4A-88B2-9EEE-D40F-F9BFD0B75A7D"/>
                             </graphics>
                         </node>
-                        <node id="13">
+                        <node id="14">
                             <name value="Odbieranie zadań"/>
-                            <center x="-363.0" y="343.0"/>
+                            <center x="-501.586820083682" y="282.5057531380753"/>
                             <size height="60.0" width="106.0"/>
-                            <originalSize height="60.0" width="106.0"/>
+                            <originalSize height="58.294456066945514" width="104.49006276150635"/>
                             <shape resource="0"/>
                             <url/>
                             <visible value="true"/>
@@ -199,11 +217,11 @@
                                 <PEID value="DCE.BCD70C2D-1426-852D-0498-47CD4297BC8F"/>
                             </graphics>
                         </node>
-                        <node id="14">
+                        <node id="15">
                             <name value="Usunięcie kontaktu z listy kontaktów"/>
                             <center x="-366.0" y="77.5"/>
                             <size height="69.0" width="160.0"/>
-                            <originalSize height="65.99372384937237" width="157.28504184100416"/>
+                            <originalSize height="65.99372384937237" width="158.38493723849376"/>
                             <shape resource="0"/>
                             <url/>
                             <visible value="true"/>
@@ -220,9 +238,9 @@
                                 <PEID value="DCE.D75D5806-F930-E8BB-5C46-BC1D39B1F310"/>
                             </graphics>
                         </node>
-                        <node id="15">
+                        <node id="16">
                             <name value="Dodanie nowego kontaktu do listy kontaktów"/>
-                            <center x="-317.5" y="185.0"/>
+                            <center x="-295.5020920502092" y="168.5015690376569"/>
                             <size height="70.0" width="157.0"/>
                             <originalSize height="70.0" width="157.0"/>
                             <shape resource="0"/>
@@ -241,7 +259,7 @@
                                 <PEID value="DCE.4746E751-7B1B-FD6E-51F5-D2F409A84BB0"/>
                             </graphics>
                         </node>
-                        <node id="16">
+                        <node id="17">
                             <name value="Kontrola logów połączeń"/>
                             <center x="-524.0" y="-48.0"/>
                             <size height="58.0" width="126.0"/>
@@ -262,7 +280,7 @@
                                 <PEID value="DCE.84E2801F-C6AF-0BA2-C8E7-DAB4510A65CD"/>
                             </graphics>
                         </node>
-                        <node id="17">
+                        <node id="18">
                             <name value="Przeglądanie logów połączeń"/>
                             <center x="-523.5" y="22.5"/>
                             <size height="57.0" width="149.0"/>
@@ -283,11 +301,11 @@
                                 <PEID value="DCE.1D4A8C1E-2CD8-9DCB-0681-F7530098D78F"/>
                             </graphics>
                         </node>
-                        <node id="18">
+                        <node id="19">
                             <name value="Inni użytkownicy"/>
-                            <center x="102.20397489539754" y="326.39853556485303"/>
-                            <size height="59.99999999999932" width="127.99999999999991"/>
-                            <originalSize height="58.2944560669456" width="125.38807531380752"/>
+                            <center x="102.20397489539756" y="241.70658995815847"/>
+                            <size height="59.99999999999909" width="127.9999999999998"/>
+                            <originalSize height="58.2944560669456" width="126.48797071129707"/>
                             <shape resource="0"/>
                             <url/>
                             <visible value="true"/>
@@ -304,11 +322,11 @@
                                 <PEID value="DCE.A652D256-A5EF-29B2-9AE9-C01102C491E4"/>
                             </graphics>
                         </node>
-                        <node id="19">
+                        <node id="20">
                             <name value="Serwer"/>
-                            <center x="99.20502092050205" y="157.88336820083668"/>
-                            <size height="60.0" width="90.00000000000028"/>
-                            <originalSize height="57.19456066945608" width="86.89173640167363"/>
+                            <center x="101.40481171548113" y="65.49215481171532"/>
+                            <size height="60.0" width="90.00000000000031"/>
+                            <originalSize height="57.19456066945608" width="87.99163179916317"/>
                             <shape resource="0"/>
                             <url/>
                             <visible value="true"/>
@@ -325,7 +343,7 @@
                                 <PEID value="DCE.0CCC959D-8322-FB29-C19A-C8C4C3B40C63"/>
                             </graphics>
                         </node>
-                        <node id="20">
+                        <node id="21">
                             <name value="Przygotowanie zadań dla użytkownika"/>
                             <center x="-364.5" y="-116.0"/>
                             <size height="60.0" width="181.0"/>
@@ -346,7 +364,7 @@
                                 <PEID value="DCE.1014B80A-0A5D-09EC-8B32-22C93D7227C1"/>
                             </graphics>
                         </node>
-                        <node id="21">
+                        <node id="22">
                             <name value="Rejestracja nowego użytkownika"/>
                             <center x="-113.10564853556482" y="-156.2003138075314"/>
                             <size height="61.0" width="146.99999999999983"/>
@@ -367,11 +385,11 @@
                                 <PEID value="DCE.B26860FD-084F-335A-7EEF-6437510FE180"/>
                             </graphics>
                         </node>
-                        <node id="22">
+                        <node id="23">
                             <name value="Logowanie do serwera połączeń"/>
                             <center x="-113.19926778242677" y="36.59518828451884"/>
                             <size height="60.0" width="139.0"/>
-                            <originalSize height="60.0" width="139.0"/>
+                            <originalSize height="58.294456066945614" width="136.38702928870293"/>
                             <shape resource="0"/>
                             <url/>
                             <visible value="true"/>
@@ -388,7 +406,7 @@
                                 <PEID value="DCE.2F140B46-0844-9A73-B4E2-48BB235BA0D4"/>
                             </graphics>
                         </node>
-                        <node id="23">
+                        <node id="24">
                             <name/>
                             <center x="-699.5" y="156.0"/>
                             <size height="94.0" width="110.0"/>
@@ -409,7 +427,7 @@
                                 <PEID value="DCE.537DBF69-9889-44C3-9ABC-D35EB6B6CB41"/>
                             </graphics>
                         </node>
-                        <node id="24">
+                        <node id="25">
                             <name/>
                             <center x="-699.5" y="-161.0"/>
                             <size height="94.0" width="128.0"/>
@@ -430,9 +448,9 @@
                                 <PEID value="DCE.93EB9308-3AE2-AB70-9E21-CE75ECB5FD67"/>
                             </graphics>
                         </node>
-                        <node id="25">
+                        <node id="26">
                             <name value="Zmiana ustawień konfiguracji"/>
-                            <center x="-506.5" y="335.0"/>
+                            <center x="-520.7986401673639" y="353.6982217573222"/>
                             <size height="60.0" width="145.0"/>
                             <originalSize height="60.0" width="145.0"/>
                             <shape resource="0"/>
@@ -451,9 +469,30 @@
                                 <PEID value="DCE.CACDDC3C-6946-5725-5467-F93A42D51D6A"/>
                             </graphics>
                         </node>
+                        <node id="27">
+                            <name value="Logowanie do serwera Proxy"/>
+                            <center x="101.36401673640177" y="325.781380753138"/>
+                            <size height="60.494246861924694" width="127.58786610878661"/>
+                            <originalSize height="60.494246861924694" width="127.58786610878661"/>
+                            <shape resource="0"/>
+                            <url/>
+                            <visible value="true"/>
+                            <resizability value="RESIZABILITY_NO_FIT"/>
+                            <graphics type="ETGenericNodeUI">
+                                <fillColor value="204 204 204"/>
+                                <borderColor value="0 0 0"/>
+                                <transparent value="false"/>
+                                <drawBorder value="true"/>
+                                <textFont resource="2"/>
+                                <textColor value="0 0 0"/>
+                                <justification value="CENTER"/>
+                                <childGraphMark value="true"/>
+                                <PEID value="DCE.82A27C33-4A10-13A3-20C2-5D7211AEB327"/>
+                            </graphics>
+                        </node>
                     </nodes>
                     <edges>
-                        <edge id="26" source="24" target="23">
+                        <edge id="28" source="25" target="24">
                             <sourceClipping/>
                             <targetClipping/>
                             <url/>
@@ -469,13 +508,13 @@
                                 <PEID value="DCE.A9F7E6EF-5E55-2261-6EBD-BD645A0E8752"/>
                             </graphics>
                         </edge>
-                        <edge id="27" source="6" target="7">
+                        <edge id="29" source="7" target="8">
                             <sourceClipping/>
                             <targetClipping/>
                             <edgeLabels>
-                                <edgeLabel id="28">
+                                <edgeLabel id="30">
                                     <name value="&lt;&lt;usage&gt;&gt;"/>
-                                    <size height="20.000000000000227" width="75.00000000000011"/>
+                                    <size height="20.0" width="75.0"/>
                                     <constantOffset x="0.0" y="-10.0"/>
                                     <distanceFromSource value="0.5"/>
                                     <url/>
@@ -506,13 +545,13 @@
                                 <PEID value="DCE.880DBE03-6A20-E4BD-D1F3-ADF204FF75D3"/>
                             </graphics>
                         </edge>
-                        <edge id="29" source="6" target="8">
+                        <edge id="31" source="7" target="9">
                             <sourceClipping/>
                             <targetClipping/>
                             <edgeLabels>
-                                <edgeLabel id="30">
+                                <edgeLabel id="32">
                                     <name value="&lt;&lt;usage&gt;&gt;"/>
-                                    <size height="20.0" width="75.00000000000011"/>
+                                    <size height="20.0" width="75.0"/>
                                     <constantOffset x="0.0" y="-10.0"/>
                                     <distanceFromSource value="0.5"/>
                                     <url/>
@@ -543,7 +582,7 @@
                                 <PEID value="DCE.B0207357-8E32-8063-CC75-EC24246C7497"/>
                             </graphics>
                         </edge>
-                        <edge id="31" source="23" target="9">
+                        <edge id="33" source="24" target="10">
                             <sourceClipping/>
                             <targetClipping/>
                             <url/>
@@ -559,7 +598,7 @@
                                 <PEID value="DCE.E7FC3271-30A7-3EC4-51F0-6DBAB34D8282"/>
                             </graphics>
                         </edge>
-                        <edge id="32" source="23" target="10">
+                        <edge id="34" source="24" target="11">
                             <sourceClipping/>
                             <targetClipping/>
                             <url/>
@@ -575,7 +614,7 @@
                                 <PEID value="DCE.385EA661-5750-BB0B-11F9-DD5C44A5C382"/>
                             </graphics>
                         </edge>
-                        <edge id="33" source="23" target="12">
+                        <edge id="35" source="24" target="13">
                             <sourceClipping/>
                             <targetClipping/>
                             <url/>
@@ -591,7 +630,7 @@
                                 <PEID value="DCE.DD2F6EB4-F309-2B17-C978-40E1409A27E5"/>
                             </graphics>
                         </edge>
-                        <edge id="34" source="23" target="13">
+                        <edge id="36" source="24" target="14">
                             <sourceClipping/>
                             <targetClipping/>
                             <url/>
@@ -607,7 +646,7 @@
                                 <PEID value="DCE.686295C6-7CDE-F448-9C24-A59FA8F6EEFE"/>
                             </graphics>
                         </edge>
-                        <edge id="35" source="23" target="15">
+                        <edge id="37" source="24" target="16">
                             <sourceClipping/>
                             <targetClipping/>
                             <url/>
@@ -623,7 +662,7 @@
                                 <PEID value="DCE.2140D5F3-3C69-A38E-F01E-62781B8DDBB7"/>
                             </graphics>
                         </edge>
-                        <edge id="36" source="23" target="14">
+                        <edge id="38" source="24" target="15">
                             <sourceClipping/>
                             <targetClipping/>
                             <url/>
@@ -639,7 +678,7 @@
                                 <PEID value="DCE.07593F3F-EAC4-BC98-D5F0-84755DD0EE87"/>
                             </graphics>
                         </edge>
-                        <edge id="37" source="24" target="20">
+                        <edge id="39" source="25" target="21">
                             <sourceClipping/>
                             <targetClipping/>
                             <url/>
@@ -655,7 +694,7 @@
                                 <PEID value="DCE.E45E8B4B-9EF2-AE53-2B84-A20402C71599"/>
                             </graphics>
                         </edge>
-                        <edge id="38" source="24" target="12">
+                        <edge id="40" source="25" target="13">
                             <sourceClipping/>
                             <targetClipping/>
                             <url/>
@@ -671,7 +710,7 @@
                                 <PEID value="DCE.17A42687-32A0-1DCD-498A-C3F11DBA9FC0"/>
                             </graphics>
                         </edge>
-                        <edge id="39" source="12" target="22">
+                        <edge id="41" source="13" target="23">
                             <sourceClipping/>
                             <targetClipping/>
                             <url/>
@@ -687,7 +726,7 @@
                                 <PEID value="DCE.E0AB73BE-3852-A2C4-F015-545A70752901"/>
                             </graphics>
                         </edge>
-                        <edge id="40" source="22" target="19">
+                        <edge id="42" source="23" target="20">
                             <sourceClipping/>
                             <targetClipping/>
                             <url/>
@@ -703,7 +742,7 @@
                                 <PEID value="DCE.5D68C773-4E51-AB96-C009-CDED2B2E5D7C"/>
                             </graphics>
                         </edge>
-                        <edge id="41" source="12" target="11">
+                        <edge id="43" source="13" target="12">
                             <sourceClipping/>
                             <targetClipping/>
                             <url/>
@@ -719,7 +758,7 @@
                                 <PEID value="DCE.987CD4AA-3D68-88BF-7B89-E8C9A0A6B1E7"/>
                             </graphics>
                         </edge>
-                        <edge id="42" source="11" target="22">
+                        <edge id="44" source="12" target="23">
                             <sourceClipping/>
                             <targetClipping/>
                             <url/>
@@ -735,7 +774,7 @@
                                 <PEID value="DCE.BA84BD74-51BA-8299-38AA-CD24002ECAE6"/>
                             </graphics>
                         </edge>
-                        <edge id="43" source="12" target="21">
+                        <edge id="45" source="13" target="22">
                             <sourceClipping/>
                             <targetClipping/>
                             <url/>
@@ -751,7 +790,7 @@
                                 <PEID value="DCE.ECDD50DE-1A42-43BE-984F-68E6AE86916B"/>
                             </graphics>
                         </edge>
-                        <edge id="44" source="21" target="22">
+                        <edge id="46" source="22" target="23">
                             <sourceClipping/>
                             <targetClipping/>
                             <url/>
@@ -767,7 +806,7 @@
                                 <PEID value="DCE.34CD786E-13B6-B928-3800-CF73FD4FD141"/>
                             </graphics>
                         </edge>
-                        <edge id="45" source="21" target="19">
+                        <edge id="47" source="22" target="20">
                             <sourceClipping/>
                             <targetClipping/>
                             <url/>
@@ -783,7 +822,7 @@
                                 <PEID value="DCE.3101098E-C881-4BFA-B9B2-47CE42719BF9"/>
                             </graphics>
                         </edge>
-                        <edge id="46" source="12" target="16">
+                        <edge id="48" source="13" target="17">
                             <sourceClipping/>
                             <targetClipping/>
                             <url/>
@@ -799,7 +838,7 @@
                                 <PEID value="DCE.B4956A36-E3BC-19D0-6C3F-ADEE60400C9D"/>
                             </graphics>
                         </edge>
-                        <edge id="47" source="23" target="17">
+                        <edge id="49" source="24" target="18">
                             <sourceClipping/>
                             <targetClipping/>
                             <url/>
@@ -815,7 +854,7 @@
                                 <PEID value="DCE.E8E72113-EFCB-D4D2-C6D6-F56B3E7DD22D"/>
                             </graphics>
                         </edge>
-                        <edge id="48" source="9" target="18">
+                        <edge id="50" source="10" target="19">
                             <sourceClipping/>
                             <targetClipping/>
                             <url/>
@@ -831,7 +870,7 @@
                                 <PEID value="DCE.871C6CA4-FE0F-9ADE-3AD2-AD6AD14F55EE"/>
                             </graphics>
                         </edge>
-                        <edge id="49" source="18" target="10">
+                        <edge id="51" source="19" target="11">
                             <sourceClipping/>
                             <targetClipping/>
                             <url/>
@@ -847,7 +886,7 @@
                                 <PEID value="DCE.E1AAB58B-D803-2A08-7AA4-47EAA3EE4068"/>
                             </graphics>
                         </edge>
-                        <edge id="50" source="24" target="16">
+                        <edge id="52" source="25" target="17">
                             <sourceClipping/>
                             <targetClipping/>
                             <url/>
@@ -863,7 +902,7 @@
                                 <PEID value="DCE.51B305A4-192C-CB7E-B8CC-4E8F93EDFDB6"/>
                             </graphics>
                         </edge>
-                        <edge id="51" source="17" target="16">
+                        <edge id="53" source="18" target="17">
                             <sourceClipping/>
                             <targetClipping/>
                             <url/>
@@ -879,7 +918,7 @@
                                 <PEID value="DCE.626A2EF8-A226-4807-81EA-7BB42D1EB5CC"/>
                             </graphics>
                         </edge>
-                        <edge id="52" source="21" target="24">
+                        <edge id="54" source="22" target="25">
                             <sourceClipping/>
                             <targetClipping/>
                             <url/>
@@ -895,7 +934,7 @@
                                 <PEID value="DCE.C4869755-D728-753D-FF83-7C075850A35F"/>
                             </graphics>
                         </edge>
-                        <edge id="53" source="11" target="23">
+                        <edge id="55" source="12" target="24">
                             <sourceClipping/>
                             <targetClipping/>
                             <url/>
@@ -911,7 +950,7 @@
                                 <PEID value="DCE.DFAEC38C-0F7A-CDDF-B4B1-1EDED619676C"/>
                             </graphics>
                         </edge>
-                        <edge id="54" source="23" target="25">
+                        <edge id="56" source="24" target="26">
                             <sourceClipping/>
                             <targetClipping/>
                             <url/>
@@ -925,6 +964,54 @@
                                 <bendHeight value="5.0"/>
                                 <antiAliasing value="false"/>
                                 <PEID value="DCE.CB78F88A-AC0C-7A87-249E-9C147DD3B7B7"/>
+                            </graphics>
+                        </edge>
+                        <edge id="57" source="10" target="27">
+                            <sourceClipping/>
+                            <targetClipping/>
+                            <url/>
+                            <visible value="true"/>
+                            <graphics type="relationEdge">
+                                <lineColor value="0 0 0"/>
+                                <arrowWidth value="6.0"/>
+                                <arrowHeight value="6.0"/>
+                                <arrowType value="NO_ARROW"/>
+                                <bendWidth value="5.0"/>
+                                <bendHeight value="5.0"/>
+                                <antiAliasing value="false"/>
+                                <PEID value="DCE.9DDC34DE-3097-C9FF-FC1A-51EC5F567994"/>
+                            </graphics>
+                        </edge>
+                        <edge id="58" source="27" target="19">
+                            <sourceClipping/>
+                            <targetClipping/>
+                            <url/>
+                            <visible value="true"/>
+                            <graphics type="relationEdge">
+                                <lineColor value="0 0 0"/>
+                                <arrowWidth value="6.0"/>
+                                <arrowHeight value="6.0"/>
+                                <arrowType value="NO_ARROW"/>
+                                <bendWidth value="5.0"/>
+                                <bendHeight value="5.0"/>
+                                <antiAliasing value="false"/>
+                                <PEID value="DCE.02C81097-9390-23AA-C35E-2925D0216F62"/>
+                            </graphics>
+                        </edge>
+                        <edge id="59" source="27" target="11">
+                            <sourceClipping/>
+                            <targetClipping/>
+                            <url/>
+                            <visible value="true"/>
+                            <graphics type="relationEdge">
+                                <lineColor value="0 0 0"/>
+                                <arrowWidth value="6.0"/>
+                                <arrowHeight value="6.0"/>
+                                <arrowType value="NO_ARROW"/>
+                                <bendWidth value="5.0"/>
+                                <bendHeight value="5.0"/>
+                                <antiAliasing value="false"/>
+                                <PEID value="DCE.9DFE6466-A28E-8FC6-3B66-8702F62CD4EC"/>
                             </graphics>
                         </edge>
                     </edges>
@@ -945,7 +1032,7 @@
                     </graphics>
                 </graph>
             </graphs>
-            <rootGraph value="5"/>
+            <rootGraph value="6"/>
         </instances>
     </graphManager>
     <serviceInput type="jlayout">

@@ -21,6 +21,7 @@ main(int argc, char** argv) {
         assert( sizeof( int ) == 4 );
         assert( sizeof( long int ) == 8 );
         assert( sizeof( short int ) == 2 );
+        assert( sizeof( double ) == 8);
 
         char a[] = "dulf0";
         assert( sizeof( a ) == 5+1 );
@@ -46,6 +47,7 @@ main(int argc, char** argv) {
         assert( sizeof( int ) == 4 );
         assert( sizeof( long int ) == 4 );
         assert( sizeof( short int ) == 2 );
+        assert( sizeof( double ) == 8);
 
         char a[] = "dulf0";
         assert( sizeof( a ) == 5+1 );

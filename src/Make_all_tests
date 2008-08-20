@@ -3,10 +3,10 @@
 cd tests/
 rm -f test_*
 echo "Compiling tests:"
-g++ -w -g IO_file_test.cpp -o test_IO
-g++ -w -g log_module_test.cpp -o test_LOG
-g++ -w -g varsizes_test.cpp -o test_varsize64
-g++ -m32 -w -g varsizes_test.cpp -o test_varsize32
+g++ -w -ggdb IO_file_test.cpp -o test_IO
+g++ -w -ggdb log_module_test.cpp -o test_LOG
+g++ -w -ggdb varsizes_test.cpp -o test_varsize64
+g++ -m32 -w -ggdb varsizes_test.cpp -o test_varsize32
 
 echo "Performing tests:"
 

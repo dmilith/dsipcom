@@ -15,7 +15,7 @@
 #include <execinfo.h> 
 
 // enabling debuging options
-#define DEBUG
+//#define DEBUG
 //#define WIN32
 // enable asserts in code
 #define D_ASSERT
@@ -29,7 +29,7 @@ static string pp = SLASH; // "normal" UNIX slash to separate parts path
 
 // main declarations and constants
 #ifndef WIN32
- #include <stdlib.h>
+ #include <cstdlib>
  const string DSIP_MAIN_DIR = string( getenv( "HOME" ) ) + pp + ".dSipCom";
 #else
  pp = BACKSLASH;

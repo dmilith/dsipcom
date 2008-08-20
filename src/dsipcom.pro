@@ -47,8 +47,9 @@ unix {
  		error( "Unable to find unix spec." )
 }
 
-#QMAKE_CXXFLAGS +=
-# old: QMAKE_CXXFLAGS += -w
+# Release: QMAKE_CXXFLAGS += -std=c++0x -Os -w -march=athlon64
+# Debug: QMAKE_CXXFLAGS += -std=c++0x -O0 -ggdb -W
+QMAKE_CXXFLAGS += --std=c++0x -Os -w -march=athlon64
 TARGET = ../dsipcom
 target.path = ../
 sources.files = $$SOURCES $$HEADERS $$RESOURCES $$FORMS *.pro

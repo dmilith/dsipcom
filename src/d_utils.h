@@ -1,9 +1,11 @@
-/* 
- * File:   utils.h
- * Author: dmilith
- *
- * Created on 30 lipiec 2008, 14:04
- */
+/*
+ 
+    This is OpenSource Project;
+    It's licensed on GPL/ LGPL public license;
+    It's written by Daniel (dmilith) Dettlaff since August 2oo8.
+    You can redistribute this project only with this header.
+    
+*/
 
 #ifndef D_UTILS_H
 #define D_UTILS_H
@@ -13,15 +15,16 @@
 #include <string.h>
 #include <sstream>
 #include <vector>
+#include <fstream>
 
 using namespace std;
-  
- typedef struct {
+ 
+typedef struct {
   uint32_t day, month, year;
-  string str1;
-  uint32_t str1_len;
+  char str1[50000]; // 50KB per log. it's awful way but easiest
 } LOG_ELEMENT;
-  
+
+
 // strips specified string from all ''sign'' chars 
   string
   strip( string s, char sign );
@@ -31,10 +34,10 @@ using namespace std;
   uint2cstr( uint64_t i );
 
   void
-  write_one_log_by_date( string log, uint32_t day, uint32_t month, uint32_t year, std::string filename );
-  
-  const string
-  read_one_log_by_date( uint32_t day, uint32_t month, uint32_t year, std::string filename );
+	write_one_log_by_date( std::string log, uint32_t day, uint32_t month, uint32_t year, const char* filename );
+
+	const
+	std::string read_one_log_by_date( uint32_t day, uint32_t month, uint32_t year, const char* filename );
 
 #endif /* _UTILS_H */
 

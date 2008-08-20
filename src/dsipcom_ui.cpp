@@ -114,6 +114,7 @@ static string pending_call_sip;
         lc = &linphonec;
         #ifdef DEBUG
           cout << "\ndebug_linphonec_display_something_: " << something << endl;
+          cout.flush();
         #endif
         display_qt4_message( something );  
 			}
@@ -123,6 +124,7 @@ static string pending_call_sip;
         lc = &linphonec;
         #ifdef DEBUG
           cout << "\ndebug_linphonec_display_status_: " << something << endl;
+          cout.flush();
         #endif
         // inform about everything but Ready
         if ( (string)"Ready" == (string)something ) {
@@ -138,6 +140,7 @@ static string pending_call_sip;
         lc = &linphonec;
         #ifdef DEBUG
           cout << "\ndebug_linphonec_display_warning_: " << something << endl;
+          cout.flush();
         #endif
         display_qt4_warning_message( something );    
 			}
@@ -147,6 +150,7 @@ static string pending_call_sip;
 			  lc = &linphonec;
         #ifdef DEBUG
           cout << "\ndebug_linphonec_display_url_: " << something << ", url: " << url << endl;
+          cout.flush();
         #endif
         display_qt4_message( something );  
       }
@@ -156,10 +160,12 @@ static string pending_call_sip;
         lc = &linphonec;
 				#ifdef DEBUG
           cout << "\ndebug_linphonec_call_received_: from: " << from << endl;
+          cout.flush();
         #endif
         if ( auto_answer )  {
           #ifdef DEBUG
             cout << "\ndebug_linphonec_call_received_: Auto answered call" << endl;
+            cout.flush();
           #endif
 				}
         //display_qt4_message( from );
@@ -175,10 +181,12 @@ static string pending_call_sip;
         LinphoneAuthInfo *pending_auth;
         #ifdef DEBUG
           cout << "\ndebug_linphonec_prompt_for_auth_: realm:" << realm << ", username: " << username << endl;
+          cout.flush();  
         #endif
 				if ( auth_stack.nitems + 1 > MAX_PENDING_AUTH ) {
 					cout << "\n\nCan't accept another authentication request.\n" << 
                   "Consider incrementing MAX_PENDING_AUTH macro." << endl;
+          cout.flush();
 					return;
 				} 
 				pending_auth = linphone_auth_info_new( username, NULL, NULL, NULL, realm );
@@ -195,6 +203,7 @@ static string pending_call_sip;
         // TODO: do something with LinphoneFriend struct
         #ifdef DEBUG
          cout << "\ndebug_linphonec_notify_received_: From: " << from << " Status: " << status << " img: " << img << endl;
+         cout.flush();
         #endif
         string concated = "Odebrano zdarzenie od " + (string)from + " ( status:" + (string)status + ") ";
         display_qt4_message( concated.c_str() );
@@ -205,7 +214,8 @@ static string pending_call_sip;
         lc = &linphonec;
         #ifdef DEBUG
           cout << "\ndebug_linphonec_new_unknown_subscriber_: friend: " << url << 
-                  " requested subscription (accept/deny is not implemented yet)" << endl; 
+                  " requested subscription (accept/deny is not implemented yet)" << endl;
+          cout.flush();       
         // This means that this person wishes to be notified 
 				// of your presence information (online, busy, away...).
         #endif
@@ -218,6 +228,7 @@ static string pending_call_sip;
         lc = &linphonec;
 				#ifdef DEBUG
           cout << "\ndebug_linphonec_bye_received_: from: " << from << endl;
+          cout.flush();
         #endif
 			}
 
@@ -257,13 +268,12 @@ static string pending_call_sip;
     string log;
     if ( read_one_log_by_date( this->calendar->selectedDate().day(),
                           this->calendar->selectedDate().month(),
-                          this->calendar->selectedDate().year(), CALL_LOG_FILE ) == "" )
+                          this->calendar->selectedDate().year(), CALL_LOG_FILE.c_str() ) == "" )
       log = "Brak logów";
     else {
       log = read_one_log_by_date( this->calendar->selectedDate().day(),
                           this->calendar->selectedDate().month(),
-                          this->calendar->selectedDate().year(), CALL_LOG_FILE );
-      raport_viewer->setPlainText( (QString)log.c_str() );
+                          this->calendar->selectedDate().year(), CALL_LOG_FILE.c_str() );
     }
 #ifdef DEBUG
   cout << "debug_read_logs_:" << log;
@@ -324,11 +334,14 @@ DSipCom::~DSipCom() {
  #ifdef DEBUG
   cout << "\nDsipCom destructor." << endl;
   cout << today_log;
+  cout.flush();
  #endif
-  write_one_log_by_date( today_log,
+  if ( today_log != "" ) {
+  	write_one_log_by_date( today_log,
                          this->calendar->selectedDate().day(),
                          this->calendar->selectedDate().month(),
-                         this->calendar->selectedDate().year(), CALL_LOG_FILE );
+                         this->calendar->selectedDate().year(), CALL_LOG_FILE.c_str() );
+	}
 }
 
 void
@@ -514,7 +527,7 @@ DSipCom::apply_settings_to_linphone() {
     PayloadType *pt = NULL;
     for( MSList* elem = (MSList*)audio_codec_list; elem != NULL; elem = elem->next ) {
       cout << elem << endl;
-      
+      cout.flush();
     }
   #endif
   // TODO: add ring volume level setting
@@ -540,6 +553,7 @@ DSipCom::apply_settings_to_linphone() {
   linphone_core_set_capture_device( &linphonec, user_config->in_soundcard );
   #ifdef DEBUG
     cout << "\nSound CAPTURE IN device: " << linphone_core_get_capture_device( &linphonec ) << endl;
+    cout.flush();
   #endif
   linphone_core_set_guess_hostname( &linphonec, TRUE );
   // TODO: make possible to set bandwith capacity
@@ -686,7 +700,7 @@ DSipCom::action_get_log_func() {
   QDate selected = this->calendar->selectedDate();
   #ifdef DEBUG
     cout << endl << "Current selected day: " << selected.day() << endl;
-    fflush(stdout);
+    cout.flush();
   #endif
   // TODO: it should be readed from special call log file
   //raport_viewer->setPlainText( "\n" + (QString)today_log.c_str() );
@@ -768,6 +782,7 @@ DSipCom::action_end_call() {
     //this->hang_button->setEnabled( false );
   #ifdef DEBUG
     cout << "Ending call with: " << pending_call_sip.c_str() << endl;
+    cout.flush();
   #endif
     linphone_core_terminate_call( &linphonec, pending_call_sip.c_str() );
     QTimer *timer = new QTimer( this );
@@ -801,6 +816,7 @@ DSipCom::action_make_a_call() {
               //linphone_core_accept_call( &linphonec, NULL ); //to accept call
 						#ifdef DEBUG
 							cout << "\ndebug_action_make_a_call_:Making new call with: " << pending_call_sip.c_str() << endl;
+              cout.flush();
 						#endif
               break;
             case 1:
@@ -812,6 +828,7 @@ DSipCom::action_make_a_call() {
               pending_call_sip = strip( pending_call_sip, ' ' );
 						#ifdef DEBUG
 							cout << "Making new call with: " << pending_call_sip.c_str() << endl;
+              cout.flush();
 						#endif
               break;
           }
@@ -898,10 +915,12 @@ DSipCom::action_remove_contact_func() {
 	#ifdef DEBUG
 		cout << "Remove contact func contacts list: " << this->contacts_list->count() << endl;
 		cout << "Remove contact func list size: " << user_list.size() << endl;
+    cout.flush();
 	#endif  
   } else {
 	#ifdef DEBUG
 		cout << "\nNo elements on list." << endl;
+    cout.flush();
 	#endif  
   }
 }
@@ -952,7 +971,8 @@ AddContactWindow::action_done() {
     // TODO: only for dsipcom local user: strcpy( temp->passwd, "password" );
     object->user_list.append( *temp );
     #ifdef DEBUG
-      cout << "\nZŁO: " << object->user_list.last().username << endl; 
+      cout << "\nLast username on list: " << object->user_list.last().username << endl; 
+      cout.flush();   
     #endif
     //delete temp;
     object->toolBox->setGeometry( object->toolBox->x(), object->toolBox->y() - 220, object->toolBox->width(), object->toolBox->height() - 220 );

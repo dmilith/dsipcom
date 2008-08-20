@@ -1,14 +1,21 @@
+/*
+ * author: Daniel (dmilith) Dettlaff
+ * email: dmilith at drakor dot eu
+ * released under GPL2 & LGPL license
+ * (c) 2oo8
+ *
+ */
 
 A. About
-    dSipCom is SIP audio/ video communicator software written with QT4 UI
-    This program is free software licensed on LGPL public license.
-    Program author: Daniel (dmilith) Dettlaff ( dmilith at gmail.com )
+	dSipCom is SIP audio/ video communicator software written with QT4 UI
+	This program is free software licensed on LGPL public license.
+	Program author: Daniel (dmilith) Dettlaff ( dmilith at gmail.com )
 
 B. Prepare to compile
     0. What do You need?
 	qt4-dev-tools ( 4.4.X Cause You just don't want to compile it by Yourself.. it may take whole day )
-  libboost-filesystem-dev ( boost filesystem libraries )
-  libboost-date-time-dev ( boost date-time libraries )
+	libboost-filesystem-dev ( boost filesystem libraries )
+	libboost-date-time-dev ( boost date-time libraries )
 
 C. Installing precompiled libs ( in src/external/debs_lenny_amd64 )
     0. You have already precompiled libraries for Debian Lenny amd64 arch.
