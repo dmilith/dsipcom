@@ -21,4 +21,3 @@ if [ -s "compile.log" ]; then
 	else
 	rm compile.log
 fi
-

@@ -10,7 +10,7 @@
 #define	_DSIPCOM_UI_H
 
 #include <cstdio>
-#include <cstdint>
+//#include <cstdint>
 #include <signal.h>
 #include <assert.h>
 

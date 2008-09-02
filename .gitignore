@@ -19,3 +19,5 @@ config/*
 dsipcom.valgrind*
 .dSipCom
 *.swp
+tmp
+src/tests/test*
