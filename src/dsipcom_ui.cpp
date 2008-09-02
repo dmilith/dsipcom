@@ -10,6 +10,7 @@
 
 // TODO: make header check for dsipcom.dcnf
 // TODO: make use of MSList * linphone_core_get_call_logs(LinphoneCore *lc), while generation of daily call logs
+
 #include "dsipcom_ui.h"
 #include "version.h"
 
@@ -37,7 +38,6 @@ static bool_t vcap_enabled = FALSE;
 static bool_t display_enabled = FALSE;
 // pending_call_sip contains sip address of caller
 static string pending_call_sip;
-
 
 	/* Linphone structs
 	    These are callback for linphone core */
@@ -72,7 +72,7 @@ static string pending_call_sip;
 			display_question: (DisplayQuestionCb)stub,
      	call_log_updated: linphonec_call_log_updated,
 
-		  //text_received:linphonec_text_received,
+		  // TODO: text_received:linphonec_text_received,
 		};
 
       void
@@ -100,11 +100,9 @@ static string pending_call_sip;
                 LinphoneCallLog *cl = (LinphoneCallLog*)elem->data;
                 char *str = linphone_call_log_to_str( cl );
              #ifdef DEBUG
-                cout << endl << "CallLog:" << str << endl << endl;
-                cout.flush();
+                cout << endl << "CallLog:" << str << endl << endl << flush;
              #endif   
                 today_log += (string)str + "\n"; // adding call logs to common log
-                //write_one_log_by_date( today_log, )
                 ms_free( str );
         }
       }
@@ -113,8 +111,7 @@ static string pending_call_sip;
 			linphonec_display_something ( LinphoneCore * lc, const char *something ) {
         lc = &linphonec;
         #ifdef DEBUG
-          cout << "\ndebug_linphonec_display_something_: " << something << endl;
-          cout.flush();
+          cout << "\ndebug_linphonec_display_something_: " << something << endl << flush;
         #endif
         display_qt4_message( something );  
 			}
@@ -123,8 +120,7 @@ static string pending_call_sip;
 			linphonec_display_status ( LinphoneCore * lc, const char *something ) {
         lc = &linphonec;
         #ifdef DEBUG
-          cout << "\ndebug_linphonec_display_status_: " << something << endl;
-          cout.flush();
+          cout << "\ndebug_linphonec_display_status_: " << something << endl << flush;
         #endif
         // inform about everything but Ready
         if ( (string)"Ready" == (string)something ) {
@@ -139,8 +135,7 @@ static string pending_call_sip;
 			linphonec_display_warning ( LinphoneCore * lc, const char *something ) {
         lc = &linphonec;
         #ifdef DEBUG
-          cout << "\ndebug_linphonec_display_warning_: " << something << endl;
-          cout.flush();
+          cout << "\ndebug_linphonec_display_warning_: " << something << endl << flush;
         #endif
         display_qt4_warning_message( something );    
 			}
@@ -149,8 +144,7 @@ static string pending_call_sip;
 			linphonec_display_url ( LinphoneCore * lc, const char *something, const char *url ) {
 			  lc = &linphonec;
         #ifdef DEBUG
-          cout << "\ndebug_linphonec_display_url_: " << something << ", url: " << url << endl;
-          cout.flush();
+          cout << "\ndebug_linphonec_display_url_: " << something << ", url: " << url << endl << flush;
         #endif
         display_qt4_message( something );  
       }
@@ -159,13 +153,11 @@ static string pending_call_sip;
 			linphonec_call_received( LinphoneCore *lc, const char *from ) {
         lc = &linphonec;
 				#ifdef DEBUG
-          cout << "\ndebug_linphonec_call_received_: from: " << from << endl;
-          cout.flush();
+          cout << "\ndebug_linphonec_call_received_: from: " << from << endl << flush;
         #endif
         if ( auto_answer )  {
           #ifdef DEBUG
-            cout << "\ndebug_linphonec_call_received_: Auto answered call" << endl;
-            cout.flush();
+            cout << "\ndebug_linphonec_call_received_: Auto answered call" << endl << flush;
           #endif
 				}
         //display_qt4_message( from );
@@ -180,13 +172,11 @@ static string pending_call_sip;
         lc = &linphonec;
         LinphoneAuthInfo *pending_auth;
         #ifdef DEBUG
-          cout << "\ndebug_linphonec_prompt_for_auth_: realm:" << realm << ", username: " << username << endl;
-          cout.flush();  
+          cout << "\ndebug_linphonec_prompt_for_auth_: realm:" << realm << ", username: " << username << endl << flush;
         #endif
 				if ( auth_stack.nitems + 1 > MAX_PENDING_AUTH ) {
 					cout << "\n\nCan't accept another authentication request.\n" << 
-                  "Consider incrementing MAX_PENDING_AUTH macro." << endl;
-          cout.flush();
+                  "Consider incrementing MAX_PENDING_AUTH macro." << endl << flush;
 					return;
 				} 
 				pending_auth = linphone_auth_info_new( username, NULL, NULL, NULL, realm );
@@ -202,8 +192,7 @@ static string pending_call_sip;
 				// TODO: update Friend list state (unimplemented in linphonec)
         // TODO: do something with LinphoneFriend struct
         #ifdef DEBUG
-         cout << "\ndebug_linphonec_notify_received_: From: " << from << " Status: " << status << " img: " << img << endl;
-         cout.flush();
+         cout << "\ndebug_linphonec_notify_received_: From: " << from << " Status: " << status << " img: " << img << endl << flush;
         #endif
         string concated = "Odebrano zdarzenie od " + (string)from + " ( status:" + (string)status + ") ";
         display_qt4_message( concated.c_str() );
@@ -214,8 +203,7 @@ static string pending_call_sip;
         lc = &linphonec;
         #ifdef DEBUG
           cout << "\ndebug_linphonec_new_unknown_subscriber_: friend: " << url << 
-                  " requested subscription (accept/deny is not implemented yet)" << endl;
-          cout.flush();       
+                  " requested subscription (accept/deny is not implemented yet)" << endl << flush;
         // This means that this person wishes to be notified 
 				// of your presence information (online, busy, away...).
         #endif
@@ -227,12 +215,11 @@ static string pending_call_sip;
 				// message trough display_status callback anyway
         lc = &linphonec;
 				#ifdef DEBUG
-          cout << "\ndebug_linphonec_bye_received_: from: " << from << endl;
-          cout.flush();
+          cout << "\ndebug_linphonec_bye_received_: from: " << from << endl << flush;
         #endif
 			}
 
- // TODO: text chats should be implemented soon     
+ // TODO: text chats should be implemented soon
  /*
 			static void
 			linphonec_text_received( LinphoneCore *lc, LinphoneChatRoom *cr, const char *from, const char *msg) {
@@ -246,8 +233,7 @@ static string pending_call_sip;
         linphone_core_iterate( &linphonec );
         if ( linphonec.call != NULL ) {
           #ifdef DEBUG
-            cout << ".";
-            fflush( stdout );
+            cout << "." << flush;
           #endif
         }
 			}
@@ -425,14 +411,14 @@ DSipCom::save_user_list() {
       fflush( stdout );
       #ifdef DEBUG
         cout << "\nsave_user_list_: " << username << "@" << realm << " vs " << 
-                user_list.at( i ).username << "@" << user_list.at( i ).realm << endl;
+                user_list.at( i ).username << "@" << user_list.at( i ).realm << endl << flush;
       #endif
       fwrite( username, sizeof( username ), 1, userlist_file );
       fwrite( realm, sizeof( realm ), 1, userlist_file );
     }
   }
   #ifdef DEBUG
-    cout << "\nsave_user_list_: amount of records written to file: " << (uint32_t)user_list_size << endl;
+    cout << "\nsave_user_list_: amount of records written to file: " << (uint32_t)user_list_size << endl << flush;
   #endif  
   fclose( userlist_file );
 }
@@ -479,13 +465,13 @@ DSipCom::load_user_list() {
     for ( uint32_t i = 0; i < size_of_list; i++ ) {
       fread( username, sizeof( username ), 1, userlist_file );
       fread( realm, sizeof( realm ), 1, userlist_file );
-      LinphoneAuthInfo* temp = linphone_auth_info_new( username, "", "", "", realm );
+      LinphoneAuthInfo* temp = linphone_auth_info_new( username, "", "", "", realm ); // XXX XXX
       user_list.append( *temp );
     }
     // putting elements to user_list plus icons
     if (! user_list.empty() ) {
       for ( uint32_t i = 0; i< size_of_list; i++ ) {
-        // C-c C-v from Qt4 example. It will set specified icon to current list element, then will set caption, and add object to user_list
+        // this will set specified icon to current list element, then will set caption, and add object to user_list
         QIcon icon1;
         icon1.addPixmap( QPixmap( QString::fromUtf8( ":/images/images/user_green.png" ) ), QIcon::Active, QIcon::On );
         QListWidgetItem *__listItem = new QListWidgetItem( this->contacts_list );
@@ -511,7 +497,7 @@ DSipCom::apply_settings_to_linphone() {
   }
   #ifdef DEBUG
     cout << "\nConfig port value/ after conversion: " << user_config->default_port << "/ " << port << endl;
-    cout << "\nSetting default port to: " << (uint64_t)linphone_core_get_sip_port( &linphonec ) << endl;
+    cout << "\nSetting default port to: " << (uint64_t)linphone_core_get_sip_port( &linphonec ) << endl << flush;
   #endif
   linphone_core_set_inc_timeout( &linphonec, 60 ); // 60 to timeout
   linphone_core_set_firewall_policy( &linphonec, LINPHONE_POLICY_NO_FIREWALL );
@@ -593,7 +579,7 @@ DSipCom::load_user_config() {
   this->user_password->setText( user_config->user_password );
   this->user_sip->setText( user_config->user_sip );
   this->user_sip_server->setText( user_config->user_sip_server );
-// TODO: it should set properly those, now we'll set OSS as CONST!: 
+// TODO: it should set properly those, now we'll set default as CONST!: 
   this->out_soundcard->setCurrentIndex( 0 ); //user_config->out_soundcard );
   this->in_soundcard->setCurrentIndex( 0 ); //user_config->in_soundcard );
   this->recording_source->setCurrentIndex( 0 ); //user_config->recording_source );
@@ -776,7 +762,7 @@ DSipCom::action_enter_hash() {
 void
 DSipCom::action_end_call() {
   if ( linphonec.call != NULL ) {
-    // section is equivalent of ruby split method
+    // section is equivalent of ruby split method:
     this->status_bar->setText( "Rozłączam z " + ( (QString)pending_call_sip.c_str() ).section( ':', 1 ) );
     //this->call_button->setEnabled( true );
     //this->hang_button->setEnabled( false );
@@ -796,7 +782,6 @@ DSipCom::action_end_call() {
 
 void
 DSipCom::action_make_a_call() {
-  // TODO: make DSipCom able to get a call from someone, not only call to someone
   // TODO: DSipCom should ask for video port. codecs should be choosen automaticly linphone_core_set_video_port
   // TODO: void linphone_core_enable_video_preview(LinphoneCore *lc, bool_t val) - it should be "enable video window" setting somewhere with default FALSE.
   // if we're on contacts list tab and this list isn't empty
@@ -815,8 +800,7 @@ DSipCom::action_make_a_call() {
                pending_call_sip = strip( pending_call_sip, ' ' );
               //linphone_core_accept_call( &linphonec, NULL ); //to accept call
 						#ifdef DEBUG
-							cout << "\ndebug_action_make_a_call_:Making new call with: " << pending_call_sip.c_str() << endl;
-              cout.flush();
+							cout << "\ndebug_action_make_a_call_:Making new call with: " << pending_call_sip.c_str() << endl << flush;
 						#endif
               break;
             case 1:
@@ -827,8 +811,7 @@ DSipCom::action_make_a_call() {
 																 (string)":" + (string)user_config->default_port;
               pending_call_sip = strip( pending_call_sip, ' ' );
 						#ifdef DEBUG
-							cout << "Making new call with: " << pending_call_sip.c_str() << endl;
-              cout.flush();
+							cout << "Making new call with: " << pending_call_sip.c_str() << endl << flush;
 						#endif
               break;
           }
@@ -914,13 +897,11 @@ DSipCom::action_remove_contact_func() {
     delete this->contacts_list->item( this->contacts_list->currentRow() );
 	#ifdef DEBUG
 		cout << "Remove contact func contacts list: " << this->contacts_list->count() << endl;
-		cout << "Remove contact func list size: " << user_list.size() << endl;
-    cout.flush();
+		cout << "Remove contact func list size: " << user_list.size() << endl << flush;
 	#endif  
   } else {
 	#ifdef DEBUG
-		cout << "\nNo elements on list." << endl;
-    cout.flush();
+		cout << "\nNo elements on list." << endl << flush;
 	#endif  
   }
 }
@@ -971,8 +952,7 @@ AddContactWindow::action_done() {
     // TODO: only for dsipcom local user: strcpy( temp->passwd, "password" );
     object->user_list.append( *temp );
     #ifdef DEBUG
-      cout << "\nLast username on list: " << object->user_list.last().username << endl; 
-      cout.flush();   
+      cout << "\nLast username on list: " << object->user_list.last().username << endl << flush;   
     #endif
     //delete temp;
     object->toolBox->setGeometry( object->toolBox->x(), object->toolBox->y() - 220, object->toolBox->width(), object->toolBox->height() - 220 );
@@ -999,6 +979,7 @@ AboutBox::AboutBox() {
 
 AboutBox::~AboutBox() {
   #ifdef DEBUG
-    cout << "AboutBox destructor." << endl;
+    cout << "AboutBox destructor." << endl << flush;
   #endif
 }
+
