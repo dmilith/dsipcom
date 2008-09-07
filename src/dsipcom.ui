@@ -143,8 +143,8 @@ p, li { white-space: pre-wrap; }
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>376</width>
-       <height>541</height>
+       <width>100</width>
+       <height>30</height>
       </rect>
      </property>
      <attribute name="label" >
@@ -236,8 +236,8 @@ p, li { white-space: pre-wrap; }
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>376</width>
-       <height>541</height>
+       <width>100</width>
+       <height>30</height>
       </rect>
      </property>
      <attribute name="label" >
@@ -694,7 +694,7 @@ p, li { white-space: pre-wrap; }
        </rect>
       </property>
       <property name="text" >
-       <string>Adres serwera proxy</string>
+       <string>Adres serwera SIP proxy</string>
       </property>
      </widget>
      <widget class="QCheckBox" name="auto_login" >
@@ -756,8 +756,8 @@ p, li { white-space: pre-wrap; }
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>376</width>
-       <height>541</height>
+       <width>100</width>
+       <height>30</height>
       </rect>
      </property>
      <attribute name="label" >
@@ -1128,8 +1128,8 @@ p, li { white-space: pre-wrap; }
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>376</width>
-       <height>541</height>
+       <width>100</width>
+       <height>30</height>
       </rect>
      </property>
      <attribute name="label" >

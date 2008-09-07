@@ -347,8 +347,7 @@ DSipCom::create_linphone_core() {
       logger.log( "Linphone logger initialized" );
       logger.log( "Initializing LinPhone" );
     #endif
-    // TODO: make configurable choosing ipv4/v6  
-    // disable ipv6 by default.
+    // TODO: make configurable choosing ipv4/v6, IPv6 is now disabled by default.
     linphone_core_enable_ipv6( &linphonec, FALSE );
     auth_stack.nitems = 0;
     linphone_core_init ( &linphonec, &linphonec_vtable, LINPHONE_CONFIG.c_str(), NULL );
@@ -375,10 +374,6 @@ void
 DSipCom::save_user_list() {
 // TODO: implement User Authorisation for linphone core (not required but could improve compatibility with other linphone core
 // based apps)
-//  LinphoneAuthInfo *linphone_auth_info_new(const char *username, const char *userid,
-//		const char *passwd, const char *ha1,const char *realm);
-//void linphone_auth_info_set_passwd(LinphoneAuthInfo *info, const char *passwd);
-//  LinphoneAuthInfo * linphone_auth_info_new_from_config_file(struct _LpConfig *config, int pos);
   LinphoneAuthInfo* temp;
   FILE* userlist_file;
   userlist_file = fopen( USER_LIST_FILE.c_str(), "wb+" );
@@ -479,14 +474,16 @@ DSipCom::load_user_list() {
   this->contacts_list->setCurrentRow( 0 );
 }
 
+
 void
 DSipCom::apply_settings_to_linphone() {
   // applying settings to linphone core:
   uint64_t port = strtol( user_config->default_port, NULL, 10 ); //conversion from char[5] to uint64_t, 10 => decimal number sys.
-  if ( ( port > 65535 ) || ( port < 1024 ) ) { // 65535 is max port, greater than 1024 cause 0...1024 are root ports
+  if ( ( port > 65535 ) || ( port < 1024 ) ) { // 65535 is max port, greater than 1024 cause 0...1024 are root ports (POSIX)
+    // stupid workaround..
     linphone_core_set_sip_port( &linphonec, 5060 );
     strcpy( user_config->default_port, "5060" );
-  } else { 
+  } else {
     linphone_core_set_sip_port( &linphonec, port );
   }
   #ifdef DEBUG
@@ -510,14 +507,13 @@ DSipCom::apply_settings_to_linphone() {
       cout.flush();
     }
   #endif
-  // TODO: add ring volume level setting
   // void linphone_core_set_ring_level(LinphoneCore *lc, int level);
   linphone_core_set_ring_level( &linphonec, user_config->output_volume );
   // void linphone_core_set_play_level(LinphoneCore *lc, int level);
   linphone_core_set_play_level( &linphonec, user_config->output_volume );
   // void linphone_core_set_rec_level(LinphoneCore *lc, int level);
   linphone_core_set_rec_level( &linphonec, user_config->microphone_volume );
-  // TODO: add option to manually choose ring sound
+  // TODO: add option to manually choose ring sound, now user needs to type path to sound file..
   strcpy( user_config->ring_sound, "sounds/toyphone.wav" ); 
   linphone_core_set_ring( &linphonec, user_config->ring_sound );
   // TODO: add support for echo cancelation:
@@ -538,11 +534,12 @@ DSipCom::apply_settings_to_linphone() {
   linphone_core_set_download_bandwidth( &linphonec, 0 ); // bandwidth unlimited
   linphone_core_set_upload_bandwidth( &linphonec, 0 ); // same as above.
   // create proxy structure and 
-  // get proxy list ( not used but needed by core )
+  // get proxy list ( not specially used but needed by core )
   proxy_list = linphone_core_get_proxy_config_list( &linphonec );
   pcfg = linphone_proxy_config_new();
   linphone_core_get_default_proxy( &linphonec, &pcfg );
 }
+
 
 // load_user_config() it's method which load application settings and apply them in linphone core right after init
 void
@@ -557,11 +554,11 @@ DSipCom::load_user_config() {
   // reading user config structure at once
   fread( user_config, sizeof( USER_CONFIG ), 1, config_file );
   fclose( config_file );
-  // putting values from file to edit objects
+  // putting values from file to edit boxes
   this->user_name->setText( user_config->user_name );
   this->user_password->setText( user_config->user_password );
   this->user_sip_server->setText( user_config->user_sip_server );
-// TODO: it should set properly those, now we'll set default as CONST!: 
+  // FIXME: it should set properly those, now we'll set default as CONST!: 
   this->out_soundcard->setCurrentIndex( 0 ); //user_config->out_soundcard );
   this->in_soundcard->setCurrentIndex( 0 ); //user_config->in_soundcard );
   this->recording_source->setCurrentIndex( 0 ); //user_config->recording_source );
@@ -587,7 +584,8 @@ DSipCom::save_user_config() {
   strcpy( user_config->user_name, this->user_name->text().toUtf8() );
   strcpy( user_config->user_password, this->user_password->text().toUtf8() );
   strcpy( user_config->user_sip_server, this->user_sip_server->text().toUtf8() );
-  if ( this->out_soundcard->currentIndex() == 0 ) { // index 0 means OSS on dSipCom device list, but it's 1 on sound_dev_names list
+  if ( this->out_soundcard->currentIndex() == 0 ) { 
+    // index 0 means default sound card on dSipCom device list, but it's 1 on sound_dev_names list..
     strcpy( user_config->out_soundcard, sound_dev_names[ 1 ] );
   } else {
     strcpy( user_config->out_soundcard, sound_dev_names[ 0 ] );
@@ -611,18 +609,18 @@ DSipCom::save_user_config() {
   strcpy( user_config->firewall_address, this->firewall_address->text().toUtf8() );
   user_config->output_volume = this->output_volume->value();
   user_config->microphone_volume = this->microphone_volume->value();
-
   FILE* config_file;
   config_file = fopen( CONFIG_FILE.c_str(), "wb+" );
   if ( config_file == 0 ) {
-    cout << "Error writing user config file!\nCannot continue. Check Your user access and try again." << endl;
+    cout << "Error writing user config file!\nCannot continue. Check Your user access and try again." << endl << flush;
     exit( 1 );
   }
-  // writing whole structure with data to file
+  // writing whole structure with data to config file
   fwrite( user_config, sizeof( USER_CONFIG ), 1, config_file );
   fclose( config_file );
   apply_settings_to_linphone();
 }
+
 
 // init_actions will init all actions and binds in application
 void
@@ -664,72 +662,86 @@ DSipCom::action_get_log_func() {
     cout << endl << "Current selected day: " << selected.day() << endl;
     cout.flush();
   #endif
-  // TODO: it should be readed from special call log file
-  //raport_viewer->setPlainText( "\n" + (QString)today_log.c_str() );
   read_logs();
 }
+
 void
 DSipCom::action_save_user_config() {
   save_user_config();
 }
+
 void
 DSipCom::action_load_user_config() {
   load_user_config();
 }
+
 // TODO: add support for void linphone_core_add_friend(LinphoneCore *lc, LinphoneFriend *fr), and LinphoneFriend structure in place of actual two user info fields
 void
 DSipCom::action_load_user_list() {
   load_user_list();
 }
+
 void
 DSipCom::action_save_user_list() {
   save_user_list();
 }
+
 /* numbers enterance: */
 void
 DSipCom::action_enter_0() {
   this->number_entry->setText( this->number_entry->text() + "0" );
 }
+
 void
 DSipCom::action_enter_1() {
   this->number_entry->setText( this->number_entry->text() + "1" );
 }
+
 void
 DSipCom::action_enter_2() {
   this->number_entry->setText( this->number_entry->text() + "2" );
 }
+
 void
 DSipCom::action_enter_3() {
   this->number_entry->setText( this->number_entry->text() + "3" );
 }
+
 void
 DSipCom::action_enter_4() {
   this->number_entry->setText( this->number_entry->text() + "4" );
 }
+
 void
 DSipCom::action_enter_5() {
   this->number_entry->setText( this->number_entry->text() + "5" );
 }
+
 void
 DSipCom::action_enter_6() {
   this->number_entry->setText( this->number_entry->text() + "6" );
 }
+
 void
 DSipCom::action_enter_7() {
   this->number_entry->setText( this->number_entry->text() + "7" );
 }
+
 void
 DSipCom::action_enter_8() {
   this->number_entry->setText( this->number_entry->text() + "8" );
 }
+
 void
 DSipCom::action_enter_9() {
   this->number_entry->setText( this->number_entry->text() + "9" );
 }
+
 void
 DSipCom::action_enter_star() {
   this->number_entry->setText( this->number_entry->text() + "*" );
 }
+
 void
 DSipCom::action_enter_hash() {
   this->number_entry->setText( this->number_entry->text() + "#" );
@@ -774,7 +786,6 @@ DSipCom::action_make_a_call() {
                                    this->contacts_list->currentRow() )->text().section( ':', 1 ) ).toUtf8() +
 																	(string)":" + (string)user_config->default_port;
                pending_call_sip = strip( pending_call_sip, ' ' );
-              //linphone_core_accept_call( &linphonec, NULL ); //to accept call
 						#ifdef DEBUG
 							cout << "\ndebug_action_make_a_call_:Making new call with: " << pending_call_sip.c_str() << endl << flush;
 						#endif
@@ -823,13 +834,13 @@ DSipCom::action_connect_to_sip_server_func() {
   #ifdef DEBUG
     logger.log( "Trying to connect to server" );
   #endif
-    if ( user_config->user_sip_server == "" ) {
+    if ( strcmp( user_config->user_sip_server, "" ) == 0 ) {
       QMessageBox::information( this, MAIN_WINDOW_TITLE.c_str(), " Proszę podać w preferencjach użytkownika nazwę \
-          serwera SIP i zapisać ustawienia! " );
-    } else if ( user_config->user_password == "" ) {
+          serwera SIP proxy i zapisać ustawienia! " );
+    } else if ( strcmp( user_config->user_password, "" ) == 0 ) {
       QMessageBox::information( this, MAIN_WINDOW_TITLE.c_str(), " Proszę podać w preferencjach hasło SIP użytkownika i\
           zapisać ustawienia! " );
-    } else if ( user_config->user_name == "" ) {
+    } else if ( strcmp( user_config->user_name, "" ) == 0 ) {
       QMessageBox::information( this, MAIN_WINDOW_TITLE.c_str(), " Proszę podać w preferencjach nazwę użytkownika i \
           zapisać ustawienia! " );
     } else {
