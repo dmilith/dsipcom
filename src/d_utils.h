@@ -39,5 +39,5 @@ typedef struct {
 	const string
   read_one_log_by_date( uint32_t day, uint32_t month, uint32_t year, const char* filename );
 
-#endif /* _UTILS_H */
+#endif /* D_UTILS_H */
 

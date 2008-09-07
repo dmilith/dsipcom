@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configurationDescriptor version="45">
+<configurationDescriptor version="47">
   <logicalFolder name="root" displayName="root" projectFiles="true">
     <logicalFolder name="src" displayName="src" projectFiles="true">
       <logicalFolder name="tests" displayName="tests" projectFiles="true">
+        <logicalFolder name="tests" displayName="tests" projectFiles="true">
+          <itemPath>src/tests/IO_file_test.cpp</itemPath>
+          <itemPath>src/tests/log_module_test.cpp</itemPath>
+          <itemPath>src/tests/varsizes_test.cpp</itemPath>
+        </logicalFolder>
         <itemPath>../../../../Projects/dsipcom-public/src/tests/IO_file_test.cpp</itemPath>
         <itemPath>../../../../Projects/dsipcom-public/src/tests/qt_test_dialog.cpp</itemPath>
         <itemPath>../../../../Projects/dsipcom-public/src/tests/qt_test_main.cpp</itemPath>
@@ -34,6 +39,7 @@
   <confs>
     <conf name="Default" type="0">
       <toolsSet>
+        <developmentServer>localhost</developmentServer>
         <compilerSet>GNU|GNU</compilerSet>
         <platform>2</platform>
       </toolsSet>
@@ -97,6 +103,15 @@
       </item>
       <item path="../../../../Projects/dsipcom-public/src/win_specification.h">
         <itemTool>3</itemTool>
+      </item>
+      <item path="src/tests/IO_file_test.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="src/tests/log_module_test.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="src/tests/varsizes_test.cpp">
+        <itemTool>1</itemTool>
       </item>
     </conf>
   </confs>
