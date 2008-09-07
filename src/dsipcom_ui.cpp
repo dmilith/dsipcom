@@ -768,6 +768,7 @@ DSipCom::action_end_call() {
   }
 }
 
+
 void
 DSipCom::action_make_a_call() {
   // TODO: DSipCom should ask for video port. codecs should be choosen automaticly linphone_core_set_video_port
@@ -812,6 +813,7 @@ DSipCom::action_make_a_call() {
   }
 }
 
+
 void
 DSipCom::action_help_func() {
   #ifdef DEBUG
@@ -821,6 +823,7 @@ DSipCom::action_help_func() {
   QMessageBox::information( this, MAIN_WINDOW_TITLE.c_str(), " Brak pliku pomocy [ niezainicjowano ] ");
 }
 
+
 void
 DSipCom::action_about_func() {
   #ifdef DEBUG
@@ -828,6 +831,7 @@ DSipCom::action_about_func() {
   #endif
   new AboutBox();
 }
+
 
 void
 DSipCom::action_connect_to_sip_server_func() {
@@ -855,6 +859,7 @@ DSipCom::action_connect_to_sip_server_func() {
     }
 }
 
+
 void
 DSipCom::action_disconnect_from_sip_server_func() {
   QMessageBox::information( this, MAIN_WINDOW_TITLE.c_str(), " Rozłączono z serwerem: " + (QString)this->user_config->user_sip_server );
@@ -862,6 +867,7 @@ DSipCom::action_disconnect_from_sip_server_func() {
 		logger.log( "Trying to disconnect from server" ); 
 	#endif
 }
+
 
 void
 DSipCom::action_add_contact_func() {
@@ -875,6 +881,7 @@ DSipCom::action_add_contact_func() {
   status_box->setGeometry( status_box->x(), status_box->y() + 220, status_box->width(), status_box->height() + 220 );
   dialog->show();
 }
+
 
 void
 DSipCom::action_remove_contact_func() {
@@ -897,6 +904,7 @@ DSipCom::action_remove_contact_func() {
   }
 }
 
+
 AddContactWindow::AddContactWindow( QWidget *parent ) {
   setupUi( this );
   init_actions();
@@ -904,8 +912,10 @@ AddContactWindow::AddContactWindow( QWidget *parent ) {
   setParent( parent );
 }
 
+
 AddContactWindow::~AddContactWindow() {
 }
+
 
 void
 AddContactWindow::init_actions() {
@@ -913,6 +923,7 @@ AddContactWindow::init_actions() {
   QObject::connect( add_button, SIGNAL( clicked() ), this, SLOT( action_done() ));
   QObject::connect( cancel_button, SIGNAL( clicked() ), this, SLOT( action_cancel() ));
 }
+
 
 void
 AddContactWindow::action_done() {
@@ -951,6 +962,7 @@ AddContactWindow::action_done() {
     this->close();
   }
 }
+
 
 void
 AddContactWindow::action_cancel() {
