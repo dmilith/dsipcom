@@ -7,19 +7,19 @@
     <x>0</x>
     <y>0</y>
     <width>382</width>
-    <height>860</height>
+    <height>845</height>
    </rect>
   </property>
   <property name="minimumSize" >
    <size>
     <width>382</width>
-    <height>860</height>
+    <height>845</height>
    </size>
   </property>
   <property name="maximumSize" >
    <size>
     <width>382</width>
-    <height>860</height>
+    <height>845</height>
    </size>
   </property>
   <property name="acceptDrops" >
@@ -45,16 +45,16 @@ p, li { white-space: pre-wrap; }
    <property name="geometry" >
     <rect>
      <x>0</x>
-     <y>25</y>
+     <y>23</y>
      <width>382</width>
-     <height>813</height>
+     <height>800</height>
     </rect>
    </property>
    <widget class="QPushButton" name="call_button" >
     <property name="geometry" >
      <rect>
       <x>10</x>
-      <y>695</y>
+      <y>670</y>
       <width>191</width>
       <height>51</height>
      </rect>
@@ -69,7 +69,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Nawiązuje połączenie z kontaktem SIP&lt;/p>&lt;/body>&lt;/html></string>
     </property>
     <property name="text" >
-     <string>Zadzwoń lub Odbierz</string>
+     <string>Połącz</string>
     </property>
     <property name="icon" >
      <iconset resource="dsipcom.qrc" >
@@ -85,8 +85,8 @@ p, li { white-space: pre-wrap; }
     </property>
     <property name="geometry" >
      <rect>
-      <x>210</x>
-      <y>695</y>
+      <x>205</x>
+      <y>670</y>
       <width>161</width>
       <height>51</height>
      </rect>
@@ -114,7 +114,7 @@ p, li { white-space: pre-wrap; }
       <x>4</x>
       <y>0</y>
       <width>376</width>
-      <height>681</height>
+      <height>666</height>
      </rect>
     </property>
     <property name="cursor" >
@@ -143,8 +143,8 @@ p, li { white-space: pre-wrap; }
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>366</width>
-       <height>526</height>
+       <width>376</width>
+       <height>541</height>
       </rect>
      </property>
      <attribute name="label" >
@@ -236,8 +236,8 @@ p, li { white-space: pre-wrap; }
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>366</width>
-       <height>526</height>
+       <width>376</width>
+       <height>541</height>
       </rect>
      </property>
      <attribute name="label" >
@@ -608,8 +608,8 @@ p, li { white-space: pre-wrap; }
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>366</width>
-       <height>526</height>
+       <width>376</width>
+       <height>541</height>
       </rect>
      </property>
      <attribute name="label" >
@@ -619,60 +619,40 @@ p, li { white-space: pre-wrap; }
       <iconset resource="dsipcom.qrc" >
        <normaloff>:/images/images/vcard.png</normaloff>:/images/images/vcard.png</iconset>
      </attribute>
-     <widget class="QLineEdit" name="user_sip" >
-      <property name="geometry" >
-       <rect>
-        <x>65</x>
-        <y>130</y>
-        <width>266</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="text" >
-       <string/>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_2" >
-      <property name="geometry" >
-       <rect>
-        <x>40</x>
-        <y>110</y>
-        <width>182</width>
-        <height>18</height>
-       </rect>
-      </property>
-      <property name="text" >
-       <string>Wprowadź swój adres SIP</string>
-      </property>
-     </widget>
      <widget class="QLabel" name="label_3" >
       <property name="geometry" >
        <rect>
         <x>40</x>
-        <y>170</y>
+        <y>225</y>
         <width>243</width>
         <height>18</height>
        </rect>
       </property>
       <property name="text" >
-       <string>Wprowadź hasło swojego konta SIP</string>
+       <string>Hasło konta SIP</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="user_password" >
       <property name="geometry" >
        <rect>
         <x>65</x>
-        <y>190</y>
+        <y>245</y>
         <width>266</width>
         <height>30</height>
        </rect>
+      </property>
+      <property name="inputMask" >
+       <string/>
+      </property>
+      <property name="echoMode" >
+       <enum>QLineEdit::Password</enum>
       </property>
      </widget>
      <widget class="QLineEdit" name="user_name" >
       <property name="geometry" >
        <rect>
         <x>65</x>
-        <y>250</y>
+        <y>160</y>
         <width>266</width>
         <height>30</height>
        </rect>
@@ -682,13 +662,13 @@ p, li { white-space: pre-wrap; }
       <property name="geometry" >
        <rect>
         <x>40</x>
-        <y>230</y>
+        <y>140</y>
         <width>201</width>
         <height>18</height>
        </rect>
       </property>
       <property name="text" >
-       <string>Podaj swoją nazwę użytkownika</string>
+       <string>Nazwa użytkownika</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="user_sip_server" >
@@ -714,14 +694,14 @@ p, li { white-space: pre-wrap; }
        </rect>
       </property>
       <property name="text" >
-       <string>Wprowadź nazwę swojego serwera</string>
+       <string>Adres serwera proxy</string>
       </property>
      </widget>
      <widget class="QCheckBox" name="auto_login" >
       <property name="geometry" >
        <rect>
         <x>40</x>
-        <y>290</y>
+        <y>305</y>
         <width>256</width>
         <height>21</height>
        </rect>
@@ -770,27 +750,14 @@ p, li { white-space: pre-wrap; }
         <normaloff>:/images/images/bug_add.png</normaloff>:/images/images/bug_add.png</iconset>
       </property>
      </widget>
-     <widget class="QLabel" name="label_13" >
-      <property name="geometry" >
-       <rect>
-        <x>40</x>
-        <y>135</y>
-        <width>26</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text" >
-       <string>sip:</string>
-      </property>
-     </widget>
     </widget>
     <widget class="QWidget" name="page_advanced" >
      <property name="geometry" >
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>94</width>
-       <height>24</height>
+       <width>376</width>
+       <height>541</height>
       </rect>
      </property>
      <attribute name="label" >
@@ -804,80 +771,82 @@ p, li { white-space: pre-wrap; }
       <property name="geometry" >
        <rect>
         <x>10</x>
-        <y>370</y>
+        <y>155</y>
         <width>351</width>
-        <height>141</height>
+        <height>156</height>
        </rect>
       </property>
       <property name="title" >
-       <string>Wybierz domyślny kodek dźwięku</string>
+       <string>Ustawienia głośności</string>
       </property>
-      <widget class="QRadioButton" name="gsm_8_codec" >
+      <widget class="QLabel" name="label_15" >
        <property name="geometry" >
         <rect>
          <x>35</x>
-         <y>30</y>
-         <width>121</width>
-         <height>23</height>
+         <y>40</y>
+         <width>106</width>
+         <height>18</height>
         </rect>
        </property>
        <property name="text" >
-        <string>GSM 8 kHz</string>
+        <string>Głosność wyjścia</string>
        </property>
       </widget>
-      <widget class="QRadioButton" name="pcmu_8_codec" >
-       <property name="geometry" >
-        <rect>
-         <x>190</x>
-         <y>30</y>
-         <width>121</width>
-         <height>23</height>
-        </rect>
-       </property>
-       <property name="text" >
-        <string>PCMU 8 kHz</string>
-       </property>
-      </widget>
-      <widget class="QRadioButton" name="pcma_8_codec" >
-       <property name="geometry" >
-        <rect>
-         <x>190</x>
-         <y>65</y>
-         <width>121</width>
-         <height>23</height>
-        </rect>
-       </property>
-       <property name="text" >
-        <string>PCMA 8 kHz</string>
-       </property>
-      </widget>
-      <widget class="QRadioButton" name="speex_8_codec" >
+      <widget class="QLabel" name="label_16" >
        <property name="geometry" >
         <rect>
          <x>35</x>
-         <y>65</y>
-         <width>121</width>
-         <height>23</height>
+         <y>85</y>
+         <width>116</width>
+         <height>18</height>
         </rect>
        </property>
        <property name="text" >
-        <string>speex 8 kHz</string>
+        <string>Czułość mikrofonu</string>
        </property>
       </widget>
-      <widget class="QRadioButton" name="speex_16_codec" >
+      <widget class="QSlider" name="output_volume" >
        <property name="geometry" >
         <rect>
-         <x>35</x>
-         <y>100</y>
-         <width>121</width>
-         <height>23</height>
+         <x>179</x>
+         <y>40</y>
+         <width>156</width>
+         <height>25</height>
         </rect>
        </property>
-       <property name="text" >
-        <string>speex 16 kHz</string>
+       <property name="cursor" >
+        <cursorShape>ArrowCursor</cursorShape>
        </property>
-       <property name="checked" >
-        <bool>true</bool>
+       <property name="maximum" >
+        <number>10</number>
+       </property>
+       <property name="sliderPosition" >
+        <number>5</number>
+       </property>
+       <property name="orientation" >
+        <enum>Qt::Horizontal</enum>
+       </property>
+      </widget>
+      <widget class="QSlider" name="microphone_volume" >
+       <property name="geometry" >
+        <rect>
+         <x>180</x>
+         <y>85</y>
+         <width>156</width>
+         <height>25</height>
+        </rect>
+       </property>
+       <property name="cursor" >
+        <cursorShape>ArrowCursor</cursorShape>
+       </property>
+       <property name="maximum" >
+        <number>10</number>
+       </property>
+       <property name="value" >
+        <number>5</number>
+       </property>
+       <property name="orientation" >
+        <enum>Qt::Horizontal</enum>
        </property>
       </widget>
      </widget>
@@ -887,7 +856,7 @@ p, li { white-space: pre-wrap; }
         <x>10</x>
         <y>5</y>
         <width>351</width>
-        <height>156</height>
+        <height>141</height>
        </rect>
       </property>
       <property name="title" >
@@ -896,9 +865,9 @@ p, li { white-space: pre-wrap; }
       <widget class="QComboBox" name="in_soundcard" >
        <property name="geometry" >
         <rect>
-         <x>160</x>
+         <x>135</x>
          <y>55</y>
-         <width>181</width>
+         <width>206</width>
          <height>24</height>
         </rect>
        </property>
@@ -924,9 +893,9 @@ p, li { white-space: pre-wrap; }
       <widget class="QComboBox" name="recording_source" >
        <property name="geometry" >
         <rect>
-         <x>160</x>
+         <x>135</x>
          <y>85</y>
-         <width>181</width>
+         <width>206</width>
          <height>24</height>
         </rect>
        </property>
@@ -952,15 +921,15 @@ p, li { white-space: pre-wrap; }
       <widget class="QComboBox" name="ring_sound" >
        <property name="geometry" >
         <rect>
-         <x>160</x>
+         <x>135</x>
          <y>115</y>
-         <width>181</width>
+         <width>206</width>
          <height>24</height>
         </rect>
        </property>
        <item>
         <property name="text" >
-         <string>brak</string>
+         <string>sounds/oldphone.wav</string>
         </property>
         <property name="icon" >
          <iconset resource="dsipcom.qrc" >
@@ -1023,9 +992,9 @@ p, li { white-space: pre-wrap; }
       <widget class="QComboBox" name="out_soundcard" >
        <property name="geometry" >
         <rect>
-         <x>160</x>
+         <x>135</x>
          <y>25</y>
-         <width>181</width>
+         <width>206</width>
          <height>24</height>
         </rect>
        </property>
@@ -1053,9 +1022,9 @@ p, li { white-space: pre-wrap; }
       <property name="geometry" >
        <rect>
         <x>10</x>
-        <y>170</y>
+        <y>315</y>
         <width>351</width>
-        <height>191</height>
+        <height>211</height>
        </rect>
       </property>
       <property name="title" >
@@ -1065,7 +1034,7 @@ p, li { white-space: pre-wrap; }
        <property name="geometry" >
         <rect>
          <x>30</x>
-         <y>50</y>
+         <y>55</y>
          <width>231</width>
          <height>23</height>
         </rect>
@@ -1081,7 +1050,7 @@ p, li { white-space: pre-wrap; }
        <property name="geometry" >
         <rect>
          <x>160</x>
-         <y>20</y>
+         <y>30</y>
          <width>51</width>
          <height>24</height>
         </rect>
@@ -1096,8 +1065,8 @@ p, li { white-space: pre-wrap; }
       <widget class="QLabel" name="label_12" >
        <property name="geometry" >
         <rect>
-         <x>30</x>
-         <y>25</y>
+         <x>35</x>
+         <y>30</y>
          <width>121</width>
          <height>18</height>
         </rect>
@@ -1110,7 +1079,7 @@ p, li { white-space: pre-wrap; }
        <property name="geometry" >
         <rect>
          <x>30</x>
-         <y>75</y>
+         <y>85</y>
          <width>261</width>
          <height>23</height>
         </rect>
@@ -1123,7 +1092,7 @@ p, li { white-space: pre-wrap; }
        <property name="geometry" >
         <rect>
          <x>30</x>
-         <y>135</y>
+         <y>145</y>
          <width>246</width>
          <height>23</height>
         </rect>
@@ -1136,7 +1105,7 @@ p, li { white-space: pre-wrap; }
        <property name="geometry" >
         <rect>
          <x>160</x>
-         <y>100</y>
+         <y>110</y>
          <width>176</width>
          <height>24</height>
         </rect>
@@ -1146,7 +1115,7 @@ p, li { white-space: pre-wrap; }
        <property name="geometry" >
         <rect>
          <x>160</x>
-         <y>160</y>
+         <y>170</y>
          <width>176</width>
          <height>24</height>
         </rect>
@@ -1159,8 +1128,8 @@ p, li { white-space: pre-wrap; }
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>366</width>
-       <height>526</height>
+       <width>376</width>
+       <height>541</height>
       </rect>
      </property>
      <attribute name="label" >
@@ -1244,9 +1213,9 @@ p, li { white-space: pre-wrap; }
     <property name="geometry" >
      <rect>
       <x>10</x>
-      <y>755</y>
+      <y>725</y>
       <width>361</width>
-      <height>51</height>
+      <height>66</height>
      </rect>
     </property>
     <property name="title" >
@@ -1259,7 +1228,7 @@ p, li { white-space: pre-wrap; }
      <property name="geometry" >
       <rect>
        <x>135</x>
-       <y>20</y>
+       <y>45</y>
        <width>221</width>
        <height>21</height>
       </rect>
@@ -1283,13 +1252,13 @@ p, li { white-space: pre-wrap; }
       <rect>
        <x>5</x>
        <y>15</y>
-       <width>141</width>
+       <width>156</width>
        <height>31</height>
       </rect>
      </property>
      <property name="font" >
       <font>
-       <pointsize>8</pointsize>
+       <pointsize>7</pointsize>
       </font>
      </property>
      <property name="currentIndex" >
@@ -1340,7 +1309,7 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>382</width>
-     <height>25</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuDsipcom" >
@@ -1374,7 +1343,7 @@ p, li { white-space: pre-wrap; }
    <property name="geometry" >
     <rect>
      <x>0</x>
-     <y>838</y>
+     <y>823</y>
      <width>382</width>
      <height>22</height>
     </rect>
@@ -1454,6 +1423,47 @@ p, li { white-space: pre-wrap; }
    </property>
   </action>
  </widget>
+ <tabstops>
+  <tabstop>user_sip_server</tabstop>
+  <tabstop>user_name</tabstop>
+  <tabstop>user_password</tabstop>
+  <tabstop>auto_login</tabstop>
+  <tabstop>save_config_button</tabstop>
+  <tabstop>load_config_button</tabstop>
+  <tabstop>recording_source</tabstop>
+  <tabstop>ring_sound</tabstop>
+  <tabstop>default_port</tabstop>
+  <tabstop>no_firewall</tabstop>
+  <tabstop>use_stun_server</tabstop>
+  <tabstop>stun_address</tabstop>
+  <tabstop>manual_firewall_address</tabstop>
+  <tabstop>firewall_address</tabstop>
+  <tabstop>calendar</tabstop>
+  <tabstop>raport_viewer</tabstop>
+  <tabstop>call_button</tabstop>
+  <tabstop>hang_button</tabstop>
+  <tabstop>comboBox</tabstop>
+  <tabstop>contacts_list</tabstop>
+  <tabstop>save_contact_list_button</tabstop>
+  <tabstop>load_contact_list_button</tabstop>
+  <tabstop>dial_7</tabstop>
+  <tabstop>dial_8</tabstop>
+  <tabstop>dial_9</tabstop>
+  <tabstop>dial_4</tabstop>
+  <tabstop>dial_5</tabstop>
+  <tabstop>dial_6</tabstop>
+  <tabstop>dial_1</tabstop>
+  <tabstop>dial_2</tabstop>
+  <tabstop>dial_3</tabstop>
+  <tabstop>dial_hash</tabstop>
+  <tabstop>dial_0</tabstop>
+  <tabstop>dial_star</tabstop>
+  <tabstop>number_entry</tabstop>
+  <tabstop>in_soundcard</tabstop>
+  <tabstop>out_soundcard</tabstop>
+  <tabstop>output_volume</tabstop>
+  <tabstop>microphone_volume</tabstop>
+ </tabstops>
  <resources>
   <include location="dsipcom.qrc" />
  </resources>

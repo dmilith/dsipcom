@@ -45,6 +45,7 @@ int
 main( int argc, char *argv[] ) {
   /* macro to load images from dsipcom.qrc
      could be problematic on some archs.. but on linux seems to be unecessary
+     TODO: make dependancy to running OS,
      Q_INIT_RESOURCE(dsipcom); */ 
   
    QApplication app( argc, argv );

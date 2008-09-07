@@ -10,9 +10,8 @@
 #define	_DSIPCOM_UI_H
 
 #include <cstdio>
-//#include <cstdint>
-#include <signal.h>
-#include <assert.h>
+#include <csignal>
+#include <cassert>
 
 #include <qt4/QtCore/QTimer>
 #include <qt4/QtCore/Qt>
@@ -21,6 +20,7 @@
 #include <qt4/QtCore/QTextCodec>
 #include <qt4/QtGui/QMessageBox>
 #include <qt4/QtCore/QQueue>
+#include <qt4/QtGui/QSlider>
 // interesting way to make widget int omain window.. #include <qt4/QtGui/QDockWidget>
 
 #include <linphone/config.h>
@@ -31,6 +31,7 @@
 #include <sstream>
 #include <boost/filesystem/operations.hpp>
 
+#include "version.h"
 #include "d_utils.h"
 #include "ui_dsipcom.h" // automaticly generated interface from ui file
 #include "ui_add_contact_dialog.h" // automaticly generated widget window
@@ -65,11 +66,8 @@ typedef struct {
   char stun_address[50];
   uint32_t manual_firewall_address;
   char firewall_address[50];
-  uint32_t gsm_8_codec;
-  uint32_t speex_8_codec;
-  uint32_t speex_16_codec;
-  uint32_t pcmu_8_codec;
-  uint32_t pcma_8_codec;
+  uint8_t microphone_volume;
+  uint8_t output_volume;
 } USER_CONFIG;
 
 

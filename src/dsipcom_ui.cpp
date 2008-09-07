@@ -6,33 +6,31 @@
  *
  */
 
-#include <qt4/QtCore/qtimer.h>
-
 // TODO: make header check for dsipcom.dcnf
 // TODO: make use of MSList * linphone_core_get_call_logs(LinphoneCore *lc), while generation of daily call logs
 
 #include "dsipcom_ui.h"
-#include "version.h"
 
 using namespace Log;
 using namespace Ui;
 using namespace std;
 using namespace boost::filesystem;
 
-// Linphone variables & consts
+// Linphone core variables & consts
 //
-//Linphone Core
 LinphoneCore linphonec;
 LinphoneCallLog linphone_call_log;
+LinphoneProxyConfig *pcfg = NULL;
+const MSList *proxy_list;
 // today_log will contain current session call log
 static string today_log = "";
 // List of sound devices
-const char **sound_dev_names;
+static const char **sound_dev_names;
 // List of sound codecs
-const MSList *audio_codec_list, *video_codec_list;
+static const MSList *audio_codec_list, *video_codec_list;
 FILE* linphone_logger_file;
 LPC_AUTH_STACK auth_stack; // stack of auth requests (?) 
-char prompt[PROMPT_MAX_LEN];
+//char prompt[PROMPT_MAX_LEN];
 static bool_t auto_answer = FALSE;
 static bool_t vcap_enabled = FALSE;
 static bool_t display_enabled = FALSE;
@@ -113,7 +111,7 @@ static string pending_call_sip;
         #ifdef DEBUG
           cout << "\ndebug_linphonec_display_something_: " << something << endl << flush;
         #endif
-        display_qt4_message( something );  
+        display_qt4_message( something ); 
 			}
 
 			static void
@@ -156,15 +154,10 @@ static string pending_call_sip;
           cout << "\ndebug_linphonec_call_received_: from: " << from << endl << flush;
         #endif
         if ( auto_answer )  {
-          #ifdef DEBUG
-            cout << "\ndebug_linphonec_call_received_: Auto answered call" << endl << flush;
-          #endif
+        #ifdef DEBUG
+          cout << "\ndebug_linphonec_call_received_: Auto answered call" << endl << flush;
+        #endif
 				}
-        //display_qt4_message( from );
-        /*LinphoneAuthInfo *info;
-            info = linphone_auth_info_new( "ktokolwiek_bo_kazdemu_ufamy", NULL, NULL, NULL, from );
-            linphone_core_add_auth_info( lc, info );
-            */
 			}
 
 			static void
@@ -315,7 +308,7 @@ DSipCom::DSipCom( const QString& title ) {
 }
 
 DSipCom::~DSipCom() {
-  // destroing main linphone core structure
+  // destroing main linphone core structure and friends
   linphone_core_uninit( &linphonec );
  #ifdef DEBUG
   cout << "\nDsipCom destructor." << endl;
@@ -372,7 +365,7 @@ DSipCom::create_linphone_core() {
     audio_codec_list = linphone_core_get_audio_codecs( &linphonec );
     video_codec_list = linphone_core_get_video_codecs( &linphonec );
    // linphone_core_set_audio_codecs( &linphonec, (MSList*)audio_codec_list->next );
-   // linphone_core_set_video_codecs( &linphonec, (MSList*)video_codec_list );
+   // linphone_core_set_video_codecs( &linphonec, (MSList*)video_codec_list ); 
     #ifdef DEBUG
       logger.log( "Linphone core Ready!" );
     #endif
@@ -380,7 +373,8 @@ DSipCom::create_linphone_core() {
 
 void
 DSipCom::save_user_list() {
-// TODO: implement User Authorisation for linphone core
+// TODO: implement User Authorisation for linphone core (not required but could improve compatibility with other linphone core
+// based apps)
 //  LinphoneAuthInfo *linphone_auth_info_new(const char *username, const char *userid,
 //		const char *passwd, const char *ha1,const char *realm);
 //void linphone_auth_info_set_passwd(LinphoneAuthInfo *info, const char *passwd);
@@ -518,11 +512,11 @@ DSipCom::apply_settings_to_linphone() {
   #endif
   // TODO: add ring volume level setting
   // void linphone_core_set_ring_level(LinphoneCore *lc, int level);
-  linphone_core_set_ring_level( &linphonec, 5 );
+  linphone_core_set_ring_level( &linphonec, user_config->output_volume );
   // void linphone_core_set_play_level(LinphoneCore *lc, int level);
-  linphone_core_set_play_level( &linphonec, 5 );
+  linphone_core_set_play_level( &linphonec, user_config->output_volume );
   // void linphone_core_set_rec_level(LinphoneCore *lc, int level);
-  linphone_core_set_rec_level( &linphonec, 6 );
+  linphone_core_set_rec_level( &linphonec, user_config->microphone_volume );
   // TODO: add option to manually choose ring sound
   strcpy( user_config->ring_sound, "sounds/toyphone.wav" ); 
   linphone_core_set_ring( &linphonec, user_config->ring_sound );
@@ -538,27 +532,16 @@ DSipCom::apply_settings_to_linphone() {
   #endif
   linphone_core_set_capture_device( &linphonec, user_config->in_soundcard );
   #ifdef DEBUG
-    cout << "\nSound CAPTURE IN device: " << linphone_core_get_capture_device( &linphonec ) << endl;
-    cout.flush();
+    cout << "\nSound CAPTURE IN device: " << linphone_core_get_capture_device( &linphonec ) << endl << flush;
   #endif
   linphone_core_set_guess_hostname( &linphonec, TRUE );
-  // TODO: make possible to set bandwith capacity
   linphone_core_set_download_bandwidth( &linphonec, 0 ); // bandwidth unlimited
   linphone_core_set_upload_bandwidth( &linphonec, 0 ); // same as above.
-  // TODO: make able to preview selected ring 
- /* #ifdef DEBUG
-    cout << sound_dev_names[0] << endl; // alsa
-    cout << sound_dev_names[1] << endl; // oss
-    void* userdata;
-    LinphoneCoreCbFunc func;
-    int result = linphone_core_preview_ring( &linphonec, user_config->ring_sound, func, userdata );
-    if ( result != 0 ) {
-      cout << "\nError in preview!";
-      exit( 1 );
-    }
-    cout << "\n\n\nRing preview: " << user_config->ring_sound << " - " << endl;
-    fflush(stdout);
-  #endif */
+  // create proxy structure and 
+  // get proxy list ( not used but needed by core )
+  proxy_list = linphone_core_get_proxy_config_list( &linphonec );
+  pcfg = linphone_proxy_config_new();
+  linphone_core_get_default_proxy( &linphonec, &pcfg );
 }
 
 // load_user_config() it's method which load application settings and apply them in linphone core right after init
@@ -577,7 +560,6 @@ DSipCom::load_user_config() {
   // putting values from file to edit objects
   this->user_name->setText( user_config->user_name );
   this->user_password->setText( user_config->user_password );
-  this->user_sip->setText( user_config->user_sip );
   this->user_sip_server->setText( user_config->user_sip_server );
 // TODO: it should set properly those, now we'll set default as CONST!: 
   this->out_soundcard->setCurrentIndex( 0 ); //user_config->out_soundcard );
@@ -594,11 +576,8 @@ DSipCom::load_user_config() {
   this->stun_address->setText( user_config->stun_address );
   this->manual_firewall_address->setChecked( user_config->manual_firewall_address );
   this->firewall_address->setText( user_config->firewall_address );
-  this->gsm_8_codec->setChecked( user_config->gsm_8_codec );
-  this->speex_8_codec->setChecked( user_config->speex_8_codec );
-  this->speex_16_codec->setChecked( user_config->speex_16_codec );
-  this->pcmu_8_codec->setChecked( user_config->pcmu_8_codec );
-  this->pcma_8_codec->setChecked( user_config->pcma_8_codec );
+  this->output_volume->setValue( user_config->output_volume );
+  this->microphone_volume->setValue( user_config->microphone_volume );
   apply_settings_to_linphone();
 }
 
@@ -607,7 +586,6 @@ DSipCom::save_user_config() {
   // getting values from main window objects
   strcpy( user_config->user_name, this->user_name->text().toUtf8() );
   strcpy( user_config->user_password, this->user_password->text().toUtf8() );
-  strcpy( user_config->user_sip, this->user_sip->text().toUtf8() );
   strcpy( user_config->user_sip_server, this->user_sip_server->text().toUtf8() );
   if ( this->out_soundcard->currentIndex() == 0 ) { // index 0 means OSS on dSipCom device list, but it's 1 on sound_dev_names list
     strcpy( user_config->out_soundcard, sound_dev_names[ 1 ] );
@@ -631,11 +609,9 @@ DSipCom::save_user_config() {
   strcpy( user_config->stun_address, this->stun_address->text().toUtf8() );
   user_config->manual_firewall_address = this->manual_firewall_address->isChecked();
   strcpy( user_config->firewall_address, this->firewall_address->text().toUtf8() );
-  user_config->gsm_8_codec = this->gsm_8_codec->isChecked();
-  user_config->speex_8_codec = this->speex_8_codec->isChecked();
-  user_config->speex_16_codec = this->speex_16_codec->isChecked();
-  user_config->pcmu_8_codec = this->pcmu_8_codec->isChecked();
-  user_config->pcma_8_codec = this->pcma_8_codec->isChecked();
+  user_config->output_volume = this->output_volume->value();
+  user_config->microphone_volume = this->microphone_volume->value();
+
   FILE* config_file;
   config_file = fopen( CONFIG_FILE.c_str(), "wb+" );
   if ( config_file == 0 ) {
@@ -847,20 +823,24 @@ DSipCom::action_connect_to_sip_server_func() {
   #ifdef DEBUG
     logger.log( "Trying to connect to server" );
   #endif
-    if ( this->user_sip_server->text() == "" ) {
-      QMessageBox::information( this, MAIN_WINDOW_TITLE.c_str(), " Proszę podać w preferencjach użytkownika nazwę serwera! " );
-		} else if ( this->user_sip->text() == "" ) {
-      QMessageBox::information( this, MAIN_WINDOW_TITLE.c_str(), " Proszę podać w preferencjach adres SIP użytkownika! " );
-    } else if ( this->user_password->text() == "" ) {
-      QMessageBox::information( this, MAIN_WINDOW_TITLE.c_str(), " Proszę podać w preferencjach hasło SIP użytkownika! " );
-    } else if ( this->user_name->text() == "" ) {
-      QMessageBox::information( this, MAIN_WINDOW_TITLE.c_str(), " Proszę podać w preferencjach nazwę użytkownika! " );
+    if ( user_config->user_sip_server == "" ) {
+      QMessageBox::information( this, MAIN_WINDOW_TITLE.c_str(), " Proszę podać w preferencjach użytkownika nazwę \
+          serwera SIP i zapisać ustawienia! " );
+    } else if ( user_config->user_password == "" ) {
+      QMessageBox::information( this, MAIN_WINDOW_TITLE.c_str(), " Proszę podać w preferencjach hasło SIP użytkownika i\
+          zapisać ustawienia! " );
+    } else if ( user_config->user_name == "" ) {
+      QMessageBox::information( this, MAIN_WINDOW_TITLE.c_str(), " Proszę podać w preferencjach nazwę użytkownika i \
+          zapisać ustawienia! " );
     } else {
-      QMessageBox::information( this, MAIN_WINDOW_TITLE.c_str(), " Połączono z serwerem: " + (QString)this->user_config->user_sip_server );
+      QMessageBox::information( this, MAIN_WINDOW_TITLE.c_str(), " Połączono z serwerem: " + (QString)user_config->user_sip_server );
       // all required settings are ok
       #ifdef DEBUG
         logger.log( "All required config data is OK!" );
-      #endif  
+      #endif
+      linphone_proxy_config_set_server_addr( pcfg, user_config->user_name );
+      linphone_proxy_config_set_identity( pcfg, user_config->user_sip_server );
+      linphone_core_set_default_proxy( &linphonec, pcfg ); // apply proxy config as default
     }
 }
 

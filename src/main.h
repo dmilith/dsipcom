@@ -15,7 +15,7 @@
 #include <execinfo.h> 
 
 // enabling debuging options
-//#define DEBUG
+#define DEBUG
 //#define WIN32
 // enable asserts in code
 #define D_ASSERT
