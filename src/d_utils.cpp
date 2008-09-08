@@ -2,8 +2,7 @@
  * author: Daniel (dmilith) Dettlaff
  * email: dmilith at drakor.eu
  * released under GPL2 & LGPL license
- * (c) 2oo8
- *
+ * © 2oo8
  */
 
 #include "d_utils.h"
@@ -53,7 +52,7 @@ const string read_one_log_by_date( uint32_t day, uint32_t month, uint32_t year, 
 #endif
 				break;
 			}
-			if ( ( day == str_result->day) && ( month == str_result->month ) && ( year == str_result->year ) )
+			if ( ( day == str_result->day ) && ( month == str_result->month ) && ( year == str_result->year ) )
             result += str_result->str1;
 		}
 	file.close();

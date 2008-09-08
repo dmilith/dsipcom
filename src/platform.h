@@ -1,8 +1,8 @@
-/* 
- * File:   platform.h
- * Author: dmilith
- *
- * Created on 27 kwiecień 2008, 02:09
+/*
+ * author: Daniel (dmilith) Dettlaff
+ * email: dmilith at drakor.eu
+ * released under GPL2 & LGPL license
+ * © 2oo8
  */
 
 #ifndef _PLATFORM_H

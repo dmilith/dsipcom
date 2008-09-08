@@ -136,15 +136,15 @@ p, li { white-space: pre-wrap; }
      <enum>QFrame::Sunken</enum>
     </property>
     <property name="currentIndex" >
-     <number>2</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="page_contacts" >
      <property name="geometry" >
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>100</width>
-       <height>30</height>
+       <width>376</width>
+       <height>541</height>
       </rect>
      </property>
      <attribute name="label" >
@@ -236,8 +236,8 @@ p, li { white-space: pre-wrap; }
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>100</width>
-       <height>30</height>
+       <width>376</width>
+       <height>541</height>
       </rect>
      </property>
      <attribute name="label" >
@@ -710,7 +710,7 @@ p, li { white-space: pre-wrap; }
        <bool>false</bool>
       </property>
       <property name="text" >
-       <string>logowanie automatyczne przy starcie </string>
+       <string>Logowanie automatyczne przy starcie </string>
       </property>
       <property name="checked" >
        <bool>true</bool>
@@ -756,8 +756,8 @@ p, li { white-space: pre-wrap; }
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>100</width>
-       <height>30</height>
+       <width>376</width>
+       <height>541</height>
       </rect>
      </property>
      <attribute name="label" >
@@ -1128,8 +1128,8 @@ p, li { white-space: pre-wrap; }
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>100</width>
-       <height>30</height>
+       <width>376</width>
+       <height>541</height>
       </rect>
      </property>
      <attribute name="label" >
@@ -1355,7 +1355,7 @@ p, li { white-space: pre-wrap; }
      <normaloff>:/images/images/connect.png</normaloff>:/images/images/connect.png</iconset>
    </property>
    <property name="text" >
-    <string>połącz z serwerem SIP proxy</string>
+    <string>Połącz z serwerem SIP proxy</string>
    </property>
   </action>
   <action name="action_disconnect_from_sip_server" >
@@ -1364,7 +1364,7 @@ p, li { white-space: pre-wrap; }
      <normaloff>:/images/images/disconnect.png</normaloff>:/images/images/disconnect.png</iconset>
    </property>
    <property name="text" >
-    <string>rozłącz z serwerem SIP proxy</string>
+    <string>Rozłącz z serwerem SIP proxy</string>
    </property>
   </action>
   <action name="actionPreferencje" >

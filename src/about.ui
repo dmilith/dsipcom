@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>479</width>
-    <height>264</height>
+    <width>465</width>
+    <height>242</height>
    </rect>
   </property>
   <property name="cursor" >
@@ -16,19 +16,6 @@
   <property name="windowTitle" >
    <string>O programie dSipCom</string>
   </property>
-  <widget class="QGraphicsView" name="graphicsView" >
-   <property name="geometry" >
-    <rect>
-     <x>250</x>
-     <y>40</y>
-     <width>211</width>
-     <height>191</height>
-    </rect>
-   </property>
-   <property name="autoFillBackground" >
-    <bool>true</bool>
-   </property>
-  </widget>
   <widget class="QLabel" name="label" >
    <property name="geometry" >
     <rect>
@@ -60,7 +47,7 @@
     </rect>
    </property>
    <property name="text" >
-    <string>multiplatformowy komunikator VoIP</string>
+    <string>Multiplatformowy komunikator VoIP</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_3" >
@@ -128,8 +115,39 @@
     <string>Program na licencji: GPLv2 i LGPL</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="pushButton" >
+   <property name="enabled" >
+    <bool>true</bool>
+   </property>
+   <property name="geometry" >
+    <rect>
+     <x>250</x>
+     <y>30</y>
+     <width>201</width>
+     <height>201</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string/>
+   </property>
+   <property name="icon" >
+    <iconset resource="dsipcom.qrc" >
+     <normaloff>:/images/images/headphone.gif</normaloff>:/images/images/headphone.gif</iconset>
+   </property>
+   <property name="iconSize" >
+    <size>
+     <width>192</width>
+     <height>192</height>
+    </size>
+   </property>
+   <property name="flat" >
+    <bool>false</bool>
+   </property>
+  </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="dsipcom.qrc" />
+ </resources>
  <connections/>
  <designerdata>
   <property name="gridDeltaX" >

@@ -2,8 +2,7 @@
  * author: Daniel (dmilith) Dettlaff
  * email: dmilith at drakor.eu
  * released under GPL2 & LGPL license
- * (c) 2oo8
- *
+ * © 2oo8
  */
 
 #ifndef _DSIPCOM_VERSION_H

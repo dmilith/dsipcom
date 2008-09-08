@@ -1,8 +1,8 @@
-/* 
- * File:   logger.h
- * Author: dmilith
- *
- * Created on 6 kwiecień 2008, 18:03
+/*
+ * author: Daniel (dmilith) Dettlaff
+ * email: dmilith at drakor.eu
+ * released under GPL2 & LGPL license
+ * © 2oo8
  */
 
 #ifndef _LOGGER_H
