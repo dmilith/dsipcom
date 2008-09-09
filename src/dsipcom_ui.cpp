@@ -960,6 +960,7 @@ AddContactWindow::action_done() {
     object->status_box->setGeometry( object->status_box->x(), object->status_box->y() - 220, object->status_box->width(), object->status_box->height() - 220 );
     this->close();
   }
+  delete temp;
 }
 
 
