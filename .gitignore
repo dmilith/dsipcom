@@ -21,3 +21,4 @@ dsipcom.valgrind*
 *.swp
 tmp
 src/tests/test*
+Final-CD/
