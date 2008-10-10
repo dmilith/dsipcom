@@ -1,0 +1,456 @@
+head	1.1;
+access;
+symbols;
+locks; strict;
+comment	@# @;
+
+
+1.1
+date	2008.10.10.02.00.21;	author dmilith;	state Exp;
+branches;
+next	;
+
+
+desc
+@final version 1
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#LyX 1.6.0rc3 created this file. For more info see http://www.lyx.org/
+\lyxformat 340
+\begin_document
+\begin_header
+\textclass beamer
+\begin_preamble
+\usetheme{Warsaw}
+% theme
+
+\setbeamercovered{transparent}
+% ustawienia beamera
+\end_preamble
+\language polish
+\inputencoding auto
+\font_roman times
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 2
+\use_esint 0
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 2
+\tocdepth 2
+\paragraph_separation indent
+\defskip medskip
+\quotes_language danish
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Title
+DSipCom
+\end_layout
+
+\begin_layout Subtitle
+Dedykowany klient VoIP do wspomagania kontroli i organizowania pracy przedstawic
+ieli handlowych
+\begin_inset Newline newline
+\end_inset
+
+(sprzedawców telefonicznych)
+\end_layout
+
+\begin_layout Author
+Daniel Dettlaff
+\end_layout
+
+\begin_layout Institute
+Promotor: Walery Susłow
+\begin_inset Newline newline
+\end_inset
+
+Politechnika Koszalińska
+\begin_inset Newline newline
+\end_inset
+
+Wydział Elektroniki i Informatyki
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset OptArg
+status open
+
+\begin_layout Plain Layout
+Politechnika Koszalińska
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Date
+Koszalin 2007 - 2008
+\end_layout
+
+\begin_layout BeginFrame
+Spis treści
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Wprowadzenie
+\end_layout
+
+\begin_layout Subsection
+Cel projektu
+\end_layout
+
+\begin_layout BeginFrame
+Wprowadzenie
+\end_layout
+
+\begin_layout Itemize
+Stworzenie klienta VoIP w 100% zgodnego ze standardem Session Initiation
+ Protocol.
+\end_layout
+
+\begin_layout Itemize
+Stworzenie aplikacji Open Source, niezależnej od systemu operacyjnego.
+\end_layout
+
+\begin_layout Itemize
+Umożliwienie zintegrowania aplikacji z serwisem do zarządzania sprzedawcami
+ aktywnymi autorstwa Szymona Jeża.
+\end_layout
+
+\begin_layout Subsection
+Założenia główne
+\end_layout
+
+\begin_layout BeginFrame
+Wprowadzenie
+\end_layout
+
+\begin_layout Itemize
+Stabilność.
+\end_layout
+
+\begin_layout Itemize
+Portowalność.
+\end_layout
+
+\begin_layout Itemize
+Wysoka wydajność.
+\end_layout
+
+\begin_layout Itemize
+Niewielkie wymagania sprzętowe.
+\end_layout
+
+\begin_layout Itemize
+Jasność i intuicyjność interfejsu.
+\end_layout
+
+\begin_layout Itemize
+Wykorzystanie standardu SIP.
+\end_layout
+
+\begin_layout Itemize
+Oparcie o licencje GPL i LGPL.
+\end_layout
+
+\begin_layout Section
+Przebieg realizacji
+\end_layout
+
+\begin_layout Subsection
+Diagram przypadków użycia
+\end_layout
+
+\begin_layout BeginFrame
+Diagram przypadków użycia
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename diagram_przypadków_użycia.png
+	lyxscale 20
+	scale 35
+	scaleBeforeRotation
+	rotateAngle 270
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Diagram aktywności
+\end_layout
+
+\begin_layout BeginFrame
+Diagram aktywności
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename diagram_aktywności_procesu_nawiązywania_połączenia.png
+	lyxscale 20
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Diagram klas
+\end_layout
+
+\begin_layout BeginFrame
+Diagram klas
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename diagram_klas.png
+	lyxscale 20
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Diagram architektury
+\end_layout
+
+\begin_layout BeginFrame
+Diagram architektury
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename diagram_architektury.png
+	lyxscale 20
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Technologie i narzędzia
+\end_layout
+
+\begin_layout BeginFrame
+Technologia i narzędzia
+\end_layout
+
+\begin_layout Itemize
+Netbeans IDE, wersje 6.1 i 6.5.
+\end_layout
+
+\begin_layout Itemize
+GVim 7.20.
+\end_layout
+
+\begin_layout Itemize
+GIT 1.5.6.5.
+\end_layout
+
+\begin_layout Itemize
+Linphone SIP library (wersja SVN).
+\end_layout
+
+\begin_layout Itemize
+QtDesigner 4.4.3, QtAssistant 4.4.3, GNU Autotools, GNU C++ Compiler, GNU C
+ Compiler, Boost Library.
+\end_layout
+
+\begin_layout Itemize
+StarOffice: 8.
+\end_layout
+
+\begin_layout Itemize
+Lyx: 1.5.5, 1.6.0svn.
+\end_layout
+
+\begin_layout Subsection
+Implementacja
+\end_layout
+
+\begin_layout BeginFrame
+Implementacja
+\end_layout
+
+\begin_layout Standard
+Najważniejsze problemy:
+\end_layout
+
+\begin_layout Itemize
+Wykorzystanie struktur języka ANSI C, w języku C++.
+\end_layout
+
+\begin_layout Itemize
+Problem zgodności silnika Linphone z systemem dźwięku Open Sound System
+ w systemie Linux.
+\end_layout
+
+\begin_layout Itemize
+Problem wielowątkowości różnych implementacji (Qt4, Boost, PThreads).
+\end_layout
+
+\begin_layout Itemize
+Poprawne zarządzanie wątkami aplikacji.
+\end_layout
+
+\begin_layout Itemize
+Zarządzanie strumieniami danych w czasie rzeczywistym.
+\end_layout
+
+\begin_layout Section
+Demonstracja działania aplikacji
+\end_layout
+
+\begin_layout BeginFrame
+Zrzuty ekranu działającej aplikacji
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename shots/lista_kontaktów.png
+	lyxscale 20
+	scale 28
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename shots/wybieranie_numerów.png
+	lyxscale 20
+	scale 28
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename shots/preferencje_użytkownika.png
+	lyxscale 20
+	scale 28
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename shots/ustawienia_zaawansowane.png
+	lyxscale 20
+	scale 28
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename shots/raporty_z_połączeń.png
+	lyxscale 20
+	scale 28
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Podsumowanie i wnioski
+\end_layout
+
+\begin_layout BeginFrame
+Podsumowanie i wnioski
+\end_layout
+
+\begin_layout Itemize
+Projektowanie aplikacji do komunikacji głosowej nie wymaga nakładów dużej
+ mocy obliczeniowej, więc do zaimplementowania komunikatora VoIP, wystarczyłby
+ język interpretowany klasy języka Ruby lub Python.
+\end_layout
+
+\begin_layout Itemize
+Napisanie aplikacji wykorzystującej standard SIP do komunikacji VoIP, nie
+ jest trudne dzięki takim bibliotekom jak Linphone.
+\end_layout
+
+\begin_layout Itemize
+W chwili obecnej aplikacja jest skończona w 80%.
+ Po złożeniu mojej pracy inżynierskiej, będzie dalej rozwijana i wykorzystywana
+ do innych projektów.
+ Możliwe też, że będzie wykorzystana do celów komercyjnych.
+\end_layout
+
+\begin_layout BeginFrame
+Dziękuję za uwagę
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/dmilith/Private_1/Programowanie/INŻYNIERKA/dsipcom-public/src/images/headphone.gif
+	lyxscale 20
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout EndFrame
+
+\end_layout
+
+\end_body
+\end_document
+@

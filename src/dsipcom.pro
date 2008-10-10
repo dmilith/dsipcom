@@ -1,4 +1,4 @@
-CONFIG += debug
+CONFIG += release
 HEADERS += main.h \
 	 version.h \
 	 logger.h \
@@ -49,7 +49,7 @@ unix {
 
 # Release: QMAKE_CXXFLAGS += -std=c++0x -Os -w -march=athlon64
 # Debug: QMAKE_CXXFLAGS += -std=c++0x -O0 -ggdb -W
-QMAKE_CXXFLAGS += -O2 -w -march=athlon64 -ggdb
+QMAKE_CXXFLAGS += -O2 -w -march=athlon64
 TARGET = ../dsipcom
 target.path = ../
 sources.files = $$SOURCES $$HEADERS $$RESOURCES $$FORMS *.pro
